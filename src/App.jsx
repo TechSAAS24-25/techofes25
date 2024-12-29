@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Team from "./components/Team.jsx";
+import Query from "./components/Query";
 import "./App.css";
 const Register = () => <h1>Register Page</h1>;
 const Roadtrips = () => <h1>Roadtrips Page</h1>;
@@ -15,7 +16,6 @@ const KeynoteSpeakers = () => <h1>Keynote Speakers</h1>;
 const SpecialPerformances = () => <h1>Special Performances</h1>;
 const HallOfFame = () => <h1>Hall Of Fame Page</h1>;
 const Contact = () => <h1>Contact Page</h1>;
-const Query = () => <h1>Queries Page</h1>;
 const Sponsors = () => <h1>Sponsors Page</h1>;
 
 function App() {
