@@ -1,0 +1,8 @@
+body{
+  margin:0;
+  padding:0;
+  background-color: linear-gradient(rgb(4, 4, 31),rgb(8, 8, 62));
+  width:100%;
+  font-family: cursive;
+  position: relative;
+}
