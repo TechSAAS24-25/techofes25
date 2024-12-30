@@ -1,27 +1,28 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import "./EventDetail.css";
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import './EventDetail.css'
 
-const eventDetails = {
+// Dummy Data (Event details)
+const dummyEventDetails = {
   Dance: {
     icon: './assets/dance.png',
     name: 'Dance',
     about:
-      'The inter-collegiate group dance competition is a platform for the best dancing troupes across the country to flaunt their hypnotic moves. Step onto our stage where synchronized moves and collective energy create a mesmerizing spectacle.',
+      'The inter-collegiate group dance competition is a platform for the best dancing troupes across the country to flaunt their hypnotic moves.',
     rules: [
-      'The time limit for the overall performance is 5 minutes; exceeding by 1 minute will lead to disqualification.',
-      'Participants may use one or more songs in the performance within 5 minutes.',
+      'The time limit for the overall performance is 5 minutes.',
+      'Participants may use one or more songs in the performance.',
       'The maximum team size is 15 members.',
-      'Participants should get their songs/music on a pen drive. Live music is not allowed.',
       'Use of props is allowed.',
-      'Teams are STRICTLY prohibited from mentioning college names during the performance by any medium. Any team doing so will be awarded a penalty.',
-      'All dance forms, including hip-hop, Punjabi, Jazz, Kathakali, Contemporary, etc., are allowed.',
-      'Judging criteria includes: (A) Synchronisation and coordination (40 points), (B) Choreography and creativity (30 points), (C) Artistic Presentation (30 points).',
-      'Winners get a chance to grab a direct spot in Centrifuge during the main fest.',
     ],
+    subTabs: {
+      Solo: 'Solo performance details',
+      Group: 'Group performance details',
+      Battle: 'Battle performance details',
+    },
   },
   Music: {
-    icon: 'src/assets/music.png',
+    icon: './assets/music.png',
     name: 'Music',
     about:
       'Showcase your musical talent in this exciting inter-collegiate music competition.',
@@ -30,48 +31,86 @@ const eventDetails = {
       'Use of pre-recorded tracks is allowed.',
       'Solo or group participation is allowed.',
     ],
+    subTabs: {
+      Solo: 'Solo music performance details',
+      Group: 'Group music performance details',
+      Band: 'Band music performance details',
+    },
   },
-
   Dramatics: {
-    icon: 'src/assets/music.png',
-    name: 'Music',
+    icon: './assets/drama.png',
+    name: 'Dramatics',
     about:
-      'Showcase your musical talent in this exciting inter-collegiate music competition.',
+      'Showcase your dramatic talent in this exciting inter-collegiate dramatics competition.',
     rules: [
       'Performance time limit is 7 minutes.',
-      'Use of pre-recorded tracks is allowed.',
+      'Use of props is allowed.',
       'Solo or group participation is allowed.',
     ],
+    subTabs: {
+      Solo: 'Solo dramatic performance details',
+      Group: 'Group dramatic performance details',
+      Theater: 'Theater dramatic performance details',
+    },
   },
 }
 
 const EventDetail = () => {
-  const { eventName } = useParams();
-  const event = eventDetails[eventName];
+  const { eventName } = useParams() 
+  const [event, setEvent] = useState(null)
+  const [selectedSubTab, setSelectedSubTab] = useState('Solo')
+
+  useEffect(() => {
+    
+    const fetchedEvent = dummyEventDetails[eventName]
+    if (fetchedEvent) {
+      setEvent(fetchedEvent)
+    }
+  }, [eventName])
 
   if (!event) {
-    return <h2>Event not found</h2>;
+    return <h2>Loading...</h2> 
   }
 
   return (
-    <div className="event-detail-container">
-        <div className="event-head">
-        <img src={event.icon} className="e-icon" />
-        <div className="event-title-wrapper">
-        <h1 className="event-title">{event.name}</h1>
-        <button className="register-btn">Register</button>
-        </div>
-        </div>
-        <h2>About</h2>
-      <p className="event-about">{event.about}</p>
-      <h2>Rules</h2>
-      <ul className="event-rules">
-        {event.rules.map((rule, index) => (
-          <li key={index}>{rule}</li>
+    <>
+      <div className='sub-tabs'>
+        {Object.keys(event.subTabs).map((subTab) => (
+          <button
+            key={subTab}
+            onClick={() => setSelectedSubTab(subTab)}
+            className={selectedSubTab === subTab ? 'active-sub-tab' : ''}
+          >
+            {subTab}
+          </button>
         ))}
-      </ul>
-    </div>
-  );
-};
+      </div>
+      <div className='event-detail-container'>
+        <div className='event-head'>
+          <img src={event.icon} alt='Event icon' className='e-icon' />
+          <div className='event-title-wrapper'>
+            <h1 className='event-title'>{event.name}</h1>
+            <button className='register-btn'>Register</button>
+          </div>
+        </div>
 
-export default EventDetail;
+        <h2>About</h2>
+        <p className='event-about'>{event.about}</p>
+
+        <h2>Rules</h2>
+        <ul className='event-rules'>
+          {event.rules.map((rule, index) => (
+            <li key={index}>{rule}</li>
+          ))}
+        </ul>
+
+        {/* Sub Tabs */}
+
+        <h3>{selectedSubTab}</h3>
+        <p>{event.subTabs[selectedSubTab]}</p>
+      </div>
+    </>
+  )
+}
+
+export default EventDetail
