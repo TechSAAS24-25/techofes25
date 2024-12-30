@@ -1,0 +1,16 @@
+.home {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.ttitle {
+    font-size: 3rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    color:white;
+    padding-left:50px;
+}
