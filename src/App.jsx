@@ -5,15 +5,13 @@ import Team from "./components/Team.jsx";
 import Query from "./components/Query.jsx";
 import Merchandise from "./components/Merchandise.jsx"
 import Schedule from "./components/Schedule.jsx";
+import StarAttractions from "./components/StarAttractions.jsx";
 import "./App.css";
 const Register = () => <h1>Register Page</h1>;
 const Roadtrips = () => <h1>Roadtrips Page</h1>;
 const AdventureTrips = () => <h1>Adventure Trips</h1>;
 const CityTours = () => <h1>City Tours</h1>;
 const Gallery = () => <h1>Gallery Page</h1>;
-const StarAttractions = () => <h1>Star Attractions</h1>;
-const KeynoteSpeakers = () => <h1>Keynote Speakers</h1>;
-const SpecialPerformances = () => <h1>Special Performances</h1>;
 const HallOfFame = () => <h1>Hall Of Fame Page</h1>;
 const Contact = () => <h1>Contact Page</h1>;
 const Sponsors = () => <h1>Sponsors Page</h1>;
@@ -31,8 +29,6 @@ function App() {
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/star-attractions" element={<StarAttractions />} />
-        <Route path="/star-attractions/speakers" element={<KeynoteSpeakers />} />
-        <Route path="/star-attractions/performances" element={<SpecialPerformances />} />
         <Route path="/hall-of-fame" element={<HallOfFame />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/contact/team" element={<Team />} />

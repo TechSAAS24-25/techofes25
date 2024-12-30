@@ -31,10 +31,7 @@ const Navbar = () => {
           { name: "Merchandise", path: "/merchandise" },
           { name: "Schedule", path: "/schedule" },
           { name: "Gallery", path: "/gallery" },
-          { name: "Star Attractions", path: "/star-attractions", submenu: [
-            { name: "Keynote Speakers", path: "/star-attractions/speakers" },
-            { name: "Special Performances", path: "/star-attractions/performances" },
-          ]},
+          { name: "Star Attractions", path: "/star-attractions"},
           { name: "Hall Of Fame", path: "/hall-of-fame" },
           { name: "Contact", path: "/contact", submenu: [
             { name:"Core Team", path: "/contact/team" },
