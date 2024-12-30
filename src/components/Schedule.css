@@ -1,0 +1,172 @@
+:root {
+  --peach-color: #d98586;
+  --background-color: #0a0522;
+  --transition-speed: 0.3s;
+}
+
+.schedule {
+  text-align: center;
+  background-color: var(--background-color);
+  color: white;
+  padding: 20px;
+  transition: background-color var(--transition-speed);
+}
+
+.schedule-title {
+  text-align: center;
+  margin-bottom: 50px;
+  color: white;
+  font-size: 2rem;
+  text-shadow: 0 0 10px #fff, 0 0 15px #ffd9b3, 0 0 20px #ffd1a6, 0 0 25px var(--peach-color);
+  transition: color var(--transition-speed), text-shadow var(--transition-speed);
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.tabs button:hover {
+  background-color: var(--peach-color);
+  transform: scale(1.05);
+}
+
+.tabs .active {
+  background-color: var(--peach-color);
+  color: white;
+  border-color: var(--peach-color);
+  box-shadow: 0 0 10px var(--peach-color);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  position: relative;
+  margin-top: 30px;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  background-color: white;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 80%;
+  position: relative;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, background-color var(--transition-speed);
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item:nth-child(odd) {
+  flex-direction: row;
+}
+
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: var(--peach-color);
+  border-radius: 50%;
+  border: 0.2rem solid white;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  transition: transform var(--transition-speed);
+}
+
+.timeline-item:hover::before {
+  transform: translateX(-50%) scale(1.2);
+}
+
+.event-card {
+  background-color: var(--peach-color);
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 250px;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.event-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.event-card button {
+  margin: 10px 0;
+  padding: 5px 10px;
+  background-color: white;
+  color: var(--peach-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.event-card button:hover {
+  background-color: var(--peach-color);
+  color: white;
+  transform: scale(1.1);
+}
+
+.schedule-img {
+  max-width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform var(--transition-speed);
+}
+
+.schedule-img:hover {
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

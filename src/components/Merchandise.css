@@ -1,0 +1,66 @@
+.merch-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 0.5rem;
+    border: 0.2rem solid #FF9899;
+    color: white;
+    padding: 5%;
+    margin: 5%;
+    background-color: #1a1a2e;
+    box-shadow: 0 0 20px rgba(255, 152, 153, 0.5);
+}
+.image-merch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    border:none;
+}
+.image-border {
+    width: 75%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1a1a2e;
+    position: relative;
+}
+
+.image-border img {
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20%;
+    border:0.2rem solid rgb(255, 255, 255);
+}
+.order-button {
+    margin-top: 1rem;
+    padding: 0.75rem 2rem;
+    background-color: #FF9899;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 15px rgba(255, 152, 153, 0.5);
+}
+.order-button:hover {
+    background-color: #ff7577;
+    transform: scale(1.05);
+}
+.details-container {
+    width: 50%;
+    text-align: left;
+    line-height: 1.8;
+    font-size: 1rem;
+    color: #d9d9d9;
+    background: rgba(50, 50, 63, 0.6);
+    backdrop-filter: blur(20px);
+    border-radius:0.5rem;
+    padding:0.9rem;
+}

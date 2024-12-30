@@ -2,14 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Team from "./components/Team.jsx";
-import Query from "./components/Query";
+import Query from "./components/Query.jsx";
+import Merchandise from "./components/Merchandise.jsx"
+import Schedule from "./components/Schedule.jsx";
 import "./App.css";
 const Register = () => <h1>Register Page</h1>;
 const Roadtrips = () => <h1>Roadtrips Page</h1>;
 const AdventureTrips = () => <h1>Adventure Trips</h1>;
 const CityTours = () => <h1>City Tours</h1>;
-const Merchandise = () => <h1>Merchandise Page</h1>;
-const Schedule = () => <h1>Schedule Page</h1>;
 const Gallery = () => <h1>Gallery Page</h1>;
 const StarAttractions = () => <h1>Star Attractions</h1>;
 const KeynoteSpeakers = () => <h1>Keynote Speakers</h1>;
