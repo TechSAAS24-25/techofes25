@@ -13,3 +13,4 @@ const EventCard = ({ icon, name }) => {
 };
 
 export default EventCard;
+
