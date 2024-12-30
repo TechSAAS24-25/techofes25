@@ -4,33 +4,46 @@ import "./EventDetail.css";
 
 const eventDetails = {
   Dance: {
-    icon: "./assets/dance.png",
-    name: "Dance",
+    icon: './assets/dance.png',
+    name: 'Dance',
     about:
-      "The inter-collegiate group dance competition is a platform for the best dancing troupes across the country to flaunt their hypnotic moves. Step onto our stage where synchronized moves and collective energy create a mesmerizing spectacle.",
+      'The inter-collegiate group dance competition is a platform for the best dancing troupes across the country to flaunt their hypnotic moves. Step onto our stage where synchronized moves and collective energy create a mesmerizing spectacle.',
     rules: [
-      "The time limit for the overall performance is 5 minutes; exceeding by 1 minute will lead to disqualification.",
-      "Participants may use one or more songs in the performance within 5 minutes.",
-      "The maximum team size is 15 members.",
-      "Participants should get their songs/music on a pen drive. Live music is not allowed.",
-      "Use of props is allowed.",
-      "Teams are STRICTLY prohibited from mentioning college names during the performance by any medium. Any team doing so will be awarded a penalty.",
-      "All dance forms, including hip-hop, Punjabi, Jazz, Kathakali, Contemporary, etc., are allowed.",
-      "Judging criteria includes: (A) Synchronisation and coordination (40 points), (B) Choreography and creativity (30 points), (C) Artistic Presentation (30 points).",
-      "Winners get a chance to grab a direct spot in Centrifuge during the main fest.",
+      'The time limit for the overall performance is 5 minutes; exceeding by 1 minute will lead to disqualification.',
+      'Participants may use one or more songs in the performance within 5 minutes.',
+      'The maximum team size is 15 members.',
+      'Participants should get their songs/music on a pen drive. Live music is not allowed.',
+      'Use of props is allowed.',
+      'Teams are STRICTLY prohibited from mentioning college names during the performance by any medium. Any team doing so will be awarded a penalty.',
+      'All dance forms, including hip-hop, Punjabi, Jazz, Kathakali, Contemporary, etc., are allowed.',
+      'Judging criteria includes: (A) Synchronisation and coordination (40 points), (B) Choreography and creativity (30 points), (C) Artistic Presentation (30 points).',
+      'Winners get a chance to grab a direct spot in Centrifuge during the main fest.',
     ],
   },
   Music: {
-    icon: "src/assets/music.png",
-    name: "Music",
-    about: "Showcase your musical talent in this exciting inter-collegiate music competition.",
+    icon: 'src/assets/music.png',
+    name: 'Music',
+    about:
+      'Showcase your musical talent in this exciting inter-collegiate music competition.',
     rules: [
-      "Performance time limit is 7 minutes.",
-      "Use of pre-recorded tracks is allowed.",
-      "Solo or group participation is allowed.",
+      'Performance time limit is 7 minutes.',
+      'Use of pre-recorded tracks is allowed.',
+      'Solo or group participation is allowed.',
     ],
   },
-};
+
+  Dramatics: {
+    icon: 'src/assets/music.png',
+    name: 'Music',
+    about:
+      'Showcase your musical talent in this exciting inter-collegiate music competition.',
+    rules: [
+      'Performance time limit is 7 minutes.',
+      'Use of pre-recorded tracks is allowed.',
+      'Solo or group participation is allowed.',
+    ],
+  },
+}
 
 const EventDetail = () => {
   const { eventName } = useParams();
