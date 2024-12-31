@@ -8,65 +8,171 @@ const eventDetails = {
     icon: '/assets/dance.png',
     name: 'Dance',
     subTabs: {
-      Centrifuge: 'Details about the dance performance...',
-      Shuffle: 'Judging criteria and process...',
-      'Shake a leg': 'Steps and process for registering...',
-      'Two For A Tango': 'Details about the dance performance...',
-      Nrityakala: 'Judging criteria and process...',
+      Centrifuge: {
+        icon: '/assets/dance.png',
+        content:
+          'Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: [
+          'Rule for Centrifuge 1.',
+          'Rule for Centrifuge 2.',
+          'Rule for Centrifuge 3.',
+        ],
+      },
+      Shuffle: {
+        icon: '/assets/dance.png',
+        content:
+          'Judging criteria and process... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: [
+          'Rule for Shuffle 1.',
+          'Rule for Shuffle 2.',
+          'Rule for Shuffle 3.',
+        ],
+      },
+      'Shake a leg': {
+        icon: '/assets/dance.png',
+        content:
+          'Steps and process for registering... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: [
+          'Rule for Shake a Leg 1.',
+          'Rule for Shake a Leg 2.',
+          'Rule for Shake a Leg 3.',
+        ],
+      },
+      'Two For A Tango': {
+        icon: '/assets/dance.png',
+        content:
+          'Details about the dance performance... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: ['Rule for Two for a Tango 1.', 'Rule for Two for a Tango 2.'],
+      },
+      Nrityakala: {
+        content:
+          'Judging criteria and process... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: [
+          'Rule for Nrityakala 1.',
+          'Rule for Nrityakala 2.',
+          'Rule for Nrityakala 3.',
+        ],
+      },
     },
-    about:
-      'The inter-collegiate group dance competition is a platform for the best dancing troupes across the country to flaunt their hypnotic moves. Step onto our stage where synchronized moves and collective energy create a mesmerizing spectacle.',
-    rules: [
-      
-      'Teams are STRICTLY prohibited from mentioning college names during the performance by any medium. Any team doing so will be awarded a penalty.',
-      'All dance forms, including hip-hop, Punjabi, Jazz, Kathakali, Contemporary, etc., are allowed.',
-      'Judging criteria includes: (A) Synchronisation and coordination (40 points), (B) Choreography and creativity (30 points), (C) Artistic Presentation (30 points).',
-      // 'Winners get a chance to grab a direct spot in Centrifuge during the main fest.',
-    ],
   },
+
+  // music
   Music: {
-    icon: '/assets/music.png',
+    icon: '/assets/dance.png',
     name: 'Music',
     subTabs: {
-      'Beat it': 'Details about the music performance...',
-      'Sf idol': 'Judging criteria and process...',
-      Sargam: 'Steps and process for registering...',
+      sf_idol: {
+        icon: '/assets/dance.png',
+        content:
+          'Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: [
+          'Rule for Centrifuge 1.',
+          'Rule for Centrifuge 2.',
+          'Rule for Centrifuge 3.',
+        ],
+      },
+      Shuffle: {
+        icon: '/assets/dance.png',
+        content:
+          'Judging criteria and process... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: [
+          'Rule for Shuffle 1.',
+          'Rule for Shuffle 2.',
+          'Rule for Shuffle 3.',
+        ],
+      },
+      'Shake a leg': {
+        icon: '/assets/dance.png',
+        content:
+          'Steps and process for registering... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: [
+          'Rule for Shake a Leg 1.',
+          'Rule for Shake a Leg 2.',
+          'Rule for Shake a Leg 3.',
+        ],
+      },
+      'Two For A Tango': {
+        icon: '/assets/dance.png',
+        content:
+          'Details about the dance performance... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: ['Rule for Two for a Tango 1.', 'Rule for Two for a Tango 2.'],
+      },
+      Nrityakala: {
+        content:
+          'Judging criteria and process... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: [
+          'Rule for Nrityakala 1.',
+          'Rule for Nrityakala 2.',
+          'Rule for Nrityakala 3.',
+        ],
+      },
     },
-    about:
-      'Showcase your musical talent in this exciting inter-collegiate music competition.',
-    rules: [
-      'Performance time limit is 7 minutes.',
-      'Use of pre-recorded tracks is allowed.',
-      'Solo or group participation is allowed.',
-    ],
   },
+
+  // dramatic
   Dramatics: {
-    icon: '/assets/dramatics.png',
+    icon: '/assets/dance.png',
     name: 'Dramatics',
     subTabs: {
-      'I Me Myself': 'Details about the dramatics performance...',
-      Mine: 'Judging criteria and process...',
-      Nukkad: 'Steps and process for registering...',
+      sf_idol: {
+        icon: '/assets/dance.png',
+        content:
+          'Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: [
+          'Rule for Centrifuge 1.',
+          'Rule for Centrifuge 2.',
+          'Rule for Centrifuge 3.',
+        ],
+      },
+      Shuffle: {
+        icon: '/assets/dance.png',
+        content:
+          'Judging criteria and process... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: [
+          'Rule for Shuffle 1.',
+          'Rule for Shuffle 2.',
+          'Rule for Shuffle 3.',
+        ],
+      },
+      'Shake a leg': {
+        icon: '/assets/dance.png',
+        content:
+          'Steps and process for registering... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: [
+          'Rule for Shake a Leg 1.',
+          'Rule for Shake a Leg 2.',
+          'Rule for Shake a Leg 3.',
+        ],
+      },
+      'Two For A Tango': {
+        icon: '/assets/dance.png',
+        content:
+          'Details about the dance performance... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: ['Rule for Two for a Tango 1.', 'Rule for Two for a Tango 2.'],
+      },
+      Nrityakala: {
+        content:
+          'Judging criteria and process... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
+        rules: [
+          'Rule for Nrityakala 1.',
+          'Rule for Nrityakala 2.',
+          'Rule for Nrityakala 3.',
+        ],
+      },
     },
-    about:
-      'Show your acting and storytelling skills in this inter-collegiate dramatics competition.',
-    rules: [
-      'Performance time limit is 10 minutes.',
-      'Props and costumes are allowed.',
-      'Solo or group participation is allowed.',
-      'Any form of drama, including comedy, tragedy, and improvisation, is welcome.',
-    ],
   },
 }
 
 const EventDetail = () => {
   const { eventName } = useParams()
   const [selectedEvent, setSelectedEvent] = useState(eventName || 'Dance')
-  const [selectedSubTab, setSelectedSubTab] = useState('Performance')
+  const [selectedSubTab, setSelectedSubTab] = useState(
+    Object.keys(eventDetails[selectedEvent]?.subTabs || {})[0] 
+  )
 
   const handleTabChange = (eventName) => {
     setSelectedEvent(eventName)
-    setSelectedSubTab('Performan') // Reset to default sub-tab when event changes
+    setSelectedSubTab(Object.keys(eventDetails[eventName]?.subTabs || {})[0]) 
   }
 
   const handleSubTabChange = (subTab) => {
@@ -94,7 +200,6 @@ const EventDetail = () => {
               }`}
             ></div>
             <p className='e-sub-title'>{subTab}</p>
-
             <div
               className={`e-bottom ${
                 selectedSubTab === subTab ? 'active-line' : ''
@@ -116,15 +221,15 @@ const EventDetail = () => {
         </div>
 
         {/* Display Content Based on Selected Sub-Tab */}
-        {/* <h2>{selectedSubTab}</h2> */}
+        {/* <h2>About</h2> */}
+        {/* <p className='event-about'>{event.about}</p> */}
 
         <h2>About</h2>
-        {/* <p className='event-about'>{event.about}</p> */}
-        <p className='event-about'>{event.subTabs[selectedSubTab]}</p>
+        <p>{event.subTabs[selectedSubTab]?.content}</p>
 
         <h2>Rules</h2>
         <ul className='event-rules'>
-          {event.rules.map((rule, index) => (
+          {event.subTabs[selectedSubTab]?.rules?.map((rule, index) => (
             <li key={index}>{rule}</li>
           ))}
         </ul>
