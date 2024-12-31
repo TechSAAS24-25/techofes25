@@ -11,19 +11,17 @@ const eventDetails = {
       Centrifuge: 'Details about the dance performance...',
       Shuffle: 'Judging criteria and process...',
       'Shake a leg': 'Steps and process for registering...',
+      'Two For A Tango': 'Details about the dance performance...',
+      Nrityakala: 'Judging criteria and process...',
     },
     about:
       'The inter-collegiate group dance competition is a platform for the best dancing troupes across the country to flaunt their hypnotic moves. Step onto our stage where synchronized moves and collective energy create a mesmerizing spectacle.',
     rules: [
-      'The time limit for the overall performance is 5 minutes; exceeding by 1 minute will lead to disqualification.',
-      'Participants may use one or more songs in the performance within 5 minutes.',
-      'The maximum team size is 15 members.',
-      'Participants should get their songs/music on a pen drive. Live music is not allowed.',
-      'Use of props is allowed.',
+      
       'Teams are STRICTLY prohibited from mentioning college names during the performance by any medium. Any team doing so will be awarded a penalty.',
       'All dance forms, including hip-hop, Punjabi, Jazz, Kathakali, Contemporary, etc., are allowed.',
       'Judging criteria includes: (A) Synchronisation and coordination (40 points), (B) Choreography and creativity (30 points), (C) Artistic Presentation (30 points).',
-      'Winners get a chance to grab a direct spot in Centrifuge during the main fest.',
+      // 'Winners get a chance to grab a direct spot in Centrifuge during the main fest.',
     ],
   },
   Music: {
@@ -68,7 +66,7 @@ const EventDetail = () => {
 
   const handleTabChange = (eventName) => {
     setSelectedEvent(eventName)
-    setSelectedSubTab('Performance') // Reset to default sub-tab when event changes
+    setSelectedSubTab('Performan') // Reset to default sub-tab when event changes
   }
 
   const handleSubTabChange = (subTab) => {
@@ -79,17 +77,30 @@ const EventDetail = () => {
 
   return (
     <>
-    <h2>Dance</h2>
+      <h2 className='e-heading'>{selectedEvent}</h2>
       {/* Sub-Tabs for the Selected Event */}
       <div className='sub-tabs'>
         {Object.keys(event.subTabs).map((subTab) => (
-          <button
+          <div
             key={subTab}
             onClick={() => handleSubTabChange(subTab)}
-            className={selectedSubTab === subTab ? 'active-sub-tab' : ''}
+            className={`e-subtab ${
+              selectedSubTab === subTab ? 'active-sub-tab' : ''
+            }`}
           >
-            {subTab}
-          </button>
+            <div
+              className={`e-top ${
+                selectedSubTab === subTab ? 'active-line' : ''
+              }`}
+            ></div>
+            <p className='e-sub-title'>{subTab}</p>
+
+            <div
+              className={`e-bottom ${
+                selectedSubTab === subTab ? 'active-line' : ''
+              }`}
+            ></div>
+          </div>
         ))}
       </div>
 
@@ -105,11 +116,11 @@ const EventDetail = () => {
         </div>
 
         {/* Display Content Based on Selected Sub-Tab */}
-        <h2>{selectedSubTab}</h2>
-        <p className='event-about'>{event.subTabs[selectedSubTab]}</p>
+        {/* <h2>{selectedSubTab}</h2> */}
 
         <h2>About</h2>
-        <p className='event-about'>{event.about}</p>
+        {/* <p className='event-about'>{event.about}</p> */}
+        <p className='event-about'>{event.subTabs[selectedSubTab]}</p>
 
         <h2>Rules</h2>
         <ul className='event-rules'>

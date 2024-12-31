@@ -60,10 +60,68 @@
     padding-top:2rem;
   }
 
+.e-heading{
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
 .sub-tabs{
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    /* row-gap: 10px; */
+    column-gap: 100px;
+    /* width: 20px; */
     align-items: center;
-    width: 90%;
-    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    
+
+
 }
+
+.active-sub-tab{
+    color: yellow;
+    margin-top: -25px;
+    transition: margin-top 0.3s ease;
+
+}
+
+.active-line{
+  background-color: yellow;
+}
+
+
+
+
+.e-top{
+  height: 3px;
+  background-color: #ddd;
+
+  
+}
+
+.e-bottom{
+  height: 3px;
+  background-color: #ddd;
+}
+
+.e-sub-title{
+  /* margin-top: 5px; */
+  /* margin-bottom: 5px; */
+  margin: 7px;
+}
+
+@media screen and (max-width: 768px) {
+
+  .sub-tabs
+  {
+    column-gap: 40px;
+  }
+    
+  
+}
+
+
