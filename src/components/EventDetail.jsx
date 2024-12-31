@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import './EventDetail.css'
+import Img from '../assets/dance.png'
 
 // Event details data
 const eventDetails = {
   Dance: {
-    icon: '/assets/dance.png',
     name: 'Dance',
     subTabs: {
       Centrifuge: {
-        icon: '/assets/dance.png',
+        icon: '../assets/dance.png',
+        description: 'description about the event',
         content:
           'Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: [
@@ -19,7 +20,8 @@ const eventDetails = {
         ],
       },
       Shuffle: {
-        icon: '/assets/dance.png',
+        icon: '/assets/test.jpeg',
+        description: 'description about the shuffle event',
         content:
           'Judging criteria and process... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: [
@@ -29,7 +31,8 @@ const eventDetails = {
         ],
       },
       'Shake a leg': {
-        icon: '/assets/dance.png',
+        icon: '../assets/dance.png',
+        description: 'description about the  shake  event',
         content:
           'Steps and process for registering... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: [
@@ -40,11 +43,14 @@ const eventDetails = {
       },
       'Two For A Tango': {
         icon: '/assets/dance.png',
+        description: 'description about the two for a tango event',
         content:
           'Details about the dance performance... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: ['Rule for Two for a Tango 1.', 'Rule for Two for a Tango 2.'],
       },
       Nrityakala: {
+        icon: '/assets/dance.png',
+        description: 'description about the Nrityakala event',
         content:
           'Judging criteria and process... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: [
@@ -58,11 +64,11 @@ const eventDetails = {
 
   // music
   Music: {
-    icon: '/assets/dance.png',
     name: 'Music',
     subTabs: {
       sf_idol: {
         icon: '/assets/dance.png',
+        description: 'description about the sf_idol event',
         content:
           'Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: [
@@ -73,16 +79,18 @@ const eventDetails = {
       },
       Shuffle: {
         icon: '/assets/dance.png',
+        description: 'description about the shuffle event',
         content:
           'Judging criteria and process... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: [
-          'Rule for Shuffle 1.',
+          '1. The time limit for the overall performance is 5 minutes exceeding which by 1 minute will lead to disqualification.',
           'Rule for Shuffle 2.',
           'Rule for Shuffle 3.',
         ],
       },
       'Shake a leg': {
         icon: '/assets/dance.png',
+        description: 'description about the event',
         content:
           'Steps and process for registering... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: [
@@ -93,11 +101,14 @@ const eventDetails = {
       },
       'Two For A Tango': {
         icon: '/assets/dance.png',
+        description: 'description about the event',
         content:
           'Details about the dance performance... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: ['Rule for Two for a Tango 1.', 'Rule for Two for a Tango 2.'],
       },
       Nrityakala: {
+        icon: '/assets/dance.png',
+        description: 'description about the event',
         content:
           'Judging criteria and process... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: [
@@ -111,11 +122,11 @@ const eventDetails = {
 
   // dramatic
   Dramatics: {
-    icon: '/assets/dance.png',
     name: 'Dramatics',
     subTabs: {
       sf_idol: {
         icon: '/assets/dance.png',
+        description: 'description about the event',
         content:
           'Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: [
@@ -126,6 +137,7 @@ const eventDetails = {
       },
       Shuffle: {
         icon: '/assets/dance.png',
+        description: 'description about the event',
         content:
           'Judging criteria and process... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: [
@@ -136,6 +148,7 @@ const eventDetails = {
       },
       'Shake a leg': {
         icon: '/assets/dance.png',
+        description: 'description about the event',
         content:
           'Steps and process for registering... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: [
@@ -146,11 +159,14 @@ const eventDetails = {
       },
       'Two For A Tango': {
         icon: '/assets/dance.png',
+        description: 'description about the event',
         content:
           'Details about the dance performance... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: ['Rule for Two for a Tango 1.', 'Rule for Two for a Tango 2.'],
       },
       Nrityakala: {
+        icon: '/assets/dance.png',
+        description: 'description about the event',
         content:
           'Judging criteria and process... Details about the dance performance... Embrace the beauty of tradition as you take the stage. Join our solo classical dance competition, nrityakala to showcase your finesse, portraying stories through the mesmerizing language of classical dance.',
         rules: [
@@ -213,16 +229,20 @@ const EventDetail = () => {
       <div className='event-detail-container'>
         {/* Event Details */}
         <div className='event-head'>
-          <img src={event.icon} className='e-icon' alt={`${event.name} Icon`} />
+          <img
+            // src={Img}
+            src={event.subTabs[selectedSubTab]?.icon || Img}
+            className='e-icon'
+            alt={`${event.name} Icon`}
+          />
           <div className='event-title-wrapper'>
             <h1 className='event-title'>{event.name}</h1>
+            <p className='e-desc'>
+              {event.subTabs[selectedSubTab]?.description}
+            </p>
             <button className='register-btn'>Register</button>
           </div>
         </div>
-
-        {/* Display Content Based on Selected Sub-Tab */}
-        {/* <h2>About</h2> */}
-        {/* <p className='event-about'>{event.about}</p> */}
 
         <h2>About</h2>
         <p>{event.subTabs[selectedSubTab]?.content}</p>

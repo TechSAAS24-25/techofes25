@@ -89,9 +89,13 @@
 
 }
 
-.active-line{
+.e-subtab.active-sub-tab .e-top,
+.e-subtab.active-sub-tab .e-bottom {
   background-color: yellow;
 }
+
+
+
 
 
 
@@ -114,6 +118,11 @@
   margin: 7px;
 }
 
+.e-desc{
+  margin-top: 0;
+  margin-bottom: 3px;
+}
+
 @media screen and (max-width: 768px) {
 
   .sub-tabs
@@ -123,5 +132,21 @@
     
   
 }
+
+
+
+@media screen and (max-width: 480px) {
+
+  .sub-tabs
+  {
+    /* column-gap: 40px; */
+    display: grid;
+    /* grid-template-columns: repeat(2, 120px); */
+  }
+    
+  
+}
+
+
 
 
