@@ -1,0 +1,52 @@
+.event-card {
+    background: rgba(255, 255, 255, 0.1);
+    /* background-color: rgb(139 111 190); */
+    backdrop-filter: blur(10px);
+    /* border: 3px solid; */
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    animation: swing 7s infinite ease;
+  }
+  /* @keyframes swing {
+   20% { transform: rotate(5deg); } 
+   40% { transform: rotate(-5deg); } 
+   60% { transform: rotate(5deg); } 
+   80% { transform: rotate(-5deg); } 
+   100% { transform: rotate(0deg); }
+  } */
+
+    @keyframes swing {
+   20% { transform: rotate(3deg); 
+  } 
+   40% { transform: rotate(-3deg);
+   } 
+   60% { transform: rotate(3deg); 
+  } 
+   80% { transform: rotate(-3deg);
+   } 
+   100% { transform: rotate(0deg);
+   }
+  }
+  
+  /* .event-card:hover {
+    transform: scale(1.05);
+  } */
+  .event-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  .ev_icon{
+    width:50%;
+    height:50%;
+  }
+  .event-name {
+    font-size: 1.5rem;
+    font-family: "Comic Sans MS", cursive;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+
+  
+  

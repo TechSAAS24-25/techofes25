@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Michroma&family=Monoton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=Michroma&family=Monoton&display=swap");
+
+body {
+  font-family: "Faculty Glyphic", serif;
+  background-image: url("./src/assets/p0fq9cyz.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-attachment: fixed; */
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.ttitle {
+  font-family: "Monoton", serif;
+}

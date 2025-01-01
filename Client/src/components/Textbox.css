@@ -1,0 +1,18 @@
+.cbox {
+    width: 75%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: medium;
+    color: white;
+    padding: 1rem;
+    margin: 1rem;
+}
+.cbox:hover{
+    width:80%;
+    backdrop-filter: blur(20px);
+}
+
+.cont {
+    font-size: 1rem;
+}

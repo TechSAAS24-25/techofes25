@@ -1,0 +1,23 @@
+  .events-container {
+    text-align: center;
+    padding: 2rem;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+  }
+  
+  .events-title {
+    font-size: 3rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    margin-bottom: 2rem;
+  }
+  
+  .events-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  

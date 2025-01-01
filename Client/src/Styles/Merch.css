@@ -1,0 +1,49 @@
+.merch-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30rem;
+    background-color: #030e1e;
+    overflow: hidden;
+  }
+  
+  .merch {
+    background-color: #374352;
+    border: 5px solid #6b827f;
+    border-radius: 10px;
+    width: 60%;
+    height: 15%;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+  }
+  
+  .merch-scroll {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    white-space: nowrap;
+    animation: scroll-text 10s linear infinite;
+  }
+  
+  .merch-text {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 36px;
+    font-weight: bold;
+    color: #f4c04f;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(208, 212, 218, 0.7);
+    margin-right: 50px;
+  }
+  
+  @keyframes scroll-text {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  
