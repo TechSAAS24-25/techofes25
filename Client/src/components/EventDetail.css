@@ -1,5 +1,5 @@
 .event-detail-container {
-    width: 60%;
+    width: 75%;
     justify-content: center;
     align-items: center;
     color: black;
@@ -10,7 +10,8 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.7);
+    /* background: rgba(255, 255, 255, 0.7); */
+    /* background-color: #550660; */
   }
   .event-head {
     display: flex;
@@ -39,6 +40,15 @@
     margin: 0;
     padding-right:5%;
   }
+
+.event-about{
+  /* color: red; */
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  /* background-color: #550660; */
+
+}
   .register-btn {
     padding: 10px 20px;
     font-size: 1rem;
@@ -57,5 +67,116 @@
   }
   .event-rules {
     list-style-type: numeric;
-    padding-top:2rem;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: start;
+    row-gap: 10px;
+
   }
+
+  .sub-tabs{
+    /* background-color: #550660; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 220px;
+    /* display: grid; */
+    /* grid-template-columns: repeat(3,300px); */
+    place-items: center;
+
+  }
+
+
+.e-heading{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  /* margin: 0; */
+  text-align: center;
+}
+
+
+.e-top{
+  height: 3px;
+  background-color: #ddd;
+
+  
+}
+
+.e-bottom{
+  height: 3px;
+  background-color: #ddd;
+}
+
+.e-desc{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
+.active-sub-tab{
+  /* background-color: #550660; */
+  color: yellow;
+  margin-top: -25px;
+    transition: margin-top 0.3s ease;
+
+}
+
+.active-sub-tab .e-top,
+.active-sub-tab .e-bottom {
+  background-color: yellow;
+}
+
+.sub-heading{
+  margin-bottom: 6px;
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .sub-tabs
+  {
+    column-gap: 130px;
+  }
+
+  
+    
+  
+}
+
+
+@media screen and (max-width: 480px) {
+
+  .sub-tabs
+  {
+    column-gap: 70px;
+  }
+
+  .event-head{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* display: none; */
+
+  }
+
+  .event-rules{
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* row-gap: 10px; */
+
+    /* to check */
+    margin-left: 20px; 
+  }
+    
+  
+}

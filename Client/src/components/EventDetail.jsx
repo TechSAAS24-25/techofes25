@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import './EventDetail.css'
+import Img from '../../src/assets/dance.png'
 
 // Dummy Data (Event details)
 const dummyEventDetails = {
@@ -48,7 +49,9 @@ const dummyEventDetails = {
       'Solo or group participation is allowed.',
     ],
     subTabs: {
-      Solo: 'Solo dramatic performance details',
+      Solo: 
+      // icon: './assets/drama.png',
+      'Solo dramatic performance details',
       Group: 'Group dramatic performance details',
       Theater: 'Theater dramatic performance details',
     },
@@ -68,12 +71,14 @@ const EventDetail = () => {
     }
   }, [eventName])
 
+
   if (!event) {
     return <h2>Loading...</h2> 
   }
 
   return (
     <>
+      <h2 className='e-heading'>{event.name}</h2>
       <div className='sub-tabs'>
         {Object.keys(event.subTabs).map((subTab) => (
           <button
@@ -81,13 +86,30 @@ const EventDetail = () => {
             onClick={() => setSelectedSubTab(subTab)}
             className={selectedSubTab === subTab ? 'active-sub-tab' : ''}
           >
-            {subTab}
+            <div
+              className={`e-top ${
+                selectedSubTab === subTab ? 'active-line' : ''
+              }`}
+            ></div>
+
+            <p className='e-desc'>{subTab}</p>
+
+            <div
+              className={`e-bottom ${
+                selectedSubTab === subTab ? 'active-line' : ''
+              }`}
+            ></div>
           </button>
         ))}
       </div>
+
       <div className='event-detail-container'>
         <div className='event-head'>
-          <img src={event.icon} alt='Event icon' className='e-icon' />
+          <img
+            src={selectedSubTab?.icon || event.icon || Img}
+            alt='Event icon'
+            className='e-icon'
+          />
           <div className='event-title-wrapper'>
             <h1 className='event-title'>{event.name}</h1>
             <button className='register-btn'>Register</button>
@@ -106,8 +128,8 @@ const EventDetail = () => {
 
         {/* Sub Tabs */}
 
-        <h3>{selectedSubTab}</h3>
-        <p>{event.subTabs[selectedSubTab]}</p>
+        <h3 className='sub-heading'>{selectedSubTab}</h3>
+        <p className='sub-desc'>{event.subTabs[selectedSubTab]}</p>
       </div>
     </>
   )
