@@ -22,6 +22,13 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  seats: {
+    type: Number,
+    required: true
+  },
+  regFees: {
+    type: Number,
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Event', eventSchema);

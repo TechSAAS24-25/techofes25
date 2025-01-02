@@ -14,6 +14,10 @@ const merchandiseSchema = new mongoose.Schema({
     required: true,
     min: [0, 'Price must be positive'],
   },
+  availability: {
+    type: Number,
+    required: true
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Merchandise', merchandiseSchema);

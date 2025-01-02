@@ -1,36 +1,88 @@
-const bcrypt = require('bcrypt')
-const usersRouter = require('express').Router()
-const User = require('../models/user')
+const User = require('../models/user');
+const Registration = require('../models/registration');
+const Purchase = require('../models/purchase');
+const Booking = require('../models/booking');
+const Event = require('../models/event');
+const Merchandise = require('../models/merchandise'); 
+const Accommodation = require('../models/accommodation'); 
+const userExtractor = require('../utils/middleware').userExtractor;
+const userDetailsRouter = require('express').Router();
+const userRegistrationsRouter = require('express').Router();
+const userPurchasesRouter = require('express').Router();
+const userAccommodationsRouter = require('express').Router();
+require('express-async-errors');
 
-usersRouter.post('/', async (request, response) => {
-  const { username, name, password } = request.body
+// Get user details
+userDetailsRouter.get('/', userExtractor, async (request, response) => {
+  const T_ID = request.T_ID;
 
-  if (!password || password.length < 3) {
-    return response.status(400).json({ error: 'password missing or too short' })
+  const user = await User.findOne({ T_ID }).select('-passwordHash');
+  if (!user) {
+    return response.status(404).json({ error: 'User not found' });
   }
+  response.status(200).json(user);
+});
 
-  const theuser = await User.findOne({ username: username });
-  if (theuser) {
-     return response.status(400).json({ error: 'username already taken' });
-  }
+// Get all events registered by the user, including event details
+userRegistrationsRouter.get('/registrations', userExtractor, async (request, response) => {
+  const T_ID = request.T_ID;
 
-  const saltRounds = 10
-  const passwordHash = await bcrypt.hash(password, saltRounds)
+  const registrations = await Registration.find({ T_ID })
+  const eventDetails = await Promise.all(registrations.map(async (registration) => {
+      const eventID = registration.eventID;
+      const event = await Event.findOne({eventID});
+      return {
+        registrationID: registration.registrationID,
+        eventName: event.eventName,
+        category: event.category,
+        date: event.date,
+        location: event.location
+      };
+    })
+  );
+  response.status(200).json(eventDetails);
+});
 
-  const user = new User({
-    username,
-    name,
-    passwordHash,
-  })
+// Get all merchandise purchases by the user, including merchandise details
+userPurchasesRouter.get('/purchases', userExtractor, async (request, response) => {
+  const T_ID = request.T_ID;
 
-  const savedUser = await user.save()
+  const purchases = await Purchase.find({ T_ID })
+  const purchaseDetails = await Promise.all(purchases.map(async (purchase) => {
+      const merchandiseID = purchase.merchandiseID;
+      const merchant = await Merchandise.findOne({merchandiseID});
+      return {
+        purchaseID: purchase.purchaseID,
+        merchandiseName: merchant.merchandiseName,
+        price: merchant.price,
+        quantity: purchase.quantity
+      };
+    })
+  );
+  response.status(200).json(purchaseDetails);
+});
 
-  response.status(201).json(savedUser)
-})
+// Get all accommodations booked by the user, including accommodation details
+userAccommodationsRouter.get('/accommodations', userExtractor, async (request, response) => {
+  const T_ID = request.T_ID;
 
-usersRouter.get('/', async (request, response) => {
-  const users = await User.find({}).populate('Workshop').populate('GeneralEvent').populate('TechEvent')
-  response.json(users)
-})
+  const Bookings = await Booking.find({ T_ID })
+  const accommodations = await Promise.all(Bookings.map(async (booking) => {
+      const accommodationID = booking.accommodationID;
+      const accommodation = await Accommodation.findOne({accommodationID});
+      return {
+        hostelName: accommodation.hostelName,
+        accommodationID: accommodation.accommodationID,
+        duration: booking.duration
+      };
+    })
+  );
+  response.status(200).json(accommodations);
+});
 
-module.exports = usersRouter
+module.exports = {
+  userDetailsRouter,
+  userRegistrationsRouter,
+  userPurchasesRouter,
+  userAccommodationsRouter,
+};

@@ -1,22 +1,27 @@
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
-const loginRouter = require('express').Router()
-const logoutRouter = require('express').Router()
-const registerRouter = require('express').Router()
-const User = require('../models/user')
-
-// Register Route
-registerRouter.get('/', (request, response) => {
-  response.status(200).json({ message: 'Register Route' });
-});
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const loginRouter = require('express').Router();
+const logoutRouter = require('express').Router();
+const registerRouter = require('express').Router();
+const User = require('../models/user');
+require('express-async-errors');
 
 registerRouter.post('/', async (request, response) => {
   const { username, firstName, lastName, email, phn, type, rollno, password, T_ID } = request.body;
 
-  // Check if the T_ID already exists
-  const existingUser = await User.findOne({ T_ID });
+  // Check if userType is Insider or Outsider
+  if (type === 'Insider' && !rollno) {
+    return response.status(400).json({ error: 'Roll number is required for Insider users' });
+  }
+
+  if (type === 'Outsider' && (!firstName || !lastName)) {
+    return response.status(400).json({ error: 'First name and Last name are required for Outsider users' });
+  }
+
+  // Check if username or email already exists
+  const existingUser = await User.findOne({ $or: [{ username }, { email }] });
   if (existingUser) {
-    return response.status(400).json({ error: 'T_ID already in use' });
+    return response.status(400).json({ error: 'Username or Email already in use' });
   }
 
   // Hash the password
@@ -30,18 +35,13 @@ registerRouter.post('/', async (request, response) => {
     emailID: email,
     phoneNumber: phn,
     userType: type,
-    rollNo: rollno,
+    rollNo: type === 'Insider' ? rollno : undefined,
     passwordHash,
     T_ID,  // Store the T_ID
   });
 
-  try {
-    const savedUser = await user.save();
-    response.status(201).json({ message: 'User registered successfully', user: savedUser });
-  } catch (error) {
-    console.log(error);
-    response.status(500).json({ error: 'Registration failed' });
-  }
+  const savedUser = await user.save();
+  response.status(201).json({ message: 'User registered successfully', user: savedUser });
 });
 
 // Login Route
@@ -76,15 +76,13 @@ loginRouter.post('/', async (request, response) => {
 });
 
 // Logout Route
- // Since logout is handled on the client-side by removing the token, server responds with success message
+// Since logout is handled on the client-side by removing the token, server responds with success message
 logoutRouter.post('/', (request, response) => {
   response.status(200).json({ message: 'Logout successful' });
-}
-);
-
+});
 
 module.exports = {
-    loginRouter,
-    registerRouter,
-    logoutRouter
-}
+  loginRouter,
+  registerRouter,
+  logoutRouter
+};

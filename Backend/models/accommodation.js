@@ -14,6 +14,10 @@ const accommodationSchema = new mongoose.Schema({
     required: true,
     min: [0, 'Price per night must be positive'],
   },
+  availableBeds: {
+    type: Number,
+    required: true
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Accommodation', accommodationSchema);
