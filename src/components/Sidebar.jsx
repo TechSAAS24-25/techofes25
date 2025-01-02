@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Sidebar.css";
 
 const Sidebar = ({ onLinkClick }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const menuItems = [
     "Events & Competitions",
@@ -20,8 +21,19 @@ const Sidebar = ({ onLinkClick }) => {
     onLinkClick(role);
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${isMobile ? "collapsed" : ""}`}>
       <ul>
         {menuItems.map((item, index) => (
           <li

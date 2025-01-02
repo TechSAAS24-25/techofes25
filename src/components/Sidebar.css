@@ -5,6 +5,12 @@
   position: fixed;
   height: 100%;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 0;
+  overflow: hidden;
 }
 
 .sidebar ul {
@@ -25,10 +31,10 @@
 .sidebar ul li .highlight-bar {
   width: 3px;
   height: 100%;
-  background-color:#FF9899;
+  background-color: #FF9899;
   position: absolute;
   left: 3%;
-  height:80%;
+  height: 80%;
   border-radius: 5%;
   transition: left 0.5s ease, background-color 0.3s ease;
 }
@@ -39,5 +45,19 @@
 }
 
 .sidebar ul li:hover {
-  color: #FF9899; 
+  color: #FF9899;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 0;
+  }
+
+  .sidebar.collapsed {
+    width: 0;
+  }
+
+  .sidebar ul li {
+    display: none;
+  }
 }

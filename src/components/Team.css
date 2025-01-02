@@ -42,6 +42,7 @@
 .members {
   display: flex;
   flex-direction: column; 
+  flex-wrap: wrap;
   gap: 20px; 
   justify-content: center;
 }
@@ -129,4 +130,27 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .team-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .role-section {
+    width: 100%;
+  }
+
+  .team-member {
+    width: 100%;
+    max-width: 300px;
+  }
 }
