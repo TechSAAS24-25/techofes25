@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
+  bookingID:{
+    type: mongoose.Schema.Types.ObjectId,
+    auto: true,
+  },
   T_ID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

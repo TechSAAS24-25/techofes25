@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const registrationSchema = new mongoose.Schema({
+  registrationID:{
+    type: mongoose.Schema.Types.ObjectId,
+    auto: true,
+  },
   T_ID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

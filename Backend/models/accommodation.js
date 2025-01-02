@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const accommodationSchema = new mongoose.Schema({
+  accommodationID:{
+    type: mongoose.Schema.Types.ObjectId,
+    auto: true,
+  },
   hostelName: {
     type: String,
     required: true,

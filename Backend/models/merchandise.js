@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const merchandiseSchema = new mongoose.Schema({
+  merchandiseID:{
+    type: mongoose.Schema.Types.ObjectId,
+    auto: true,
+  },
   merchandiseName: {
     type: String,
     required: true,

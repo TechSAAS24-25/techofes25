@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
+  eventID:{
+    type: mongoose.Schema.Types.ObjectId,
+    auto: true,
+  },
   eventName: {
     type: String,
     required: true,

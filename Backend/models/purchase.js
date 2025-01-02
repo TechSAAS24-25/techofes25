@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const purchaseSchema = new mongoose.Schema({
+  purchaseID:{
+    type: mongoose.Schema.Types.ObjectId,
+    auto: true,
+  },
   T_ID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
