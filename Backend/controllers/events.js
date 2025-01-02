@@ -1,0 +1,1 @@
+const userExtractor = require('../utils/middleware').userExtractor

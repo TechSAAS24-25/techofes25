@@ -63,8 +63,6 @@ loginRouter.post('/', async (request, response) => {
   // Generate JWT token
   const userForToken = {
     T_ID: user.T_ID,
-    username: user.username,
-    id: user._id,
   };
 
   const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '1h' }); // Optionally, set expiration time for token
