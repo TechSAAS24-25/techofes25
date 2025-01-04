@@ -16,6 +16,7 @@
     "@react-three/fiber": "^8.17.10",
     "bootstrap": "^5.3.3",
     "clsx": "^2.1.1",
+    "font-awesome": "^4.7.0",
     "framer-motion": "^11.15.0",
     "lenis": "^1.1.18",
     "popmotion": "^11.0.5",
