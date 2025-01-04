@@ -1,0 +1,32 @@
+.popup{
+    background: rgba(4, 4, 4, 0.7);
+    color:white;
+    position: absolute; 
+    width:100%;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+.links, .others{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    align-items:center;
+    margin: 2% 0%;
+}
+.social-media{
+    width:50px;
+    height:50px;
+}
+.separator {
+    border: 0;
+    border-top: 1.5px solid white;
+    width: 80%;
+    margin: 0% 10% 0% 10%;
+    box-shadow: 0 0 10px rgba(255, 126, 95, 0.8), 0 0 20px rgba(255, 126, 95, 0.6); 
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .separator:hover {
+    box-shadow: 0 0 15px rgba(255, 126, 95, 1), 0 0 30px rgba(255, 126, 95, 0.8); 
+  }

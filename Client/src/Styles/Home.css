@@ -1,0 +1,11 @@
+.home {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.ttitle {
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+}
