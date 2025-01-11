@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" id="food">
+  <g stroke-linecap="round" stroke-linejoin="round" transform="translate(-2.148 -1020.362)">
+    <path fill="none" stroke="#383747" d="M3.63 1044.331c8.188-.01 23.526.16 29.036 0"></path>
+    <ellipse cx="18.469" cy="1030.033" fill="none" stroke="#383747" rx="1.733" ry="1.709"></ellipse>
+    <path fill="#faa41a" stroke="#383747" d="M7.317 1044.325a9.933 9.933 0 0 1-.112-1.483c0-6.133 5.043-11.105 11.264-11.105 6.221 0 11.264 4.972 11.264 11.105 0 .474-.03 1.025-.089 1.483z"></path>
+    <path fill="none" stroke="#fff" d="M24.062 1035.767c1.81 1.488 3.059 3.614 3.385 6.024"></path>
+  </g>
+</svg>

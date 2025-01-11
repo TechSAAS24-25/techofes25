@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" id="food">
+  <g stroke-linecap="round" stroke-linejoin="round" transform="translate(2131.952 -864.2)">
+    <circle cx="-2115.952" cy="880.2" r="13.522" fill="none" stroke="#383747"></circle>
+    <path fill="none" stroke="#fff" d="M-2113.449 869.573a10.918 10.918 0 0 1 8.037 7.777"></path>
+    <path fill="#faa41a" stroke="#383747" d="M-2125.597 874.673c6.588-1.707 12.285.28 16.506 8.38 1.302-.535 4.202-.433 4.063-.191-1.623 2.81-1.62 3.027-3.428 6.158-.187.323-1.839-2.26-1.778-3.746-9.173 0-14.146-3.662-15.363-10.601z"></path>
+    <circle cx="-2122.185" cy="876.593" r=".873" fill="#fff" stroke="#383747"></circle>
+    <path fill="none" stroke="#383747" d="m-2118.487 883.846 1.216-3.375m1.324 4.2.928-2.703m1.452 3.063.553-1.582"></path>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" id="food">
+  <g stroke-linecap="round" stroke-linejoin="round" transform="translate(2459.003 -823.194)">
+    <ellipse cx="-2442.691" cy="829.805" fill="none" stroke="#383747" rx="4.737" ry="4.819"></ellipse>
+    <ellipse cx="832.906" cy="2440.207" fill="#faa41a" stroke="#383747" rx="4.072" ry="4.004" transform="rotate(90)"></ellipse>
+    <ellipse cx="-2445.798" cy="832.904" fill="#faa41a" stroke="#383747" rx="4.004" ry="4.072"></ellipse>
+    <path fill="#faa41a" stroke="#383747" d="M-2448.36 835.8h10.845c-.172 2.623-1.265 4.076-3.077 4.615l-2.461 12.987-2.461-12.909c-2.508-.772-2.987-2.575-2.846-4.694z"></path>
+    <path fill="none" stroke="#fff" d="M-2445.132 830.66a1.326 1.326 0 0 1 1.245.87m4.324-.87a1.326 1.326 0 0 1 1.245.87M-2442.27 826.785a1.105 1.105 0 0 1 1.238.69"></path>
+  </g>
+</svg>

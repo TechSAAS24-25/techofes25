@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" id="food">
+  <g stroke="#383747" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 -1020.362)">
+    <rect width="25.501" height="3.751" x="-1.973" y="1030.785" fill="#faa41a" rx="1.876" ry="1.876" transform="rotate(-.139)skewX(.147)"></rect>
+    <rect width="29.372" height="3.751" x="-3.87" y="1034.503" fill="#faa41a" rx="1.876" ry="1.876" transform="rotate(-.139)skewX(.147)"></rect>
+    <rect width="25.501" height="3.751" x="-1.973" y="1038.266" fill="#faa41a" rx="1.876" ry="1.876" transform="rotate(-.139)skewX(.147)"></rect>
+    <path fill="none" d="M4.116 1036.976s.658-1.25 1.848-1.205c1.189.045 1.057 1.205 2.015 1.205.959 0 .591-1.25 2.037-1.205 1.446.045 1.075 1.205 2.037 1.205s.54-1.205 1.995-1.205c1.453 0 1.372 1.205 1.994 1.205.623 0 .793-1.25 2.1-1.205 1.307.045 1.111 1.267 2.1 1.205.988-.062.704-1.205 1.931-1.205s1.03 1.189 1.932 1.205c.902.016.655-.947 1.89-1.205 1.235-.258 1.89 1.205 1.89 1.205"></path>
+  </g>
+</svg>

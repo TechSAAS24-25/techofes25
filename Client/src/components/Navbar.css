@@ -1,0 +1,243 @@
+.active-link {
+  width: 100%;
+  height: 95%;
+  background: linear-gradient(to bottom, #ff7e5f, #eaa26e);
+  clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+  color: white;
+  text-decoration: none;
+  position: relative;
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s ease, box-shadow 0.3s ease;
+}
+
+.active-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, #ff7e5f, #eaa26e);
+  clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+  z-index: -1;
+  filter: blur(10px); /* Creates the glow effect */
+  opacity: 0.8; /* Adjust for subtlety */
+  animation: neonGlow 1.5s infinite alternate;
+}
+
+@keyframes neonGlow {
+  0% {
+    filter: blur(8px) brightness(1);
+  }
+  50% {
+    filter: blur(12px) brightness(1.3);
+  }
+  100% {
+    filter: blur(8px) brightness(1);
+  }
+}
+.navbar {
+  width: auto;
+  height: auto;
+  background-color: black;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin: 0;
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  transition: all 0.3s ease-in-out;
+}
+
+.navItem {
+  margin: 0 1rem;
+}
+
+.navLink {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease-in-out;
+}
+
+.navLink:hover {
+  color: #ff7e5f; /* Hover effect */
+}
+
+.navLink img {
+  max-width: 15px;
+  margin-bottom: 0.5rem;
+}
+
+.active-link {
+  width: 100%;
+  height: 95%;
+  background: linear-gradient(to bottom, #ff7e5f, #eaa26e);
+  clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+  color: white;
+  text-decoration: none;
+  position: relative;
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: glow 1.5s infinite;
+  transition: 0.5s ease, box-shadow 0.3s ease;
+}
+
+.active-link .top-bar {
+  width: 100%;
+  height: 15%;
+  background-color: #f1eceb;
+  position: absolute;
+  top: -5px;
+  left: 0;
+  border-radius: 50%;
+}
+
+.active-link img {
+  max-width: 15px;
+}
+
+/* Mobile: Stack nav items vertically */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    padding: 1rem 0;
+  }
+
+  .navList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    display: none; /* Initially hidden */
+  }
+
+  .navItem {
+    margin: 0.5rem 0;
+  }
+
+  .navLink {
+    padding: 0.5rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .active-link {
+    width: 100%;
+  }
+
+  .navLink img {
+    max-width: 20px;
+  }
+
+  .navbar.toggle .navList {
+    display: flex; /* Show on toggle */
+  }
+
+  .hamburger {
+    cursor: pointer;
+    display: block;
+    width: 30px;
+    height: 25px;
+    position: absolute;
+    right: 20px;
+    top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .hamburger div {
+    background-color: #fff;
+    height: 4px;
+    width: 100%;
+    border-radius: 5px;
+  }
+}
+
+/* Tablet: Horizontal layout with reduced spacing */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 1rem 2rem;
+  }
+
+  .navList {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .navItem {
+    margin: 0 0.5rem;
+  }
+
+  .navLink {
+    padding: 0.5rem 1rem;
+  }
+
+  .navLink img {
+    max-width: 20px;
+  }
+}
+
+/* Desktop: Default layout */
+@media (min-width: 901px) {
+  .navbar {
+    padding: 1rem 3rem;
+  }
+
+  .navList {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .navItem {
+    margin: 0 1rem;
+  }
+
+  .navLink img {
+    max-width: 15px;
+  }
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.navItem:hover .dropdown {
+  display: block;
+}
+
+.dropdown-link {
+  color: #333;
+  padding: 8px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-link:hover {
+  background-color: #f1f1f1;
+}
