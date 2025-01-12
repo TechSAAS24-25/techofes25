@@ -8,6 +8,7 @@ import more from "../assets/more.png";
 import merch from "../assets/merch.png";
 import contactIcon from "../assets/contact.png"; // Placeholder for contact icon
 import scheduleIcon from "../assets/schedule.png"; // Placeholder for schedule icon
+import sponsor from "../assets/sponsor.png";
 
 const Navbar = () => {
   return (
@@ -107,6 +108,16 @@ const Navbar = () => {
             <div className="top-bar"></div>
             <img src={scheduleIcon} alt="Schedule Icon" id="icon" />
             Schedule
+          </NavLink>
+        </li>
+        <li className="navItem">
+          <NavLink
+            to="/sponsor"
+            className={({ isActive }) => (isActive ? "active-link" : "navLink")}
+          >
+            <div className="top-bar"></div>
+            <img src={sponsor} alt="Sponsor Icon" id="icon" />
+            Sponsor
           </NavLink>
         </li>
       </ul>
