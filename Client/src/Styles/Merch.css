@@ -1,49 +1,107 @@
-.merch-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 30rem;
-    background-color: #030e1e;
-    overflow: hidden;
+.container {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("/assets/pongal.mp4") no-repeat center center/cover; /* Food-themed background */
+  overflow: hidden;
+}
+
+.box {
+  position: relative;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 60%;
+  text-align: center;
+  min-height: 200px; /* Ensure a defined height */
+  animation: slideIn 1s ease-out;
+}
+
+.foodShape {
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  background: url("/assets/pongal.mp4") no-repeat center center/cover;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translate(-50%, 0);
   }
-  
-  .merch {
-    background-color: #374352;
-    border: 5px solid #6b827f;
-    border-radius: 10px;
-    width: 60%;
-    height: 15%;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
+  40% {
+    transform: translate(-50%, -20px);
   }
-  
-  .merch-scroll {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    white-space: nowrap;
-    animation: scroll-text 10s linear infinite;
+  60% {
+    transform: translate(-50%, -10px);
   }
-  
-  .merch-text {
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 36px;
-    font-weight: bold;
-    color: #f4c04f;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(208, 212, 218, 0.7);
-    margin-right: 50px;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
   }
-  
-  @keyframes scroll-text {
-    from {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(-100%);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
+}
+
+.textContainer {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  cursor: pointer;
+  transition: transform 0.4s ease-in-out;
+}
+
+.textContainer p {
+  font-size: 3vw;
+  line-height: 3vw;
+  font-weight: 700;
+  margin: 0;
+  color: #ff9800;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease-in-out;
+}
+
+.textContainer .secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateX(-90deg) translateY(3.5vw);
+  transform-origin: bottom center;
+  opacity: 0;
+  z-index: -1;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.textContainer:hover {
+  transform: rotateX(90deg);
+}
+
+.textContainer:hover .primary {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.textContainer:hover .secondary {
+  transform: rotateX(0deg);
+  opacity: 1;
+}
