@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import { useScroll, useTransform, motion, useInView } from "framer-motion";
+import { useScroll, useTransform, motion } from "framer-motion";
 import Lenis from "lenis";
-import Background1 from "../assets/techofes.jpg"; // Importing image as an object
-import Background2 from "../assets/p0fq9cyz.jpg"; // Importing image as an object
+import FoodBackground1 from "../assets/food/general/food (3).svg";
+import FoodBackground2 from "../assets/food/general/food (6).svg";
 import CubeBackground from "../components/Cubebackground";
-import Picture1 from "../assets/99591842.webp";
-import Picture2 from "../assets/party.jpg";
+import Dish1 from "../assets/food/Desserts/food (9).svg";
+import Dish2 from "../assets/food/Fast Food/food (5).svg";
+import Dish3 from "../assets/food/Fast Food/food (8).svg";
 import AboutSection from "../components/About";
 import ZoomParallax from "../components/ZoomParallax";
 import EventScroll from "../components/EventScroll";
@@ -36,30 +37,39 @@ const Phrase = ({ src }) => {
     <div className="px-5 py-1 flex gap-5 items-center text-white michroma">
       <p className="text-[2vw]">EVENT </p>
       <span className="relative h-[6vw] aspect-[4/2] rounded-full overflow-hidden">
-        <img style={{ objectFit: "cover" }} src={src} alt="image" fill />
+        <img style={{ objectFit: "cover" }} src={Dish1} alt="image" fill />
       </span>
       <p className="text-[2vw]">DJ NIGHT </p>
       <span className="relative h-[6vw] aspect-[4/2] rounded-full overflow-hidden">
-        <img style={{ objectFit: "cover" }} src={src} alt="image" fill />
+        <img style={{ objectFit: "cover" }} src={Dish2} alt="image" fill />
       </span>
       <p className="text-[2vw]">WORKSHOPS</p>
       <span className="relative h-[6vw] aspect-[4/2] rounded-full overflow-hidden">
-        <img style={{ objectFit: "cover" }} src={src} alt="image" fill />
+        <img
+          style={{ objectFit: "cover" }}
+          src={FoodBackground2}
+          alt="image"
+          fill
+        />
       </span>
       <p className="text-[2vw]">MERCH</p>
       <span className="relative h-[6vw] aspect-[4/2] rounded-full overflow-hidden">
-        <img style={{ objectFit: "cover" }} src={src} alt="image" fill />
+        <img
+          style={{ objectFit: "cover" }}
+          src={FoodBackground1}
+          alt="image"
+          fill
+        />
       </span>
       <p className="text-[2vw]">T-AWARDS</p>
       <span className="relative h-[6vw] aspect-[4/2] rounded-full overflow-hidden">
-        <img style={{ objectFit: "cover" }} src={src} alt="image" fill />
+        <img style={{ objectFit: "cover" }} src={Dish3} alt="image" fill />
       </span>
     </div>
   );
 };
 
 export default function Hero() {
-  // Scroll animation setup using Lenis
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -78,7 +88,6 @@ export default function Hero() {
     requestAnimationFrame(raf);
   }, []);
 
-  // Scroll-based transform for Intro and Section components
   const container1 = useRef();
   const { scrollYProgress: scrollYProgress1 } = useScroll({
     target: container1,
@@ -93,8 +102,6 @@ export default function Hero() {
     offset: ["start end", "end start"],
   });
 
-  const y2 = useTransform(scrollYProgress2, [0, 1], ["-10%", "10%"]);
-
   const slideContainer = useRef();
   const { scrollYProgress: slideScrollYProgress } = useScroll({
     target: slideContainer,
@@ -103,11 +110,10 @@ export default function Hero() {
 
   return (
     <main>
-      {/* Intro Section */}
       <div
         className="overflow-hidden"
         style={{
-          backgroundImage: `url(${Background2})`,
+          backgroundImage: `url(${FoodBackground1})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
@@ -115,16 +121,16 @@ export default function Hero() {
         <div className="z-0 fixed transform lg:translate-x-1/2 lg:-translate-y-52 w-full h-full">
           <CubeBackground />
         </div>
-        <motion.div style={{ y: y1 }} className="relative z-10  ">
-          <div className="pb-52 text-left home ">
+        <motion.div style={{ y: y1 }} className="relative z-10">
+          <div className="pb-52 text-left home">
             <p className="font-extralight lg:text-8xl text-4xl text-white ttitle">
-              TECHOFES'25
+              Symphony of Taste
             </p>
           </div>
         </motion.div>
       </div>
-      {/* Description Section */}
-      <div className="flex items-center h-screen z-10  bg-gradient-to-b to-gray-800 from-homeBlack justify-start">
+
+      <div className="flex items-center h-screen z-10 bg-gradient-to-b to-yellow-500 from-orange-700 justify-start">
         <AboutSection />
       </div>
 
@@ -133,37 +139,30 @@ export default function Hero() {
         className="relative overflow-hidden bg-black py-6"
       >
         <Slide
-          src={Picture1}
+          src={Dish1}
           direction={"left"}
           left={"-40%"}
           progress={slideScrollYProgress}
         />
         <Slide
-          src={Picture2}
+          src={Dish2}
           direction={"right"}
           left={"-25%"}
           progress={slideScrollYProgress}
         />
       </div>
+
       <ZoomParallax />
       <EventScroll />
 
-      <div
+      <div  
         ref={container2}
         className="relative flex items-center justify-center h-screen overflow-hidden"
-        style={{
-          clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)",
-          backgroundImage: "none",
-        }}
+        style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
       >
-        <div
-          className="relative z-10 p-20 mix-blend-difference bg-black text-white w-full h-full flex flex-col justify-between"
-          style={{ backgroundImage: "none" }}
-        >
-          Our Team
+        <div className="relative z-10 p-20 bg-yellow-900 text-white w-full h-full flex flex-col justify-between">
+          <p className="font-michroma text-5xl">Meet Our Chefs</p>
         </div>
-
-        {/*  */}
       </div>
       <Footer />
     </main>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" id="food">
+  <g stroke="#373449" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="none" d="M6.719 8.045h18.562v3.851H6.719z"></path>
+    <path fill="#faa41a" d="M8.519 11.927h14.963v17.204H8.519zM8.108 7.981V5.582h4.862l5.934-2.714 1.692 2.93h3.106v2.183z"></path>
+    <path fill="none" d="M8.522 18.798h4.866s.929-1.682 2.912-1.682a3.102 3.102 0 0 1 2.758 1.592h4.375m-14.91 3.14h4.865s.929 1.682 2.912 1.682a3.102 3.102 0 0 0 2.758-1.592h4.375"></path>
+  </g>
+</svg>

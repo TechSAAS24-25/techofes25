@@ -6,6 +6,9 @@ import accom from "../assets/accommodation.webp";
 import event from "../assets/events.png";
 import more from "../assets/more.png";
 import merch from "../assets/merch.png";
+import contactIcon from "../assets/contact.png"; // Placeholder for contact icon
+import scheduleIcon from "../assets/schedule.png"; // Placeholder for schedule icon
+import sponsor from "../assets/sponsor.png";
 
 const Navbar = () => {
   return (
@@ -17,7 +20,7 @@ const Navbar = () => {
             className={({ isActive }) => (isActive ? "active-link" : "navLink")}
           >
             <div className="top-bar"></div>
-            <img src={merch} alt="Home Icon" id="icon" />
+            <img src={merch} alt="Merch Icon" id="icon" />
             Merch
           </NavLink>
         </li>
@@ -31,7 +34,7 @@ const Navbar = () => {
             }
           >
             <div className="top-bar"></div>
-            <img src={event} alt="Home Icon" id="icon" />
+            <img src={event} alt="Events Icon" id="icon" />
             Events
           </NavLink>
         </li>
@@ -51,7 +54,7 @@ const Navbar = () => {
             className={({ isActive }) => (isActive ? "active-link" : "navLink")}
           >
             <div className="top-bar"></div>
-            <img src={accom} alt="Home Icon" id="icon" />
+            <img src={accom} alt="Accommodation Icon" id="icon" />
             Accommodation
           </NavLink>
         </li>
@@ -61,8 +64,60 @@ const Navbar = () => {
             className={({ isActive }) => (isActive ? "active-link" : "navLink")}
           >
             <div className="top-bar"></div>
-            <img src={more} alt="Home Icon" id="icon" />
+            <img src={more} alt="More Icon" id="icon" />
             More
+          </NavLink>
+        </li>
+        <li className="navItem">
+          <NavLink
+            to="/contact"
+            className={({ isActive }) => (isActive ? "active-link" : "navLink")}
+          >
+            <div className="top-bar"></div>
+            <img src={contactIcon} alt="Contact Icon" id="icon" />
+            Contact
+          </NavLink>
+          <ul className="dropdown">
+            <li>
+              <NavLink
+                to="/contact/team"
+                className={({ isActive }) =>
+                  isActive ? "dropdown-active-link" : "dropdown-link"
+                }
+              >
+                Team
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/contact/query"
+                className={({ isActive }) =>
+                  isActive ? "dropdown-active-link" : "dropdown-link"
+                }
+              >
+                Queries
+              </NavLink>
+            </li>
+          </ul>
+        </li>
+        <li className="navItem">
+          <NavLink
+            to="/schedule"
+            className={({ isActive }) => (isActive ? "active-link" : "navLink")}
+          >
+            <div className="top-bar"></div>
+            <img src={scheduleIcon} alt="Schedule Icon" id="icon" />
+            Schedule
+          </NavLink>
+        </li>
+        <li className="navItem">
+          <NavLink
+            to="/sponsor"
+            className={({ isActive }) => (isActive ? "active-link" : "navLink")}
+          >
+            <div className="top-bar"></div>
+            <img src={sponsor} alt="Sponsor Icon" id="icon" />
+            Sponsor
           </NavLink>
         </li>
       </ul>

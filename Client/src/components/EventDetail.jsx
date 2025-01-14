@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import './EventDetail.css'
-import Img from '../../src/assets/dance.png'
 
 // Dummy Data (Event details)
 const dummyEventDetails = {
   Dance: {
-    icon: './assets/dance.png',
+    // icon: '/assets/dance.png',
     name: 'Dance',
     about:
       'The inter-collegiate group dance competition is a platform for the best dancing troupes across the country to flaunt their hypnotic moves.',
@@ -17,13 +16,22 @@ const dummyEventDetails = {
       'Use of props is allowed.',
     ],
     subTabs: {
-      Solo: 'Solo performance details',
-      Group: 'Group performance details',
-      Battle: 'Battle performance details',
+      Solo: {
+        description: 'Solo performance details',
+        icon: '/media/events/dance.jpeg',
+      },
+      Group: {
+        description: 'Group performance details',
+        icon: '/media/events/dance.jpeg',
+      },
+      Battle: {
+        description: 'Battle performance details',
+        icon: '/media/events/dance.jpeg',
+      },
     },
   },
   Music: {
-    icon: './assets/music.png',
+    // icon: '/assets/music.png',
     name: 'Music',
     about:
       'Showcase your musical talent in this exciting inter-collegiate music competition.',
@@ -33,13 +41,22 @@ const dummyEventDetails = {
       'Solo or group participation is allowed.',
     ],
     subTabs: {
-      Solo: 'Solo music performance details',
-      Group: 'Group music performance details',
-      Band: 'Band music performance details',
+      Solo: {
+        description: 'Solo music performance details',
+        icon: '/media/events/dance.jpeg',
+      },
+      Group: {
+        description: 'Group music performance details',
+        icon: '/media/events/dance.jpeg',
+      },
+      Band: {
+        description: 'Band music performance details',
+        icon: '/media/events/dance.jpeg',
+      },
     },
   },
   Dramatics: {
-    icon: './assets/drama.png',
+    // icon: '/assets/drama.png',
     name: 'Dramatics',
     about:
       'Showcase your dramatic talent in this exciting inter-collegiate dramatics competition.',
@@ -49,22 +66,28 @@ const dummyEventDetails = {
       'Solo or group participation is allowed.',
     ],
     subTabs: {
-      Solo: 
-      // icon: './assets/drama.png',
-      'Solo dramatic performance details',
-      Group: 'Group dramatic performance details',
-      Theater: 'Theater dramatic performance details',
+      Solo: {
+        description: 'Solo dramatic performance details',
+        icon: '/media/events/dance.jpeg',
+      },
+      Group: {
+        description: 'Group dramatic performance details',
+        icon: '/media/events/dance.jpeg',
+      },
+      Theater: {
+        description: 'Theater dramatic performance details',
+        icon: '/media/events/dance.jpeg', 
+      },
     },
   },
 }
 
 const EventDetail = () => {
-  const { eventName } = useParams() 
+  const { eventName } = useParams()
   const [event, setEvent] = useState(null)
   const [selectedSubTab, setSelectedSubTab] = useState('Solo')
 
   useEffect(() => {
-    
     const fetchedEvent = dummyEventDetails[eventName]
     if (fetchedEvent) {
       setEvent(fetchedEvent)
@@ -72,9 +95,16 @@ const EventDetail = () => {
   }, [eventName])
 
 
+
+
+  
+
   if (!event) {
-    return <h2>Loading...</h2> 
+    return <h2>Loading...</h2>
   }
+
+  // Get the icon and description for the selected sub-tab
+  const selectedSubTabDetails = event.subTabs[selectedSubTab]
 
   return (
     <>
@@ -106,7 +136,7 @@ const EventDetail = () => {
       <div className='event-detail-container'>
         <div className='event-head'>
           <img
-            src={selectedSubTab?.icon || event.icon || Img}
+            src={selectedSubTabDetails?.icon || event.icon}
             alt='Event icon'
             className='e-icon'
           />
@@ -127,9 +157,8 @@ const EventDetail = () => {
         </ul>
 
         {/* Sub Tabs */}
-
         <h3 className='sub-heading'>{selectedSubTab}</h3>
-        <p className='sub-desc'>{event.subTabs[selectedSubTab]}</p>
+        <p className='sub-desc'>{selectedSubTabDetails?.description}</p>
       </div>
     </>
   )
