@@ -4,7 +4,7 @@ function Home() {
     <>
       <div className="home">
         <img src="src\assets\saas logo.png"></img>
-        <p className="ttitle">TECHOFES'25</p>
+        <p className="title">TECHOFES'25</p>
       </div>
     </>
   );
