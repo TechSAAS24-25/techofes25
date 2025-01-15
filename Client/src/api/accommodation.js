@@ -1,5 +1,6 @@
 import axios from 'axios';
 const accommodationUrl = 'api/accommodations';
+import storage from '../services/storage';
 
 //implement try and catch blocks for error handling in the frontend
 
@@ -28,9 +29,9 @@ const getAll = async () => {
 //or load it from local storage in the component where booking is done
 // accommodationId should be sent from the frontend, not from the user
 
-const bookAccommodation = async (bookingData, token) => {
+const bookAccommodation = async (bookingData) => {
     const config = {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${storage.loadUser().token}` },
     };
     const response = await axios.post(`${accommodationUrl}/${bookingData.accommodationId}/book`, bookingData, config);
     return response.data;
