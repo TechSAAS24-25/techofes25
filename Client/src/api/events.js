@@ -1,6 +1,6 @@
 import axios from 'axios';
 const eventsUrl = '/api/events';
-const storage = require('../services/storage');
+import storage from '../services/storage'
 
 //implement try and catch blocks for error handling in the frontend
 
