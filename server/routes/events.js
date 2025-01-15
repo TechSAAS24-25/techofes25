@@ -25,7 +25,6 @@ eventDetailsRouter.get('/:eventId', async(request, response) => {
 //need the jwt token in the headers (from the frontend)
 eventRegistrationRouter.post('/:eventId/register',userExtractor, async(request,response) =>
 {
-    const {registrationID} = request.body
     const eventID = request.params.eventId
     const id = request.T_ID
 
@@ -38,7 +37,6 @@ eventRegistrationRouter.post('/:eventId/register',userExtractor, async(request,r
        return res.status(404).json({error: 'Seats not available'})
     }
     const reg = new Registration ({
-        registrationID,
         T_ID : id,
         eventID,
     })
