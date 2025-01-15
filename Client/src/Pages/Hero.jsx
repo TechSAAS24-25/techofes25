@@ -1,6 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import Lenis from "lenis";
+import Footer from "../components/Footer";
+import "../Styles/Hero.css";
+import i1 from "../assets/food/i1.png";
+import i2 from "../assets/food/samosa.gif";
+import i3 from "../assets/food/i3.png";
 import FoodBackground1 from "../assets/food/general/food (3).svg";
 import FoodBackground2 from "../assets/food/general/food (6).svg";
 import CubeBackground from "../components/Cubebackground";
@@ -10,66 +15,18 @@ import Dish3 from "../assets/food/Fast Food/food (8).svg";
 import AboutSection from "../components/About";
 import ZoomParallax from "../components/ZoomParallax";
 import EventScroll from "../components/EventScroll";
-import Footer from "../components/Footer";
-import "../Styles/Hero.css";
-
-const Slide = (props) => {
-  const direction = props.direction === "left" ? -1 : 1;
-  const translateX = useTransform(
-    props.progress,
-    [0, 0.9],
-    [150 * direction, -150 * direction]
-  );
-  return (
-    <motion.div
-      style={{ x: translateX, left: props.left }}
-      className="relative flex whitespace-nowrap"
-    >
-      <Phrase src={props.src} />
-      <Phrase src={props.src} />
-      <Phrase src={props.src} />
-    </motion.div>
-  );
-};
-
-const Phrase = ({ src }) => {
-  return (
-    <div className="px-5 py-1 flex gap-5 items-center text-white michroma">
-      <p className="text-[2vw]">EVENT </p>
-      <span className="relative h-[6vw] aspect-[4/2] rounded-full overflow-hidden">
-        <img style={{ objectFit: "cover" }} src={Dish1} alt="image" fill />
-      </span>
-      <p className="text-[2vw]">DJ NIGHT </p>
-      <span className="relative h-[6vw] aspect-[4/2] rounded-full overflow-hidden">
-        <img style={{ objectFit: "cover" }} src={Dish2} alt="image" fill />
-      </span>
-      <p className="text-[2vw]">WORKSHOPS</p>
-      <span className="relative h-[6vw] aspect-[4/2] rounded-full overflow-hidden">
-        <img
-          style={{ objectFit: "cover" }}
-          src={FoodBackground2}
-          alt="image"
-          fill
-        />
-      </span>
-      <p className="text-[2vw]">MERCH</p>
-      <span className="relative h-[6vw] aspect-[4/2] rounded-full overflow-hidden">
-        <img
-          style={{ objectFit: "cover" }}
-          src={FoodBackground1}
-          alt="image"
-          fill
-        />
-      </span>
-      <p className="text-[2vw]">T-AWARDS</p>
-      <span className="relative h-[6vw] aspect-[4/2] rounded-full overflow-hidden">
-        <img style={{ objectFit: "cover" }} src={Dish3} alt="image" fill />
-      </span>
-    </div>
-  );
-};
+import PongalVideo from "../assets/pongal.mp4";
 
 export default function Hero() {
+  const { scrollYProgress: slideScrollYProgress } = useScroll();
+  const [countdown, setCountdown] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  // Smooth scrolling setup
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -88,75 +45,141 @@ export default function Hero() {
     requestAnimationFrame(raf);
   }, []);
 
-  const container1 = useRef();
-  const { scrollYProgress: scrollYProgress1 } = useScroll({
-    target: container1,
-    offset: ["start start", "end start"],
-  });
+  // Countdown Timer
+  useEffect(() => {
+    const eventDate = new Date("2025-02-15T00:00:00").getTime();
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const difference = eventDate - now;
 
-  const y1 = useTransform(scrollYProgress1, [0, 1], ["0vh", "150vh"]);
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+          (difference % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        setCountdown({ days, hours, minutes, seconds });
+      } else {
+        clearInterval(timer);
+        setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    }, 1000);
 
-  const container2 = useRef();
-  const { scrollYProgress: scrollYProgress2 } = useScroll({
-    target: container2,
-    offset: ["start end", "end start"],
-  });
+    return () => clearInterval(timer);
+  }, []);
 
-  const slideContainer = useRef();
-  const { scrollYProgress: slideScrollYProgress } = useScroll({
-    target: slideContainer,
-    offset: ["start end", "end start"],
-  });
+  // Animation Variants
+  const neonTextVariants = {
+    animate: {
+      textShadow: [
+        "0 0 5px #ffaf40, 0 0 10px #ffaf40, 0 0 20px #ff7e00, 0 0 30px #ff6b00",
+        "0 0 10px #fff200, 0 0 20px #ffde00, 0 0 30px #ffcb00",
+        "0 0 5px #ffaf40, 0 0 10px #ffaf40, 0 0 20px #ff7e00, 0 0 30px #ff6b00",
+      ],
+      transition: {
+        repeat: Infinity,
+        duration: 4,
+        ease: "linear",
+      },
+    },
+  };
 
   return (
     <main>
-      <div
-        className="overflow-hidden"
-        style={{
-          backgroundImage: `url(${FoodBackground1})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
-      >
-        <div className="z-0 fixed transform lg:translate-x-1/2 lg:-translate-y-52 w-full h-full">
-          <CubeBackground />
+      {/* Neon Text Animation */}
+      <div className="text-container">
+        <div className="glass-techofes">
+          <motion.h1
+            className="neon-text"
+            variants={neonTextVariants}
+            animate="animate"
+          >
+            TECHOFES'25
+          </motion.h1>
+          {/* Food-themed Animated Background */}
+          <motion.img
+            src={i3}
+            alt="Food"
+            className="food-animation"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{
+              scale: [0.8, 1.2, 1],
+              opacity: [0, 1],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          <motion.img
+            src={i2}
+            alt="Samosa GIF"
+            className="food-animation-secondary"
+            initial={{ y: -50, opacity: 0 }}
+            animate={{
+              y: [0, 20, -10],
+              opacity: [0.5, 1, 0.5],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 6,
+              ease: "easeInOut",
+            }}
+          />
         </div>
-        <motion.div style={{ y: y1 }} className="relative z-10">
-          <div className="pb-52 text-left home">
-            <p className="font-extralight lg:text-8xl text-4xl text-white ttitle">
-              Symphony of Taste
-            </p>
-          </div>
-        </motion.div>
       </div>
 
+      {/* Countdown Timer */}
+      <div className="countdown-container">
+        <div className="countdown-box">
+          <h3 className="countdown-label">Days</h3>
+          <p className="countdown-value">{countdown.days}</p>
+        </div>
+        <div className="countdown-box">
+          <h3 className="countdown-label">Hours</h3>
+          <p className="countdown-value">{countdown.hours}</p>
+        </div>
+        <div className="countdown-box">
+          <h3 className="countdown-label">Minutes</h3>
+          <p className="countdown-value">{countdown.minutes}</p>
+        </div>
+        <div className="countdown-box">
+          <h3 className="countdown-label">Seconds</h3>
+          <p className="countdown-value">{countdown.seconds}</p>
+        </div>
+      </div>
+
+      {/* Food-Themed Background */}
+      <div className="video-background-container">
+        <video
+          className="video-background"
+          autoPlay
+          loop
+          muted
+          playsInline
+          src={PongalVideo}
+        />
+        <div className="video-overlay">
+          <h2 className="symphony-text">Symphony of Taste</h2>
+        </div>
+      </div>
+      <div className="z-0 fixed transform lg:translate-x-1/2 lg:-translate-y-52 w-full h-full">
+        <CubeBackground />
+      </div>
+      {/* Symphony of Taste Section */}
       <div className="flex items-center h-screen z-10 bg-gradient-to-b to-yellow-500 from-orange-700 justify-start">
         <AboutSection />
       </div>
 
-      <div
-        ref={slideContainer}
-        className="relative overflow-hidden bg-black py-6"
-      >
-        <Slide
-          src={Dish1}
-          direction={"left"}
-          left={"-40%"}
-          progress={slideScrollYProgress}
-        />
-        <Slide
-          src={Dish2}
-          direction={"right"}
-          left={"-25%"}
-          progress={slideScrollYProgress}
-        />
+      <div className="relative overflow-hidden bg-black py-6">
+        <ZoomParallax />
       </div>
-
-      <ZoomParallax />
       <EventScroll />
-
-      <div  
-        ref={container2}
+      <div
         className="relative flex items-center justify-center h-screen overflow-hidden"
         style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
       >
