@@ -6,12 +6,12 @@ const AboutSection = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="flex justify-center items-center min-h-screen min-w-full overflow-hidden bg-gradient-to-br from-orange-200 via-yellow-300 to-red-200">
+    <div className="flex justify-center items-center min-h-screen min-w-full overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800">
       <div className="text-center relative flex flex-col lg:flex-row items-center w-[100%] h-screen content-center gap-10">
         {/* Text Section */}
         <motion.div
-          className="text-center relative h-[60%] lg:w-[50%] p-8 cursor-pointer overflow-hidden rounded-xl shadow-2xl bg-gradient-to-tr from-yellow-100 via-orange-200 to-red-200 hover:bg-gradient-to-tr hover:from-orange-300 hover:via-yellow-300 hover:to-red-300 
-          text-gray-800 hover:text-gray-900 content-center transition-all duration-700 ease-in-out hover:h-[70%] hover:w-[55%]"
+          className="text-center relative h-[60%] lg:w-[50%] p-8 cursor-pointer overflow-hidden rounded-xl shadow-2xl bg-gradient-to-tr from-gray-800 via-gray-900 to-black hover:bg-gradient-to-tr hover:from-gray-700 hover:via-gray-800 hover:to-gray-900 
+          text-gray-300 hover:text-white content-center transition-all duration-700 ease-in-out hover:h-[70%] hover:w-[55%]"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           whileHover={{
@@ -27,7 +27,7 @@ const AboutSection = () => {
             initial={{ scale: 1 }}
             whileHover={{
               scale: 1.15,
-              textShadow: "0px 0px 10px rgba(255,255,255,0.8)",
+              textShadow: "0px 0px 10px rgba(255, 165, 0, 0.8)",
             }}
           >
             ABOUT TECHOFES
@@ -67,7 +67,7 @@ const AboutSection = () => {
           <img
             src={foodImage}
             alt="Food Theme"
-            className="rounded-2xl shadow-xl"
+            className="rounded-2xl shadow-xl border-2 border-orange-400"
           />
         </motion.div>
       </div>

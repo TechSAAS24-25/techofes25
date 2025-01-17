@@ -54,6 +54,7 @@ app.use('/api/merchandise', merchandiseRouter.purchaseMerchRouter);
 app.use('/api/accommodations', accommodationsRouter.accommodationsRouter);
 app.use('/api/accommodations', accommodationsRouter.bookAccommodationRouter);
 
-app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
+app.use(middleware.unknownEndpoint)
+
 module.exports = app

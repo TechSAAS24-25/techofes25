@@ -47,7 +47,7 @@ export default function Hero() {
 
   // Countdown Timer
   useEffect(() => {
-    const eventDate = new Date("2025-02-15T00:00:00").getTime();
+    const eventDate = new Date("2025-03-05T00:00:00").getTime();
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const difference = eventDate - now;
@@ -97,7 +97,7 @@ export default function Hero() {
             variants={neonTextVariants}
             animate="animate"
           >
-            TECHOFES'25
+            TECHOFES'78
           </motion.h1>
           {/* Food-themed Animated Background */}
           <motion.img

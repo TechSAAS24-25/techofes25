@@ -7,7 +7,7 @@ const User = require('../models/user');
 require('express-async-errors');
 
 registerRouter.post('/', async (request, response) => {
-  const { username, firstName, lastName, email, phn, type, rollno, password, T_ID } = request.body;
+  const { username, firstName, lastName, email, phn, type, rollno, password} = request.body;
 
   // Check if userType is Insider or Outsider
   if (type === 'Insider' && !rollno) {
@@ -37,7 +37,6 @@ registerRouter.post('/', async (request, response) => {
     userType: type,
     rollNo: type === 'Insider' ? rollno : undefined,
     passwordHash,
-    T_ID,  // Store the T_ID
   });
 
   const savedUser = await user.save();
