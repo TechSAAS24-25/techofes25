@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
-import Lenis from "lenis";
+import Lenis from "@studio-freight/lenis";
 import Footer from "../components/Footer";
 import "../Styles/Hero.css";
 import i1 from "../assets/food/i1.png";

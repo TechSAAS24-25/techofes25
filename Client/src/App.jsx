@@ -16,6 +16,8 @@ import Merchandise from "./components/Merchandise.jsx";
 import Schedule from "./components/Schedule.jsx";
 import StarAttractions from "./components/StarAttractions.jsx";
 import SponsorPage from "./Pages/Sponsor.jsx";
+import Registration from "./Pages/Registration.jsx";
+import Login from "./Pages/Login.jsx";
 import "./App.css";
 const Register = () => <h1>Register Page</h1>;
 const Gallery = () => <h1>Gallery Page</h1>;
@@ -44,6 +46,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/contact/team" element={<Team />} />
         <Route path="contact/query" element={<Query />} />
+        <Route path="registration" element={<Registration />} />
+        <Route path="login" element={<Login />} />
       </Routes>
     </Router>
   );

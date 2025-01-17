@@ -1,5 +1,7 @@
 .team-page {
   background-image: url("../assets/p0fq9cyz.jpg");
+  background-size: cover;
+  background-position: fixed;
 }
 .main-content {
   margin-left: 20%;
