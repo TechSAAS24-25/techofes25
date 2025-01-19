@@ -4,11 +4,19 @@
   align-items: center;
   height: 50vh;
   background: #000;
-/* Replace with your pattern */
+  /* Replace with your pattern */
   background-size: cover;
   background-position: center;
   position: relative;
   overflow: hidden;
+}
+
+main {
+  cursor: none;
+}
+
+:root {
+  --color-cursor: 220, 90, 90; /* Example color in RGB */
 }
 .glass-techofes {
   position: relative;

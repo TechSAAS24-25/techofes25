@@ -29,7 +29,6 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Hero />} />
-        <Route path="/" element={<Hero />} />
         {/* <Route path="/" element={<Hero />} /> */}
         <Route path="/merch" element={<Merch />} />
         <Route path="/events" element={<Events />} />
