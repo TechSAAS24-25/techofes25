@@ -6,15 +6,20 @@ const Sidebar = ({ onLinkClick }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   const menuItems = [
-    "Events & Competitions",
-    "Marketing",
-    "Media & Publicity",
-    "Show Management",
+    "President",
+    "Vice President",
+    "General Secretary",
+    "Sports Secretary",
+    "Corporate Relation",
     "Finance",
-    "Public Relations",
-    "Security",
-    "Design",
-    "Web & IT",
+    "Events,Workshops & Carnivals",
+    "Logistics",
+    "HR & Hospitality",
+    "Marketing",
+    "Contents",
+    "Technical Design",
+    "Graphical Design",
+    "Permissions & Documentation",
   ];
 
   const handleClick = (role) => {
