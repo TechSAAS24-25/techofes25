@@ -9,6 +9,7 @@ const Sidebar = ({ onLinkClick }) => {
     "President",
     "Vice President",
     "General Secretary",
+    "Joint Secretary",
     "Sports Secretary",
     "Corporate Relation",
     "Finance",

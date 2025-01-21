@@ -88,7 +88,7 @@ const Navbar = () => {
                 Team
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink
                 to="/contact/query"
                 className={({ isActive }) =>
@@ -97,7 +97,7 @@ const Navbar = () => {
               >
                 Queries
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </li>
         <li className="navItem">
