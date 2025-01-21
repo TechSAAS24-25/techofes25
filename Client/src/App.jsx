@@ -44,7 +44,6 @@ function App() {
         <Route path="/star-attractions" element={<StarAttractions />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/contact/team" element={<Team />} />
-        <Route path="contact/query" element={<Query />} />
         <Route path="registration" element={<Registration />} />
         <Route path="login" element={<Login />} />
       </Routes>
