@@ -6,11 +6,7 @@ import "../Styles/Hero.css";
 import i1 from "../assets/food/i1.png";
 import i2 from "../assets/food/samosa.gif";
 import i3 from "../assets/food/i3.png";
-import food1 from "../assets/food/Fast Food/food (1).svg";
-// import food2 from "../assets/food/Fast Food/food (5).svg";
-import food5 from "../assets/food/Fast Food/food.svg";
-import food3 from "../assets/food/fruits/food (11).svg";
-import food4 from "../assets/food/Non-Veg/food (4).svg";
+import food1 from "../assets/food/Non-Veg/chicken.png";
 import cursor from "../assets/food/cursor.svg";
 import FoodBackground1 from "../assets/food/general/food (3).svg";
 import FoodBackground2 from "../assets/food/general/food (6).svg";
@@ -64,7 +60,7 @@ function AnimatedCursor({
   let endY = React.useRef(0);
   let outerCoords = React.useRef({ x: 0, y: 0 });
 
-  const foodImages = [food1, food5, food3, food4]; // The actual SVGs
+  const foodImages = [food1]; // The actual SVGs
 
   const onMouseMove = React.useCallback(
     ({ clientX, clientY }) => {
@@ -99,18 +95,18 @@ function AnimatedCursor({
     return () => cancelAnimationFrame(requestRef.current);
   }, [animateOuterCursor]);
 
-  // Update the food image every 4 seconds
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentFoodImage((prev) => {
-        const currentIndex = foodImages.indexOf(prev);
-        const nextIndex = (currentIndex + 1) % foodImages.length;
-        return foodImages[nextIndex];
-      });
-    }, 4000); // Change every 4 seconds
+  // // Update the food image every 4 seconds
+  // React.useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentFoodImage((prev) => {
+  //       const currentIndex = foodImages.indexOf(prev);
+  //       const nextIndex = (currentIndex + 1) % foodImages.length;
+  //       return foodImages[nextIndex];
+  //     });
+  //   }, 4000); // Change every 4 seconds
 
-    return () => clearInterval(interval); // Cleanup interval on unmount
-  }, []);
+  //   return () => clearInterval(interval); // Cleanup interval on unmount
+  // }, []);
 
   const onMouseEnter = React.useCallback(() => setIsVisible(true), []);
   const onMouseLeave = React.useCallback(() => setIsVisible(false), []);
