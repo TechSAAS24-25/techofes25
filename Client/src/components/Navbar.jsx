@@ -3,12 +3,13 @@ import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import homeIcon from "../assets/home.png";
 import accom from "../assets/accommodation.webp";
-import event from "../assets/events.png";
+import event from "../assets/events1.png";
 import more from "../assets/more.png";
 import merch from "../assets/merch.png";
 import contactIcon from "../assets/contact.png"; // Placeholder for contact icon
-import scheduleIcon from "../assets/schedule.png"; // Placeholder for schedule icon
+import scheduleIcon from "../assets/schedule1.png"; // Placeholder for schedule icon
 import sponsor from "../assets/sponsor.png";
+import register from "../assets/register.png";
 
 const Navbar = () => {
   return (
@@ -36,6 +37,20 @@ const Navbar = () => {
             <div className="top-bar"></div>
             <img src={event} alt="Events Icon" id="icon" />
             Events
+          </NavLink>
+        </li>
+        <li className="navItem">
+          <NavLink
+            to="/registration"
+            className={({ isActive, isPending }) =>
+              window.location.pathname.startsWith("/registration") || isActive
+                ? "active-link"
+                : "navLink"
+            }
+          >
+            <div className="top-bar"></div>
+            <img src={register} alt="Events Icon" id="icon" />
+            Register
           </NavLink>
         </li>
         <li className="navItem">

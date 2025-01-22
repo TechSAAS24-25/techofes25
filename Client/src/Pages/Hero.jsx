@@ -258,7 +258,7 @@ export default function Hero() {
             TECHOFES'78
           </motion.h1>
           {/* Food-themed Animated Background */}
-          <motion.img
+          {/* <motion.img
             src={i3}
             alt="Food"
             className="food-animation"
@@ -287,7 +287,7 @@ export default function Hero() {
               duration: 6,
               ease: "easeInOut",
             }}
-          />
+          /> */}
         </div>
       </div>
 
