@@ -1,5 +1,6 @@
 import axios from 'axios';
-const eventsUrl = 'api/events';
+const eventsUrl = '/api/events';
+import storage from '../services/storage'
 
 //implement try and catch blocks for error handling in the frontend
 
@@ -25,10 +26,10 @@ const getEvent = async (eventId) => {
 // Returns a registration object and a message
 // Refer backend models for the structure of a registration object
 
-const registerEvent = async (eventId, registrationID, token) => {
+const registerEvent = async (eventId) => {
     const config = {
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${storage.loadUser().token}`
         }
     };
     const response = await axios.post(`${eventsUrl}/${eventId}/register`, { registrationID }, config);

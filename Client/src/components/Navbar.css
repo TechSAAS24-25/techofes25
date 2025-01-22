@@ -149,6 +149,23 @@
     max-width: 20px;
   }
 
+  .navLink,
+  .active-link {
+    cursor: pointer; /* Explicitly set cursor */
+  }
+
+  .navItem {
+    position: relative; /* Ensure proper positioning for dropdown */
+  }
+
+  .active-link {
+    z-index: 1; /* Ensure it sits above any overlapping elements */
+  }
+
+  .dropdown {
+    z-index: 100; /* Ensure dropdown remains interactive */
+  }
+
   .navbar.toggle .navList {
     display: flex; /* Show on toggle */
   }

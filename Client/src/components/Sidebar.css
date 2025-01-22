@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
   position: relative;
-  padding: 15px;
+  padding: 10px 15px;
   cursor: pointer;
   transition: color 0.3s ease;
 }

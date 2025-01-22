@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import EventCard from "../components/Eventcard.jsx";
 import "../Styles/Events.css";
 
+import backgroundImage from "../assets/p0fq9cyz.jpg";
+
 const Events = () => {
   const events = [
     { icon: "src/assets/dance.png", name: "Dance" },
@@ -13,7 +15,14 @@ const Events = () => {
   ];
 
   return (
-    <div className="events-container">
+    <div
+      className="events-container"
+      style={{
+        height: "100vh",
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+      }}
+    >
       <h1 className="events-title">Events</h1>
       <div className="events-grid">
         {events.map((event, index) => (

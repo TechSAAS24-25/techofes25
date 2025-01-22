@@ -2,13 +2,14 @@ import axios from 'axios';
 const loginUrl = '/api/auth/login';
 const registerUrl = '/api/auth/register';
 const logoutUrl = '/api/auth/logout';
+import storage from '../services/storage';
 
 //implement try and catch blocks for error handling in the frontend
 
 // Login user
 // Send username and password to the server
 // If the user is authenticated, the server will return a token
-//along with token the user T_ID is also sent
+// along with token the user T_ID, username is also sent
 // If the user is not authenticated, the server will return an error
 // The token is stored in local storage
 // The token is used to authenticate requests to the server
@@ -27,6 +28,7 @@ const logoutUrl = '/api/auth/logout';
 
 const login = async (username, password) => {
   const response = await axios.post(loginUrl, { username, password });
+  storage.saveUser(response.data);
   return response.data;
 };
 
@@ -47,6 +49,7 @@ const register = async (user) => {
 
 const logout = async () => {
   const response = await axios.post(logoutUrl);
+  storage.removeUser();
   return response.data;
 };
 

@@ -1,5 +1,6 @@
 import axios from 'axios';
 const merchandiseUrl = 'api/merchandise';
+import storage from '../services/storage';
 
 //implement try and catch blocks for error handling in the frontend
 
@@ -21,7 +22,7 @@ const getMerchandise = async () => {
 const purchaseMerchandise = async (merchandiseId, quantity) => {
     const config = {
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${storage.loadUser().token}`
         }
     }
     const response = await axios.post(`${merchandiseUrl}/${merchandiseId}/purchase`, { quantity }, config);
