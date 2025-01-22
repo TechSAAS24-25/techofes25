@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const IdTracker = require('./idTracker');
 
 const userSchema = new mongoose.Schema({
   T_ID:{
-    type: mongoose.Schema.Types.ObjectId,
-    auto: true,
+    type: String,
+    unique: true,
   },
   username: {
     type: String,
@@ -44,6 +45,24 @@ const userSchema = new mongoose.Schema({
     },
   },
 }, { timestamps: true });
+
+// Middleware to ensure the T_ID is generated before saving the document
+userSchema.pre('save', async function (next) {
+  if (!this.T_ID) {
+    const idTracker = await IdTracker.ensureIdTrackerExists();
+    if (this.userType === 'Insider') {
+      this.T_ID = `CEG${idTracker.insiderId}`;
+      idTracker.insiderId++; // Increment for the next Insider
+    } else if (this.userType === 'Outsider') {
+      this.T_ID = `EXT${idTracker.outsiderId}`;
+      idTracker.outsiderId++; // Increment for the next Outsider
+    }
+
+    await idTracker.save(); // Save the updated ID tracker after incrementing
+  }
+  next();
+});
+
 
 userSchema.set('toJSON', {
   transform: (document, returnedObject) => {
