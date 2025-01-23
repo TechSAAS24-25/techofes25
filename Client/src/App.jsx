@@ -18,6 +18,7 @@ import StarAttractions from "./components/StarAttractions.jsx";
 import SponsorPage from "./Pages/Sponsor.jsx";
 import Registration from "./Pages/Registration.jsx";
 import Login from "./Pages/Login.jsx";
+import Admin from "./Pages/Admin.jsx";
 import "./App.css";
 const Register = () => <h1>Register Page</h1>;
 const Gallery = () => <h1>Gallery Page</h1>;
@@ -46,6 +47,7 @@ function App() {
         <Route path="/contact/team" element={<Team />} />
         <Route path="registration" element={<Registration />} />
         <Route path="login" element={<Login />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Router>
   );
