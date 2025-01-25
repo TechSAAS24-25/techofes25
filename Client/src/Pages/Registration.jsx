@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../Styles/Registration.css";
 import icecream from "../assets/food/icecream.gif";
 import authServices from "../api/auth.js";
+import { Eye, EyeOff } from "lucide-react";
 
 const foodItems = ["🍕", "🍔", "🍩", "🍣", "🌮", "🥞", "🍪", "🍿"];
 
@@ -19,6 +20,9 @@ const Registration = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -52,11 +56,10 @@ const Registration = () => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
 
-    if (formData.confirmPassword != formData.password) {
-      alert("Passwords doesnt match.");
+    if (formData.confirmPassword !== formData.password) {
+      alert("Passwords don't match.");
     } else {
       try {
-        // Call the register function from authServices
         let userData = {
           username: formData.username,
           firstName: formData.firstName,
@@ -74,7 +77,6 @@ const Registration = () => {
           navigate("/events");
         }
       } catch (error) {
-        // Handle errors returned by the API
         if (error.response) {
           console.error("Error:", error.response.data.error);
           alert(`Registration failed: ${error.response.data.error}`);
@@ -205,23 +207,45 @@ const Registration = () => {
             <div className="grouped-input">
               <div className="input-group">
                 <label>Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                />
+                <div className="password-input">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="eye-icon"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
               </div>
               <div className="input-group">
                 <label>Confirm Password</label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  required
-                />
+                <div className="password-input">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="eye-icon"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? (
+                      <EyeOff size={20} />
+                    ) : (
+                      <Eye size={20} />
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
             <button type="submit" className="submit-btn">

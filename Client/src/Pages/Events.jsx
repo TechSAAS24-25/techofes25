@@ -5,6 +5,7 @@ import EventCard from "../components/Eventcard.jsx";
 import "../Styles/Events.css";
 import backgroundImage from "../assets/p0fq9cyz.jpg";
 import eventServices from "../api/events.js";
+import Footer from "../components/Footer.jsx";
 
 const Events = () => {
   const [eventDetails, setEventDetails] = useState(null);
@@ -64,6 +65,7 @@ const Events = () => {
           </Link>
         ))}
       </div>
+      {/* <Footer /> */}
     </div>
   );
 };

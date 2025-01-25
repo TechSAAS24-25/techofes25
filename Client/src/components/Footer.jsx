@@ -45,7 +45,6 @@ const Nav = () => {
         <a href="accommodation">Accommodation</a>
         <a href="contact/team">Contact</a>
         <a href="merchandise">Merchandise</a>
-        <a href="contact/query">Queries</a>
       </div>
     </div>
   );
@@ -121,7 +120,7 @@ const Contributors = () => {
           </a>
         </li>
       </ul>
-      <p>~ © 2024 AGNI CEG ANNA UNIVERSITY</p>
+      <p>~ © 2024-25 SAAS CEG ANNA UNIVERSITY</p>
     </div>
   );
 };

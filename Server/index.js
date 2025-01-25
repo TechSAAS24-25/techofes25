@@ -2,6 +2,5 @@ const app = require("./app");
 const config = require("./utils/config");
 const logger = require("./utils/logger");
 
-app.listen(config.PORT, () => {
-  logger.info(`Server running on port ${config.PORT}`);
-});
+const PORT = 4000; // Use a port other than 3000
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
