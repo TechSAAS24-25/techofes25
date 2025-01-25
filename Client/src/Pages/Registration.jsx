@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Registration.css";
 import icecream from "../assets/food/icecream.gif";
+import authServices from "../api/auth.js";
+import { Eye, EyeOff } from "lucide-react";
 
 const foodItems = ["🍕", "🍔", "🍩", "🍣", "🌮", "🥞", "🍪", "🍿"];
 
@@ -18,6 +20,9 @@ const Registration = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -47,9 +52,40 @@ const Registration = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
+
+    if (formData.confirmPassword !== formData.password) {
+      alert("Passwords don't match.");
+    } else {
+      try {
+        let userData = {
+          username: formData.username,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+          phn: formData.mobile,
+          type: formData.usertype,
+          rollno: formData.rollno,
+        };
+        const response = await authServices.register(userData);
+
+        if (response) {
+          alert(`Registration Successful: ${response.message}`);
+          navigate("/events");
+        }
+      } catch (error) {
+        if (error.response) {
+          console.error("Error:", error.response.data.error);
+          alert(`Registration failed: ${error.response.data.error}`);
+        } else {
+          console.error("Error:", error.message);
+          alert("An unexpected error occurred. Please try again later.");
+        }
+      }
+    }
   };
 
   return (
@@ -161,7 +197,7 @@ const Registration = () => {
                   required
                 >
                   <option value="" disabled>
-                  Select User Type
+                    Select User Type
                   </option>
                   <option value="Insider">Insider</option>
                   <option value="Outsider">Outsider</option>
@@ -171,23 +207,45 @@ const Registration = () => {
             <div className="grouped-input">
               <div className="input-group">
                 <label>Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                />
+                <div className="password-input">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="eye-icon"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
               </div>
               <div className="input-group">
                 <label>Confirm Password</label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  required
-                />
+                <div className="password-input">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="eye-icon"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? (
+                      <EyeOff size={20} />
+                    ) : (
+                      <Eye size={20} />
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
             <button type="submit" className="submit-btn">
