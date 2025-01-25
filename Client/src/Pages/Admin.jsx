@@ -21,31 +21,31 @@ const Admin = () => {
             Tid: 1,
             name: 'Alice',
             college: 'Inside',
-            feedback: 'Great experience!',
+            Accomodation: 'Yes',
           },
           {
             Tid: 2,
             name: 'Bob',
             college: 'Outside',
-            feedback: 'Good organization.',
+            Accomodation: 'No',
           },
           {
             Tid: 3,
             name: 'Charlie',
             college: 'Inside',
-            feedback: 'Loved the event!',
+            Accomodation: 'Yes',
           },
           {
             Tid: 4,
             name: 'Diana',
             college: 'Outside',
-            feedback: 'Could improve logistics.',
+            Accomodation: 'Yes',
           },
           {
             Tid: 5,
             name: 'Eve',
             college: 'Inside',
-            feedback: 'Had a wonderful time.',
+            Accomodation: 'Yes',
           },
         ],
       }
@@ -102,7 +102,7 @@ const Admin = () => {
                 <th className='border-b-2 p-4'>TID</th>
                 <th className='border-b-2 p-4'>Name</th>
                 <th className='border-b-2 p-4'>College</th>
-                <th className='border-b-2 p-4'>Feedback</th>
+                <th className='border-b-2 p-4'>Accomodation</th>
               </tr>
             </thead>
             <tbody>
@@ -111,7 +111,7 @@ const Admin = () => {
                   <td className='border-b p-4'>{user.Tid}</td>
                   <td className='border-b p-4'>{user.name}</td>
                   <td className='border-b p-4'>{user.college}</td>
-                  <td className='border-b p-4'>{user.feedback}</td>
+                  <td className='border-b p-4'>{user.Accomodation}</td>
                 </tr>
               ))}
             </tbody>
