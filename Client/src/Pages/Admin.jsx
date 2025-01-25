@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 const Admin = () => {
-  // set data
+  // Set data
   const [data, setData] = useState({
     totalVisitors: 0,
     ticketsPurchased: 0,
@@ -9,27 +9,50 @@ const Admin = () => {
     users: [],
   })
 
-  // fetching data from  useEffect
+  // Fetching data in useEffect
   useEffect(() => {
-    
     const fetchData = async () => {
       const dummyData = {
         totalVisitors: 1500,
         ticketsPurchased: 400,
         registeredUsers: 1000,
         users: [
-          { id: 1, name: 'Alice', college: 'Inside' },
-          { id: 2, name: 'Bob', college: 'Outside' },
-          { id: 3, name: 'Charlie', college: 'Inside' },
-          { id: 4, name: 'Diana', college: 'Outside' },
-          { id: 5, name: 'Eve', college: 'Inside' },
+          {
+            Tid: 1,
+            name: 'Alice',
+            college: 'Inside',
+            feedback: 'Great experience!',
+          },
+          {
+            Tid: 2,
+            name: 'Bob',
+            college: 'Outside',
+            feedback: 'Good organization.',
+          },
+          {
+            Tid: 3,
+            name: 'Charlie',
+            college: 'Inside',
+            feedback: 'Loved the event!',
+          },
+          {
+            Tid: 4,
+            name: 'Diana',
+            college: 'Outside',
+            feedback: 'Could improve logistics.',
+          },
+          {
+            Tid: 5,
+            name: 'Eve',
+            college: 'Inside',
+            feedback: 'Had a wonderful time.',
+          },
         ],
       }
 
-      
       setTimeout(() => {
         setData(dummyData)
-      }, 1000) 
+      }, 1000)
     }
 
     fetchData()
@@ -57,7 +80,7 @@ const Admin = () => {
             {data.ticketsPurchased}
           </p>
         </div>
-        <div className='bg-white p-4 shadow rounded-lg'>
+        <div className='bg-white p-4 shadow rounded-lg '>
           <h2 className='text-xl font-semibold text-gray-700'>
             Registered Users
           </h2>
@@ -67,26 +90,28 @@ const Admin = () => {
         </div>
       </div>
 
-      {/* User  Table */}
-      <div className='mt-8 bg-white p-6 shadow rounded-lg'>
+      {/* User Table */}
+      <div className='mt-8 bg-white p-6 shadow rounded-lg '>
         <h2 className='text-2xl font-semibold text-gray-800 mb-4'>
           User Details
         </h2>
         {data.users.length > 0 ? (
-          <table className='w-full text-left border-collapse'>
+          <table className='w-full text-left border-collapse ' > 
             <thead>
               <tr>
-                <th className='border-b-2 p-4'>ID</th>
+                <th className='border-b-2 p-4'>TID</th>
                 <th className='border-b-2 p-4'>Name</th>
                 <th className='border-b-2 p-4'>College</th>
+                <th className='border-b-2 p-4'>Feedback</th>
               </tr>
             </thead>
             <tbody>
               {data.users.map((user) => (
-                <tr key={user.id}>
-                  <td className='border-b p-4'>{user.id}</td>
+                <tr key={user.Tid}>
+                  <td className='border-b p-4'>{user.Tid}</td>
                   <td className='border-b p-4'>{user.name}</td>
                   <td className='border-b p-4'>{user.college}</td>
+                  <td className='border-b p-4'>{user.feedback}</td>
                 </tr>
               ))}
             </tbody>
