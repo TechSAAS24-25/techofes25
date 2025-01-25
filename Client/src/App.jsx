@@ -9,6 +9,8 @@ import Accommodation from "./Pages/Accommodation.jsx";
 import More from "./Pages/More.jsx";
 import Hero from "./Pages/Hero.jsx";
 import "./App.css";
+import EventTypes from "./Pages/EventTypes.jsx";
+import EventList from "./Pages/EventList.jsx";
 
 import Team from "./components/Team.jsx";
 import Query from "./components/Query.jsx";
@@ -33,7 +35,7 @@ function App() {
         {/* <Route path="/" element={<Hero />} /> */}
         <Route path="/merch" element={<Merch />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/event/:eventName" element={<EventDetail />} />
+        <Route path="/event/:id" element={<EventDetail />} />
         <Route path="/accommodation" element={<Accommodation />} />
         <Route path="/sponsor" element={<SponsorPage />} />
 
@@ -48,6 +50,8 @@ function App() {
         <Route path="registration" element={<Registration />} />
         <Route path="login" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/events/:category" element={<EventTypes />} />
+        <Route path="/events/:category/:type" element={<EventList />} />
       </Routes>
     </Router>
   );

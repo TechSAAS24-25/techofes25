@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Registration.css";
 import icecream from "../assets/food/icecream.gif";
+import authServices from "../api/auth.js";
 
 const foodItems = ["🍕", "🍔", "🍩", "🍣", "🌮", "🥞", "🍪", "🍿"];
 
@@ -47,9 +48,42 @@ const Registration = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
+
+    if (formData.confirmPassword != formData.password) {
+      alert("Passwords doesnt match.");
+    } else {
+      try {
+        // Call the register function from authServices
+        let userData = {
+          username: formData.username,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+          phn: formData.mobile,
+          type: formData.usertype,
+          rollno: formData.rollno,
+        };
+        const response = await authServices.register(userData);
+
+        if (response) {
+          alert(`Registration Successful: ${response.message}`);
+          navigate("/events");
+        }
+      } catch (error) {
+        // Handle errors returned by the API
+        if (error.response) {
+          console.error("Error:", error.response.data.error);
+          alert(`Registration failed: ${error.response.data.error}`);
+        } else {
+          console.error("Error:", error.message);
+          alert("An unexpected error occurred. Please try again later.");
+        }
+      }
+    }
   };
 
   return (
@@ -161,7 +195,7 @@ const Registration = () => {
                   required
                 >
                   <option value="" disabled>
-                  Select User Type
+                    Select User Type
                   </option>
                   <option value="Insider">Insider</option>
                   <option value="Outsider">Outsider</option>

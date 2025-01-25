@@ -1,6 +1,6 @@
-import axios from 'axios';
-const accommodationUrl = 'api/accommodations';
-import storage from '../services/storage';
+import axios from "axios";
+const accommodationUrl = "api/accommodations";
+import storage from "../services/storage";
 
 //implement try and catch blocks for error handling in the frontend
 
@@ -33,9 +33,13 @@ const bookAccommodation = async (bookingData) => {
   const config = {
     headers: { Authorization: `Bearer ${storage.loadUser().token}` },
   };
-    const response = await axios.post(`${accommodationUrl}/${bookingData.accommodationId}/book`, bookingData, config);
+  const response = await axios.post(
+    `${accommodationUrl}/${bookingData.accommodationId}/book`,
+    bookingData,
+    config()
+  );
   return response.data;
-}
+};
 
 //the above code returns the response data from the server
 //the response data is an object with the following fields:
