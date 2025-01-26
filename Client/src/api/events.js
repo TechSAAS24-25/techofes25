@@ -32,12 +32,26 @@ const registerEvent = async (eventId) => {
       Authorization: `Bearer ${storage.loadUser().token}`,
     },
   };
+
+  // Fix: Pass an empty body object {} as the second argument if there's no request body
   const response = await axios.post(
     `${eventsUrl}/${eventId}/register`,
-    { registrationID },
-    config()
+    {},
+    config
   );
   return response.data;
 };
 
-export default { getEvents, getEvent, registerEvent };
+const registerStatus = async (eventId) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${storage.loadUser().token}`,
+    },
+  };
+
+  // Fix: Pass an empty body object {} as the second argument if there's no request body
+  const response = await axios.get(`${eventsUrl}/${eventId}/status`, config);
+  return response.data;
+};
+
+export default { getEvents, getEvent, registerEvent, registerStatus };

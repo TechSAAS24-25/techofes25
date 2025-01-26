@@ -62,6 +62,7 @@
 
 .navItem {
   margin: 0 1rem;
+  color: white;
 }
 
 .navLink {
@@ -133,6 +134,7 @@
 
   .navItem {
     margin: 0.5rem 0;
+    color: white;
   }
 
   .navLink {
@@ -168,6 +170,10 @@
 
   .navbar.toggle .navList {
     display: flex; /* Show on toggle */
+  }
+  .icon-white {
+    color: white;
+    fill: white;
   }
 
   .hamburger {

@@ -8,8 +8,9 @@ import storage from "../services/storage";
 const foodItems = ["🍕", "🍔", "🍩", "🍣", "🌮", "🥞", "🍪", "🍿"];
 
 const Login = () => {
-  const [fallingFood, setFallingFood] = useState([]);
+  // const { setIsLoggedIn } = useParams();
 
+  const [fallingFood, setFallingFood] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -59,13 +60,15 @@ const Login = () => {
       storage.saveUser(response);
 
       // Log the user data retrieved from localStorage
-      const storedUser = storage.loadUser();
-      console.log("Stored User:", storedUser);
+      // const storedUser = storage.loadUser();
+      // console.log("Stored User:", storedUser);
 
+      // setIsLoggedIn(true);
       // Successful login
-      // alert(`Welcome ${response.username}!`);
+      alert(`Welcome ${response.username}!\nTID: ${response.T_ID} `);
 
       navigate("/events");
+      window.location.reload();
     } catch (error) {
       // Handle errors returned by the API
       if (error.response) {

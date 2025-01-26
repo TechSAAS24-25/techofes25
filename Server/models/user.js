@@ -56,10 +56,10 @@ userSchema.pre("save", async function (next) {
   if (!this.T_ID) {
     const idTracker = await IdTracker.ensureIdTrackerExists();
     if (this.userType === "Insider") {
-      this.T_ID = `CEG${idTracker.insiderId}`;
+      this.T_ID = `T78${idTracker.insiderId}CEG`;
       idTracker.insiderId++; // Increment for the next Insider
     } else if (this.userType === "Outsider") {
-      this.T_ID = `EXT${idTracker.outsiderId}`;
+      this.T_ID = `T78${idTracker.outsiderId}EXT`;
       idTracker.outsiderId++; // Increment for the next Outsider
     }
     await idTracker.save(); // Save the updated ID tracker after incrementing

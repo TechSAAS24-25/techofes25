@@ -59,6 +59,17 @@
   transition: background-color 0.3s ease;
 }
 
+.register-btn-disabled {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
 .register-btn:hover {
   background-color: #550660;
 }
