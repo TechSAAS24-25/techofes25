@@ -1,41 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
 const Admin = () => {
+  // Initial state for visitors count (hardcoded for now)
   const [visitorsCount, setVisitorsCount] = useState(0)
 
-  useEffect(() => {
-    
-    const fetchVisitorCount = () => {
-     
-      const storedCount = sessionStorage.getItem('visitorsCount')
-      let newCount = storedCount ? parseInt(storedCount) : 0
-
-      
-      newCount += 1
-      setVisitorsCount(newCount)
-
-     
-      sessionStorage.setItem('visitorsCount', newCount)
-    }
-
-    fetchVisitorCount()
-
-    
-    const incrementTicketAndUserCount = () => {
-      setData((prevData) => ({
-        ...prevData,
-        ticketsPurchased: prevData.ticketsPurchased + 1, 
-        registeredUsers: prevData.registeredUsers + 1, 
-      }))
-    }
-
-    
-    incrementTicketAndUserCount()
-  }, [])
-
+  // Simulated data for users (hardcoded for now)
   const [data, setData] = useState({
-    ticketsPurchased: 0,
-    registeredUsers: 0,
+    ticketsPurchased: 50,
+    registeredUsers: 25,
     users: [
       { Tid: 1, name: 'Alice', college: 'Inside', Accomodation: 'Yes' },
       { Tid: 2, name: 'Bob', college: 'Outside', Accomodation: 'No' },
@@ -44,6 +16,16 @@ const Admin = () => {
       { Tid: 5, name: 'Eve', college: 'Inside', Accomodation: 'Yes' },
     ],
   })
+
+  
+  const incrementVisitorCount = () => {
+    setVisitorsCount((prevCount) => prevCount + 1)
+  }
+
+  useEffect(() => {
+    
+    incrementVisitorCount()
+  }, [])
 
   return (
     <div className='p-6 bg-gray-100 min-h-screen'>
@@ -54,7 +36,6 @@ const Admin = () => {
         <div className='bg-white p-4 shadow rounded-lg'>
           <h2 className='text-xl font-semibold text-gray-700'>
             Total Visitors
-
           </h2>
           <p className='text-4xl font-bold text-blue-600 mt-2'>
             {visitorsCount}
@@ -105,7 +86,7 @@ const Admin = () => {
             </tbody>
           </table>
         ) : (
-          <p className='text-gray-500'>Loading user data...</p>
+          <p className='text-gray-500'>No user data available.</p>
         )}
       </div>
     </div>
