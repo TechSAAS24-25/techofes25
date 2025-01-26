@@ -28,8 +28,6 @@ const Events = () => {
     const fetchUserDetails = async () => {
       try {
         const response = await eventServices.getEvents();
-
-        console.log("events:", response);
         setEventDetails(response);
       } catch (error) {
         if (error.response) {

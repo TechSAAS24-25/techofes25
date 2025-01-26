@@ -7,24 +7,24 @@ import eventServices from "../api/events.js";
 import image from "../assets/dance.png";
 
 const EventList = () => {
-  const { category, type } = useParams();
-  const [events, setEvents] = useState([]);
+    const { category, type } = useParams();
+    const [events, setEvents] = useState([]);
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await eventServices.getEvents();
-        const filteredEvents = response.filter(
-          (event) => event.category === category && event.type === type
-        );
-        setEvents(filteredEvents);
-      } catch (error) {
-        console.error("Error fetching events:", error);
-        alert("Failed to load events.");
-      }
-    };
-    fetchEvents();
-  }, [category, type]);
+    useEffect(() => {
+      const fetchEvents = async () => {
+        try {
+          const response = await eventServices.getEvents();
+          const filteredEvents = response.filter(
+            (event) => event.category === category && event.type === type
+          );
+          setEvents(filteredEvents);
+        } catch (error) {
+          console.error("Error fetching events:", error);
+          alert("Failed to load events.");
+        }
+      };
+      fetchEvents();
+    }, [category, type]);
 
   return (
     <div
