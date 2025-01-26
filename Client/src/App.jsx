@@ -19,6 +19,9 @@ import SponsorPage from "./Pages/Sponsor.jsx";
 import Registration from "./Pages/Registration.jsx";
 import Login from "./Pages/Login.jsx";
 import Admin from "./Pages/Admin.jsx";
+
+import Dashboard from "./components/Dashboard.jsx";
+
 import "./App.css";
 const Register = () => <h1>Register Page</h1>;
 const Gallery = () => <h1>Gallery Page</h1>;
@@ -29,28 +32,30 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Hero />} />
+        <Route path='/' element={<Hero />} />
         {/* <Route path="/" element={<Hero />} /> */}
-        <Route path="/merch" element={<Merch />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/event/:eventName" element={<EventDetail />} />
-        <Route path="/accommodation" element={<Accommodation />} />
-        <Route path="/sponsor" element={<SponsorPage />} />
+        <Route path='/merch' element={<Merch />} />
+        <Route path='/events' element={<Events />} />
+        <Route path='/event/:eventName' element={<EventDetail />} />
+        <Route path='/accommodation' element={<Accommodation />} />
+        <Route path='/sponsor' element={<SponsorPage />} />
+        {/* <Route path='/dashboard' element={<Dashboard />} /> */}
+        <Route path='/dashboard' element={<Dashboard />} />
 
-        <Route path="/more" element={<More />} />
+        <Route path='/more' element={<More />} />
 
-        <Route path="/merchandise" element={<Merchandise />} />
-        <Route path="/schedule" element={<Schedule />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/star-attractions" element={<StarAttractions />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/contact/team" element={<Team />} />
-        <Route path="registration" element={<Registration />} />
-        <Route path="login" element={<Login />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path='/merchandise' element={<Merchandise />} />
+        <Route path='/schedule' element={<Schedule />} />
+        <Route path='/gallery' element={<Gallery />} />
+        <Route path='/star-attractions' element={<StarAttractions />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/contact/team' element={<Team />} />
+        <Route path='registration' element={<Registration />} />
+        <Route path='login' element={<Login />} />
+        <Route path='/admin' element={<Admin />} />
       </Routes>
     </Router>
-  );
+  )
 }
 
 export default App;
