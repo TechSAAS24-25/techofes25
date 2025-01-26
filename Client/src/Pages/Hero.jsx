@@ -19,6 +19,7 @@ import ZoomParallax from "../components/ZoomParallax";
 import EventScroll from "../components/EventScroll";
 import PongalVideo from "../assets/pongal.mp4";
 import Carousel from "../components/Carousel";
+import logo from "../assets/logo.png";
 
 import { mainCoordinators } from "../data/data.js";
 
@@ -250,13 +251,14 @@ export default function Hero() {
       {/* Neon Text Animation */}
       <div className="text-container">
         <div className="glass-techofes">
-          <motion.h1
+          <img src={logo} alt="food icon" height={200} width={850} />
+          {/* <motion.h1
             className="neon-text"
             variants={neonTextVariants}
             animate="animate"
           >
             TECHOFES'78
-          </motion.h1>
+          </motion.h1> */}
           {/* Food-themed Animated Background */}
           {/* <motion.img
             src={i3}

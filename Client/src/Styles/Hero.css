@@ -38,7 +38,7 @@ main {
 
 /* Neon Text Animation */
 .neon-text {
-  font-size: 4rem;
+  font-size: 5rem;
   color: white;
   font-weight: bold;
   text-shadow: 0 0 10px #ffaf40, 0 0 20px #ff7e00, 0 0 30px #ff6b00;
