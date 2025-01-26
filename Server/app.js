@@ -6,6 +6,7 @@ const eventsRouter = require('./routes/events')
 const authRouter = require('./routes/auth')
 const merchandiseRouter = require('./routes/merchandise')
 const accommodationsRouter = require('./routes/accommodations')
+const adminRouter = require('./routes/admin')
 const usersRouter = require('./routes/users')
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
@@ -53,6 +54,12 @@ app.use('/api/merchandise', merchandiseRouter.purchaseMerchRouter);
 // Accommodation Routes
 app.use('/api/accommodations', accommodationsRouter.accommodationsRouter);
 app.use('/api/accommodations', accommodationsRouter.bookAccommodationRouter);
+
+// Admin Routes
+app.use('/api/admin', adminRouter.userDetailsRouter);
+app.use('/api/admin', adminRouter.totalRegistrationsRouter);
+app.use('/api/admin', adminRouter.totalEventRegistrationsRouter);
+app.use('/api/admin', adminRouter.eventRegistrationsRouter);
 
 app.use(middleware.errorHandler)
 app.use(middleware.unknownEndpoint)
