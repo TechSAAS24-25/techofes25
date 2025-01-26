@@ -48,26 +48,32 @@ const Events = () => {
     <div
       className="events-container"
       style={{
-        height: "100vh",
+        minHeight: "100vh", // Use minHeight instead of height
+        display: "flex",
+        flexDirection: "column",
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
       }}
     >
-      <h1 className="events-title">Categories</h1>
-      <div className="events-grid">
-        {categories?.map((category, index) => (
-          <Link to={`/events/${category}`} key={index} className="event-link">
-            <EventCard
-              key={index}
-              icon={"../src/assets/dance.png"}
-              name={category}
-            />
-          </Link>
-        ))}
+      <div style={{ flex: 1 }}>
+        {/* Main Content */}
+        <h1 className="events-title">Categories</h1>
+        <div className="events-grid">
+          {categories?.map((category, index) => (
+            <Link to={`/events/${category}`} key={index} className="event-link">
+              <EventCard
+                key={index}
+                icon={"../src/assets/dance.png"}
+                name={category}
+              />
+            </Link>
+          ))}
+        </div>
       </div>
+
+      {/* Footer */}
       {/* <Footer /> */}
     </div>
   );
 };
-
 export default Events;

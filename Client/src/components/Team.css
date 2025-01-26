@@ -1,7 +1,7 @@
 .team-page {
-  background-image: url("../assets/p0fq9cyz.jpg");
-  background-size: cover;
-  background-position: fixed;
+  background-image: url("../assets/food/bg.jpg");
+  background-size:contain;
+  background-position:center;
 }
 .main-content {
   margin-left: 20%;
