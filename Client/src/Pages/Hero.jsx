@@ -229,22 +229,6 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, []);
 
-  // Animation Variants
-  const neonTextVariants = {
-    animate: {
-      textShadow: [
-        "0 0 5px #ffaf40, 0 0 10px #ffaf40, 0 0 20px #ff7e00, 0 0 30px #ff6b00",
-        "0 0 10px #fff200, 0 0 20px #ffde00, 0 0 30px #ffcb00",
-        "0 0 5px #ffaf40, 0 0 10px #ffaf40, 0 0 20px #ff7e00, 0 0 30px #ff6b00",
-      ],
-      transition: {
-        repeat: Infinity,
-        duration: 4,
-        ease: "linear",
-      },
-    },
-  };
-
   return (
     <main>
       <AnimatedCursor />
@@ -252,66 +236,27 @@ export default function Hero() {
       <div className="text-container">
         <div className="glass-techofes">
           <img src={logo} alt="food icon" height={200} width={850} />
-          {/* <motion.h1
-            className="neon-text"
-            variants={neonTextVariants}
-            animate="animate"
-          >
-            TECHOFES'78
-          </motion.h1> */}
-          {/* Food-themed Animated Background */}
-          {/* <motion.img
-            src={i3}
-            alt="Food"
-            className="food-animation"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{
-              scale: [0.8, 1.2, 1],
-              opacity: [0, 1],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-          <motion.img
-            src={i2}
-            alt="Samosa GIF"
-            className="food-animation-secondary"
-            initial={{ y: -50, opacity: 0 }}
-            animate={{
-              y: [0, 20, -10],
-              opacity: [0.5, 1, 0.5],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 6,
-              ease: "easeInOut",
-            }}
-          /> */}
         </div>
       </div>
 
-      {/* Countdown Timer */}
-      <div className="countdown-container">
-        <div className="countdown-box">
-          <h3 className="countdown-label">Days</h3>
-          <p className="countdown-value">{countdown.days}</p>
+      {/* Updated Countdown Section */}
+      <section className="countdown-container bg-gray-800 py-12 text-white">
+        <div className="countdown-wrapper max-w-5xl mx-auto grid grid-cols-4 gap-6 text-center">
+          {Object.entries(countdown).map(([label, value]) => (
+            <div
+              key={label}
+              className="countdown-circle border-4 border-yellow-500 rounded-full p-6 relative"
+            >
+              <h3 className="countdown-label text-lg font-bold absolute top-1/4">
+                {label.charAt(0).toUpperCase() + label.slice(1)}
+              </h3>
+              <div className="countdown-value text-4xl font-bold text-yellow-400">
+                {value}
+              </div>
+            </div>
+          ))}
         </div>
-        <div className="countdown-box">
-          <h3 className="countdown-label">Hours</h3>
-          <p className="countdown-value">{countdown.hours}</p>
-        </div>
-        <div className="countdown-box">
-          <h3 className="countdown-label">Minutes</h3>
-          <p className="countdown-value">{countdown.minutes}</p>
-        </div>
-        <div className="countdown-box">
-          <h3 className="countdown-label">Seconds</h3>
-          <p className="countdown-value">{countdown.seconds}</p>
-        </div>
-      </div>
+      </section>
 
       {/* Food-Themed Background */}
       <div className="video-background-container">
@@ -330,14 +275,13 @@ export default function Hero() {
       <div className="z-0 fixed transform lg:translate-x-1/2 lg:-translate-y-52 w-full h-full">
         <CubeBackground />
       </div>
+
       {/* Symphony of Taste Section */}
       <div className="flex items-center h-screen z-10 bg-gradient-to-b to-yellow-500 from-orange-700 justify-start">
         <AboutSection />
       </div>
 
-      {/* <div className="relative overflow-hidden bg-black py-6"> */}
       <ZoomParallax />
-      {/* </div> */}
       <EventScroll />
       <div
         className="relative flex items-center justify-center h-screen overflow-hidden"

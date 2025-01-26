@@ -27,12 +27,6 @@ main {
   width: 80%;
   height: 300px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.2); /* Frosted glass effect */
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
 }
 
@@ -97,33 +91,82 @@ main {
     transform: translateY(0);
   }
 }
-
-/* Countdown Timer */
-.countdown-container {
+/* Countdown Wrapper */
+.countdown-wrapper {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-  background: url("../assets/p0fq9cyz.jpg");
+  align-items: center;
+  gap: 2rem;
+  padding: 0rem;
+  overflow: hidden;
 }
 
-.countdown-box {
+/* Countdown Circle */
+.countdown-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 1rem;
-  border: 2px solid #ff9e80;
-  border-radius: 8px;
-  background: #ffe0b2;
+  border-radius: 50%;
+  box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.2);
+  background-image: "url(/assets/food/plate.jpeg)";
+  animation: pulse 2s infinite ease-in-out;
 }
 
+/* Label and Value */
 .countdown-label {
-  font-size: 1.2rem;
-  color: #ff7043;
+  font-size: 1rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-top: -15px;
 }
 
 .countdown-value {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
-  color: #d84315;
+  color: #00d2ff;
+}
+
+/* Radial Progress Ring */
+.progress-ring {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.progress-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+
+.progress-ring__circle {
+  fill: none;
+  stroke: #00d2ff;
+  stroke-width: 10;
+  stroke-dasharray: 283; /* Circumference: 2 * π * 45 */
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+/* Glow Animation */
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.5);
+  }
 }
 
 /* Symphony Section */
