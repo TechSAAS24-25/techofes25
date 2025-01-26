@@ -5,7 +5,16 @@ import icecream from "../assets/food/icecream.gif";
 import authServices from "../api/auth.js";
 import { Eye, EyeOff } from "lucide-react";
 
-const foodItems = ["🍕", "🍔", "🍩", "🍣", "🌮", "🥞", "🍪", "🍿"];
+const foodItems = [
+  "\uD83C\uDF55",
+  "\uD83C\uDF54",
+  "\uD83C\uDF69",
+  "\uD83C\uDF63",
+  "\uD83C\uDF2E",
+  "\uD83E\uDD5E",
+  "\uD83C\uDF6A",
+  "\uD83C\uDF7F",
+];
 
 const Registration = () => {
   const [fallingFood, setFallingFood] = useState([]);
@@ -35,7 +44,6 @@ const Registration = () => {
       };
       setFallingFood((prev) => [...prev, newFood]);
 
-      // Remove food after 5 seconds
       setTimeout(() => {
         setFallingFood((prev) => prev.filter((item) => item.id !== newFood.id));
       }, 5000);
@@ -58,32 +66,40 @@ const Registration = () => {
 
     if (formData.confirmPassword !== formData.password) {
       alert("Passwords don't match.");
-    } else {
-      try {
-        let userData = {
-          username: formData.username,
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          password: formData.password,
-          phn: formData.mobile,
-          type: formData.usertype,
-          rollno: formData.rollno,
-        };
-        const response = await authServices.register(userData);
+      return;
+    }
 
-        if (response) {
-          alert(`Registration Successful: ${response.message}`);
-          navigate("/events");
-        }
-      } catch (error) {
-        if (error.response) {
-          console.error("Error:", error.response.data.error);
-          alert(`Registration failed: ${error.response.data.error}`);
-        } else {
-          console.error("Error:", error.message);
-          alert("An unexpected error occurred. Please try again later.");
-        }
+    if (formData.usertype === "Insider" && !formData.rollno) {
+      alert("Roll Number is required for Insider user type.");
+      return;
+    }
+
+    try {
+      let userData = {
+        username: formData.username,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        password: formData.password,
+        phn: formData.mobile,
+        type: formData.usertype,
+        rollno: formData.usertype === "Insider" ? formData.rollno : undefined,
+      };
+      const response = await authServices.register(userData);
+
+      if (response) {
+        alert(
+          `Registration Successful: ${response.message}\nTID: ${response.data.T_ID} `
+        );
+        navigate("/events");
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error("Error:", error.response.data.error);
+        alert(`Registration failed: ${error.response.data.error}`);
+      } else {
+        console.error("Error:", error.message);
+        alert("An unexpected error occurred. Please try again later.");
       }
     }
   };
@@ -179,16 +195,6 @@ const Registration = () => {
             </div>
             <div className="grouped-input">
               <div className="input-group">
-                <label>Roll Number</label>
-                <input
-                  type="text"
-                  name="rollno"
-                  value={formData.rollno}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="input-group">
                 <label>User Type</label>
                 <select
                   name="usertype"
@@ -202,6 +208,21 @@ const Registration = () => {
                   <option value="Insider">Insider</option>
                   <option value="Outsider">Outsider</option>
                 </select>
+              </div>
+              <div
+                className={`input-group ${
+                  formData.usertype !== "Insider" ? "invisible" : ""
+                }`}
+              >
+                <label>Roll Number</label>
+                <input
+                  type="text"
+                  name="rollno"
+                  value={formData.rollno}
+                  onChange={handleChange}
+                  disabled={formData.usertype !== "Insider"}
+                  required={formData.usertype === "Insider"}
+                />
               </div>
             </div>
             <div className="grouped-input">

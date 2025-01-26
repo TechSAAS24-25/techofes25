@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import storage from "../services/storage";
 import "./Navbar.css";
 import homeIcon from "../assets/home.png";
 import accom from "../assets/accommodation.webp";
@@ -10,8 +11,34 @@ import contactIcon from "../assets/contact.png"; // Placeholder for contact icon
 import scheduleIcon from "../assets/schedule1.png"; // Placeholder for schedule icon
 import sponsor from "../assets/sponsor.png";
 import register from "../assets/register.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import authServices from "../api/auth.js";
 
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const user = storage.loadUser();
+    setIsLoggedIn(!!user);
+  }, []);
+
+  const handleLogout = () => {
+    storage.removeUser(); // Clear user data from storage
+
+    const logout = async () => {
+      try {
+        const response = await authServices.logout();
+        setIsLoggedIn(false);
+        alert("logout successful.");
+      } catch (error) {
+        console.error("Error logging out:", error);
+        alert("Failed to logout.");
+      }
+    };
+    logout();
+  };
+
   return (
     <nav className="navbar z-10">
       <ul className="navList">
@@ -49,7 +76,7 @@ const Navbar = () => {
             }
           >
             <div className="top-bar"></div>
-            <img src={register} alt="Events Icon" id="icon" />
+            <img src={register} alt="Register Icon" id="icon" />
             Register
           </NavLink>
         </li>
@@ -103,16 +130,6 @@ const Navbar = () => {
                 Team
               </NavLink>
             </li>
-            {/* <li>
-              <NavLink
-                to="/contact/query"
-                className={({ isActive }) =>
-                  isActive ? "dropdown-active-link" : "dropdown-link"
-                }
-              >
-                Queries
-              </NavLink>
-            </li> */}
           </ul>
         </li>
         <li className="navItem">
@@ -134,6 +151,34 @@ const Navbar = () => {
             <img src={sponsor} alt="Sponsor Icon" id="icon" />
             Sponsor
           </NavLink>
+        </li>
+        <li className="navItem">
+          {isLoggedIn ? (
+            <button className="logout-button" onClick={handleLogout}>
+              <FontAwesomeIcon
+                icon={faSignOutAlt}
+                className="icon-white"
+                style={{ color: "#fff" }}
+              />{" "}
+              Logout
+            </button>
+          ) : (
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive ? "active-link" : "navLink"
+              }
+            >
+              <button className="login-button">
+                <FontAwesomeIcon
+                  icon={faSignInAlt}
+                  className="icon-white"
+                  style={{ color: "#fff" }}
+                />{" "}
+                Login
+              </button>
+            </NavLink>
+          )}
         </li>
       </ul>
     </nav>
