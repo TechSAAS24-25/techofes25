@@ -30,7 +30,7 @@ const userExtractor = async (request, response, next) => {
     return response.status(401).json({ error: "token invalid" });
   }
   request.T_ID = decodedToken.T_ID;
-  request.user = await User.findOne(decodedToken.T_ID);
+  request.user = await User.findOne({ T_ID: decodedToken.T_ID });
 
   next();
 };

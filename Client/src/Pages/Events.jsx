@@ -12,7 +12,7 @@ const Events = () => {
   const [categories, setCategories] = useState([
     "General Events",
     "Signature Events",
-    "Proshows",
+    "Pro-shows",
     "Carnivals",
   ]);
   const navigate = useNavigate();

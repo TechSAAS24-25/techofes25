@@ -41,6 +41,7 @@ const login = async (username, password) => {
 
 const register = async (user) => {
   const response = await axios.post(registerUrl, user);
+  console.log(response);
   return response.data;
 };
 
