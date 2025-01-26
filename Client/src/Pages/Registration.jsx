@@ -16,6 +16,7 @@ const Registration = () => {
     mobile: "",
     email: "",
     rollno: "",
+    college: "",
     usertype: "",
     password: "",
     confirmPassword: "",
@@ -69,6 +70,7 @@ const Registration = () => {
           phn: formData.mobile,
           type: formData.usertype,
           rollno: formData.rollno,
+          college: formData.college,
         };
         const response = await authServices.register(userData);
 
@@ -202,6 +204,18 @@ const Registration = () => {
                   <option value="Insider">Insider</option>
                   <option value="Outsider">Outsider</option>
                 </select>
+              </div>
+            </div>
+            <div className="grouped-input">
+              <div className="input-group">
+                <label>College Name</label>
+                <input
+                  type="text"
+                  name="college"
+                  value={formData.college}
+                  onChange={handleChange}
+                  required
+                />
               </div>
             </div>
             <div className="grouped-input">
