@@ -1,62 +1,49 @@
 import React, { useState, useEffect } from 'react'
 
 const Admin = () => {
-  // Set data
-  const [data, setData] = useState({
-    totalVisitors: 0,
-    ticketsPurchased: 0,
-    registeredUsers: 0,
-    users: [],
-  })
+  const [visitorsCount, setVisitorsCount] = useState(0)
 
-  // Fetching data in useEffect
   useEffect(() => {
-    const fetchData = async () => {
-      const dummyData = {
-        totalVisitors: 1500,
-        ticketsPurchased: 400,
-        registeredUsers: 1000,
-        users: [
-          {
-            Tid: 1,
-            name: 'Alice',
-            college: 'Inside',
-            Accomodation: 'Yes',
-          },
-          {
-            Tid: 2,
-            name: 'Bob',
-            college: 'Outside',
-            Accomodation: 'No',
-          },
-          {
-            Tid: 3,
-            name: 'Charlie',
-            college: 'Inside',
-            Accomodation: 'Yes',
-          },
-          {
-            Tid: 4,
-            name: 'Diana',
-            college: 'Outside',
-            Accomodation: 'Yes',
-          },
-          {
-            Tid: 5,
-            name: 'Eve',
-            college: 'Inside',
-            Accomodation: 'Yes',
-          },
-        ],
-      }
+    
+    const fetchVisitorCount = () => {
+     
+      const storedCount = sessionStorage.getItem('visitorsCount')
+      let newCount = storedCount ? parseInt(storedCount) : 0
 
-      setTimeout(() => {
-        setData(dummyData)
-      }, 1000)
+      
+      newCount += 1
+      setVisitorsCount(newCount)
+
+     
+      sessionStorage.setItem('visitorsCount', newCount)
     }
 
-    fetchData()
+    fetchVisitorCount()
+
+    
+    const incrementTicketAndUserCount = () => {
+      setData((prevData) => ({
+        ...prevData,
+        ticketsPurchased: prevData.ticketsPurchased + 1, 
+        registeredUsers: prevData.registeredUsers + 1, 
+      }))
+    }
+
+    
+    incrementTicketAndUserCount()
   }, [])
+
+  const [data, setData] = useState({
+    ticketsPurchased: 0,
+    registeredUsers: 0,
+    users: [
+      { Tid: 1, name: 'Alice', college: 'Inside', Accomodation: 'Yes' },
+      { Tid: 2, name: 'Bob', college: 'Outside', Accomodation: 'No' },
+      { Tid: 3, name: 'Charlie', college: 'Inside', Accomodation: 'Yes' },
+      { Tid: 4, name: 'Diana', college: 'Outside', Accomodation: 'Yes' },
+      { Tid: 5, name: 'Eve', college: 'Inside', Accomodation: 'Yes' },
+    ],
+  })
 
   return (
     <div className='p-6 bg-gray-100 min-h-screen'>
@@ -67,9 +54,10 @@ const Admin = () => {
         <div className='bg-white p-4 shadow rounded-lg'>
           <h2 className='text-xl font-semibold text-gray-700'>
             Total Visitors
+
           </h2>
           <p className='text-4xl font-bold text-blue-600 mt-2'>
-            {data.totalVisitors}
+            {visitorsCount}
           </p>
         </div>
         <div className='bg-white p-4 shadow rounded-lg'>
@@ -80,7 +68,7 @@ const Admin = () => {
             {data.ticketsPurchased}
           </p>
         </div>
-        <div className='bg-white p-4 shadow rounded-lg '>
+        <div className='bg-white p-4 shadow rounded-lg'>
           <h2 className='text-xl font-semibold text-gray-700'>
             Registered Users
           </h2>
@@ -91,18 +79,18 @@ const Admin = () => {
       </div>
 
       {/* User Table */}
-      <div className='mt-8 bg-white p-6 shadow rounded-lg '>
+      <div className='mt-8 bg-white p-6 shadow rounded-lg'>
         <h2 className='text-2xl font-semibold text-gray-800 mb-4'>
           User Details
         </h2>
         {data.users.length > 0 ? (
-          <table className='w-full text-left border-collapse ' > 
+          <table className='w-full text-left border-collapse'>
             <thead>
               <tr>
                 <th className='border-b-2 p-4'>TID</th>
                 <th className='border-b-2 p-4'>Name</th>
                 <th className='border-b-2 p-4'>College</th>
-                <th className='border-b-2 p-4'>Accomodation</th>
+                <th className='border-b-2 p-4'>Accommodation</th>
               </tr>
             </thead>
             <tbody>
