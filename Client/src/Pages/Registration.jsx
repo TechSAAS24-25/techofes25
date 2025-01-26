@@ -89,7 +89,7 @@ const Registration = () => {
 
       if (response) {
         alert(
-          `Registration Successful: ${response.message}\nTID: ${response.data.T_ID} `
+          `Registration Successful: ${response.message}\nTID: ${response.user.T_ID} `
         );
         navigate("/events");
       }

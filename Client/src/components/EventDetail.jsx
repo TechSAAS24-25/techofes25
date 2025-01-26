@@ -11,18 +11,26 @@ const EventDetail = () => {
   const [event, setEvent] = useState(null);
   const [selectedSubTab, setSelectedSubTab] = useState("Solo");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
 
   useEffect(() => {
     // Check if the user is logged in
     const user = storage.loadUser();
     setIsLoggedIn(!!user);
-    console.log(user);
 
     const fetchEventDetails = async () => {
       try {
         const response = await eventServices.getEvent(id);
-        console.log(response);
         setEvent(response);
+      } catch (error) {
+        console.error("Error fetching event details:", error);
+        alert("Failed to load event details.");
+      }
+
+      try {
+        const response = await eventServices.registerStatus(id);
+        setIsRegistered(response.isRegistered);
       } catch (error) {
         console.error("Error fetching event details:", error);
         alert("Failed to load event details.");
@@ -31,6 +39,25 @@ const EventDetail = () => {
 
     fetchEventDetails();
   }, [id]);
+
+  const handleRegister = async () => {
+    if (!isLoggedIn) {
+      alert("Please log in to register for events.");
+      return;
+    }
+
+    try {
+      setIsRegistering(true);
+      await eventServices.registerEvent(id);
+      alert("Registration successful!");
+      setIsRegistered(true);
+    } catch (error) {
+      console.error("Error registering for event:", error);
+      alert("Error registering for event:", error);
+    } finally {
+      setIsRegistering(false);
+    }
+  };
 
   if (!event) {
     return <h2>Loading...</h2>;
@@ -58,8 +85,14 @@ const EventDetail = () => {
           />
           <div className="event-title-wrapper">
             <h1 className="event-title text-white">{event.eventName}</h1>
-            {isLoggedIn ? (
-              <button className="register-btn">Register</button>
+            {isRegistered ? (
+              <button className="bg-blue-950 text-white register-btn-disabled disabled">
+                Registered
+              </button>
+            ) : isLoggedIn ? (
+              <button className="register-btn" onClick={handleRegister}>
+                Register
+              </button>
             ) : (
               <button
                 className=" bg-slate-400 text-black register-btn-disabled disabled"

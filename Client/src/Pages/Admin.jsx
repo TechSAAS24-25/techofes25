@@ -7,6 +7,32 @@ const Admin = () => {
   const [registeredUsers, setRegisteredUsers] = useState(0);
   const [users, setUsers] = useState([]);
 
+  const [visitorsCount, setVisitorsCount] = useState(0);
+
+  useEffect(() => {
+    const fetchVisitorCount = () => {
+      const storedCount = sessionStorage.getItem("visitorsCount");
+      let newCount = storedCount ? parseInt(storedCount) : 0;
+
+      newCount += 1;
+      setVisitorsCount(newCount);
+
+      sessionStorage.setItem("visitorsCount", newCount);
+    };
+
+    fetchVisitorCount();
+
+    const incrementTicketAndUserCount = () => {
+      setData((prevData) => ({
+        ...prevData,
+        ticketsPurchased: prevData.ticketsPurchased + 1,
+        registeredUsers: prevData.registeredUsers + 1,
+      }));
+    };
+
+    incrementTicketAndUserCount();
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,6 +56,18 @@ const Admin = () => {
     fetchData();
   }, [totalVisitors, ticketsPurchased, registeredUsers]);
 
+  const [data, setData] = useState({
+    ticketsPurchased: 0,
+    registeredUsers: 0,
+    users: [
+      { Tid: 1, name: "Alice", college: "Inside", Accomodation: "Yes" },
+      { Tid: 2, name: "Bob", college: "Outside", Accomodation: "No" },
+      { Tid: 3, name: "Charlie", college: "Inside", Accomodation: "Yes" },
+      { Tid: 4, name: "Diana", college: "Outside", Accomodation: "Yes" },
+      { Tid: 5, name: "Eve", college: "Inside", Accomodation: "Yes" },
+    ],
+  });
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">Admin Dashboard</h1>
@@ -41,7 +79,7 @@ const Admin = () => {
             Total Visitors
           </h2>
           <p className="text-4xl font-bold text-blue-600 mt-2">
-            {totalVisitors}
+            {visitorsCount}
           </p>
         </div>
         <div className="bg-white p-4 shadow rounded-lg">
