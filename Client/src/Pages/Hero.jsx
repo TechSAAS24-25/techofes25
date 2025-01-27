@@ -3,25 +3,20 @@ import { useScroll, useTransform, motion } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 import Footer from "../components/Footer";
 import "../Styles/Hero.css";
-import i1 from "../assets/food/i1.png";
-import i2 from "../assets/food/samosa.gif";
-import i3 from "../assets/food/i3.png";
 import food1 from "../assets/food/Non-Veg/chicken.png";
 import cursor from "../assets/food/cursor.svg";
-import FoodBackground1 from "../assets/food/general/food (3).svg";
-import FoodBackground2 from "../assets/food/general/food (6).svg";
 import CubeBackground from "../components/Cubebackground";
-import Dish1 from "../assets/food/Desserts/food (9).svg";
-import Dish2 from "../assets/food/Fast Food/food (5).svg";
-import Dish3 from "../assets/food/Fast Food/food (8).svg";
 import AboutSection from "../components/About";
 import ZoomParallax from "../components/ZoomParallax";
 import EventScroll from "../components/EventScroll";
 import PongalVideo from "../assets/pongal.mp4";
 import Carousel from "../components/Carousel";
-import logo from "../assets/logo.png";
-
+import logo from "../assets/logo.mp4";
+import saas from "../assets/saas_logo.png";
 import { mainCoordinators } from "../data/data.js";
+import bgImage from "../assets/events/stage.jpeg";
+import particles from "react-tsparticles";
+import plateImage from "../assets/food/plate.jpg";
 
 function useEventListener(eventName, handler, element = document) {
   const savedHandler = React.useRef();
@@ -96,19 +91,6 @@ function AnimatedCursor({
     return () => cancelAnimationFrame(requestRef.current);
   }, [animateOuterCursor]);
 
-  // // Update the food image every 4 seconds
-  // React.useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentFoodImage((prev) => {
-  //       const currentIndex = foodImages.indexOf(prev);
-  //       const nextIndex = (currentIndex + 1) % foodImages.length;
-  //       return foodImages[nextIndex];
-  //     });
-  //   }, 4000); // Change every 4 seconds
-
-  //   return () => clearInterval(interval); // Cleanup interval on unmount
-  // }, []);
-
   const onMouseEnter = React.useCallback(() => setIsVisible(true), []);
   const onMouseLeave = React.useCallback(() => setIsVisible(false), []);
 
@@ -175,8 +157,100 @@ function AnimatedCursor({
     </>
   );
 }
-export default function Hero() {
-  const { scrollYProgress: slideScrollYProgress } = useScroll();
+
+const ParticleBackground = () => (
+  <Particles
+    params={{
+      particles: {
+        number: {
+          value: 50,
+        },
+        size: {
+          value: 3,
+        },
+        move: {
+          direction: "none",
+          random: true,
+          speed: 1,
+          outMode: "out",
+        },
+      },
+    }}
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: -1, // ensures it stays behind other content
+    }}
+  />
+);
+
+// Countdown with rotating plates
+const RotatingCountdown = ({ countdown }) => {
+  return (
+    <section className="countdown-container py-12 text-white">
+      <div className="countdown-wrapper max-w-5xl mx-auto grid grid-cols-4 gap-6 text-center">
+        {Object.entries(countdown).map(([label, value], index) => (
+          <motion.div
+            key={label}
+            className="countdown-circle relative flex items-center justify-center"
+            style={{
+              width: "150px",
+              height: "150px",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* Plate Image with Rotation Animation */}
+            <motion.img
+              src={plateImage}
+              alt="Plate"
+              className="absolute top-0 left-0 w-full h-full object-cover"
+              animate={{
+                rotate: [0, 360], // Rotate full 360 degrees
+              }}
+              transition={{
+                repeat: Infinity, // Continuous rotation
+                duration: 5 + index, // Vary the duration for each plate (so they rotate at different speeds)
+                ease: "linear",
+              }}
+            />
+
+            {/* Countdown value (static) */}
+            <div
+              className="countdown-value text-4xl font-bold text-white"
+              style={{
+                zIndex: 1, // Ensuring countdown number is on top of the plate
+                position: "absolute",
+                color: "black", // Make sure text is clearly visible on top of the background
+                textShadow: "0px 0px 10px rgba(0, 0, 0, 0.6)", // Adding shadow to make text stand out
+              }}
+            >
+              {value}
+            </div>
+
+            {/* Countdown label */}
+            <h3
+              className="countdown-label text-lg font-bold absolute top-1/4 w-full text-center"
+              style={{
+                zIndex: 1,
+                textShadow: "0px 0px 10px rgba(0, 0, 0, 0.6)", // Adding shadow for readability
+                color: "black", // Ensure text is visible and clear
+              }}
+            >
+              {label.charAt(0).toUpperCase() + label.slice(1)}
+            </h3>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+// Hero component
+const Hero = () => {
   const [countdown, setCountdown] = useState({
     days: 0,
     hours: 0,
@@ -184,26 +258,7 @@ export default function Hero() {
     seconds: 0,
   });
 
-  // Smooth scrolling setup
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      smoothTouch: false,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-  }, []);
-
-  // Countdown Timer
+  // Countdown Timer Effect
   useEffect(() => {
     const eventDate = new Date("2025-03-05T00:00:00").getTime();
     const timer = setInterval(() => {
@@ -229,36 +284,98 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, []);
 
+  // Smooth Scroll Setup with Lenis
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: "vertical",
+      gestureDirection: "vertical",
+      smooth: true,
+      smoothTouch: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }, []);
+
+  // Saas Logo Click Handler
+  const handleSaasClick = () => {
+    window.location.href = "https://saasceg.in";
+  };
+
   return (
-    <main>
+    <main
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <AnimatedCursor />
-      {/* Neon Text Animation */}
+
       <div className="text-container">
         <div className="glass-techofes">
-          <img src={logo} alt="food icon" height={200} width={850} />
+          <motion.div
+            className="pop-effect"
+            whileHover={{
+              scale: 1.1,
+              rotateX: 10,
+              rotateY: 10,
+              boxShadow: "0px 10px 30px rgba(255, 255, 255, 0.6)",
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          >
+            <video
+              src={logo}
+              alt="Techofes Logo"
+              height={600}
+              width={1050}
+              className="neon-logo"
+              autoPlay
+              loop
+              muted
+            />
+          </motion.div>
+
+          <div
+            className="saas-logo-container"
+            style={{
+              position: "fixed",
+              top: "20px",
+              left: "20px",
+              cursor: "pointer",
+            }}
+            onClick={handleSaasClick}
+          >
+            <motion.img
+              src={saas}
+              alt="Saas Logo"
+              height={50}
+              width={50}
+              whileHover={{
+                scale: 1.2,
+                rotateY: 15,
+                rotateX: -15,
+                boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.3)",
+              }}
+              whileTap={{
+                scale: 0.9,
+                rotate: [0, -10, 10, 0], // add a small rotation on tap for extra effect
+              }}
+              transition={{ type: "spring", stiffness: 200, damping: 25 }}
+            />
+          </div>
         </div>
       </div>
 
-      {/* Updated Countdown Section */}
-      <section className="countdown-container bg-gray-800 py-12 text-white">
-        <div className="countdown-wrapper max-w-5xl mx-auto grid grid-cols-4 gap-6 text-center">
-          {Object.entries(countdown).map(([label, value]) => (
-            <div
-              key={label}
-              className="countdown-circle border-4 border-yellow-500 rounded-full p-6 relative"
-            >
-              <h3 className="countdown-label text-lg font-bold absolute top-1/4">
-                {label.charAt(0).toUpperCase() + label.slice(1)}
-              </h3>
-              <div className="countdown-value text-4xl font-bold text-yellow-400">
-                {value}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* Countdown with rotating plates */}
+      <RotatingCountdown countdown={countdown} />
 
-      {/* Food-Themed Background */}
       <div className="video-background-container">
         <video
           className="video-background"
@@ -272,11 +389,11 @@ export default function Hero() {
           <h2 className="symphony-text">Symphony of Taste</h2>
         </div>
       </div>
+
       <div className="z-0 fixed transform lg:translate-x-1/2 lg:-translate-y-52 w-full h-full">
         <CubeBackground />
       </div>
 
-      {/* Symphony of Taste Section */}
       <div className="flex items-center h-screen z-10 bg-gradient-to-b to-yellow-500 from-orange-700 justify-start">
         <AboutSection />
       </div>
@@ -295,4 +412,6 @@ export default function Hero() {
       <Footer />
     </main>
   );
-}
+};
+
+export default Hero;

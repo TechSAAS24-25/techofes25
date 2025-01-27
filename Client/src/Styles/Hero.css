@@ -91,45 +91,6 @@ main {
     transform: translateY(0);
   }
 }
-/* Countdown Wrapper */
-.countdown-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  padding: 0rem;
-  overflow: hidden;
-}
-
-/* Countdown Circle */
-.countdown-circle {
-  position: relative;
-  width: 120px;
-  height: 120px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-radius: 50%;
-  box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.2);
-  background-image: "url(/assets/food/plate.jpeg)";
-  animation: pulse 2s infinite ease-in-out;
-}
-
-/* Label and Value */
-.countdown-label {
-  font-size: 1rem;
-  color: #ffffff;
-  text-transform: uppercase;
-  margin-top: -15px;
-}
-
-.countdown-value {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #00d2ff;
-}
 
 /* Radial Progress Ring */
 .progress-ring {
@@ -231,4 +192,54 @@ main {
   to {
     transform: translateX(-100%);
   }
+}
+
+.glass-techofes {
+  perspective: 1000px; /* Adding perspective to the container */
+}
+
+.neon-logo {
+  transition: transform 0.2s ease;
+  transform-style: preserve-3d;
+}
+
+.neon-logo:hover {
+  transform: rotateY(15deg) rotateX(15deg); /* Tilt effect on hover */
+}
+
+/* .countdown-container {
+  position: relative;
+  padding: 50px 0;
+}
+
+.countdown-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+} */
+
+.countdown-circle {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.countdown-value {
+  position: absolute;
+  z-index: 1;
+  font-size: 2rem;
+}
+
+.countdown-label {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  font-size: 1rem;
 }
