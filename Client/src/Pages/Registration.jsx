@@ -4,6 +4,7 @@ import "../Styles/Registration.css";
 import icecream from "../assets/food/icecream.gif";
 import authServices from "../api/auth.js";
 import { Eye, EyeOff } from "lucide-react";
+import logo from "../assets/logo.png";
 
 const foodItems = [
   "\uD83C\uDF55",
@@ -106,8 +107,12 @@ const Registration = () => {
 
   return (
     <div className="registration-page">
-      {/* Left Section */}
       <div className="left-section">
+        <img
+          src={logo}
+          alt="Main Logo"
+          className="h-auto max-h-40 w-auto max-w-xl mb-2" // Adjusted size and spacing
+        />
         <div className="background-food">
           {fallingFood.map((food) => (
             <div
