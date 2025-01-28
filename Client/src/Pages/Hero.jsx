@@ -11,12 +11,14 @@ import ZoomParallax from "../components/ZoomParallax";
 import EventScroll from "../components/EventScroll";
 import PongalVideo from "../assets/pongal.mp4";
 import Carousel from "../components/Carousel";
-import logo from "../assets/logo.mp4";
+import logo from "../assets/bg2.mp4";
 import saas from "../assets/saas_logo.png";
 import { mainCoordinators } from "../data/data.js";
 import bgImage from "../assets/events/stage.jpeg";
 import particles from "react-tsparticles";
 import plateImage from "../assets/food/plate.jpg";
+
+
 
 function useEventListener(eventName, handler, element = document) {
   const savedHandler = React.useRef();
@@ -188,6 +190,7 @@ const ParticleBackground = () => (
 );
 
 // Countdown with rotating plates
+
 const RotatingCountdown = ({ countdown }) => {
   return (
     <section className="countdown-container py-12 text-white">
@@ -203,41 +206,44 @@ const RotatingCountdown = ({ countdown }) => {
               overflow: "hidden",
             }}
           >
-            {/* Plate Image with Rotation Animation */}
+            {/* Plate Image with Blur and Rotation Animation */}
             <motion.img
               src={plateImage}
               alt="Plate"
               className="absolute top-0 left-0 w-full h-full object-cover"
+              style={{
+                filter: "blur(3px)", // Apply blur effect
+                opacity: 0.7, // Slight transparency
+              }}
               animate={{
                 rotate: [0, 360], // Rotate full 360 degrees
               }}
               transition={{
                 repeat: Infinity, // Continuous rotation
-                duration: 5 + index, // Vary the duration for each plate (so they rotate at different speeds)
+                duration: 5 + index, // Vary duration for each plate
                 ease: "linear",
               }}
             />
 
-            {/* Countdown value (static) */}
+            {/* Countdown Value */}
             <div
               className="countdown-value text-4xl font-bold text-white"
               style={{
-                zIndex: 1, // Ensuring countdown number is on top of the plate
-                position: "absolute",
-                color: "black", // Make sure text is clearly visible on top of the background
-                textShadow: "0px 0px 10px rgba(0, 0, 0, 0.6)", // Adding shadow to make text stand out
+                zIndex: 1,
+                color: "white", // Text is clearly visible
+                textShadow: "2px 2px 8px rgba(0, 0, 0, 0.7)", // Shadow for contrast
               }}
             >
               {value}
             </div>
 
-            {/* Countdown label */}
+            {/* Countdown Label */}
             <h3
-              className="countdown-label text-lg font-bold absolute top-1/4 w-full text-center"
+              className="countdown-label text-lg font-bold absolute bottom-2 w-full text-center"
               style={{
                 zIndex: 1,
-                textShadow: "0px 0px 10px rgba(0, 0, 0, 0.6)", // Adding shadow for readability
-                color: "black", // Ensure text is visible and clear
+                textShadow: "2px 2px 8px rgba(0, 0, 0, 0.7)", // Enhance readability
+                color: "white",
               }}
             >
               {label.charAt(0).toUpperCase() + label.slice(1)}
@@ -319,57 +325,54 @@ const Hero = () => {
       <AnimatedCursor />
 
       <div className="text-container">
-        <div className="glass-techofes">
-          <motion.div
-            className="pop-effect"
-            whileHover={{
-              scale: 1.1,
-              rotateX: 10,
-              rotateY: 10,
-              boxShadow: "0px 10px 30px rgba(255, 255, 255, 0.6)",
-            }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          >
-            <video
-              src={logo}
-              alt="Techofes Logo"
-              height={600}
-              width={1050}
-              className="neon-logo"
-              autoPlay
-              loop
-              muted
-            />
-          </motion.div>
+        <motion.div
+          className="pop-effect neon-logo-container"
+          animate={{}}
+          transition={{
+            repeat: Infinity,
+            repeatType: "reverse",
+            duration: 2,
+          }}
+        >
+          <video
+            src={logo} // Replace with the actual video file path
+            autoPlay
+            loop
+            muted
+            playsInline
+            height={600}
+            width={1050}
+            className="neon-logo"
+          />
+        </motion.div>
 
-          <div
-            className="saas-logo-container"
-            style={{
-              position: "fixed",
-              top: "20px",
-              left: "20px",
-              cursor: "pointer",
+        <div
+          className="saas-logo-container"
+          style={{
+            position: "fixed",
+            top: "20px",
+            left: "20px",
+            cursor: "pointer",
+          }}
+          onClick={handleSaasClick}
+        >
+          <motion.img
+            src={saas}
+            alt="Saas Logo"
+            height={50}
+            width={50}
+            whileHover={{
+              scale: 1.2,
+              rotateY: 15,
+              rotateX: -15,
+              boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.3)",
             }}
-            onClick={handleSaasClick}
-          >
-            <motion.img
-              src={saas}
-              alt="Saas Logo"
-              height={50}
-              width={50}
-              whileHover={{
-                scale: 1.2,
-                rotateY: 15,
-                rotateX: -15,
-                boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.3)",
-              }}
-              whileTap={{
-                scale: 0.9,
-                rotate: [0, -10, 10, 0], // add a small rotation on tap for extra effect
-              }}
-              transition={{ type: "spring", stiffness: 200, damping: 25 }}
-            />
-          </div>
+            whileTap={{
+              scale: 0.9,
+              rotate: [0, -10, 10, 0], // Small rotation effect on tap
+            }}
+            transition={{ type: "spring", stiffness: 200, damping: 25 }}
+          />
         </div>
       </div>
 

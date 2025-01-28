@@ -112,25 +112,13 @@ const Navbar = () => {
         </li>
         <li className="navItem">
           <NavLink
-            to="/contact"
+            to="/contact/team"
             className={({ isActive }) => (isActive ? "active-link" : "navLink")}
           >
             <div className="top-bar"></div>
             <img src={contactIcon} alt="Contact Icon" id="icon" />
             Contact
           </NavLink>
-          <ul className="dropdown">
-            <li>
-              <NavLink
-                to="/contact/team"
-                className={({ isActive }) =>
-                  isActive ? "dropdown-active-link" : "dropdown-link"
-                }
-              >
-                Team
-              </NavLink>
-            </li>
-          </ul>
         </li>
         <li className="navItem">
           <NavLink
