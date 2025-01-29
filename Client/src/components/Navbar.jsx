@@ -1,63 +1,46 @@
-<<<<<<< HEAD
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import storage from '../services/storage'
 import './Navbar.css'
 import homeIcon from '../assets/home.png'
 import accom from '../assets/accommodation.webp'
 import event from '../assets/events1.png'
 import more from '../assets/more.png'
 import merch from '../assets/merch.png'
-import contactIcon from '../assets/contact.png'
-import scheduleIcon from '../assets/schedule1.png'
+import contactIcon from '../assets/contact.png' // Placeholder for contact icon
+import scheduleIcon from '../assets/schedule1.png' // Placeholder for schedule icon
 import sponsor from '../assets/sponsor.png'
 import register from '../assets/register.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import authServices from '../api/auth.js'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-=======
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import storage from "../services/storage";
-import "./Navbar.css";
-import homeIcon from "../assets/home.png";
-import accom from "../assets/accommodation.webp";
-import event from "../assets/events1.png";
-import more from "../assets/more.png";
-import merch from "../assets/merch.png";
-import contactIcon from "../assets/contact.png"; // Placeholder for contact icon
-import scheduleIcon from "../assets/schedule1.png"; // Placeholder for schedule icon
-import sponsor from "../assets/sponsor.png";
-import register from "../assets/register.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import authServices from "../api/auth.js";
-
-const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const user = storage.loadUser();
-    setIsLoggedIn(!!user);
-  }, []);
+    const user = storage.loadUser()
+    setIsLoggedIn(!!user)
+  }, [])
 
   const handleLogout = () => {
-    storage.removeUser(); // Clear user data from storage
+    storage.removeUser() // Clear user data from storage
 
     const logout = async () => {
       try {
-        const response = await authServices.logout();
-        setIsLoggedIn(false);
-        alert("logout successful.");
+        const response = await authServices.logout()
+        setIsLoggedIn(false)
+        alert('Logout successful.')
       } catch (error) {
-        console.error("Error logging out:", error);
-        alert("Failed to logout.");
+        console.error('Error logging out:', error)
+        alert('Failed to logout.')
       }
-    };
-    logout();
-  };
->>>>>>> a21090294e31d3ec8e9cd4b77768fca3c2193460
+    }
+    logout()
+  }
 
   return (
     <nav className='navbar z-10'>
@@ -94,19 +77,14 @@ const Navbar = () => {
         <li className='navItem'>
           <NavLink
             to='/registration'
-            className={({ isActive, isPending }) =>
+            className={({ isActive }) =>
               window.location.pathname.startsWith('/registration') || isActive
                 ? 'active-link'
                 : 'navLink'
             }
           >
-<<<<<<< HEAD
             <div className='top-bar'></div>
             <img src={register} alt='Register Icon' id='icon' />
-=======
-            <div className="top-bar"></div>
-            <img src={register} alt="Register Icon" id="icon" />
->>>>>>> a21090294e31d3ec8e9cd4b77768fca3c2193460
             Register
           </NavLink>
         </li>
@@ -142,33 +120,13 @@ const Navbar = () => {
         </li>
         <li className='navItem'>
           <NavLink
-<<<<<<< HEAD
-            to='/contact'
+            to='/contact/team'
             className={({ isActive }) => (isActive ? 'active-link' : 'navLink')}
-=======
-            to="/contact/team"
-            className={({ isActive }) => (isActive ? "active-link" : "navLink")}
->>>>>>> a21090294e31d3ec8e9cd4b77768fca3c2193460
           >
             <div className='top-bar'></div>
             <img src={contactIcon} alt='Contact Icon' id='icon' />
             Contact
           </NavLink>
-<<<<<<< HEAD
-          <ul className='dropdown'>
-            <li>
-              <NavLink
-                to='/contact/team'
-                className={({ isActive }) =>
-                  isActive ? 'dropdown-active-link' : 'dropdown-link'
-                }
-              >
-                Team
-              </NavLink>
-            </li>
-          </ul>
-=======
->>>>>>> a21090294e31d3ec8e9cd4b77768fca3c2193460
         </li>
         <li className='navItem'>
           <NavLink
@@ -190,29 +148,29 @@ const Navbar = () => {
             Sponsor
           </NavLink>
         </li>
-        <li className="navItem">
+        <li className='navItem'>
           {isLoggedIn ? (
-            <button className="logout-button" onClick={handleLogout}>
+            <button className='logout-button' onClick={handleLogout}>
               <FontAwesomeIcon
                 icon={faSignOutAlt}
-                className="icon-white"
-                style={{ color: "#fff" }}
-              />{" "}
+                className='icon-white'
+                style={{ color: '#fff' }}
+              />{' '}
               Logout
             </button>
           ) : (
             <NavLink
-              to="/login"
+              to='/login'
               className={({ isActive }) =>
-                isActive ? "active-link" : "navLink"
+                isActive ? 'active-link' : 'navLink'
               }
             >
-              <button className="login-button">
+              <button className='login-button'>
                 <FontAwesomeIcon
                   icon={faSignInAlt}
-                  className="icon-white"
-                  style={{ color: "#fff" }}
-                />{" "}
+                  className='icon-white'
+                  style={{ color: '#fff' }}
+                />{' '}
                 Login
               </button>
             </NavLink>
