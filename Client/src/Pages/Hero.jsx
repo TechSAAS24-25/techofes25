@@ -41,12 +41,7 @@ function useEventListener(eventName, handler, element = document) {
   }, [eventName, element]);
 }
 
-function AnimatedCursor({
-  color = "220, 90, 90",
-  outerAlpha = 0.4,
-  innerSize = 8,
-  outerSize = 8, // Path to the image you want to use for the outer cursor
-}) {
+function AnimatedCursor({}) {
   const cursorOuterRef = React.useRef();
   const cursorInnerRef = React.useRef();
   const requestRef = React.useRef();
@@ -57,8 +52,6 @@ function AnimatedCursor({
   let endX = React.useRef(0);
   let endY = React.useRef(0);
   let outerCoords = React.useRef({ x: 0, y: 0 });
-
-  const foodImages = [food1]; // The actual SVGs
 
   const onMouseMove = React.useCallback(
     ({ clientX, clientY }) => {
@@ -139,10 +132,7 @@ function AnimatedCursor({
           zIndex: 999,
           transition: "opacity 150ms ease-in-out",
         }}
-      >
-        <img src={currentFoodImage} alt="food icon" height={70} width={70} />{" "}
-        {/* Dynamically changing food image */}
-      </div>
+      ></div>
       {/* Inner Stylish Cursor */}
       <div
         ref={cursorInnerRef}

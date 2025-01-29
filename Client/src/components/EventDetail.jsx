@@ -28,12 +28,14 @@ const EventDetail = () => {
         alert("Failed to load event details.");
       }
 
-      try {
-        const response = await eventServices.registerStatus(id);
-        setIsRegistered(response.isRegistered);
-      } catch (error) {
-        console.error("Error fetching event details:", error);
-        alert("Failed to load event details.");
+      if (user) {
+        try {
+          const response = await eventServices.registerStatus(id);
+          setIsRegistered(response.isRegistered);
+        } catch (error) {
+          console.error("Error fetching event details:", error);
+          alert("Failed to load event details.");
+        }
       }
     };
 

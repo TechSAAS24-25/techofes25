@@ -39,10 +39,14 @@ function App() {
 
   return (
     <Router>
-      {/* Show preloader while loading */}
       {loading ? (
-        <div className="preloader">
-          <video autoPlay muted loop className="preloader-video">
+        <div className="fixed inset-0 flex justify-center items-center bg-black z-50">
+          <video
+            autoPlay
+            muted
+            loop
+            className="absolute top-0 left-0 w-full h-full object-cover"
+          >
             <source src={preloader} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
