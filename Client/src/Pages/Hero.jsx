@@ -3,24 +3,22 @@ import { useScroll, useTransform, motion } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 import Footer from "../components/Footer";
 import "../Styles/Hero.css";
-import i1 from "../assets/food/i1.png";
-import i2 from "../assets/food/samosa.gif";
-import i3 from "../assets/food/i3.png";
 import food1 from "../assets/food/Non-Veg/chicken.png";
 import cursor from "../assets/food/cursor.svg";
-import FoodBackground1 from "../assets/food/general/food (3).svg";
-import FoodBackground2 from "../assets/food/general/food (6).svg";
 import CubeBackground from "../components/Cubebackground";
-import Dish1 from "../assets/food/Desserts/food (9).svg";
-import Dish2 from "../assets/food/Fast Food/food (5).svg";
-import Dish3 from "../assets/food/Fast Food/food (8).svg";
 import AboutSection from "../components/About";
 import ZoomParallax from "../components/ZoomParallax";
 import EventScroll from "../components/EventScroll";
 import PongalVideo from "../assets/pongal.mp4";
 import Carousel from "../components/Carousel";
-
+import logo from "../assets/bg2.mp4";
+import saas from "../assets/saas_logo.png";
 import { mainCoordinators } from "../data/data.js";
+import bgImage from "../assets/events/stage.jpeg";
+import particles from "react-tsparticles";
+import plateImage from "../assets/food/plate.jpg";
+
+
 
 function useEventListener(eventName, handler, element = document) {
   const savedHandler = React.useRef();
@@ -43,12 +41,7 @@ function useEventListener(eventName, handler, element = document) {
   }, [eventName, element]);
 }
 
-function AnimatedCursor({
-  color = "220, 90, 90",
-  outerAlpha = 0.4,
-  innerSize = 8,
-  outerSize = 8, // Path to the image you want to use for the outer cursor
-}) {
+function AnimatedCursor({}) {
   const cursorOuterRef = React.useRef();
   const cursorInnerRef = React.useRef();
   const requestRef = React.useRef();
@@ -59,8 +52,6 @@ function AnimatedCursor({
   let endX = React.useRef(0);
   let endY = React.useRef(0);
   let outerCoords = React.useRef({ x: 0, y: 0 });
-
-  const foodImages = [food1]; // The actual SVGs
 
   const onMouseMove = React.useCallback(
     ({ clientX, clientY }) => {
@@ -94,19 +85,6 @@ function AnimatedCursor({
     requestRef.current = requestAnimationFrame(animateOuterCursor);
     return () => cancelAnimationFrame(requestRef.current);
   }, [animateOuterCursor]);
-
-  // // Update the food image every 4 seconds
-  // React.useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentFoodImage((prev) => {
-  //       const currentIndex = foodImages.indexOf(prev);
-  //       const nextIndex = (currentIndex + 1) % foodImages.length;
-  //       return foodImages[nextIndex];
-  //     });
-  //   }, 4000); // Change every 4 seconds
-
-  //   return () => clearInterval(interval); // Cleanup interval on unmount
-  // }, []);
 
   const onMouseEnter = React.useCallback(() => setIsVisible(true), []);
   const onMouseLeave = React.useCallback(() => setIsVisible(false), []);
@@ -154,10 +132,7 @@ function AnimatedCursor({
           zIndex: 999,
           transition: "opacity 150ms ease-in-out",
         }}
-      >
-        <img src={currentFoodImage} alt="food icon" height={70} width={70} />{" "}
-        {/* Dynamically changing food image */}
-      </div>
+      ></div>
       {/* Inner Stylish Cursor */}
       <div
         ref={cursorInnerRef}
@@ -174,8 +149,104 @@ function AnimatedCursor({
     </>
   );
 }
-export default function Hero() {
-  const { scrollYProgress: slideScrollYProgress } = useScroll();
+
+const ParticleBackground = () => (
+  <Particles
+    params={{
+      particles: {
+        number: {
+          value: 50,
+        },
+        size: {
+          value: 3,
+        },
+        move: {
+          direction: "none",
+          random: true,
+          speed: 1,
+          outMode: "out",
+        },
+      },
+    }}
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: -1, // ensures it stays behind other content
+    }}
+  />
+);
+
+// Countdown with rotating plates
+
+const RotatingCountdown = ({ countdown }) => {
+  return (
+    <section className="countdown-container py-12 text-white">
+      <div className="countdown-wrapper max-w-5xl mx-auto grid grid-cols-4 gap-6 text-center">
+        {Object.entries(countdown).map(([label, value], index) => (
+          <motion.div
+            key={label}
+            className="countdown-circle relative flex items-center justify-center"
+            style={{
+              width: "150px",
+              height: "150px",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* Plate Image with Blur and Rotation Animation */}
+            <motion.img
+              src={plateImage}
+              alt="Plate"
+              className="absolute top-0 left-0 w-full h-full object-cover"
+              style={{
+                filter: "blur(3px)", // Apply blur effect
+                opacity: 0.7, // Slight transparency
+              }}
+              animate={{
+                rotate: [0, 360], // Rotate full 360 degrees
+              }}
+              transition={{
+                repeat: Infinity, // Continuous rotation
+                duration: 5 + index, // Vary duration for each plate
+                ease: "linear",
+              }}
+            />
+
+            {/* Countdown Value */}
+            <div
+              className="countdown-value text-4xl font-bold text-white"
+              style={{
+                zIndex: 1,
+                color: "white", // Text is clearly visible
+                textShadow: "2px 2px 8px rgba(0, 0, 0, 0.7)", // Shadow for contrast
+              }}
+            >
+              {value}
+            </div>
+
+            {/* Countdown Label */}
+            <h3
+              className="countdown-label text-lg font-bold absolute bottom-2 w-full text-center"
+              style={{
+                zIndex: 1,
+                textShadow: "2px 2px 8px rgba(0, 0, 0, 0.7)", // Enhance readability
+                color: "white",
+              }}
+            >
+              {label.charAt(0).toUpperCase() + label.slice(1)}
+            </h3>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+// Hero component
+const Hero = () => {
   const [countdown, setCountdown] = useState({
     days: 0,
     hours: 0,
@@ -183,26 +254,7 @@ export default function Hero() {
     seconds: 0,
   });
 
-  // Smooth scrolling setup
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      smoothTouch: false,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-  }, []);
-
-  // Countdown Timer
+  // Countdown Timer Effect
   useEffect(() => {
     const eventDate = new Date("2025-03-05T00:00:00").getTime();
     const timer = setInterval(() => {
@@ -228,90 +280,95 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, []);
 
-  // Animation Variants
-  const neonTextVariants = {
-    animate: {
-      textShadow: [
-        "0 0 5px #ffaf40, 0 0 10px #ffaf40, 0 0 20px #ff7e00, 0 0 30px #ff6b00",
-        "0 0 10px #fff200, 0 0 20px #ffde00, 0 0 30px #ffcb00",
-        "0 0 5px #ffaf40, 0 0 10px #ffaf40, 0 0 20px #ff7e00, 0 0 30px #ff6b00",
-      ],
-      transition: {
-        repeat: Infinity,
-        duration: 4,
-        ease: "linear",
-      },
-    },
+  // Smooth Scroll Setup with Lenis
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: "vertical",
+      gestureDirection: "vertical",
+      smooth: true,
+      smoothTouch: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }, []);
+
+  // Saas Logo Click Handler
+  const handleSaasClick = () => {
+    window.location.href = "https://saasceg.in";
   };
 
   return (
-    <main>
+    <main
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <AnimatedCursor />
-      {/* Neon Text Animation */}
+
       <div className="text-container">
-        <div className="glass-techofes">
-          <motion.h1
-            className="neon-text"
-            variants={neonTextVariants}
-            animate="animate"
-          >
-            TECHOFES'78
-          </motion.h1>
-          {/* Food-themed Animated Background */}
-          {/* <motion.img
-            src={i3}
-            alt="Food"
-            className="food-animation"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{
-              scale: [0.8, 1.2, 1],
-              opacity: [0, 1],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+        <motion.div
+          className="pop-effect neon-logo-container"
+          animate={{}}
+          transition={{
+            repeat: Infinity,
+            repeatType: "reverse",
+            duration: 2,
+          }}
+        >
+          <video
+            src={logo} // Replace with the actual video file path
+            autoPlay
+            loop
+            muted
+            playsInline
+            height={600}
+            width={1050}
+            className="neon-logo"
           />
+        </motion.div>
+
+        <div
+          className="saas-logo-container"
+          style={{
+            position: "fixed",
+            top: "20px",
+            left: "20px",
+            cursor: "pointer",
+          }}
+          onClick={handleSaasClick}
+        >
           <motion.img
-            src={i2}
-            alt="Samosa GIF"
-            className="food-animation-secondary"
-            initial={{ y: -50, opacity: 0 }}
-            animate={{
-              y: [0, 20, -10],
-              opacity: [0.5, 1, 0.5],
+            src={saas}
+            alt="Saas Logo"
+            height={50}
+            width={50}
+            whileHover={{
+              scale: 1.2,
+              rotateY: 15,
+              rotateX: -15,
+              boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.3)",
             }}
-            transition={{
-              repeat: Infinity,
-              duration: 6,
-              ease: "easeInOut",
+            whileTap={{
+              scale: 0.9,
+              rotate: [0, -10, 10, 0], // Small rotation effect on tap
             }}
-          /> */}
+            transition={{ type: "spring", stiffness: 200, damping: 25 }}
+          />
         </div>
       </div>
 
-      {/* Countdown Timer */}
-      <div className="countdown-container">
-        <div className="countdown-box">
-          <h3 className="countdown-label">Days</h3>
-          <p className="countdown-value">{countdown.days}</p>
-        </div>
-        <div className="countdown-box">
-          <h3 className="countdown-label">Hours</h3>
-          <p className="countdown-value">{countdown.hours}</p>
-        </div>
-        <div className="countdown-box">
-          <h3 className="countdown-label">Minutes</h3>
-          <p className="countdown-value">{countdown.minutes}</p>
-        </div>
-        <div className="countdown-box">
-          <h3 className="countdown-label">Seconds</h3>
-          <p className="countdown-value">{countdown.seconds}</p>
-        </div>
-      </div>
+      {/* Countdown with rotating plates */}
+      <RotatingCountdown countdown={countdown} />
 
-      {/* Food-Themed Background */}
       <div className="video-background-container">
         <video
           className="video-background"
@@ -325,17 +382,16 @@ export default function Hero() {
           <h2 className="symphony-text">Symphony of Taste</h2>
         </div>
       </div>
+
       <div className="z-0 fixed transform lg:translate-x-1/2 lg:-translate-y-52 w-full h-full">
         <CubeBackground />
       </div>
-      {/* Symphony of Taste Section */}
+
       <div className="flex items-center h-screen z-10 bg-gradient-to-b to-yellow-500 from-orange-700 justify-start">
         <AboutSection />
       </div>
 
-      {/* <div className="relative overflow-hidden bg-black py-6"> */}
       <ZoomParallax />
-      {/* </div> */}
       <EventScroll />
       <div
         className="relative flex items-center justify-center h-screen overflow-hidden"
@@ -349,4 +405,6 @@ export default function Hero() {
       <Footer />
     </main>
   );
-}
+};
+
+export default Hero;

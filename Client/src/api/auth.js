@@ -1,8 +1,8 @@
-import axios from 'axios';
-const loginUrl = '/api/auth/login';
-const registerUrl = '/api/auth/register';
-const logoutUrl = '/api/auth/logout';
-import storage from '../services/storage';
+import axios from "axios";
+const loginUrl = "/api/auth/login";
+const registerUrl = "/api/auth/register";
+const logoutUrl = "/api/auth/logout";
+import storage from "../services/storage";
 
 //implement try and catch blocks for error handling in the frontend
 
@@ -41,6 +41,7 @@ const login = async (username, password) => {
 
 const register = async (user) => {
   const response = await axios.post(registerUrl, user);
+  console.log(response);
   return response.data;
 };
 

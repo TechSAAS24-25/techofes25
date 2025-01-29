@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Registration.css";
 import icecream from "../assets/food/icecream.gif";
+import authServices from "../api/auth.js";
+import storage from "../services/storage";
+import logo from "../assets/logo.png";
 
 const foodItems = ["🍕", "🍔", "🍩", "🍣", "🌮", "🥞", "🍪", "🍿"];
 
 const Login = () => {
-  const [fallingFood, setFallingFood] = useState([]);
+  // const { setIsLoggedIn } = useParams();
 
+  const [fallingFood, setFallingFood] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,11 +40,47 @@ const Login = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
-  };
 
+    try {
+      // Call the login function
+      let userData = {
+        username: formData.username,
+        password: formData.password,
+      };
+      const response = await authServices.login(
+        userData.username,
+        userData.password
+      );
+
+      // Successful login
+      // alert(`Welcome ${response.username}!`);
+
+      storage.saveUser(response);
+
+      // Log the user data retrieved from localStorage
+      // const storedUser = storage.loadUser();
+      // console.log("Stored User:", storedUser);
+
+      // setIsLoggedIn(true);
+      // Successful login
+      alert(`Welcome ${response.username}!\nTID: ${response.T_ID} `);
+
+      navigate("/events");
+      window.location.reload();
+    } catch (error) {
+      // Handle errors returned by the API
+      if (error.response) {
+        console.error("Error:", error.response.data.error);
+        alert(`Login failed: ${error.response.data.error}`);
+      } else {
+        console.error("Error:", error.message);
+        alert("An unexpected error occurred. Please try again later.");
+      }
+    }
+  };
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -49,6 +89,11 @@ const Login = () => {
   return (
     <div className="registration-page">
       <div className="left-section">
+        <img
+          src={logo}
+          alt="Main Logo"
+          className="h-auto max-h-40 w-auto max-w-xl mb-2" // Adjusted size and spacing
+        />
         <div className="background-food">
           {fallingFood.map((food) => (
             <div
@@ -61,12 +106,10 @@ const Login = () => {
           ))}
         </div>
         <div className="video-frame">
-          <img src={icecream} ></img>
+          <img src={icecream}></img>
         </div>
         <div className="button-group">
-          <button className="nav-btn active">
-            Login
-          </button>
+          <button className="nav-btn active">Login</button>
           <button className="nav-btn" onClick={() => navigate("/registration")}>
             Register
           </button>
@@ -78,7 +121,7 @@ const Login = () => {
             <h1>Login</h1>
           </div>
           <form onSubmit={handleSubmit}>
-          <div className="grouped-input">
+            <div className="grouped-input">
               <div className="input-group">
                 <label>User Name</label>
                 <input

@@ -1,74 +1,77 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import foodImage from "../assets/food/food.jpg"; // Replace with the actual path of the food-related image
+import bgImage from "../assets/t77.jpg"; // Replace with the actual path of the background image
 
 const AboutSection = () => {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <div className="flex justify-center items-center min-h-screen min-w-full overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800">
-      <div className="text-center relative flex flex-col lg:flex-row items-center w-[100%] h-screen content-center gap-10">
+    <div
+      className="relative flex justify-center items-center min-h-screen w-full bg-auto bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      {/* Overlay for better text visibility */}
+      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+
+      <div className="relative flex flex-col items-center justify-center w-full h-screen px-6 text-center">
         {/* Text Section */}
-        <motion.div
-          className="text-center relative h-[60%] lg:w-[50%] p-8 cursor-pointer overflow-hidden rounded-xl shadow-2xl bg-gradient-to-tr from-gray-800 via-gray-900 to-black hover:bg-gradient-to-tr hover:from-gray-700 hover:via-gray-800 hover:to-gray-900 
-          text-gray-300 hover:text-white content-center transition-all duration-700 ease-in-out hover:h-[70%] hover:w-[55%]"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+        <motion.h1
+          className="text-3xl lg:text-6xl font-extrabold text-white mb-6"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
           whileHover={{
-            scale: 1.05,
-            rotate: [0, 3, -3, 3, 0],
-          }}
-          animate={{
-            opacity: [1, 0.95, 1],
+            scale: 1.2,
+            textShadow: "0px 0px 30px rgba(255, 255, 255, 1)",
+            rotate: [0, 2, -2, 0],
           }}
         >
-          <motion.h1
-            className="text-xl lg:text-5xl mb-6 font-extrabold transition-all duration-500 ease-in-out transform hover:scale-110"
-            initial={{ scale: 1 }}
-            whileHover={{
-              scale: 1.15,
-              textShadow: "0px 0px 10px rgba(255, 165, 0, 0.8)",
-            }}
-          >
-            ABOUT TECHOFES
-          </motion.h1>
-          <motion.p
-            className="text-sm lg:text-lg px-4 transition-all duration-500 ease-in-out"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            whileHover={{ scale: 1.05 }}
-          >
-            Techofes is the annual cultural festival of College of Engineering
-            Guindy, Anna University, Chennai held in mid-February, and is one of
-            the most popular cultural festivals in South India. Techofes is held
-            for 4 nights and 3 days, drawing a footfall of about 40,000 students
-            from over 250 colleges across South India. The festival preparation
-            spans around eight months, with a team of 600 members working on
-            conceptualization to successful execution every year, with no
-            assistance from event management companies or professionals.
-          </motion.p>
-        </motion.div>
+          ABOUT TECHOFES
+        </motion.h1>
 
-        {/* Food-Themed Image */}
-        <motion.div
-          className="relative lg:w-[40%] h-[50%] flex items-center justify-center"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{
-            duration: 1.5,
-            ease: "easeInOut",
-          }}
+        <motion.p
+          className="text-lg lg:text-xl text-gray-200 leading-relaxed max-w-4xl"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
           whileHover={{
             scale: 1.1,
-            rotate: [0, 5, -5, 5, 0],
-            transition: { duration: 0.5 },
+            color: "#ffdd57",
+            textShadow: "0px 0px 15px rgba(255, 221, 87, 1)",
           }}
         >
-          <img
-            src={foodImage}
-            alt="Food Theme"
-            className="rounded-2xl shadow-xl border-2 border-orange-400"
-          />
+          Techofes is the annual cultural festival of College of Engineering
+          Guindy, Anna University, Chennai held in mid-February, and is one of
+          the most popular cultural festivals in South India. Techofes is held
+          for 4 nights and 3 days, drawing a footfall of about 40,000 students
+          from over 250 colleges across South India. The festival preparation
+          spans around eight months, with a team of 600 members working on
+          conceptualization to successful execution every year, with no
+          assistance from event management companies or professionals.
+        </motion.p>
+
+        <motion.div
+          className="mt-10 text-white font-semibold border-b-2 border-gray-400 cursor-pointer"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          whileHover={{
+            scale: 1.15,
+            color: "#ffa500",
+            borderColor: "#ffa500",
+            textShadow: "0px 0px 15px rgba(255, 165, 0, 1)",
+          }}
+        ></motion.div>
+
+        <motion.div
+          className="absolute bottom-5 text-red-300 text-sm"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 0.8 }}
+          whileHover={{
+            color: "#B82132",
+            textShadow: "0px 0px 10px rgba(224, 109, 109, 0.8)",
+          }}
+        >
+          Celebrating culture and creativity since 1948.
         </motion.div>
       </div>
     </div>

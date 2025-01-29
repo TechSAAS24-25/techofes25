@@ -39,7 +39,10 @@ const Sidebar = ({ onLinkClick }) => {
   }, []);
 
   return (
-    <div className={`sidebar ${isMobile ? "collapsed" : ""}`}>
+    <div
+      style={{ scrollbarWidth: "none" }}
+      className={`sidebar overflow-scroll pb-20 ${isMobile ? "collapsed" : ""}`}
+    >
       <ul>
         {menuItems.map((item, index) => (
           <li

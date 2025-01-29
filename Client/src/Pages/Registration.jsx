@@ -1,13 +1,24 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../Styles/Registration.css'
 import icecream from '../assets/food/icecream.gif'
+=======
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "../Styles/Registration.css";
+import icecream from "../assets/food/icecream.gif";
+import authServices from "../api/auth.js";
+import { Eye, EyeOff } from "lucide-react";
+import logo from "../assets/logo.png";
+>>>>>>> a21090294e31d3ec8e9cd4b77768fca3c2193460
 
 const foodItems = ['🍕', '🍔', '🍩', '🍣', '🌮', '🥞', '🍪', '🍿']
 
 const Registration = () => {
   const [fallingFood, setFallingFood] = useState([])
   const [formData, setFormData] = useState({
+<<<<<<< HEAD
     username: '',
     firstName: '',
     lastName: '',
@@ -20,6 +31,24 @@ const Registration = () => {
   })
   const [events, setEvents] = useState([])
   const navigate = useNavigate()
+=======
+    username: "",
+    firstName: "",
+    lastName: "",
+    mobile: "",
+    email: "",
+    rollno: "",
+    college: "",
+    usertype: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const navigate = useNavigate();
+>>>>>>> a21090294e31d3ec8e9cd4b77768fca3c2193460
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -54,6 +83,7 @@ const Registration = () => {
     }
   }
 
+<<<<<<< HEAD
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('Form Data Submitted:', formData)
@@ -66,6 +96,54 @@ const Registration = () => {
     <div className='registration-page'>
       <div className='left-section'>
         <div className='background-food'>
+=======
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Form Data Submitted:", formData);
+
+    if (formData.confirmPassword !== formData.password) {
+      alert("Passwords don't match.");
+    } else {
+      try {
+        let userData = {
+          username: formData.username,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+          phn: formData.mobile,
+          type: formData.usertype,
+          rollno: formData.rollno,
+          college: formData.college,
+        };
+        const response = await authServices.register(userData);
+
+        if (response) {
+          alert(`Registration Successful: ${response.message}`);
+          navigate("/events");
+        }
+      } catch (error) {
+        if (error.response) {
+          console.error("Error:", error.response.data.error);
+          alert(`Registration failed: ${error.response.data.error}`);
+        } else {
+          console.error("Error:", error.message);
+          alert("An unexpected error occurred. Please try again later.");
+        }
+      }
+    }
+  };
+
+  return (
+    <div className="registration-page">
+      <div className="left-section">
+        <img
+          src={logo}
+          alt="Main Logo"
+          className="h-auto max-h-40 w-auto max-w-xl mb-2" // Adjusted size and spacing
+        />
+        <div className="background-food">
+>>>>>>> a21090294e31d3ec8e9cd4b77768fca3c2193460
           {fallingFood.map((food) => (
             <div
               key={food.id}
@@ -168,7 +246,11 @@ const Registration = () => {
                   onChange={handleChange}
                   required
                 >
+<<<<<<< HEAD
                   <option value='' disabled>
+=======
+                  <option value="" disabled>
+>>>>>>> a21090294e31d3ec8e9cd4b77768fca3c2193460
                     Select User Type
                   </option>
                   <option value='Insider'>Insider</option>
@@ -176,6 +258,7 @@ const Registration = () => {
                 </select>
               </div>
             </div>
+<<<<<<< HEAD
             <div className='grouped-input'>
               <div className='input-group'>
                 <label>Password</label>
@@ -183,10 +266,20 @@ const Registration = () => {
                   type='password'
                   name='password'
                   value={formData.password}
+=======
+            <div className="grouped-input">
+              <div className="input-group">
+                <label>College Name</label>
+                <input
+                  type="text"
+                  name="college"
+                  value={formData.college}
+>>>>>>> a21090294e31d3ec8e9cd4b77768fca3c2193460
                   onChange={handleChange}
                   required
                 />
               </div>
+<<<<<<< HEAD
               <div className='input-group'>
                 <label>Confirm Password</label>
                 <input
@@ -196,6 +289,51 @@ const Registration = () => {
                   onChange={handleChange}
                   required
                 />
+=======
+            </div>
+            <div className="grouped-input">
+              <div className="input-group">
+                <label>Password</label>
+                <div className="password-input">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="eye-icon"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+              </div>
+              <div className="input-group">
+                <label>Confirm Password</label>
+                <div className="password-input">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="eye-icon"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? (
+                      <EyeOff size={20} />
+                    ) : (
+                      <Eye size={20} />
+                    )}
+                  </button>
+                </div>
+>>>>>>> a21090294e31d3ec8e9cd4b77768fca3c2193460
               </div>
             </div>
 
@@ -211,4 +349,8 @@ const Registration = () => {
   )
 }
 
+<<<<<<< HEAD
 export default Registration
+=======
+export default Registration;
+>>>>>>> a21090294e31d3ec8e9cd4b77768fca3c2193460

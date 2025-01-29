@@ -1,7 +1,12 @@
+body {
+  height: 100%;
+  overflow: auto;
+}
+
 .team-page {
-  background-image: url("../assets/p0fq9cyz.jpg");
-  background-size: cover;
-  background-position: fixed;
+  background-image: url("../assets/team3.jpeg");
+  background-size: contain;
+  background-position: center;
 }
 .main-content {
   margin-left: 20%;
