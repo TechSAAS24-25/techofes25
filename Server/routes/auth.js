@@ -74,7 +74,7 @@ loginRouter.post("/", async (request, response) => {
     T_ID: user.T_ID,
   };
 
-  const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: "1h" }); // Optionally, set expiration time for token
+  const token = jwt.sign(userForToken, process.env.SECRET);
   console.log(token);
   response.status(200).send({
     token,
