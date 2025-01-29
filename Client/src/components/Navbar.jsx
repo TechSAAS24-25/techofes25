@@ -108,16 +108,16 @@ const Navbar = () => {
             Accommodation
           </NavLink>
         </li>
-        <li className='navItem'>
+        {/* <li className='navItem'>
           <NavLink
-            to='/more'
+            to='/dashboard'
             className={({ isActive }) => (isActive ? 'active-link' : 'navLink')}
           >
             <div className='top-bar'></div>
             <img src={more} alt='More Icon' id='icon' />
             More
           </NavLink>
-        </li>
+        </li> */}
         <li className='navItem'>
           <NavLink
             to='/contact/team'
@@ -148,6 +148,18 @@ const Navbar = () => {
             Sponsor
           </NavLink>
         </li>
+
+        <li className='navItem'>
+          <NavLink
+            to='/dashboard'
+            className={({ isActive }) => (isActive ? 'active-link' : 'navLink')}
+          >
+            <div className='top-bar'></div>
+            <img src={more} alt='More Icon' id='icon' />
+            User Profile
+          </NavLink>
+        </li>
+
         <li className='navItem'>
           {isLoggedIn ? (
             <button className='logout-button' onClick={handleLogout}>

@@ -61,7 +61,9 @@ function App() {
             <Route path='/event/:id' element={<EventDetail />} />
             <Route path='/accommodation' element={<Accommodation />} />
             <Route path='/sponsor' element={<SponsorPage />} />
-            <Route path='/more' element={<More />} />
+
+            {/* <Route path='/more' element={<More />} /> */}
+            <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/merchandise' element={<Merchandise />} />
             <Route path='/schedule' element={<Schedule />} />
             <Route path='/gallery' element={<Gallery />} />
@@ -71,7 +73,7 @@ function App() {
             <Route path='/registration' element={<Registration />} />
             <Route path='/login' element={<Login />} />
             <Route path='/admin' element={<Admin />} />
-            <Route path='/dashboard' element={<Dashboard />} />
+            {/* <Route path='/dashboard' element={<Dashboard />} /> */}
             <Route path='/events/:category' element={<EventTypes />} />
             <Route path='/events/:category/:type' element={<EventList />} />
           </Routes>
