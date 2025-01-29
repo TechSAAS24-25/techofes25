@@ -4,8 +4,7 @@ import backgroundImage from "../assets/p0fq9cyz.jpg";
 import eventServices from "../api/events.js";
 import storage from "../services/storage";
 import "./EventDetail.css";
-import eventImages from "../data/eventImages"; // Import the eventImages dictionary
-
+import eventImages from "../data/eventImages"; 
 const EventDetail = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
