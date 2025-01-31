@@ -10,13 +10,16 @@ const userDetailsRouter = require("express").Router();
 const userRegistrationsRouter = require("express").Router();
 const userPurchasesRouter = require("express").Router();
 const userAccommodationsRouter = require("express").Router();
+const mongoose = require("mongoose");
+
 require("express-async-errors");
 
 // Get user details
 userDetailsRouter.get("/", userExtractor, async (request, response) => {
-  const T_ID = request.T_ID;
-
-  const user = await User.findOne({ T_ID }).select("-passwordHash");
+  const T_ID = request?.T_ID;
+  const user = await User.findOne({
+    T_ID: T_ID,
+  });
   if (!user) {
     return response.status(404).json({ error: "User not found" });
   }
@@ -30,20 +33,29 @@ userRegistrationsRouter.get(
   async (request, response) => {
     const T_ID = request.T_ID;
 
-    const registrations = await Registration.find({ T_ID });
+    const registrations = await Registration.find({
+      T_ID: T_ID,
+    });
+
+    console.log(registrations);
+
     const eventDetails = await Promise.all(
       registrations.map(async (registration) => {
         const eventID = registration.eventID;
-        const event = await Event.findOne({ eventID });
+        const event = await Event.findOne({
+          _id: new mongoose.Types.ObjectId(eventID),
+        });
+        console.log(event);
         return {
           registrationID: registration.registrationID,
-          eventName: event.eventName,
-          category: event.category,
-          date: event.date,
-          location: event.location,
+          eventName: event?.eventName,
+          category: event?.category,
+          date: event?.date,
+          location: event?.location,
         };
       })
     );
+    console.log(eventDetails);
     response.status(200).json(eventDetails);
   }
 );
@@ -55,7 +67,9 @@ userPurchasesRouter.get(
   async (request, response) => {
     const T_ID = request.T_ID;
 
-    const purchases = await Purchase.find({ T_ID });
+    const purchases = await Purchase.find({
+      T_ID: T_ID,
+    });
     const purchaseDetails = await Promise.all(
       purchases.map(async (purchase) => {
         const merchandiseID = purchase.merchandiseID;
@@ -79,7 +93,9 @@ userAccommodationsRouter.get(
   async (request, response) => {
     const T_ID = request.T_ID;
 
-    const Bookings = await Booking.find({ T_ID });
+    const Bookings = await Booking.find({
+      T_ID: T_ID,
+    });
     const accommodations = await Promise.all(
       Bookings.map(async (booking) => {
         const accommodationID = booking.accommodationID;
