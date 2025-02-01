@@ -25,7 +25,6 @@ const Registration = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,7 +36,6 @@ const Registration = () => {
       };
       setFallingFood((prev) => [...prev, newFood]);
 
-      // Remove food after 5 seconds
       setTimeout(() => {
         setFallingFood((prev) => prev.filter((item) => item.id !== newFood.id));
       }, 5000);
@@ -60,6 +58,9 @@ const Registration = () => {
 
     if (formData.confirmPassword !== formData.password) {
       alert("Passwords don't match.");
+    } else if (formData.usertype === "Insider" && !formData.rollno) {
+      alert("Roll Number is required for Insider user type.");
+      return;
     } else {
       try {
         let userData = {
@@ -70,14 +71,16 @@ const Registration = () => {
           password: formData.password,
           phn: formData.mobile,
           type: formData.usertype,
-          rollno: formData.rollno,
+          rollno: formData.usertype === "Insider" ? formData.rollno : undefined,
           college: formData.college,
         };
         const response = await authServices.register(userData);
 
         if (response) {
-          alert(`Registration Successful: ${response.message}`);
-          navigate("/events");
+          alert(
+            `Registration Successful: ${response.message}\nTID: ${response.user.T_ID} `
+          );
+          navigate("/login");
         }
       } catch (error) {
         if (error.response) {
@@ -89,6 +92,15 @@ const Registration = () => {
         }
       }
     }
+
+    if (formData.confirmPassword !== formData.password) {
+      alert("Passwords don't match.");
+      return;
+    }
+    if (formData.usertype === "Insider" && !formData.rollno) {
+      alert("Roll Number is required for Insider user type.");
+      return;
+    }
   };
 
   return (
@@ -97,7 +109,7 @@ const Registration = () => {
         <img
           src={logo}
           alt="Main Logo"
-          className="h-auto max-h-40 w-auto max-w-xl mb-2" // Adjusted size and spacing
+          className="h-auto max-h-40 w-auto max-w-xl mb-2"
         />
         <div className="background-food">
           {fallingFood.map((food) => (
@@ -121,7 +133,6 @@ const Registration = () => {
         </div>
       </div>
 
-      {/* Right Form Section */}
       <div className="right-form">
         <div className="form-card">
           <div className="header">
@@ -186,15 +197,17 @@ const Registration = () => {
             </div>
             <div className="grouped-input">
               <div className="input-group">
-                <label>Roll Number</label>
+                <label>College Name</label>
                 <input
                   type="text"
-                  name="rollno"
-                  value={formData.rollno}
+                  name="college"
+                  value={formData.college}
                   onChange={handleChange}
                   required
                 />
               </div>
+            </div>
+            <div className="grouped-input">
               <div className="input-group">
                 <label>User Type</label>
                 <select
@@ -210,16 +223,19 @@ const Registration = () => {
                   <option value="Outsider">Outsider</option>
                 </select>
               </div>
-            </div>
-            <div className="grouped-input">
-              <div className="input-group">
-                <label>College Name</label>
+              <div
+                className={`input-group ${
+                  formData.usertype !== "Insider" ? "invisible" : ""
+                }`}
+              >
+                <label>Roll Number</label>
                 <input
                   type="text"
-                  name="college"
-                  value={formData.college}
+                  name="rollno"
+                  value={formData.rollno}
                   onChange={handleChange}
-                  required
+                  disabled={formData.usertype !== "Insider"}
+                  required={formData.usertype === "Insider"}
                 />
               </div>
             </div>
@@ -267,6 +283,7 @@ const Registration = () => {
                 </div>
               </div>
             </div>
+
             <button type="submit" className="submit-btn">
               Sign Up
             </button>

@@ -4,7 +4,6 @@ const IdTracker = require("./idTracker");
 const userSchema = new mongoose.Schema(
   {
     T_ID: {
-      type: mongoose.Schema.Types.ObjectId,
       auto: true,
       type: String,
       unique: true,

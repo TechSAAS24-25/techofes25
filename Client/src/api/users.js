@@ -2,7 +2,7 @@ import axios from "axios";
 const profileUrl = "api/profile";
 import storage from "../services/storage";
 
-const token = storage.loadUser().token;
+const token = storage?.loadUser()?.token;
 const config = () => ({
   headers: { Authorization: `Bearer ${token}` },
 });

@@ -213,8 +213,8 @@ main {
 }
 
 .countdown-circle {
-  width: 150px;
-  height: 150px;
+  /* width: 150px;
+  height: 150px; */
   position: relative;
   border-radius: 50%;
   overflow: hidden;
@@ -226,7 +226,7 @@ main {
 .countdown-value {
   position: absolute;
   z-index: 1;
-  font-size: 2.5rem;
+  /* font-size: 2.5rem; */
   font-weight: bold;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Enhances visibility */
 }

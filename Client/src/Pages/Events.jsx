@@ -16,13 +16,6 @@ const Events = () => {
     "Carnivals",
   ]);
   const navigate = useNavigate();
-  const events = [
-    { icon: "src/assets/dance.png", name: "Dance" },
-    { icon: "src/assets/dance.png", name: "Music" },
-    { icon: "src/assets/dance.png", name: "Dramatics" },
-    { icon: "src/assets/dance.png", name: "Dramatics" },
-    { icon: "src/assets/dance.png", name: "Dramatics" },
-  ];
 
   useEffect(() => {
     const fetchUserDetails = async () => {

@@ -4,8 +4,7 @@ import backgroundImage from "../assets/p0fq9cyz.jpg";
 import eventServices from "../api/events.js";
 import storage from "../services/storage";
 import "./EventDetail.css";
-import eventImages from "../data/eventImages"; // Import the eventImages dictionary
-
+import eventImages from "../data/eventImages";
 const EventDetail = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
@@ -87,7 +86,7 @@ const EventDetail = () => {
           />
           <div className="event-title-wrapper">
             <h1 className="event-title text-white">{event.eventName}</h1>
-            {isRegistered ? (
+            {/* {isRegistered ? (
               <button className="bg-blue-950 text-white register-btn-disabled disabled">
                 Registered
               </button>
@@ -102,7 +101,13 @@ const EventDetail = () => {
               >
                 Please login to register for events
               </button>
-            )}
+            )} */}
+            <button
+              className=" bg-slate-400 text-black register-btn-disabled disabled"
+              disabled
+            >
+              Coming soon
+            </button>
           </div>
         </div>
 
