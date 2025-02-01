@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        sky: colors.sky,
+        sky: require("tailwindcss/colors").sky,
         stone: colors.stone,
         neutral: colors.neutral,
         gray: colors.gray,
