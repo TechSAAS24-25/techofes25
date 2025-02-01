@@ -64,6 +64,12 @@ const Dashboard = () => {
           </h1>
         </div>
 
+        <div className="text-center mb-6">
+          <h1 className="text-xl font-bold text-white">
+            TID: {userData?.T_ID}
+          </h1>
+        </div>
+
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="text-base bg-[#371426] text-white p-4 rounded-lg shadow-sm">
             <label className="font-semibold text-white">Username</label>
