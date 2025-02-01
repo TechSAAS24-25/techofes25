@@ -1,5 +1,5 @@
 import download1 from "../assets/team/Guru_Varap_Prakash_President.jpg";
-import download2 from "../assets/team/SOWMIYA_K_PRESIDENT.JPG";
+import download2 from "../assets/team/SOWMIYA_K_PRESIDENT.jpg";
 import download3 from "../assets/team/KATHIR_S_VICE_PRESIDENT.jpg";
 import download4 from "../assets/team/Shreyaa_vinod_vp.jpg";
 import download5 from "../assets/team/Shivani J General Secretary.jpg";
@@ -26,8 +26,6 @@ import download25 from "../assets/team/Vimalesh_CT_Technical2.jpg";
 import download26 from "../assets/team/T_Ponvel_Graphics Design.jpg";
 import download27 from "../assets/team/Sujatha_GDesign.jpg";
 import download28 from "../assets/team/Dineshraja D_Permissions & Documentation.jpg";
-
-export const eventStartDate = "NOV 8, 2024 :15:00";
 
 export const coordinators = [
   {
