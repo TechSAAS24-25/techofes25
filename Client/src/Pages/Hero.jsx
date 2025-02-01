@@ -18,8 +18,6 @@ import bgImage from "../assets/events/stage.jpeg";
 import particles from "react-tsparticles";
 import plateImage from "../assets/food/plate.jpg";
 
-
-
 function useEventListener(eventName, handler, element = document) {
   const savedHandler = React.useRef();
 
@@ -184,17 +182,11 @@ const ParticleBackground = () => (
 const RotatingCountdown = ({ countdown }) => {
   return (
     <section className="countdown-container py-12 text-white">
-      <div className="countdown-wrapper max-w-5xl mx-auto grid grid-cols-4 gap-6 text-center">
+      <div className="countdown-wrapper max-w-5xl mx-auto grid grid-cols-4 sm:grid-cols-2 lg:gap-6 gap-4 text-center">
         {Object.entries(countdown).map(([label, value], index) => (
           <motion.div
             key={label}
-            className="countdown-circle relative flex items-center justify-center"
-            style={{
-              width: "150px",
-              height: "150px",
-              position: "relative",
-              overflow: "hidden",
-            }}
+            className="countdown-circle relative flex items-center justify-center lg:w-36 lg:h-36 w-16 h-16 overflow-hidden"
           >
             {/* Plate Image with Blur and Rotation Animation */}
             <motion.img
@@ -217,7 +209,7 @@ const RotatingCountdown = ({ countdown }) => {
 
             {/* Countdown Value */}
             <div
-              className="countdown-value text-4xl font-bold text-white"
+              className="countdown-value lg:text-6xl text-2xl lg:pb-0 pb-4 font-bold text-white "
               style={{
                 zIndex: 1,
                 color: "white", // Text is clearly visible
