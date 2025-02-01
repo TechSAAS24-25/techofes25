@@ -37,7 +37,8 @@
     "react-router-dom": "^7.1.0",
     "react-tsparticles": "^2.12.2",
     "three": "^0.172.0",
-    "three-mesh-bvh": "^0.8.0"
+    "three-mesh-bvh": "^0.8.0",
+    "tsparticles": "^3.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
