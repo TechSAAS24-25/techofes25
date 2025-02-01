@@ -372,6 +372,7 @@ const Hero = () => {
         />
         <div className="video-overlay">
           <h2 className="symphony-text">Symphony of Taste</h2>
+          <h3>MARCH 5-8</h3>
         </div>
       </div>
 
