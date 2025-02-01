@@ -35,7 +35,6 @@
     "react-intersection-observer": "^9.14.1",
     "react-particle-js": "^1.0.1",
     "react-router-dom": "^7.1.0",
-    "react-tsparticles": "^2.12.2",
     "three": "^0.172.0",
     "three-mesh-bvh": "^0.8.0"
   },
