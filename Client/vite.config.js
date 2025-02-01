@@ -5,10 +5,15 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      external: ["react-tsparticles"], // Add this line
+    },
+  },
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:4000",
+        target: "https://techofes25.onrender.com",
         changeOrigin: true,
       },
     },
