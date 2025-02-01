@@ -8,10 +8,10 @@ import mediLogo from "../assets/sponsor/Medi.png";
 
 const SponsorPage = () => {
   const sponsors = [
-    { name: "Sponsor A", logo: agsLogo },
-    { name: "Sponsor B", logo: vetriLogo },
-    { name: "Sponsor C", logo: hgLogo },
-    { name: "Sponsor D", logo: mediLogo },
+    { name: "AGS Cinemas", logo: agsLogo },
+    // { name: "Sponsor B", logo: vetriLogo },
+    // { name: "Sponsor C", logo: hgLogo },
+    // { name: "Sponsor D", logo: mediLogo },
   ];
 
   const containerVariants = {

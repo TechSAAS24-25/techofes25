@@ -115,7 +115,7 @@ const Sponsors = () => {
           alt="Sponsor 1"
           className="h-16 w-auto transition-transform duration-300 hover:scale-110"
         />
-        <img
+        {/* <img
           src={vetriLogo}
           alt="Sponsor 2"
           className="h-16 w-auto transition-transform duration-300 hover:scale-110"
@@ -129,7 +129,7 @@ const Sponsors = () => {
           src={mediLogo}
           alt="Sponsor 4"
           className="h-16 w-auto transition-transform duration-300 hover:scale-110"
-        />
+        /> */}
       </div>
     </div>
   );
