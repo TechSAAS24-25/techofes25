@@ -15,7 +15,7 @@ import logo from "../assets/bg2.mp4";
 import saas from "../assets/saas_logo.png";
 import { mainCoordinators } from "../data/data.js";
 import bgImage from "../assets/events/stage.jpeg";
-import particles from "react-tsparticles";
+import Particles from "react-tsparticles";
 import plateImage from "../assets/food/plate.jpg";
 
 function useEventListener(eventName, handler, element = document) {
