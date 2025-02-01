@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./EventScroll.module.scss";
-import Lenis from "lenis";
+import Lenis from "@studio-freight/lenis";
 import { useTransform, useScroll, motion } from "framer-motion";
 import event1 from "../../public/media/events/chronicles.jpg";
 import event2 from "../../public/media/events/classical.jpg";

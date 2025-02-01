@@ -1,19 +1,57 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import storage from "../services/storage";
 import "./Navbar.css";
 import homeIcon from "../assets/home.png";
 import accom from "../assets/accommodation.webp";
-import event from "../assets/events.png";
+import event from "../assets/events1.png";
 import more from "../assets/more.png";
 import merch from "../assets/merch.png";
-import contactIcon from "../assets/contact.png"; // Placeholder for contact icon
-import scheduleIcon from "../assets/schedule.png"; // Placeholder for schedule icon
+import contactIcon from "../assets/contact.png";
+import scheduleIcon from "../assets/schedule1.png";
 import sponsor from "../assets/sponsor.png";
+import register from "../assets/register.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import authServices from "../api/auth.js";
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  useEffect(() => {
+    const user = storage.loadUser();
+    setIsLoggedIn(!!user);
+  }, []);
+
+  const handleLogout = () => {
+    storage.removeUser();
+
+    const logout = async () => {
+      try {
+        const response = await authServices.logout();
+        setIsLoggedIn(false);
+        alert("Logout successful.");
+      } catch (error) {
+        console.error("Error logging out:", error);
+        alert("Failed to logout.");
+      }
+    };
+    logout();
+    navigate("/login");
+  };
+
   return (
     <nav className="navbar z-10">
-      <ul className="navList">
+      <div className="hamburger" onClick={toggleMenu}>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul className={`navList ${isMenuOpen ? "show" : ""}`}>
         <li className="navItem">
           <NavLink
             to="/merch"
@@ -27,15 +65,21 @@ const Navbar = () => {
         <li className="navItem">
           <NavLink
             to="/events"
-            className={({ isActive, isPending }) =>
-              window.location.pathname.startsWith("/event") || isActive
-                ? "active-link"
-                : "navLink"
-            }
+            className={({ isActive }) => (isActive ? "active-link" : "navLink")}
           >
             <div className="top-bar"></div>
             <img src={event} alt="Events Icon" id="icon" />
             Events
+          </NavLink>
+        </li>
+        <li className="navItem">
+          <NavLink
+            to="/registration"
+            className={({ isActive }) => (isActive ? "active-link" : "navLink")}
+          >
+            <div className="top-bar"></div>
+            <img src={register} alt="Register Icon" id="icon" />
+            Register
           </NavLink>
         </li>
         <li className="navItem">
@@ -60,45 +104,13 @@ const Navbar = () => {
         </li>
         <li className="navItem">
           <NavLink
-            to="/more"
-            className={({ isActive }) => (isActive ? "active-link" : "navLink")}
-          >
-            <div className="top-bar"></div>
-            <img src={more} alt="More Icon" id="icon" />
-            More
-          </NavLink>
-        </li>
-        <li className="navItem">
-          <NavLink
-            to="/contact"
+            to="/contact/team"
             className={({ isActive }) => (isActive ? "active-link" : "navLink")}
           >
             <div className="top-bar"></div>
             <img src={contactIcon} alt="Contact Icon" id="icon" />
             Contact
           </NavLink>
-          <ul className="dropdown">
-            <li>
-              <NavLink
-                to="/contact/team"
-                className={({ isActive }) =>
-                  isActive ? "dropdown-active-link" : "dropdown-link"
-                }
-              >
-                Team
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/contact/query"
-                className={({ isActive }) =>
-                  isActive ? "dropdown-active-link" : "dropdown-link"
-                }
-              >
-                Queries
-              </NavLink>
-            </li>
-          </ul>
         </li>
         <li className="navItem">
           <NavLink
@@ -119,6 +131,46 @@ const Navbar = () => {
             <img src={sponsor} alt="Sponsor Icon" id="icon" />
             Sponsor
           </NavLink>
+        </li>
+
+        <li className="navItem">
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) => (isActive ? "active-link" : "navLink")}
+          >
+            <div className="top-bar"></div>
+            <img src={more} alt="More Icon" id="icon" />
+            User Profile
+          </NavLink>
+        </li>
+
+        <li className="navItem">
+          {isLoggedIn ? (
+            <button className="logout-button" onClick={handleLogout}>
+              <FontAwesomeIcon
+                icon={faSignOutAlt}
+                className="icon-white"
+                style={{ color: "#fff" }}
+              />{" "}
+              Logout
+            </button>
+          ) : (
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive ? "active-link" : "navLink"
+              }
+            >
+              <button className="login-button">
+                <FontAwesomeIcon
+                  icon={faSignInAlt}
+                  className="icon-white"
+                  style={{ color: "#fff" }}
+                />{" "}
+                Login
+              </button>
+            </NavLink>
+          )}
         </li>
       </ul>
     </nav>

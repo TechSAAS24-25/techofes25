@@ -6,15 +6,21 @@ const Sidebar = ({ onLinkClick }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   const menuItems = [
-    "Events & Competitions",
-    "Marketing",
-    "Media & Publicity",
-    "Show Management",
+    "President",
+    "Vice President",
+    "General Secretary",
+    "Joint Secretary",
+    "Sports Secretary",
+    "Corporate Relation",
     "Finance",
-    "Public Relations",
-    "Security",
-    "Design",
-    "Web & IT",
+    "Events,Workshops & Carnivals",
+    "Logistics",
+    "HR & Hospitality",
+    "Marketing",
+    "Contents",
+    "Technical Design",
+    "Graphical Design",
+    "Permissions & Documentation",
   ];
 
   const handleClick = (role) => {
@@ -33,7 +39,10 @@ const Sidebar = ({ onLinkClick }) => {
   }, []);
 
   return (
-    <div className={`sidebar ${isMobile ? "collapsed" : ""}`}>
+    <div
+      style={{ scrollbarWidth: "none" }}
+      className={`sidebar overflow-scroll pb-20 ${isMobile ? "collapsed" : ""}`}
+    >
       <ul>
         {menuItems.map((item, index) => (
           <li
