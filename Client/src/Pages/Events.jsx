@@ -48,7 +48,7 @@ const Events = () => {
     >
       <div style={{ flex: 1 }}>
         {/* Main Content */}
-        <h1 className="events-title">Categories</h1>
+        {/* <h1 className="events-title">Categories</h1>
         <div className="events-grid">
           {categories?.map((category, index) => (
             <Link to={`/events/${category}`} key={index} className="event-link">
@@ -59,7 +59,8 @@ const Events = () => {
               />
             </Link>
           ))}
-        </div>
+        </div> */}
+        <h1 className="align-middle events-title">Registration Opening Soon</h1>
       </div>
 
       {/* Footer */}
