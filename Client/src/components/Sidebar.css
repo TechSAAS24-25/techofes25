@@ -45,7 +45,7 @@
 }
 
 .sidebar ul li:hover {
-  color: #ff9899;
+  color: #fff;
 }
 
 @media (max-width: 768px) {

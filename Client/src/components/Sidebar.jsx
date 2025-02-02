@@ -41,7 +41,7 @@ const Sidebar = ({ onLinkClick }) => {
   return (
     <div
       style={{ scrollbarWidth: "none" }}
-      className={`sidebar overflow-scroll pb-20 pt-4 backdrop-blur-sm bg-white/10 ${
+      className={`sidebar overflow-scroll pb-20 pt-4 backdrop-blur-sm bg-s/10 ${
         isMobile ? "collapsed" : ""
       }`}
     >
