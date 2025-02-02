@@ -13,7 +13,7 @@ import PongalVideo from "../assets/pongal.mp4";
 import Carousel from "../components/Carousel";
 import logo from "../assets/bg2.mp4";
 import logo1 from "../assets/logo.png";
-import saas from "../assets/saas_gold.png";
+import saas from "../assets/saasgold.png";
 import { mainCoordinators } from "../data/data.js";
 import bgImage from "../assets/events/stage.jpeg";
 import Particles from "@tsparticles/react";
