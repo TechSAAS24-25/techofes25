@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../helper/axios"; 
 const merchandiseUrl = "api/merchandise";
 import storage from "../services/storage";
 
