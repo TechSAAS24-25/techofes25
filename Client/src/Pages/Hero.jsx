@@ -182,7 +182,7 @@ const ParticleBackground = () => (
 const RotatingCountdown = ({ countdown }) => {
   return (
     <section className="countdown-container lg:py-2  py-12 text-amber-300">
-      <div className="countdown-wrapper max-w-5xl mx-auto flex flex-wrap justify-center items-center text-center">
+      <div className="countdown-wrapper lg:gap-4 gap-1 max-w-5xl mx-auto flex flex-wrap justify-center items-center text-center">
         {Object.entries(countdown).map(([label, value], index, array) => (
           <div key={label} className="flex items-center">
             {/* Countdown Item */}
@@ -384,7 +384,7 @@ const Hero = () => {
           src={PongalVideo}
         />
         <div className="video-overlay text-center flex flex-col">
-          <h2 className="symphony-text  text-8xl  font-semibold">
+          <h2 className="symphony-text  lg:text-8xl text-4xl  font-semibold">
             Symphony of Taste
           </h2>
           <br />
