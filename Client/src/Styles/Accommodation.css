@@ -1,18 +1,21 @@
 .accom-container {
-    padding: 2rem;
-    text-align: center;
+  padding: 2rem;
+  text-align: center;
+  color: #000;
 }
 
 .accom-title {
-    color:white;
-    font-size: 2rem;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-    margin-bottom: 2rem;
+  color: white;
+  font-size: 2rem;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+  margin-bottom: 2rem;
+  color: "#000";
 }
 
 .accom-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  color: "#000";
 }

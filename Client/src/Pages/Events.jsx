@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import EventCard from "../components/Eventcard.jsx";
 import "../Styles/Events.css";
-import backgroundImage from "../assets/p0fq9cyz.jpg";
+// import backgroundImage from "../assets/p0fq9cyz.jpg";
+import backgroundImage from "../assets/events/stage1.jpeg";
 import eventServices from "../api/events.js";
 import Footer from "../components/Footer.jsx";
 
@@ -48,7 +49,7 @@ const Events = () => {
     >
       <div style={{ flex: 1 }}>
         {/* Main Content */}
-        <h1 className="events-title">Categories</h1>
+        {/* <h1 className="events-title">Categories</h1>
         <div className="events-grid">
           {categories?.map((category, index) => (
             <Link to={`/events/${category}`} key={index} className="event-link">
@@ -59,7 +60,10 @@ const Events = () => {
               />
             </Link>
           ))}
-        </div>
+        </div> */}
+        <h1 className="align-middle events-title">
+          Registrations Opening Soon
+        </h1>
       </div>
 
       {/* Footer */}

@@ -11,13 +11,13 @@ import ZoomParallax from "../components/ZoomParallax";
 import EventScroll from "../components/EventScroll";
 import PongalVideo from "../assets/pongal.mp4";
 import Carousel from "../components/Carousel";
-import logo from "../assets/bg2.mp4";
 import logo1 from "../assets/logo.png";
-import saas from "../assets/saas_logo.png";
+import saas from "../assets/SAASgold.png";
 import { mainCoordinators } from "../data/data.js";
 import bgImage from "../assets/events/stage.jpeg";
 import Particles from "@tsparticles/react";
-import plateImage from "../assets/food/plate.jpg";
+import plateImage from "../assets/food/plate.png";
+import heroVideo from "../assets/hero-bg.mp4";
 
 function useEventListener(eventName, handler, element = document) {
   const savedHandler = React.useRef();
@@ -125,7 +125,7 @@ function AnimatedCursor({}) {
     <>
       <div
         ref={cursorOuterRef}
-        className="fixed pointer-events-none"
+        className="fixed pointer-events-none hidden md:block"
         style={{
           opacity: isVisible ? 1 : 0,
           zIndex: 999,
@@ -135,7 +135,7 @@ function AnimatedCursor({}) {
       {/* Inner Stylish Cursor */}
       <div
         ref={cursorInnerRef}
-        className="fixed pointer-events-none"
+        className="fixed pointer-events-none hidden md:block"
         style={{
           background: "transparent",
           opacity: isVisible ? 1 : 0,
@@ -179,59 +179,61 @@ const ParticleBackground = () => (
 );
 
 // Countdown with rotating plates
-
 const RotatingCountdown = ({ countdown }) => {
   return (
-    <section className="countdown-container py-12 text-white">
-      <div className="countdown-wrapper max-w-5xl mx-auto grid grid-cols-4 sm:grid-cols-2 lg:gap-6 gap-4 text-center">
-        {Object.entries(countdown).map(([label, value], index) => (
-          <motion.div
-            key={label}
-            className="countdown-circle relative flex items-center justify-center lg:w-36 lg:h-36 w-16 h-16 overflow-hidden"
-          >
-            {/* Plate Image with Blur and Rotation Animation */}
-            <motion.img
-              // src={plateImage}
-              alt="Plate"
-              className="absolute top-0 left-0 w-full h-full object-cover"
-              style={{
-                filter: "blur(3px)", // Apply blur effect
-                opacity: 0.7, // Slight transparency
-              }}
-              animate={{
-                rotate: [0, 360], // Rotate full 360 degrees
-              }}
-              transition={{
-                repeat: Infinity, // Continuous rotation
-                duration: 5 + index, // Vary duration for each plate
-                ease: "linear",
-              }}
-            />
+    <section className="countdown-container lg:py-2  py-12 text-amber-300">
+      <div className="countdown-wrapper max-w-5xl mx-auto flex flex-wrap justify-center items-center text-center">
+        {Object.entries(countdown).map(([label, value], index, array) => (
+          <div key={label} className="flex items-center">
+            {/* Countdown Item */}
+            <motion.div className="countdown-circle relative flex items-center justify-center lg:w-60 lg:h-60 w-16 h-16 overflow-hidden">
+              {/* Rotating Plate Image */}
+              <motion.img
+                src={plateImage}
+                alt="Plate"
+                className="absolute top-0 left-0 w-full h-full object-cover mt-4 lg:visible invisible"
+                style={{
+                  // filter: "blur(px)",
+                  opacity: 0.7,
+                }}
+                animate={{ rotate: [0, 360] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 5 + index,
+                  ease: "linear",
+                }}
+              />
 
-            {/* Countdown Value */}
-            <div
-              className="countdown-value lg:text-6xl text-2xl lg:pb-0 pb-4 font-bold text-white "
-              style={{
-                zIndex: 1,
-                color: "white", // Text is clearly visible
-                textShadow: "2px 2px 8px rgba(0, 0, 0, 0.7)", // Shadow for contrast
-              }}
-            >
-              {value}
-            </div>
+              {/* Countdown Value */}
+              <div
+                className="countdown-value lg:text-6xl text-2xl lg:pb-0 pb-4 font-bold text-yellow-500"
+                style={{
+                  zIndex: 1,
+                  textShadow: "2px 2px 8px rgba(0, 0, 0, 0.7)",
+                }}
+              >
+                {value}
+              </div>
 
-            {/* Countdown Label */}
-            <h3
-              className="countdown-label text-lg font-bold absolute bottom-2 w-full text-center"
-              style={{
-                zIndex: 1,
-                textShadow: "2px 2px 8px rgba(0, 0, 0, 0.7)", // Enhance readability
-                color: "white",
-              }}
-            >
-              {label.charAt(0).toUpperCase() + label.slice(1)}
-            </h3>
-          </motion.div>
+              {/* Countdown Label */}
+              <h3
+                className="countdown-label text-lg font-bold absolute bottom-2 w-full text-center text-yellow-500  lg:pb-8"
+                style={{
+                  zIndex: 1,
+                  textShadow: "2px 2px 8px rgba(0, 0, 0, 0.7)",
+                }}
+              >
+                {label.charAt(0).toUpperCase() + label.slice(1)}
+              </h3>
+            </motion.div>
+
+            {/* Add Colon Except for Last Item */}
+            {index < array.length - 1 && (
+              <span className="text-4xl font-bold text-yellow-500 mx-2 lg:mx-4">
+                :
+              </span>
+            )}
+          </div>
         ))}
       </div>
     </section>
@@ -307,7 +309,15 @@ const Hero = () => {
     >
       <AnimatedCursor />
 
-      <div className="text-container">
+      <div className="text-container relative w-full h-screen overflow-hidden">
+        {/* Background Video */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src={heroVideo}
+          autoPlay
+          loop
+          muted
+        />
         {/* <motion.div
           className="pop-effect neon-logo-container"
           animate={{}}
@@ -328,7 +338,7 @@ const Hero = () => {
             className="neon-logo"
           />
         </motion.div> */}
-        <img src={logo1}></img>
+        <img className=" z-10" src={logo1}></img>
 
         <div
           className="saas-logo-container"
@@ -337,6 +347,7 @@ const Hero = () => {
             top: "20px",
             left: "20px",
             cursor: "pointer",
+            zIndex: 40,
           }}
           onClick={handleSaasClick}
         >
@@ -372,9 +383,14 @@ const Hero = () => {
           playsInline
           src={PongalVideo}
         />
-        <div className="video-overlay">
-          <h2 className="symphony-text">Symphony of Taste</h2>
-          <h3>MARCH 5-8</h3>
+        <div className="video-overlay text-center flex flex-col">
+          <h2 className="symphony-text  text-8xl  font-semibold">
+            Symphony of Taste
+          </h2>
+          <br />
+          <h3 className="symphony-text font-black text-2xl  pt-4 ">
+            MARCH 5 - 8
+          </h3>
         </div>
       </div>
 

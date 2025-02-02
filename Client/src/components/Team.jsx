@@ -46,7 +46,7 @@ const Team = () => {
   };
 
   return (
-    <div className="team-page">
+    <div className="team-page overflow-y-clip">
       <Sidebar onLinkClick={handleLinkClick} />
       <div className="main-content">
         <h1>Core Team</h1>

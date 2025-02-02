@@ -11,6 +11,10 @@
   overflow: hidden;
 }
 
+.text-container::after {
+  opacity: 0.1;
+}
+
 .neon-logo-container {
   position: relative;
   z-index: 1;
@@ -148,7 +152,7 @@ main {
 }
 
 .symphony-text {
-  font-size: 4rem;
+  /* font-size: 4rem; */
   color: white;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
 }
@@ -198,7 +202,7 @@ main {
 
 .countdown-container {
   position: relative;
-  padding: 50px 0;
+  /* padding: 10px 0; */
   /* background-image: url("../assets/events/concert.jpeg");  */
   background-color: #000;
   background-size: cover;

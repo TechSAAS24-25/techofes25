@@ -45,7 +45,7 @@ const Dashboard = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-center text-white">Loading...</div>;
+    return <div className="text-center text-6xl text-black">Loading...</div>;
   }
 
   if (error) {
@@ -54,8 +54,8 @@ const Dashboard = () => {
 
   return (
     <div
-      className="flex justify-center items-center py-8 px-4"
-      style={{ height: "85vh" }}
+      className="flex justify-center items-center py-8 px-4 bg-gradient-to-r from-orange-500 via-pink-400 to-blue-600"
+      style={{ height: "100vh" }}
     >
       <div className=" bg-black bg-opacity-20 backdrop-blur-lg text-black rounded-lg w-full max-w-5xl p-8">
         <div className="text-center mb-6">

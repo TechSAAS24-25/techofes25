@@ -5,6 +5,7 @@ import eventServices from "../api/events.js";
 import storage from "../services/storage";
 import "./EventDetail.css";
 import eventImages from "../data/eventImages";
+
 const EventDetail = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
