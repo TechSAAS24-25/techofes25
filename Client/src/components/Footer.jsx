@@ -204,10 +204,9 @@ const Contributors = () => {
 export default function Footer() {
   return (
     <div
-      className="relative bg-center"
+      className="relative bg-center sm:h-[120vh] h-[100vh]"
       style={{
         clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)",
-        height: "100vh", // Full viewport height
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
