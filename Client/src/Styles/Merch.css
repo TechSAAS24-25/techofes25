@@ -1,11 +1,10 @@
 .container {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: url("/assets/pongal.mp4") no-repeat center center/cover; /* Food-themed background */
-  overflow: hidden;
+  /* position: relative; */
+  /* height: 100vh; */
+  /* display: flex; */
+ 
+  /* background: url("/assets/pongal.mp4") no-repeat center center/cover; /* Food-themed background */
+  /* overflow: hidden; */
 }
 
 .box {

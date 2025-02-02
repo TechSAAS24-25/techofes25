@@ -1,9 +1,22 @@
 import React from "react";
 import "../Styles/Merch.css"; // Import global CSS
+import backgroundImage from "../assets/events/stage1.jpeg";
 
 const Merchandise = () => {
   return (
-    <div className="container">
+    <div
+      // className="container"
+      style={{
+        height: "100vh", // Use minHeight instead of height
+        width: "100%", // Use minHeight instead of height
+        alignItems: "center",
+        justifyContent: "center",
+        display: "flex",
+        // flexDirection: "column",
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+      }}
+    >
       {" "}
       {/* Updated to global class name */}
       <div className="box">
@@ -11,7 +24,7 @@ const Merchandise = () => {
         {/* Updated to global class name */}
         <div className="foodIcon"></div> {/* Food animation/icon */}
         <div className="body">
-          <Text3d primary={"Coming"} secondary={"Soon"} />
+          <Text3d primary={"Coming soon"} />
         </div>
       </div>
     </div>
