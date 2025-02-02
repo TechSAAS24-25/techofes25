@@ -12,6 +12,7 @@ import EventScroll from "../components/EventScroll";
 import PongalVideo from "../assets/pongal.mp4";
 import Carousel from "../components/Carousel";
 import logo from "../assets/bg2.mp4";
+import logo1 from "../assets/logo.png";
 import saas from "../assets/saas_logo.png";
 import { mainCoordinators } from "../data/data.js";
 import bgImage from "../assets/events/stage.jpeg";
@@ -190,7 +191,7 @@ const RotatingCountdown = ({ countdown }) => {
           >
             {/* Plate Image with Blur and Rotation Animation */}
             <motion.img
-              src={plateImage}
+              // src={plateImage}
               alt="Plate"
               className="absolute top-0 left-0 w-full h-full object-cover"
               style={{
@@ -307,7 +308,7 @@ const Hero = () => {
       <AnimatedCursor />
 
       <div className="text-container">
-        <motion.div
+        {/* <motion.div
           className="pop-effect neon-logo-container"
           animate={{}}
           transition={{
@@ -326,7 +327,8 @@ const Hero = () => {
             width={1050}
             className="neon-logo"
           />
-        </motion.div>
+        </motion.div> */}
+        <img src={logo1}></img>
 
         <div
           className="saas-logo-container"

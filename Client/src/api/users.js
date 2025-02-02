@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../helper/axios"; 
 const profileUrl = "api/profile";
 import storage from "../services/storage";
 

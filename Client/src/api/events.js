@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../helper/axios"; 
 const eventsUrl = "/api/events";
 import storage from "../services/storage";
 

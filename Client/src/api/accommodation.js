@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../helper/axios";
 const accommodationUrl = "api/accommodations";
 import storage from "../services/storage";
 

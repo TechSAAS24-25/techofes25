@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../helper/axios"; 
 import storage from "../services/storage";
 const adminUrl = "/api/admin";
 

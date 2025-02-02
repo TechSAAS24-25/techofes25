@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../helper/axios"; 
 const loginUrl = "/api/auth/login";
 const registerUrl = "/api/auth/register";
 const logoutUrl = "/api/auth/logout";
