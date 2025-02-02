@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import storage from "../services/storage";
 import "./Navbar.css";
 import homeIcon from "../assets/home.png";
@@ -10,7 +10,6 @@ import merch from "../assets/merch.png";
 import contactIcon from "../assets/contact.png";
 import scheduleIcon from "../assets/schedule1.png";
 import sponsor from "../assets/sponsor.png";
-import register from "../assets/register.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import authServices from "../api/auth.js";
@@ -19,13 +18,17 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();  // Detect location changes
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
     const user = storage.loadUser();
     setIsLoggedIn(!!user);
-  }, []);
+
+    // Close the menu whenever the route changes
+    setIsMenuOpen(false);
+  }, [location]); // Runs when the route changes
 
   const handleLogout = () => {
     storage.removeUser();
@@ -134,7 +137,7 @@ const Navbar = () => {
           </NavLink>
         </li>
 
-        <li className="navItem">
+        { isLoggedIn ? ( <li className="navItem">
           <NavLink
             to="/dashboard"
             className={({ isActive }) => (isActive ? "active-link" : "navLink")}
@@ -143,7 +146,7 @@ const Navbar = () => {
             <img src={more} alt="More Icon" id="icon" />
             User Profile
           </NavLink>
-        </li>
+        </li> ) : null }
 
         <li className="navItem">
           {isLoggedIn ? (
