@@ -152,7 +152,7 @@ main {
 }
 
 .symphony-text {
-  font-size: 4rem;
+  /* font-size: 4rem; */
   color: white;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
 }

@@ -5,30 +5,75 @@ const scheduleData = [
   {
     day: "Day 1",
     events: [
-      { title: "Event 1", location: "Hall A", time: "09:00 AM", image: "https://via.placeholder.com/150" },
-      { title: "Event 2", location: "Hall B", time: "10:30 AM", image: "https://via.placeholder.com/150" },
-      { title: "Event 3", location: "Hall A", time: "11:00 AM", image: "https://via.placeholder.com/150" },
-      { title: "Event 4", location: "Hall B", time: "12:30 PM", image: "https://via.placeholder.com/150" },
+      {
+        title: "Event 1",
+        location: "Hall A",
+        time: "09:00 AM",
+        image: "https://via.placeholder.com/150",
+      },
+      {
+        title: "Event 2",
+        location: "Hall B",
+        time: "10:30 AM",
+        image: "https://via.placeholder.com/150",
+      },
+      {
+        title: "Event 3",
+        location: "Hall A",
+        time: "11:00 AM",
+        image: "https://via.placeholder.com/150",
+      },
+      {
+        title: "Event 4",
+        location: "Hall B",
+        time: "12:30 PM",
+        image: "https://via.placeholder.com/150",
+      },
     ],
   },
   {
     day: "Day 2",
     events: [
-      { title: "ESTAMPIE PRELIMS", location: "Audi", time: "08:00 AM", image: "https://via.placeholder.com/150" },
-      { title: "PAIR ON STAGE PRELIMS", location: "L19", time: "09:00 AM", image: "https://via.placeholder.com/150" },
+      {
+        title: "ESTAMPIE PRELIMS",
+        location: "Audi",
+        time: "08:00 AM",
+        image: "https://via.placeholder.com/150",
+      },
+      {
+        title: "PAIR ON STAGE PRELIMS",
+        location: "L19",
+        time: "09:00 AM",
+        image: "https://via.placeholder.com/150",
+      },
     ],
   },
   {
     day: "Day 3",
     events: [
-      { title: "Event 3", location: "Hall C", time: "11:00 AM", image: "https://via.placeholder.com/150" },
-      { title: "Event 4", location: "Outdoor", time: "02:00 PM", image: "https://via.placeholder.com/150" },
+      {
+        title: "Event 3",
+        location: "Hall C",
+        time: "11:00 AM",
+        image: "https://via.placeholder.com/150",
+      },
+      {
+        title: "Event 4",
+        location: "Outdoor",
+        time: "02:00 PM",
+        image: "https://via.placeholder.com/150",
+      },
     ],
   },
   {
     day: "Day 4",
     events: [
-      { title: "Closing Ceremony", location: "Main Stage", time: "05:00 PM", image: "https://via.placeholder.com/150" },
+      {
+        title: "Closing Ceremony",
+        location: "Main Stage",
+        time: "05:00 PM",
+        image: "https://via.placeholder.com/150",
+      },
     ],
   },
 ];
@@ -53,7 +98,8 @@ const Schedule = () => {
     timelineRef.current.forEach((el) => el && observer.unobserve(el));
     timelineRef.current = []; // Reset the refs array
 
-    const currentEvents = scheduleData.find((day) => day.day === selectedDay)?.events || [];
+    const currentEvents =
+      scheduleData.find((day) => day.day === selectedDay)?.events || [];
     currentEvents.forEach((_, index) => {
       const el = document.getElementById(`event-${index}`);
       if (el) {
@@ -65,12 +111,15 @@ const Schedule = () => {
     return () => observer.disconnect();
   }, [selectedDay]);
 
-  const currentEvents = scheduleData.find((day) => day.day === selectedDay)?.events || [];
+  const currentEvents =
+    scheduleData.find((day) => day.day === selectedDay)?.events || [];
 
   return (
-    <div className="schedule">
+    <div className="schedule" style={{ height: "100vh" }}>
       <h1 className="schedule-title">Schedule</h1>
-      <div className="tabs">
+      <h1 className="schedule-title">Coming Soon</h1>
+
+      {/* <div className="tabs">
         {scheduleData.map((day, index) => (
           <button
             key={index}
@@ -98,7 +147,7 @@ const Schedule = () => {
           </div>
         ))}
         {currentEvents.length === 0 && <p>No events scheduled for this day.</p>}
-      </div>
+      </div> */}
     </div>
   );
 };

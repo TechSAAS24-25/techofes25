@@ -126,7 +126,7 @@ function AnimatedCursor({}) {
     <>
       <div
         ref={cursorOuterRef}
-        className="fixed pointer-events-none"
+        className="fixed pointer-events-none hidden md:block"
         style={{
           opacity: isVisible ? 1 : 0,
           zIndex: 999,
@@ -136,7 +136,7 @@ function AnimatedCursor({}) {
       {/* Inner Stylish Cursor */}
       <div
         ref={cursorInnerRef}
-        className="fixed pointer-events-none"
+        className="fixed pointer-events-none hidden md:block"
         style={{
           background: "transparent",
           opacity: isVisible ? 1 : 0,
@@ -385,9 +385,13 @@ const Hero = () => {
           src={PongalVideo}
         />
         <div className="video-overlay text-center flex flex-col">
-          <h2 className="symphony-text font-semibold">Symphony of Taste</h2>
+          <h2 className="symphony-text  text-8xl  font-semibold">
+            Symphony of Taste
+          </h2>
           <br />
-          <h3 className="font-black text-2xl  pt-4 ">MARCH 5 - 8</h3>
+          <h3 className="symphony-text font-black text-2xl  pt-4 ">
+            MARCH 5 - 8
+          </h3>
         </div>
       </div>
 

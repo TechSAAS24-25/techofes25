@@ -45,7 +45,7 @@ const Dashboard = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-center text-6xl text-white">Loading...</div>;
+    return <div className="text-center text-6xl text-black">Loading...</div>;
   }
 
   if (error) {

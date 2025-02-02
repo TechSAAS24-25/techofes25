@@ -41,13 +41,19 @@ const Sidebar = ({ onLinkClick }) => {
   return (
     <div
       style={{ scrollbarWidth: "none" }}
-      className={`sidebar overflow-scroll pb-20 ${isMobile ? "collapsed" : ""}`}
+      className={`sidebar overflow-scroll pb-20 pt-4 backdrop-blur-sm bg-white/10 ${
+        isMobile ? "collapsed" : ""
+      }`}
     >
       <ul>
         {menuItems.map((item, index) => (
           <li
             key={index}
-            className={hoveredIndex === index ? "hovered" : ""}
+            className={
+              hoveredIndex === index
+                ? "text-black font-bold hovered"
+                : "text-black font-bold"
+            }
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
             onClick={() => handleClick(item)}
