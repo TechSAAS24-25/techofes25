@@ -68,7 +68,7 @@ const Login = () => {
       // Successful login
       alert(`Welcome ${response.username}!\nTID: ${response.T_ID} `);
 
-      navigate("/dashboard");
+      navigate("/hero");
       window.location.reload();
     } catch (error) {
       // Handle errors returned by the API

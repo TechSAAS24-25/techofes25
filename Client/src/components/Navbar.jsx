@@ -54,6 +54,16 @@ const Navbar = () => {
       <ul className={`navList ${isMenuOpen ? "show" : ""}`}>
         <li className="navItem">
           <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? "active-link" : "navLink")}
+          >
+            <div className="top-bar"></div>
+            <img src={homeIcon} alt="Home Icon" id="icon" />
+            Home
+          </NavLink>
+        </li>
+        <li className="navItem">
+          <NavLink
             to="/merch"
             className={({ isActive }) => (isActive ? "active-link" : "navLink")}
           >
@@ -72,7 +82,7 @@ const Navbar = () => {
             Events
           </NavLink>
         </li>
-        <li className="navItem">
+        {/* <li className="navItem">
           <NavLink
             to="/registration"
             className={({ isActive }) => (isActive ? "active-link" : "navLink")}
@@ -81,17 +91,8 @@ const Navbar = () => {
             <img src={register} alt="Register Icon" id="icon" />
             Register
           </NavLink>
-        </li>
-        <li className="navItem">
-          <NavLink
-            to="/"
-            className={({ isActive }) => (isActive ? "active-link" : "navLink")}
-          >
-            <div className="top-bar"></div>
-            <img src={homeIcon} alt="Home Icon" id="icon" />
-            Home
-          </NavLink>
-        </li>
+        </li> */}
+
         <li className="navItem">
           <NavLink
             to="/accommodation"
