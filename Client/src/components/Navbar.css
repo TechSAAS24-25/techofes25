@@ -101,7 +101,7 @@
   max-width: 15px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 600px) {
   .navbar {
     flex-direction: column;
     padding: 1rem 0;
