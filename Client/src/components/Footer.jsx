@@ -5,6 +5,9 @@ import hgLogo from "../assets/sponsor/hg.png";
 import mediLogo from "../assets/sponsor/Medi.png";
 import Logo from "../assets/logo.png";
 import saas from "../assets/saas_logo.png";
+
+import mailIcon from "../assets/mail.svg";
+import waIcon from "../assets/wa.svg";
 import "./Footer.css";
 
 function Content() {
@@ -47,6 +50,48 @@ const Section2 = () => {
         <p className="text-center text-base mt-2 text-[#ffffffc9] font-semibold">
           SAAS CEG
         </p>
+      </div>
+
+      <div className="contact-section">
+        <p className="contact-title">Contact Us</p>
+        <ul className="contact-icons">
+          <li>
+            <a
+              href="https://www.facebook.com/techofes.co.in"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="fab fa-facebook-f"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.instagram.com/saas_ceg/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="fab fa-instagram"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="mailto:saasceg25@gmail.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={mailIcon} alt="Email" className="icon" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://whatsapp.com/channel/0029VaE66JJ9xVJeMj7E8M08"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={waIcon} alt="WhatsApp" className="icon" />
+            </a>
+          </li>
+        </ul>
       </div>
 
       {/* Copyright and contributors */}
@@ -200,11 +245,10 @@ const Contributors = () => {
     </div>
   );
 };
-
 export default function Footer() {
   return (
     <div
-      className="relative bg-center h-[150vh] lg:h-[100vh]"
+      className="footer-container  relative bg-center h-[200vh] lg:h-[100vh]"
       style={{
         clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)",
         backgroundSize: "cover",
