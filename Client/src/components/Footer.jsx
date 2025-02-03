@@ -3,11 +3,17 @@ import agsLogo from "../assets/sponsor/ags1.png";
 import vetriLogo from "../assets/sponsor/vetri.png";
 import hgLogo from "../assets/sponsor/hg.png";
 import mediLogo from "../assets/sponsor/Medi.png";
+import Mail from "../assets/mail.png"
 import Logo from "../assets/logo.png";
-import saas from "../assets/saas_logo.png";
+import SAAS from '../assets/SAASgold.png'
 
 import mailIcon from "../assets/mail.svg";
+import insta from "../assets/insta.svg"
 import waIcon from "../assets/wa.svg";
+import { FaInstagram } from 'react-icons/fa'
+import { FaFacebook } from 'react-icons/fa'
+import { IoIosMail } from 'react-icons/io'
+import { FaWhatsapp } from 'react-icons/fa'
 import "./Footer.css";
 
 function Content() {
@@ -30,76 +36,82 @@ const Section1 = () => {
 
 const Section2 = () => {
   return (
-    <div className="text-white flex flex-col items-center justify-center h-auto gap-4">
+    <div className='text-white flex flex-col items-center justify-center h-auto gap-4'>
       {/* Main Logo Centered */}
-      <div className="flex flex-col items-center animate-fadeIn">
+      <div className='flex flex-col items-center animate-fadeIn'>
         <img
           src={Logo}
-          alt="Main Logo"
-          className="h-auto max-h-48 w-auto max-w-xl mb-2" // Adjusted size and spacing
+          alt='Main Logo'
+          className='h-auto max-h-48 w-auto max-w-xl mb-2' // Adjusted size and spacing
         />
       </div>
 
       {/* SAAS Logo Smaller Below */}
-      <div className="flex flex-col items-center">
+      <div className='flex flex-col items-center'>
         <img
-          src={saas}
-          alt="SAAS Logo"
-          className="h-auto max-h-14 w-auto max-w-sm mb-2" // Adjusted size and spacing
+          src={SAAS}
+          alt='SAAS Logo'
+          className='h-auto max-h-14 w-auto max-w-sm mb-2' // Adjusted size and spacing
         />
-        <p className="text-center text-base mt-2 text-[#ffffffc9] font-semibold">
+        <p className='text-center text-base mt-2 text-[#ffffffc9] font-semibold'>
           SAAS CEG
         </p>
       </div>
 
-      <div className="contact-section">
-        <p className="contact-title">Contact Us</p>
-        <ul className="contact-icons">
+      <div className='contact-section'>
+        <p className='contact-title'>Contact Us</p>
+        <ul className='contact-icons'>
           <li>
             <a
-              href="https://www.facebook.com/techofes.co.in"
-              target="_blank"
-              rel="noreferrer"
+              href='https://www.facebook.com/techofes.co.in'
+              target='_blank'
+              rel='noreferrer'
             >
-              <i className="fab fa-facebook-f"></i>
+              {/* <i className='fab fa-facebook-f'></i> */}
+              <FaFacebook />
             </a>
           </li>
           <li>
             <a
-              href="https://www.instagram.com/saas_ceg/"
-              target="_blank"
-              rel="noreferrer"
+              href='https://www.instagram.com/saas_ceg/'
+              target='_blank'
+              rel='noreferrer'
             >
-              <i className="fab fa-instagram"></i>
+              {/* <img src={insta} alt='' /> */}
+              {/* <FaSquareInstagram /> */}
+              <FaInstagram />
+            </a>
+          </li>
+
+          <li>
+            <a
+              href='mailto:saasceg25@gmail.com'
+              target='_blank'
+              rel='noreferrer'
+            >
+              {/* <img src={Mail} alt='Email' className='icon mailicon' /> */}
+              <IoIosMail />
             </a>
           </li>
           <li>
             <a
-              href="mailto:saasceg25@gmail.com"
-              target="_blank"
-              rel="noreferrer"
+              href='https://whatsapp.com/channel/0029VaE66JJ9xVJeMj7E8M08'
+              target='_blank'
+              rel='noreferrer'
             >
-              <img src={mailIcon} alt="Email" className="icon" />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://whatsapp.com/channel/0029VaE66JJ9xVJeMj7E8M08"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img src={waIcon} alt="WhatsApp" className="icon" />
+              {/* <img src={waIcon} alt='WhatsApp' className='icon' /> */}
+              <FaWhatsapp />
             </a>
           </li>
         </ul>
       </div>
 
       {/* Copyright and contributors */}
-      <div className="text-sm text-[#ffffffd9] text-center w-full">
+      <div className='text-sm text-[#ffffffd9] text-center w-full'>
         <Contributors />
       </div>
     </div>
-  );
+  )
 };
 
 const Nav = () => {
