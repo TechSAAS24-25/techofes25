@@ -6,6 +6,7 @@ import mediLogo from "../assets/sponsor/Medi.png";
 import Mail from "../assets/mail.png"
 import Logo from "../assets/logo.png";
 import SAAS from '../assets/SAASgold.png'
+import Ags from '../assets/ags[1].png'
 
 import mailIcon from "../assets/mail.svg";
 import insta from "../assets/insta.svg"
@@ -162,15 +163,15 @@ const Nav = () => {
 
 const Sponsors = () => {
   return (
-    <div className="flex flex-col gap-6">
-      <h3 className="mb-4 uppercase text-white text-xl font-bold tracking-wider">
+    <div className='flex flex-col gap-6'>
+      <h3 className='mb-4 uppercase text-white text-xl font-bold tracking-wider'>
         Our Sponsors
       </h3>
-      <div className="grid lg:grid-cols-4 grid-cols-2 gap-6 w-full">
+      <div className='grid lg:grid-cols-4 grid-cols-2 gap-6 w-full'>
         <img
-          src={agsLogo}
-          alt="Sponsor 1"
-          className="h-16 w-auto transition-transform duration-300 hover:scale-110"
+          src={Ags}
+          alt='Sponsor 1'
+          className='h-16 w-auto transition-transform duration-300 hover:scale-110'
         />
         {/* <img
           src={vetriLogo}
@@ -189,7 +190,7 @@ const Sponsors = () => {
         /> */}
       </div>
     </div>
-  );
+  )
 };
 
 const Contributors = () => {

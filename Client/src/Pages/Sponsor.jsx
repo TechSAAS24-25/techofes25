@@ -70,7 +70,7 @@ const SponsorPage = () => {
               alt={sponsor.name}
               className="sponsor-logo"
             />
-            <h3>{sponsor.name}</h3>
+            <h3 className="agstitle">{sponsor.name}</h3>
           </motion.div>
         ))}
       </div>
