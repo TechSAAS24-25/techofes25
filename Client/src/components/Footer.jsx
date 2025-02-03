@@ -3,7 +3,7 @@ import agsLogo from "../assets/sponsor/ags1.png";
 import mailIcon from "../assets/mail.svg";
 import waIcon from "../assets/wa.svg";
 import Logo from "../assets/logo.png";
-import saas from "../assets/saasgold.png";
+import saas from "../assets/SAASgold.png";
 import "./Footer.css";
 
 function Footer() {
