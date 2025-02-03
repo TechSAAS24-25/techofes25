@@ -319,26 +319,7 @@ const Hero = () => {
           loop
           muted
         />
-        {/* <motion.div
-          className="pop-effect neon-logo-container"
-          animate={{}}
-          transition={{
-            repeat: Infinity,
-            repeatType: "reverse",
-            duration: 2,
-          }}
-        >
-          <video
-            src={logo} // Replace with the actual video file path
-            autoPlay
-            loop
-            muted
-            playsInline
-            height={600}
-            width={1050}
-            className="neon-logo"
-          />
-        </motion.div> */}
+
         <img className=" z-10" src={logo1}></img>
 
         <div
@@ -386,7 +367,7 @@ const Hero = () => {
         />
         <div className="video-overlay text-center flex flex-col">
           <h2 className="symphony-text  lg:text-8xl text-4xl  font-semibold">
-            Symphony of Taste
+            Symphony of Tastes
           </h2>
           <br />
           <h3 className="symphony-text font-black text-2xl  pt-4 ">

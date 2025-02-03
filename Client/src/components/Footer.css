@@ -1,24 +1,172 @@
-.main-footer {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)),
-    url("../assets/food/bg5.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  padding: 20px; /* Added padding for spacing */
+.footer-container {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.95)),
+    url("../assets/food/bg5.jpeg") no-repeat center center/cover;
+  color: #ffffff;
+  padding: 20px;
 }
 
-.text-[#00ffcc] {
-  color: #00ffcc;
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-.text-center {
+.section-1,
+.section-2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.nav-section,
+.sponsors-section,
+.contact-section {
+  flex: 1 1 200px;
   text-align: center;
 }
 
-.flex-col {
-  flex-direction: column;
+.nav-title,
+.sponsors-title,
+.contact-title {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: #00ffcc;
 }
 
-.z-10 {
-  z-index: 10;
+.nav-links li,
+.contributors-list li {
+  margin: 5px 0;
+}
+
+.nav-links a,
+.contributors-list a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.contributors-list a:hover {
+  color: #00ffcc;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-logo {
+  max-width: 250px;
+  margin-bottom: 10px;
+}
+
+.saas-logo {
+  max-width: 100px;
+  margin-bottom: 5px;
+}
+
+.saas-text {
+  font-weight: bold;
+  color: #ffffffc9;
+}
+
+.contact-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.contact-icons a {
+  font-size: 1.5rem;
+  color: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.contact-icons a:hover {
+  transform: scale(1.2);
+  color: #00ffcc;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.sponsor-logos {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sponsor-logo {
+  max-height: 50px;
+  transition: transform 0.3s;
+}
+
+.sponsor-logo:hover {
+  transform: scale(1.1);
+}
+
+.contributors-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.highlight {
+  color: #00ffcc;
+}
+
+.copyright {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #bbbbbb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section-1,
+  .section-2 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-section,
+  .sponsors-section,
+  .contact-section {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .contact-icons {
+    gap: 10px;
+  }
+
+  .main-logo {
+    max-width: 160px;
+  }
+
+  .saas-logo {
+    max-width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-container {
+    padding: 15px;
+  }
+
+  .nav-title,
+  .sponsors-title,
+  .contact-title {
+    font-size: 1.2rem;
+  }
+
+  .contact-icons a {
+    font-size: 1.3rem;
+  }
 }
