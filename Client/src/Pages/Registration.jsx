@@ -10,6 +10,7 @@ const foodItems = ["🍕", "🍔", "🍩", "🍣", "🌮", "🥞", "🍪", "🍿
 
 const Registration = () => {
   const [fallingFood, setFallingFood] = useState([]);
+  const [registering, setRegistering] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     firstName: "",
@@ -74,12 +75,14 @@ const Registration = () => {
           rollno: formData.usertype === "Insider" ? formData.rollno : undefined,
           college: formData.college,
         };
+        setRegistering(true);
         const response = await authServices.register(userData);
 
         if (response) {
           alert(
             `Registration Successful: ${response.message}\nTID: ${response.user.T_ID} `
           );
+          setRegistering(false);
           navigate("/login");
         }
       } catch (error) {
@@ -90,6 +93,8 @@ const Registration = () => {
           console.error("Error:", error.message);
           alert("An unexpected error occurred. Please try again later.");
         }
+      } finally {
+        setRegistering(false);
       }
     }
 
@@ -284,8 +289,8 @@ const Registration = () => {
               </div>
             </div>
 
-            <button type="submit" className="submit-btn">
-              Sign Up
+            <button type="submit" className="submit-btn" disabled={registering}>
+              {registering ? "Registering" : "Sign Up"}
             </button>
           </form>
         </div>

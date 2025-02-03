@@ -11,8 +11,19 @@ const registerRouter = express.Router();
 
 // Registration Route
 registerRouter.post("/", async (request, response) => {
-  const { username, firstName, lastName, email, phn, type, rollno, password } =
-    request.body;
+  const {
+    college,
+    username,
+    firstName,
+    lastName,
+    email,
+    phn,
+    type,
+    rollno,
+    password,
+  } = request.body;
+
+  console.log(college);
 
   try {
     console.log("Received registration data:", request.body);
@@ -40,6 +51,7 @@ registerRouter.post("/", async (request, response) => {
     const passwordHash = await bcrypt.hash(password, 10);
     console.log("Password hashed successfully");
 
+    console.log(college);
     // Create user
     const user = new User({
       username,
@@ -50,6 +62,7 @@ registerRouter.post("/", async (request, response) => {
       userType: type,
       rollNo: type === "Insider" ? rollno : undefined,
       passwordHash,
+      college,
     });
 
     const savedUser = await user.save();

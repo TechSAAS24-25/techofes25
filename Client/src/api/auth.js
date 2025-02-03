@@ -1,4 +1,4 @@
-import axios from "../helper/axios"; 
+import axios from "../helper/axios";
 const loginUrl = "/api/auth/login";
 const registerUrl = "/api/auth/register";
 const logoutUrl = "/api/auth/logout";
@@ -41,6 +41,7 @@ const login = async (username, password) => {
 
 const register = async (user) => {
   const response = await axios.post(registerUrl, user);
+  console.log("user:", user);
   console.log(response);
   return response.data;
 };

@@ -46,6 +46,10 @@ const userSchema = new mongoose.Schema(
         return this.userType === "Insider";
       },
     },
+    college: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
