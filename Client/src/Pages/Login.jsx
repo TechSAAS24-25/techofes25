@@ -5,6 +5,7 @@ import icecream from "../assets/food/icecream.gif";
 import authServices from "../api/auth.js";
 import storage from "../services/storage";
 import logo from "../assets/logo.png";
+import showToast from "../components/toastNotifications";
 
 const foodItems = ["🍕", "🍔", "🍩", "🍣", "🌮", "🥞", "🍪", "🍿"];
 
@@ -66,18 +67,30 @@ const Login = () => {
 
       // setIsLoggedIn(true);
       // Successful login
-      alert(`Welcome ${response.username}!\nTID: ${response.T_ID} `);
+      // alert();
+      showToast(
+        "success",
+        `Welcome ${response.username}!\nTID: ${response.T_ID} `
+      );
 
-      navigate("/");
-      window.location.reload();
+      // Delay navigation by 2 seconds (2000ms)
+      setTimeout(() => {
+        navigate("/");
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       // Handle errors returned by the API
       if (error.response) {
         console.error("Error:", error.response.data.error);
-        alert(`Login failed: ${error.response.data.error}`);
+        // alert(``);
+        showToast("error", `Login failed: ${error.response.data.error}`);
       } else {
         console.error("Error:", error.message);
-        alert("An unexpected error occurred. Please try again later.");
+        showToast(
+          "error",
+          `An unexpected error occurred. Please try again later.`
+        );
+        // alert("");
       }
     }
   };

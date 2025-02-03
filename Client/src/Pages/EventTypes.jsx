@@ -5,6 +5,7 @@ import EventCard from "../components/Eventcard.jsx";
 import "../Styles/Events.css";
 import backgroundImage from "../assets/p0fq9cyz.jpg";
 import eventServices from "../api/events.js";
+import showToast from "../components/toastNotifications";
 import image from "../assets/dance.png";
 
 const EventTypes = () => {
@@ -25,7 +26,7 @@ const EventTypes = () => {
         setTypes(filteredTypes);
       } catch (error) {
         console.error("Error fetching event types:", error);
-        alert("Failed to load event types.");
+        showToast("error", "Failed to load event types.");
       }
     };
     fetchTypes();

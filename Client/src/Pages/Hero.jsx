@@ -306,6 +306,7 @@ const Hero = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
+      className="overflow-x-clip"
     >
       <AnimatedCursor />
 

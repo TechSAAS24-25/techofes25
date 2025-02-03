@@ -204,7 +204,7 @@ const Contributors = () => {
 export default function Footer() {
   return (
     <div
-      className="relative bg-center sm:h-[120vh] h-[100vh]"
+      className="relative bg-center h-[150vh] lg:h-[100vh]"
       style={{
         clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)",
         backgroundSize: "cover",

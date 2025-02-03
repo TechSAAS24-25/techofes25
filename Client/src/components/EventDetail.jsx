@@ -5,6 +5,8 @@ import eventServices from "../api/events.js";
 import storage from "../services/storage";
 import "./EventDetail.css";
 import eventImages from "../data/eventImages";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EventDetail = () => {
   const { id } = useParams();
@@ -25,7 +27,7 @@ const EventDetail = () => {
         setEvent(response);
       } catch (error) {
         console.error("Error fetching event details:", error);
-        alert("Failed to load event details.");
+        toast.error("Failed to load event details.");
       }
 
       if (user) {
@@ -34,7 +36,7 @@ const EventDetail = () => {
           setIsRegistered(response.isRegistered);
         } catch (error) {
           console.error("Error fetching event details:", error);
-          alert("Failed to load event details.");
+          toast.error("Failed to load event details.");
         }
       }
     };
@@ -44,18 +46,18 @@ const EventDetail = () => {
 
   const handleRegister = async () => {
     if (!isLoggedIn) {
-      alert("Please log in to register for events.");
+      toast.warning("Please log in to register for events.");
       return;
     }
 
     try {
       setIsRegistering(true);
       await eventServices.registerEvent(id);
-      alert("Registration successful!");
+      toast.success("Registration successful!");
       setIsRegistered(true);
     } catch (error) {
       console.error("Error registering for event:", error);
-      alert("Error registering for event:", error);
+      toast.error("Error registering for event.");
     } finally {
       setIsRegistering(false);
     }
@@ -77,7 +79,7 @@ const EventDetail = () => {
       }}
     >
       <h2 className="text-white text-4xl e-heading">{event.category}</h2>
-
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
       <div className="event-detail-container">
         <div className="event-head">
           <img
