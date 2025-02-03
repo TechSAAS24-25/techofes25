@@ -15,7 +15,7 @@ const Merchandise = () => {
         // flexDirection: "column",
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
-      }}
+      }}  
     >
       {" "}
       {/* Updated to global class name */}
