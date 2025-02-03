@@ -8,7 +8,7 @@ import "./Footer.css";
 
 function Footer() {
   return (
-    <footer className="footer-container relative bg-center h-[150vh] lg:h-[100vh]">
+    <footer className="footer-container relative h-[150vh] lg:h-[100vh]">
       <div className="footer-content">
         <Section1 />
         <Section2 />
