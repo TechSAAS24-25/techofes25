@@ -5,6 +5,7 @@ import icecream from "../assets/food/icecream.gif";
 import authServices from "../api/auth.js";
 import { Eye, EyeOff } from "lucide-react";
 import logo from "../assets/logo.png";
+import showToast from "../components/toastNotifications";
 
 const foodItems = ["🍕", "🍔", "🍩", "🍣", "🌮", "🥞", "🍪", "🍿"];
 
@@ -58,9 +59,9 @@ const Registration = () => {
     console.log("Form Data Submitted:", formData);
 
     if (formData.confirmPassword !== formData.password) {
-      alert("Passwords don't match.");
+      showToast("warning", "Passwords don't match.");
     } else if (formData.usertype === "Insider" && !formData.rollno) {
-      alert("Roll Number is required for Insider user type.");
+      showToast("warning", "Roll Number is required for Insider user type.");
       return;
     } else {
       try {
@@ -79,19 +80,35 @@ const Registration = () => {
         const response = await authServices.register(userData);
 
         if (response) {
-          alert(
-            `Registration Successful: ${response.message}\nTID: ${response.user.T_ID} `
+          // alert(
+          //   `Registration Successful: ${response.message}\nTID: ${response.user.T_ID} `
+          // );
+          showToast(
+            "success",
+            `Registration Successful: ${response.message}
+TID: ${response.user.T_ID} `
           );
           setRegistering(false);
-          navigate("/login");
+
+          setTimeout(() => {
+            navigate("/login");
+          }, 2000);
         }
       } catch (error) {
         if (error.response) {
           console.error("Error:", error.response.data.error);
-          alert(`Registration failed: ${error.response.data.error}`);
+          // alert();
+          showToast(
+            "error",
+            `Registration failed: ${error.response.data.error}`
+          );
         } else {
           console.error("Error:", error.message);
-          alert("An unexpected error occurred. Please try again later.");
+          // alert();
+          showToast(
+            "error",
+            "An unexpected error occurred. Please try again later."
+          );
         }
       } finally {
         setRegistering(false);
@@ -99,11 +116,15 @@ const Registration = () => {
     }
 
     if (formData.confirmPassword !== formData.password) {
-      alert("Passwords don't match.");
+      // alert();
+      // showToast("warning", "Passwords don't match.");
+
       return;
     }
     if (formData.usertype === "Insider" && !formData.rollno) {
-      alert("Roll Number is required for Insider user type.");
+      // alert();
+      // showToast("warning", "Roll Number is required for Insider user type.");
+
       return;
     }
   };

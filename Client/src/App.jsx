@@ -19,6 +19,7 @@ import Registration from "./Pages/Registration.jsx";
 import Login from "./Pages/Login.jsx";
 import Admin from "./Pages/Admin.jsx";
 import Dashboard from "./components/Dashboard.jsx";
+import { ToastContainer } from "react-toastify";
 
 import preloader from "./assets/preload.mp4";
 import "./App.css";
@@ -77,6 +78,11 @@ function App() {
             <Route path="/events/:category" element={<EventTypes />} />
             <Route path="/events/:category/:type" element={<EventList />} />
           </Routes>
+          <ToastContainer
+            position="bottom-right"
+            autoClose={3000}
+            hideProgressBar
+          />
         </>
       )}
     </Router>

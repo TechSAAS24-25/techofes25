@@ -6,6 +6,7 @@ import "../Styles/Events.css";
 // import backgroundImage from "../assets/p0fq9cyz.jpg";
 import backgroundImage from "../assets/events/stage1.jpeg";
 import eventServices from "../api/events.js";
+import showToast from "../components/toastNotifications";
 import Footer from "../components/Footer.jsx";
 
 const Events = () => {
@@ -26,10 +27,16 @@ const Events = () => {
       } catch (error) {
         if (error.response) {
           console.error("Error:", error.response.data.error);
-          alert(`Event fetching failed: ${error.response.data.error}`);
+          showToast(
+            "error",
+            `Event fetching failed: ${error.response.data.error}`
+          );
         } else {
           console.error("Error:", error.message);
-          alert("An unexpected error occurred. Please try again later.");
+          showToast(
+            "error",
+            "An unexpected error occurred. Please try again later."
+          );
         }
       }
     };

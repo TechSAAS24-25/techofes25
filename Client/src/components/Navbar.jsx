@@ -14,6 +14,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import authServices from "../api/auth.js";
 
+import { ToastContainer, toast } from "react-toastify";
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,10 +39,10 @@ const Navbar = () => {
       try {
         const response = await authServices.logout();
         setIsLoggedIn(false);
-        alert("Logout successful.");
+        toast.success("Logout Successful");
       } catch (error) {
         console.error("Error logging out:", error);
-        alert("Failed to logout.");
+        toast.error("Logout Error!");
       }
     };
     logout();

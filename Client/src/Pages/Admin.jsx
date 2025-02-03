@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import adminServices from "../api/admin.js";
+import showToast from "../components/toastNotifications";
 
 const Admin = () => {
   const [totalVisitors, setTotalVisitors] = useState(0);
@@ -49,7 +50,7 @@ const Admin = () => {
         setUsers(fetchedUsers);
       } catch (error) {
         console.error("Error fetching admin data:", error);
-        alert("Failed to load admin data.");
+        showToast("error", "Failed to load admin data.");
       }
     };
 
