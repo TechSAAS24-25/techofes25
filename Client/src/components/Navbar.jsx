@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import storage from "../services/storage";
 import "./Navbar.css";
 import homeIcon from "../assets/home.png";
 import accom from "../assets/accommodation.webp";
 import event from "../assets/events1.png";
 import more from "../assets/more.png";
+import saas from "../assets/SAASgold.png";
 import merch from "../assets/merch.png";
 import contactIcon from "../assets/contact.png";
 import scheduleIcon from "../assets/schedule1.png";
@@ -49,8 +51,41 @@ const Navbar = () => {
     navigate("/login");
   };
 
+  // Saas Logo Click Handler
+  const handleSaasClick = () => {
+    window.location.href = "https://saasceg.in";
+  };
+  
   return (
     <nav className="navbar z-10">
+      <div
+        className="saas-logo-container"
+        style={{
+          position: "fixed",
+          left: "20px",
+          cursor: "pointer",
+          zIndex: 40,
+        }}
+        onClick={handleSaasClick}
+      >
+        <motion.img
+          src={saas}
+          alt="Saas Logo"
+          height={50}
+          width={50}
+          whileHover={{
+            scale: 1.2,
+            rotateY: 15,
+            rotateX: -15,
+            boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.3)",
+          }}
+          whileTap={{
+            scale: 0.9,
+            rotate: [0, -10, 10, 0], // Small rotation effect on tap
+          }}
+          transition={{ type: "spring", stiffness: 200, damping: 25 }}
+        />
+      </div>
       <div className="hamburger" onClick={toggleMenu}>
         <div></div>
         <div></div>

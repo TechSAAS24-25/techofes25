@@ -108,6 +108,10 @@
     background: black;
   }
 
+  .saas-logo-container{
+    top : 10px;
+  }
+  
   .navList {
     display: none;
     width: 100%;

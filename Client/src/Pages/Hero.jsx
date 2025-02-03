@@ -294,10 +294,6 @@ const Hero = () => {
     requestAnimationFrame(raf);
   }, []);
 
-  // Saas Logo Click Handler
-  const handleSaasClick = () => {
-    window.location.href = "https://saasceg.in";
-  };
 
   return (
     <main
@@ -340,36 +336,6 @@ const Hero = () => {
           />
         </motion.div> */}
         <img className=" z-10" src={logo1}></img>
-
-        <div
-          className="saas-logo-container"
-          style={{
-            position: "fixed",
-            top: "20px",
-            left: "20px",
-            cursor: "pointer",
-            zIndex: 40,
-          }}
-          onClick={handleSaasClick}
-        >
-          <motion.img
-            src={saas}
-            alt="Saas Logo"
-            height={50}
-            width={50}
-            whileHover={{
-              scale: 1.2,
-              rotateY: 15,
-              rotateX: -15,
-              boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.3)",
-            }}
-            whileTap={{
-              scale: 0.9,
-              rotate: [0, -10, 10, 0], // Small rotation effect on tap
-            }}
-            transition={{ type: "spring", stiffness: 200, damping: 25 }}
-          />
-        </div>
       </div>
 
       {/* Countdown with rotating plates */}
