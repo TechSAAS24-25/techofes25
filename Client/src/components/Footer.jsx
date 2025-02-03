@@ -91,7 +91,7 @@ const Nav = () => {
           </li>
           <li>
             <a
-              href="merchandise"
+              href="/merch"
               className="hover:text-[#00ffcc] text-lg transition duration-300"
             >
               Merchandise
