@@ -42,12 +42,7 @@ function App() {
     <Router>
       {loading ? (
         <div className="fixed inset-0 flex justify-center items-center bg-black z-50">
-          <video
-            autoPlay
-            muted
-            loop
-            className="absolute top-0 left-0 w-full h-full object-cover"
-          >
+          <video autoPlay muted loop className="w-full h-full object-contain">
             <source src={preloader} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

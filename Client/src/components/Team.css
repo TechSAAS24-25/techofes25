@@ -4,10 +4,16 @@ body {
 }
 
 .team-page {
-  background-image: url("../assets/t4.jpg");
-  background-size: contain;
-  background-position: center;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../assets/t5.jpg"); /* Replace with your image path */
+  background-size: cover; /* Ensures the image covers the entire area */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents image repetition */
+  background-attachment: fixed; /* Keeps the background fixed while scrolling */
 }
+
 .main-content {
   margin-left: 20%;
   width: 70%;
