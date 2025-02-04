@@ -24,7 +24,8 @@
   background: linear-gradient(135deg, #ff8c00, #ffc300);
   border-radius: 15px;
   padding: 20px;
-  width: 200px;
+  width: 300px;
+  height: 130px;
   text-align: center;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-in-out;
@@ -46,8 +47,14 @@
   }
 }
 
+
+
 .sponsor-logo {
   width: 100%;
+  /* width: 200px; */
+  object-fit: contain;
+  height: 200px;
+  /* height: 200px; */
   height: auto;
   border-radius: 10px;
   margin-bottom: 15px;

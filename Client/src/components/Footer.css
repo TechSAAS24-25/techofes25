@@ -95,7 +95,10 @@
 .icon {
   width: 24px;
   height: 24px;
+  /* color: ; */
 }
+
+
 
 .sponsor-logos {
   display: flex;
