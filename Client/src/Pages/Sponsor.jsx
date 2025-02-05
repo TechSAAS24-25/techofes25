@@ -2,14 +2,14 @@ import React from "react";
 import { motion } from "framer-motion";
 import "../Styles/Sponsor.css";
 import agsLogo from "../assets/sponsor/ags1.png";
-import vetriLogo from "../assets/sponsor/vetri.png";
+import mkLogo from "../assets/sponsor/mk.png";
 import hgLogo from "../assets/sponsor/hg.png";
 import mediLogo from "../assets/sponsor/Medi.png";
 
 const SponsorPage = () => {
   const sponsors = [
     { name: "AGS Cinemas", logo: agsLogo },
-    // { name: "Sponsor B", logo: vetriLogo },
+    { name: "Mittai kadai", logo: mkLogo },
     // { name: "Sponsor C", logo: hgLogo },
     // { name: "Sponsor D", logo: mediLogo },
   ];
