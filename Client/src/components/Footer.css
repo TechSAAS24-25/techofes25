@@ -4,13 +4,11 @@
   color: #ffffff;
   padding: 20px;
 }
-
 .footer-content {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
-  max-width: 1200px;
-  margin: auto;
 }
 
 .section-1,
@@ -42,18 +40,6 @@
   margin: 5px 0;
 }
 
-.nav-links a,
-.contributors-list a {
-  color: #ffffff;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover,
-.contributors-list a:hover {
-  color: #00ffcc;
-}
-
 .logo-container {
   display: flex;
   flex-direction: column;
@@ -81,23 +67,21 @@
   gap: 15px;
 }
 
-.contact-icons a {
-  font-size: 1.5rem;
-  color: #ffffff;
-  transition: transform 0.3s ease;
-}
-
-.contact-icons a:hover {
-  transform: scale(1.2);
-  color: #00ffcc;
-}
-
 .icon {
   width: 24px;
   height: 24px;
   /* color: ; */
 }
-
+.nav-links a:hover,
+.nav-links a:focus-visible,
+.contributors-list a:hover,
+.contributors-list a:focus-visible,
+.contact-icons a:hover,
+.contact-icons a:focus-visible {
+  color: #00ffcc;
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
 .sponsor-logos {
   display: flex;
   justify-content: center;
@@ -138,14 +122,18 @@
     flex-direction: column;
     align-items: center;
   }
-
+  .footer-container {
+    padding: 10px;
+  }
   .nav-section,
   .sponsors-section,
   .contact-section {
     text-align: center;
     margin-bottom: 20px;
   }
-
+  .footer-content {
+    gap: 5px;
+  }
   .contact-icons {
     gap: 10px;
   }
@@ -173,36 +161,18 @@
   .contact-icons a {
     font-size: 1.3rem;
   }
-}
-@media (max-width: 768px) {
-  .footer-container {
-    padding: 10px;
-  }
-}
-
-@media (max-width: 480px) {
   .footer-container {
     padding: 5px;
   }
-}
-.footer-content {
-  flex-wrap: wrap;
-  gap: 10px; /* Reduce gap on smaller screens */
-}
-
-@media (max-width: 768px) {
-  .footer-content {
-    gap: 5px;
-  }
-}
-
-@media (max-width: 480px) {
   .contributors-section {
     max-width: 100%;
   }
-}
-@media (max-width: 480px) {
   .sponsor-logo {
     max-height: 40px;
   }
+}
+
+.footer-content {
+  flex-wrap: wrap;
+  gap: 10px; /* Reduce gap on smaller screens */
 }

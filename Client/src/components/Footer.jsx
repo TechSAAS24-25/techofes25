@@ -1,8 +1,6 @@
 import React from "react";
 import agsLogo from "../assets/sponsor/ags1.png";
-import vetriLogo from "../assets/sponsor/vetri.png";
-import hgLogo from "../assets/sponsor/hg.png";
-import mediLogo from "../assets/sponsor/Medi.png";
+import mkLogo from "../assets/sponsor/mk.png";
 import Mail from "../assets/mail.png";
 import Logo from "../assets/logo.png";
 import SAAS from "../assets/SAASgold.png";
@@ -173,11 +171,12 @@ const Sponsors = () => {
           alt="Sponsor 1"
           className="h-16 w-auto transition-transform duration-300 hover:scale-110"
         />
-        {/* <img
-          src={vetriLogo}
+        <img
+          src={mkLogo}
           alt="Sponsor 2"
-          className="h-16 w-auto transition-transform duration-300 hover:scale-110"
+          className="h-20 w-auto transition-transform duration-300 hover:scale-110"
         />
+        {/* 
         <img
           src={hgLogo}
           alt="Sponsor 3"
