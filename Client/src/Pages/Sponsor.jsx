@@ -3,15 +3,14 @@ import { motion } from "framer-motion";
 import "../Styles/Sponsor.css";
 import agsLogo from "../assets/sponsor/ags1.png";
 import mkLogo from "../assets/sponsor/mk.png";
-import hgLogo from "../assets/sponsor/hg.png";
-import mediLogo from "../assets/sponsor/Medi.png";
+import p3 from "../assets/food/p3.mp4";
+import hiLogo from "../assets/sponsor/hindu.png";
 
 const SponsorPage = () => {
   const sponsors = [
-    { name: "AGS Cinemas", logo: agsLogo },
-    { name: "Mittai kadai", logo: mkLogo },
-    // { name: "Sponsor C", logo: hgLogo },
-    // { name: "Sponsor D", logo: mediLogo },
+    { name: "AGS Cinemas", role: "Multiplex Partner", logo: agsLogo },
+    { name: "Mittai kadai", role: "Refreshment Sponsor", logo: mkLogo },
+    { name: "The Hindu", logo: hiLogo },
   ];
 
   const containerVariants = {
@@ -55,6 +54,15 @@ const SponsorPage = () => {
       variants={containerVariants}
       exit={{ opacity: 0, y: 20 }}
     >
+      <div className="video-background">
+        <video
+          src={p3}
+          autoPlay
+          loop
+          muted
+          className="background-video"
+        ></video>
+      </div>
       <h1 className="sponsor-title">Our Sponsors</h1>
       <div className="sponsor-container">
         {sponsors.map((sponsor, index) => (
@@ -71,6 +79,7 @@ const SponsorPage = () => {
               className="sponsor-logo"
             />
             <h3 className="agstitle">{sponsor.name}</h3>
+            <h3 className="agstitle">{sponsor.role}</h3>
           </motion.div>
         ))}
       </div>
