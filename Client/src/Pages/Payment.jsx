@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import backgroundImage from "../assets/food/p1.jpg"; // Background image
-import backgroundVideo from "../assets/food/p2.mp4"; // Background video
+import backgroundVideo from "../assets/food/p3.mp4"; // Background video
 
 const PaymentPage = () => {
   const [file, setFile] = useState(null);
-  const [useVideo, setUseVideo] = useState(true); // Toggle between image or video background
+  const [transactionId, setTransactionId] = useState(""); // State for transaction ID
 
   const handleFileChange = (e) => setFile(e.target.files[0]);
 
   const handleUpload = async () => {
     const formData = new FormData();
     formData.append("paymentScreenshot", file);
+    formData.append("transactionId", transactionId); // Append transaction ID
     await axios.post("http://localhost:5000/upload", formData);
   };
 
@@ -23,26 +23,15 @@ const PaymentPage = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Background Section */}
       <div className="absolute inset-0 z-0">
-        {useVideo ? (
-          <video
-            src={backgroundVideo}
-            autoPlay
-            loop
-            muted
-            className="w-full h-full object-cover opacity-40"
-          />
-        ) : (
-          <img
-            src={backgroundImage}
-            alt="Background"
-            className="w-full h-full object-cover opacity-100"
-          />
-        )}
+        <video
+          src={backgroundVideo}
+          autoPlay
+          loop
+          muted
+          className="w-full h-full object-cover opacity-40"
+        />
       </div>
-
-      {/* Foreground Content */}
       <div className="relative z-10">
         <h1 className="text-3xl font-bold mb-4">
           Scan QR & Upload Payment Screenshot
@@ -53,6 +42,13 @@ const PaymentPage = () => {
           className="mx-auto my-4 w-64"
           animate={{ rotate: [0, 5, -5, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
+        />
+        <input
+          type="text"
+          placeholder="Enter Transaction ID"
+          value={transactionId}
+          onChange={(e) => setTransactionId(e.target.value)}
+          className="my-4 text-black px-2 py-1 border rounded w-64"
         />
         <input
           type="file"
