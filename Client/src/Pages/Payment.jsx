@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import backgroundVideo from "../assets/food/p3.mp4"; // Background video
+import backgroundVideo from "../assets/food/p2.mp4"; // Background video
 
 const PaymentPage = () => {
   const [file, setFile] = useState(null);
