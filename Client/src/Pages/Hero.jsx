@@ -14,7 +14,6 @@ import Carousel from "../components/Carousel";
 import logo1 from "../assets/logo.png";
 import saas from "../assets/SAASgold.png";
 import { mainCoordinators } from "../data/data.js";
-import bgImage from "../assets/events/stage.jpeg";
 import Particles from "@tsparticles/react";
 import plateImage from "../assets/food/plate.png";
 import heroVideo from "../assets/hero-bg.mp4";
@@ -294,16 +293,8 @@ const Hero = () => {
     requestAnimationFrame(raf);
   }, []);
 
-
   return (
-    <main
-      style={{
-        backgroundImage: `url(${bgImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-      className="overflow-x-clip"
-    >
+    <main className="overflow-x-clip">
       <AnimatedCursor />
 
       <div className="text-container relative w-full h-screen overflow-hidden">
@@ -329,8 +320,13 @@ const Hero = () => {
           loop
           muted
           playsInline
-          src={PongalVideo}
-        />
+          preload="auto"
+          onError={(e) => console.error("Video failed to load", e)}
+        >
+          <source src={PongalVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
         <div className="video-overlay text-center flex flex-col">
           <h2 className="symphony-text  lg:text-8xl text-4xl  font-semibold">
             Symphony of Tastes
