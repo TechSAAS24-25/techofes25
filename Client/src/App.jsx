@@ -57,7 +57,7 @@ function App() {
             <Route path="/event/:id" element={<EventDetail />} />
             <Route path="/accommodation" element={<Accommodation />} />
             <Route path="/sponsor" element={<SponsorPage />} />
-            <Route path="/payment" element={<PaymentPage />} />
+            <Route path="/payment/:eventId" element={<PaymentPage />} />
             {/* <Route path='/more' element={<More />} /> */}
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/merchandise" element={<Merchandise />} />
