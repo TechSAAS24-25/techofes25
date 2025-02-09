@@ -127,7 +127,7 @@ main {
 .video-background-container {
   position: relative;
   height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .video-background {

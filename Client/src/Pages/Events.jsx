@@ -56,7 +56,7 @@ const Events = () => {
     >
       <div style={{ flex: 1 }}>
         {/* Main Content */}
-        {/* <h1 className="events-title">Categories</h1>
+        <h1 className="events-title">Categories</h1>
         <div className="events-grid">
           {categories?.map((category, index) => (
             <Link to={`/events/${category}`} key={index} className="event-link">
@@ -67,13 +67,18 @@ const Events = () => {
               />
             </Link>
           ))}
-        </div> */}
+        </div>
         <h1 className="align-middle events-title">
           {/* Registrations Opening Soon */}
           <div className="events-container text-center">
             <h1 className="text-2xl font-bold">Event Registration</h1>
-            <Link to="/payment" className="bg-green-500 text-white px-4 py-2 rounded mt-4 inline-block">Register Now</Link>
-        </div>
+            <Link
+              to="/payment"
+              className="bg-green-500 text-white px-4 py-2 rounded mt-4 inline-block"
+            >
+              Register Now
+            </Link>
+          </div>
         </h1>
       </div>
 

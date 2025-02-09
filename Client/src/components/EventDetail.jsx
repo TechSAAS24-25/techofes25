@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import backgroundImage from "../assets/p0fq9cyz.jpg";
 import eventServices from "../api/events.js";
 import storage from "../services/storage";
@@ -8,9 +8,31 @@ import eventImages from "../data/eventImages";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const formatDescription = (description) => {
+  return description.split("\n").map((line, index) => {
+    const parts = line.split(":");
+    if (parts.length > 1) {
+      return (
+        <React.Fragment key={index}>
+          <br />
+          <br />
+          <p className=" text-gray-300 underline">
+            <strong>
+              {parts[0]}:<br></br>
+            </strong>{" "}
+          </p>
+          <p>{parts.slice(1).join(":")}</p>
+        </React.Fragment>
+      );
+    }
+    return line.trim() ? <p key={index}>{line}</p> : <br key={index} />;
+  });
+};
+
 const EventDetail = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
+  const navigate = useNavigate();
   const [selectedSubTab, setSelectedSubTab] = useState("Solo");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
@@ -29,7 +51,6 @@ const EventDetail = () => {
         console.error("Error fetching event details:", error);
         toast.error("Failed to load event details.");
       }
-
       if (user) {
         try {
           const response = await eventServices.registerStatus(id);
@@ -49,18 +70,18 @@ const EventDetail = () => {
       toast.warning("Please log in to register for events.");
       return;
     }
-
-    try {
-      setIsRegistering(true);
-      await eventServices.registerEvent(id);
-      toast.success("Registration successful!");
-      setIsRegistered(true);
-    } catch (error) {
-      console.error("Error registering for event:", error);
-      toast.error("Error registering for event.");
-    } finally {
-      setIsRegistering(false);
-    }
+    navigate(`/payment/${id}`);
+    // try {
+    //   setIsRegistering(true);
+    //   // await eventServices.registerEvent(id);
+    //   toast.success("Registration successful!");
+    //   setIsRegistered(true);
+    // } catch (error) {
+    //   console.error("Error registering for event:", error);
+    //   toast.error("Error registering for event.");
+    // } finally {
+    //   setIsRegistering(false);
+    // }
   };
 
   if (!event) {
@@ -73,23 +94,23 @@ const EventDetail = () => {
   return (
     <div
       style={{
-        height: "100vh",
+        height: "150vh",
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
       }}
     >
       <h2 className="text-white text-4xl e-heading">{event.category}</h2>
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
-      <div className="event-detail-container">
+      <div className="event-detail-container flex flex-col items-start">
         <div className="event-head">
           <img
             src={eventImages[event.eventName]}
             alt="Event icon"
-            className="e-icon"
+            className="e-icon invisible"
           />
           <div className="event-title-wrapper">
             <h1 className="event-title text-white">{event.eventName}</h1>
-            {/* {isRegistered ? (
+            {isRegistered ? (
               <button className="bg-blue-950 text-white register-btn-disabled disabled">
                 Registered
               </button>
@@ -104,19 +125,24 @@ const EventDetail = () => {
               >
                 Please login to register for events
               </button>
-            )} */}
-            <button
+            )}
+            {/* <button
               className=" bg-slate-400 text-black register-btn-disabled disabled"
               disabled
             >
               Coming soon
-            </button>
+            </button> */}
           </div>
         </div>
 
-        <div className="text-center text-white">
-          <h2 className="font-bold text-xl text-gray-300">About</h2>
-          <p className="event-about">{event.description}</p>
+        <div className="text-left text-white">
+          <h2 className="font-bold text-xl text-gray-300 underline">About</h2>
+          <p
+            className="text-left event-about"
+            style={{ whiteSpace: "pre-line" }}
+          >
+            {formatDescription(event.description)}
+          </p>
 
           {/* Sub Tabs */}
           {selectedSubTabDetails && (
