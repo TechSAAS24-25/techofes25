@@ -75,7 +75,7 @@ eventPaymentRouter.post(
           const payment = new Payment({
             T_ID,
             transactionID: transactionId,
-            type: "event",
+            type: "Event",
             itemID: eventID,
             screenshotPath: result.secure_url,
             status: "pending", // Initial status set to 'pending'
@@ -129,8 +129,9 @@ eventRegistrationRouter.post("/:eventId/register",userExtractor, async (request,
       event.seats -= 1;
       await event.save();
 
-      // (delete any associated payment)
-      await Payment.deleteOne({ T_ID, itemID: eventID });
+      const payment = await Payment.findOne({ T_ID, itemID: eventID });
+      payment.status = "approved";
+      await payment.save();
 
       response.status(201).json({
         message: "Successfully registered for the event",
@@ -138,6 +139,10 @@ eventRegistrationRouter.post("/:eventId/register",userExtractor, async (request,
       });
 
     } else {
+
+      const payment = await Payment.findOne({ T_ID, itemID: eventID });
+      payment.status = "rejected";
+      await payment.save();
 
       response.status(200).json({
         message: "Registration denied by admin",
@@ -158,27 +163,27 @@ eventRegistrationRouter.get("/:eventId/status", userExtractor, async (request, r
     const payment = await Payment.findOne({ T_ID: userID, itemID: eventID });
     const registration = await Registration.findOne({ T_ID : userID, eventID: eventID });
 
-    if(!registration && payment){
-      return response.status(200).json({
-        message: "Approval Pending",
+    if (!registration && payment) {
+      return response.status(404).json({
+        message: `Payment status: ${payment.status}`,
         isRegistered: false,
-        status: "pending",
+        status: payment.status,
+        });
+      }
+    else if (!registration && !payment) {
+      return response.status(404).json({
+        message: "User not registered for the event",
+        isRegistered: false,
+        status: "not registered",
       });
     }
-    else if (!registration) {
-      return response.status(404).json({
-        message: "Not registered for the event",
-        isRegistered: false,
-        status: "not found", 
-        });
+    else if (registration) {
+      return response.status(200).json({
+        message: "User is registered for the event",
+        isRegistered: true,
+        status: "registered",
+      });
     }
-
-    // Return the status based on payment status
-    response.status(200).json({
-      message: `Payment status: ${payment.status}`,
-      isRegistered: true,
-      paymentStatus: payment.status,
-    });
     
   } catch (error) {
     console.error("Error checking payment status:", error);

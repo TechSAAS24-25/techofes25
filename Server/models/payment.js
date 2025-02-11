@@ -8,11 +8,12 @@ const paymentSchema = new mongoose.Schema(
     },
     T_ID: {
       type: String,
+      ref: "User",
       required: true,
     },
     type: {
       type: String,
-      enum: ["event", "merchandise", "accommodation"],
+      enum: ["Event", "Merchandise", "Accommodation"],
       required: true,
     },
     itemID: {
