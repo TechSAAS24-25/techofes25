@@ -63,7 +63,7 @@ app.use("/api/admin", adminRouter.totalRegistrationsRouter);
 app.use("/api/admin", adminRouter.totalEventRegistrationsRouter);
 app.use("/api/admin", adminRouter.eventRegistrationsRouter);
 app.use("/api/admin", adminRouter.getPendingPaymentRouter);
-app.use("/api/admin", adminRouter.geApprovedPaymentRouter);
+app.use("/api/admin", adminRouter.getApprovedPaymentRouter);
 
 app.use(middleware.errorHandler);
 app.use(middleware.unknownEndpoint);

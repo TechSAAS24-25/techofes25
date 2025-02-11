@@ -61,4 +61,6 @@ module.exports = {
   totalRegistrationsRouter,
   eventRegistrationsRouter,
   totalEventRegistrationsRouter,
+  getPendingPaymentRouter,
+  getApprovedPaymentRouter,
 };
