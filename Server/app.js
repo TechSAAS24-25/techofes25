@@ -47,7 +47,7 @@ app.use("/api/profile", usersRouter.userAccommodationsRouter);
 app.use("/api/events", eventsRouter.eventsRouter);
 app.use("/api/events", eventsRouter.eventDetailsRouter);
 app.use("/api/events", eventsRouter.eventRegistrationRouter);
-app.use("/api/events", eventsRouter.eventRegistrationRouter);
+app.use("/api/events", eventsRouter.eventPaymentRouter);
 
 // Merchandise Routes
 app.use("/api/merchandise", merchandiseRouter.merchandiseRouter);

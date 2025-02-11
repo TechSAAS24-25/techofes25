@@ -3,17 +3,22 @@ const mongoose = require("mongoose");
 const paymentSchema = new mongoose.Schema(
   {
     transactionID: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       auto: true,
     },
     T_ID: {
       type: String,
       required: true,
-      unique: true,
     },
-    username: {
+    type: {
       type: String,
+      enum: ["event", "merchandise", "accommodation"],
       required: true,
+    },
+    itemID: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      refPath: "type",
     },
     dateTime: {
       type: Date,
@@ -24,6 +29,10 @@ const paymentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    status: {
+      type: String,
+      required: true,
+    }
   },
   { timestamps: true }
 );
