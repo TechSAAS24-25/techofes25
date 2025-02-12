@@ -38,7 +38,8 @@ const Merchandise = () => {
           </p>
 
           <h2 className="tagline">
-            Own the Vibe, Wear the Legacy!! WEAR IT. FLAUNT IT. TECHOFES IT!
+            Own the Vibe, Wear the Legacy!! <br></br>
+            WEAR IT. FLAUNT IT. TECHOFES IT!
           </h2>
           <p>
             <strong>Register via:</strong> <br />
