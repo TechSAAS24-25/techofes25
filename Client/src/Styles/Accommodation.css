@@ -128,6 +128,7 @@
 @media screen and (max-width: 768px) {
   .maininside {
     flex-direction: column;
+    /* max-width: 1000px; */
   }
 
   .tab__header {
@@ -144,3 +145,46 @@
     max-width: 200px;
   }
 }
+
+.charges{
+  text-align: center;
+  padding: 20px;
+}
+
+.without{
+  text-align: center;
+  padding: 10px;
+}
+
+.Gendertitle{
+  text-align: center;
+
+}
+
+.gender{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+.radios{
+  display: flex;
+}
+
+
+
+.radioinput{
+  margin-left:10px;
+  
+}
+
+.charge{
+  display: flex;
+  gap: 20px;
+
+}
+
