@@ -94,7 +94,7 @@ const payForEvent = async (eventId, transactionId, screenshotFile) => {
     };
 
     const response = await axios.post(
-      `http://localhost:4000/api/events/${eventId}/pay`,
+      `${eventsUrl}/${eventId}/pay`,
       requestData,
       config
     );
