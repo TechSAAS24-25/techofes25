@@ -7,7 +7,7 @@ import "../Styles/Events.css";
 import backgroundImage from "../assets/events/stage1.jpeg";
 import eventServices from "../api/events.js";
 import showToast from "../components/toastNotifications";
-import Footer from "../components/Footer.jsx";
+import image from "../assets/dance.png";
 
 const Events = () => {
   const [eventDetails, setEventDetails] = useState(null);
@@ -60,11 +60,7 @@ const Events = () => {
         <div className="events-grid">
           {categories?.map((category, index) => (
             <Link to={`/events/${category}`} key={index} className="event-link">
-              <EventCard
-                key={index}
-                icon={"../src/assets/dance.png"}
-                name={category}
-              />
+              <EventCard key={index} icon={image} name={category} />
             </Link>
           ))}
         </div>

@@ -34,9 +34,9 @@ const PaymentPage = () => {
       ) {
         toast.success(response.message);
 
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, 2500);
+        // setTimeout(() => {
+        //   navigate("/dashboard");
+        // }, 2500);
       } else {
         console.log(response);
         showToast(
