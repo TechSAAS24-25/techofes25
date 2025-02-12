@@ -8,7 +8,7 @@ import accom from "../assets/accommodation.webp";
 import event from "../assets/events1.png";
 import more from "../assets/more.png";
 import saas from "../assets/SAASgold.png";
-import merch from "../assets/merch.png";
+import merch from "../assets/merch1.png";
 import contactIcon from "../assets/contact.png";
 import scheduleIcon from "../assets/schedule1.png";
 import sponsor from "../assets/sponsor.png";
