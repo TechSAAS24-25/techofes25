@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import backgroundImage from "../assets/party.jpg";
+import backgroundImage from "../assets/p0fq9cyz.jpg";
 import eventServices from "../api/events.js";
 import storage from "../services/storage";
 import "./EventDetail.css";
