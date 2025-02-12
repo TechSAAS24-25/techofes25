@@ -1,21 +1,146 @@
-.accom-container {
-  padding: 2rem;
+/* Centering the Main Container */
+.mainacccont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+/* Title Styling */
+.acctitle {
+  font-size: 28px;
+  font-weight: bold;
   text-align: center;
-  color: #000;
+  /* margin-bottom: 20px; */
+  padding: 20px;
 }
 
-.accom-title {
-  color: white;
-  font-size: 2rem;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-  margin-bottom: 2rem;
-  color: "#000";
+/* Centering the Main Inside Container */
+.maincontacc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
-.accom-grid {
+/* Content Box */
+.mainaccinside {
+  background-color: red;
+  max-width: 1300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+  /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); */
+}
+
+/* Tab Buttons Wrapper */
+.buttontab {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* Tab Buttons Styling */
+.tab__header {
+  display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
-  color: "#000";
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+}
+
+.tabbuttons {
+  display: flex;
+  background-color: antiquewhite;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+/* Tab Button */
+.tab__button {
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: #ddd;
+  transition: background 0.3s ease;
+}
+
+/* Active Tab Button */
+.tab__button.active {
+  background-color: teal;
+  color: white;
+}
+
+/* Content Wrapper */
+.contenttab {
+  /* margin-top: 30px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tab Content */
+.tab__content {
+  background: white;
+  margin-top: 20px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tab__button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.iconacc{
+  font-size: 25px;
+}
+
+/* Image Styling */
+.tab__content img {
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+/* Fact Text */
+.tab__content p {
+  font-size: 18px;
+  margin-top: 10px;
+  color: #333;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .maininside {
+    flex-direction: column;
+  }
+
+  .tab__header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tab__button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .tab__content img {
+    max-width: 200px;
+  }
 }
