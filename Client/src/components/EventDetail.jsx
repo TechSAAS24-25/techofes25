@@ -35,7 +35,7 @@ const EventDetail = () => {
   const navigate = useNavigate();
   const [selectedSubTab, setSelectedSubTab] = useState("Solo");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isRegistering, setIsRegistering] = useState(false);
+  const [isPaid, setIsPaid] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
 
   useEffect(() => {
@@ -54,10 +54,12 @@ const EventDetail = () => {
       if (user) {
         try {
           const response = await eventServices.registerStatus(id);
+          console.log(response);
           setIsRegistered(response.isRegistered);
+          setIsPaid(response.status === "pending");
         } catch (error) {
-          console.error("Error fetching event details:", error);
-          toast.error("Failed to load event details.");
+          console.error("Error fetching registration status:", error);
+          toast.error("Failed to load registration status.");
         }
       }
     };
@@ -93,39 +95,48 @@ const EventDetail = () => {
 
   return (
     <div
+      className="min-h-[150vh] sm:min-h-[300vh]"
       style={{
-        height: "150vh",
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
       }}
     >
       <h2 className="text-white text-4xl e-heading">{event.category}</h2>
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
-      <div className="event-detail-container flex flex-col items-start">
+      <div
+        className="event-detail-container flex flex-col items-start lg:px-16 lg:py-16 p-6"
+        style={{ alignItems: "flex-start" }}
+      >
         <div className="event-head">
-          <img
-            src={eventImages[event.eventName]}
-            alt="Event icon"
-            className="e-icon invisible"
-          />
           <div className="event-title-wrapper">
             <h1 className="event-title text-white">{event.eventName}</h1>
             {isRegistered ? (
               <button className="bg-blue-950 text-white register-btn-disabled disabled">
                 Registered
               </button>
+            ) : isPaid ? (
+              <button className="bg-orange-700 text-white register-btn-disabled disabled">
+                Pending Approval
+              </button>
             ) : isLoggedIn ? (
-              <button className="register-btn" onClick={handleRegister}>
+              <button
+                className="register-btn bg-violet-800"
+                onClick={handleRegister}
+              >
                 Register
               </button>
             ) : (
               <button
-                className=" bg-slate-400 text-black register-btn-disabled disabled"
+                className="bg-slate-400 text-black register-btn-disabled disabled"
                 disabled
               >
                 Please login to register for events
               </button>
             )}
+            <h1 className="text-xl text-white">
+              Registration Fees: {event.regFees}
+            </h1>
+
             {/* <button
               className=" bg-slate-400 text-black register-btn-disabled disabled"
               disabled
@@ -133,6 +144,11 @@ const EventDetail = () => {
               Coming soon
             </button> */}
           </div>
+          <img
+            src={eventImages[event.eventName]}
+            alt="Event icon"
+            className="e-icon hidden invisible sm:block"
+          />
         </div>
 
         <div className="text-left text-white">

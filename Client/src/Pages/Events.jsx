@@ -68,8 +68,7 @@ const Events = () => {
             </Link>
           ))}
         </div>
-        <h1 className="align-middle events-title">
-          {/* Registrations Opening Soon */}
+        {/* <h1 className="align-middle events-title">
           <div className="events-container text-center">
             <h1 className="text-2xl font-bold">Event Registration</h1>
             <Link
@@ -79,7 +78,7 @@ const Events = () => {
               Register Now
             </Link>
           </div>
-        </h1>
+        </h1> */}
       </div>
 
       {/* Footer */}

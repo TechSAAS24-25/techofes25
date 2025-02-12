@@ -1,57 +1,115 @@
-import axios from "../helper/axios"; 
+import axios from "../helper/axios";
 const eventsUrl = "/api/events";
 import storage from "../services/storage";
 
-//implement try and catch blocks for error handling in the frontend
-
 // Get all events
-// Returns an array of event objects
-// Refer backend models for the structure of an event object
-
 const getEvents = async () => {
-  const response = await axios.get(eventsUrl);
-  return response.data;
+  try {
+    const response = await axios.get(eventsUrl);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    throw error;
+  }
 };
 
 // Get a particular event
-// Returns an event object
-// Refer backend models for the structure of an event object
-
 const getEvent = async (eventId) => {
-  const response = await axios.get(`${eventsUrl}/${eventId}`);
-  return response.data;
+  try {
+    const response = await axios.get(`${eventsUrl}/${eventId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching event details:", error);
+    throw error;
+  }
 };
 
-// Register for an event
-// Returns a registration object and a message
-// Refer backend models for the structure of a registration object
+// Register for an event (Admin approval required)
+const registerEvent = async (eventId, T_ID, answer) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${storage.loadUser().token}`,
+      },
+    };
 
-const registerEvent = async (eventId) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${storage.loadUser().token}`,
-    },
-  };
-
-  // Fix: Pass an empty body object {} as the second argument if there's no request body
-  const response = await axios.post(
-    `${eventsUrl}/${eventId}/register`,
-    {},
-    config
-  );
-  return response.data;
+    const response = await axios.post(
+      `${eventsUrl}/${eventId}/register`,
+      { T_ID, answer },
+      config
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error registering for event:", error);
+    throw error;
+  }
 };
 
+// Check Registration & Payment Status
 const registerStatus = async (eventId) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${storage.loadUser().token}`,
-    },
-  };
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${storage.loadUser().token}`,
+      },
+    };
 
-  // Fix: Pass an empty body object {} as the second argument if there's no request body
-  const response = await axios.get(`${eventsUrl}/${eventId}/status`, config);
-  return response.data;
+    const response = await axios.get(`${eventsUrl}/${eventId}/status`, config);
+    return response.data;
+  } catch (error) {
+    console.error("Error checking registration status:", error);
+    throw error;
+  }
 };
 
-export default { getEvents, getEvent, registerEvent, registerStatus };
+const payForEvent = async (eventId, transactionId, screenshotFile) => {
+  try {
+    // Convert image to Base64
+    const encodeImageToBase64 = (file) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result.split(",")[1]); // Extract Base64
+        reader.onerror = (error) => reject(error);
+      });
+    };
+
+    const base64Image = await encodeImageToBase64(screenshotFile);
+
+    const requestData = {
+      T_ID: "CEG2025000002", // Example T_ID
+      transactionId,
+      screenshot: base64Image, // Base64 encoded image
+      fileType: screenshotFile.type, // Send file type for decoding
+    };
+
+    console.log("Payload before sending:", requestData);
+
+    const config = {
+      maxBodyLength: Infinity,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${storage.loadUser().token}`,
+      },
+    };
+
+    const response = await axios.post(
+      `http://localhost:4000/api/events/${eventId}/pay`,
+      requestData,
+      config
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error making payment:", error.response?.data || error);
+    return error;
+  }
+};
+
+export default {
+  getEvents,
+  getEvent,
+  registerEvent,
+  registerStatus,
+  payForEvent,
+};

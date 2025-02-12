@@ -3,12 +3,14 @@ const Registration = require("../models/registration");
 const Purchase = require("../models/purchase");
 const Booking = require("../models/booking");
 const Event = require("../models/event");
+const Payment = require("../models/payment");
 const Merchandise = require("../models/merchandise");
 const Accommodation = require("../models/accommodation");
 const userExtractor = require("../utils/middleware").userExtractor;
 const userDetailsRouter = require("express").Router();
 const userRegistrationsRouter = require("express").Router();
 const userPurchasesRouter = require("express").Router();
+const userPaymentsRouter = require("express").Router();
 const userAccommodationsRouter = require("express").Router();
 const mongoose = require("mongoose");
 
@@ -59,6 +61,42 @@ userRegistrationsRouter.get(
     response.status(200).json(eventDetails);
   }
 );
+
+// Get all events registered by the user, including event details
+userPaymentsRouter.get("/payment", userExtractor, async (request, response) => {
+  const T_ID = request.T_ID;
+
+  const payments = await Payment.find({
+    T_ID: T_ID,
+  });
+
+  console.log("payments:", payments);
+
+  if (!payments.length) {
+    return response.status(404).json({ message: "No payments found" });
+  }
+
+  // Fetch event details for each payment
+  const paymentDetails = await Promise.all(
+    payments.map(async (payment) => {
+      const eventID = payment.itemID;
+      const event = await Event.findById(eventID);
+
+      return {
+        registrationID: payment.registrationID,
+        amount: event.regFees,
+        status: payment.status,
+        transactionDate: payment.transactionDate,
+        eventName: event.eventName,
+        category: event.category,
+        date: event.date,
+        location: event.location,
+      };
+    })
+  );
+
+  response.status(200).json(paymentDetails);
+});
 
 // Get all merchandise purchases by the user, including merchandise details
 userPurchasesRouter.get(
@@ -115,5 +153,6 @@ module.exports = {
   userDetailsRouter,
   userRegistrationsRouter,
   userPurchasesRouter,
+  userPaymentsRouter,
   userAccommodationsRouter,
 };
