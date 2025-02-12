@@ -1,14 +1,8 @@
 import React from "react";
-import agsLogo from "../assets/sponsor/ags1.png";
 import mkLogo from "../assets/sponsor/mk.png";
-import Mail from "../assets/mail.png";
 import Logo from "../assets/logo.png";
 import SAAS from "../assets/SAASgold.png";
 import Ags from "../assets/ags[1].png";
-
-import mailIcon from "../assets/mail.svg";
-import insta from "../assets/insta.svg";
-import waIcon from "../assets/wa.svg";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";

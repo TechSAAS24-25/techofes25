@@ -20,7 +20,7 @@ const Merchandise = () => {
             <img src={tshirtImage} alt="Techofes'25 T-shirt" />
           </div>
           <a
-            href="https://forms.gle/4D2iDxLyZyMdPwSd6"
+            href="https://forms.gle/yb9E8Pu7rGWfkTHu6"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -43,7 +43,7 @@ const Merchandise = () => {
           <p>
             <strong>Register via:</strong> <br />
             <a
-              href="https://forms.gle/4D2iDxLyZyMdPwSd6"
+              href="https://forms.gle/yb9E8Pu7rGWfkTHu6"
               target="_blank"
               rel="noopener noreferrer"
               className="buy-now-link"
