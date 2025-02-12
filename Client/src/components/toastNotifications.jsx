@@ -1,7 +1,7 @@
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-hot-toast";
 
 const showToast = (type, message) => {
+  console.log(message);
   switch (type) {
     case "success":
       toast.success(message);
@@ -10,10 +10,10 @@ const showToast = (type, message) => {
       toast.error(message);
       break;
     case "warning":
-      toast.warning(message);
+      toast(message, { icon: "⚠️" });
       break;
     case "info":
-      toast.info(message);
+      toast(message, { icon: "ℹ️" });
       break;
     default:
       toast(message);
