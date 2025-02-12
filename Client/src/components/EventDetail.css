@@ -9,7 +9,7 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
-  padding: 3rem 20px;
+  /* padding: 3rem 6rem; */
   background: rgba(0, 0, 0, 0.2);
   /* background-color: #550660; */
 }
@@ -30,8 +30,8 @@
 .event-title-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
+  align-items: flex-start;
+  gap: 2rem;
   width: 50%;
 }
 .event-title {
@@ -49,7 +49,7 @@
 .register-btn {
   padding: 10px 20px;
   font-size: 1rem;
-  background-color: #371426;
+  /* background-color: #371426; */
   color: white;
   border: none;
   border-radius: 10px;
@@ -149,6 +149,10 @@
     column-gap: 70px;
   }
 
+  .event-title-wrapper {
+    width: 100%;
+  }
+
   .event-head {
     display: flex;
     flex-direction: column;
@@ -165,5 +169,10 @@
 
     /* to check */
     margin-left: 20px;
+  }
+
+  .event-detail-container {
+    margin: 0 auto 0;
+    width: 90%;
   }
 }

@@ -41,6 +41,7 @@ app.use("/api/auth/logout", authRouter.logoutRouter);
 app.use("/api/profile", usersRouter.userDetailsRouter);
 app.use("/api/profile", usersRouter.userRegistrationsRouter);
 app.use("/api/profile", usersRouter.userPurchasesRouter);
+app.use("/api/profile", usersRouter.userPaymentsRouter);
 app.use("/api/profile", usersRouter.userAccommodationsRouter);
 
 // Event Routes

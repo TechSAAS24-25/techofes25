@@ -17,7 +17,7 @@ import "./Footer.css";
 
 function Content() {
   return (
-    <div className="py-8 px-12 h-full w-full flex flex-col justify-between bg-cover main-footer">
+    <div className="py-8 px-12 h-full w-full flex flex-col  bg-cover main-footer">
       <Section1 />
       <Section2 />
     </div>
@@ -260,7 +260,7 @@ const Contributors = () => {
 export default function Footer() {
   return (
     <div
-      className="footer-container  relative bg-center h-[200vh] lg:h-[100vh]"
+      className="footer-container  relative bg-center h-[200vh] lg:h-[150vh]"
       style={{
         clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)",
         backgroundSize: "cover",

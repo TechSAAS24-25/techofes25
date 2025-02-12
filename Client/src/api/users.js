@@ -1,4 +1,4 @@
-import axios from "../helper/axios"; 
+import axios from "../helper/axios";
 const profileUrl = "api/profile";
 import storage from "../services/storage";
 
@@ -44,9 +44,15 @@ const getAccommodations = async () => {
   return response.data;
 };
 
+const getPayments = async () => {
+  const response = await axios.get(`${profileUrl}/payment`, config());
+  return response.data;
+};
+
 export default {
   getProfile,
   getRegistrations,
   getPurchases,
+  getPayments,
   getAccommodations,
 };
