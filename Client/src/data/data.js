@@ -22,7 +22,7 @@ import download21 from "../assets/team/Nehavarthini_Marketing Core.jpg";
 import download22 from "../assets/team/Namitha_Sharan_Contents.jpg";
 import download23 from "../assets/team/Sankaranarayanan_Contents.jpeg";
 import download24 from "../assets/team/Vikrant_R_Technical.jpg";
-import download25 from "../assets/team/Vimalesh_CT_Technical2.jpg";
+import download25 from "../assets/team/vimal1.jpg";
 import download26 from "../assets/team/T_Ponvel_Graphics Design.jpg";
 import download27 from "../assets/team/Sujatha_GDesign.jpg";
 import download28 from "../assets/team/Dineshraja D_Permissions & Documentation.jpg";
@@ -134,7 +134,7 @@ export const coordinators = [
   },
   {
     img: download15,
-    name: "Karhick Selvan",
+    name: "Karthick Selvan",
     position: "Logistics",
     instagramLink: "https://instagram.com/dracareys_",
     linkedinLink: "https://www.linkedin.com/in/karthick-selvan-424489201",
@@ -184,7 +184,7 @@ export const coordinators = [
   },
   {
     img: download22,
-    name: "Namitha Sharan A",
+    name: "Namitha Sharon A",
     position: "Contents",
     instagramLink: "https://instagram.com/sharon__0505",
     linkedinLink:

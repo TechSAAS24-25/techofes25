@@ -6,7 +6,7 @@ const purchaseSchema = new mongoose.Schema({
     auto: true,
   },
   T_ID: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: 'User',
     required: true,
   },

@@ -41,13 +41,14 @@ app.use("/api/auth/logout", authRouter.logoutRouter);
 app.use("/api/profile", usersRouter.userDetailsRouter);
 app.use("/api/profile", usersRouter.userRegistrationsRouter);
 app.use("/api/profile", usersRouter.userPurchasesRouter);
+app.use("/api/profile", usersRouter.userPaymentsRouter);
 app.use("/api/profile", usersRouter.userAccommodationsRouter);
 
 // Event Routes
 app.use("/api/events", eventsRouter.eventsRouter);
 app.use("/api/events", eventsRouter.eventDetailsRouter);
 app.use("/api/events", eventsRouter.eventRegistrationRouter);
-app.use("/api/events", eventsRouter.eventRegistrationRouter);
+app.use("/api/events", eventsRouter.eventPaymentRouter);
 
 // Merchandise Routes
 app.use("/api/merchandise", merchandiseRouter.merchandiseRouter);
@@ -62,6 +63,8 @@ app.use("/api/admin", adminRouter.userDetailsRouter);
 app.use("/api/admin", adminRouter.totalRegistrationsRouter);
 app.use("/api/admin", adminRouter.totalEventRegistrationsRouter);
 app.use("/api/admin", adminRouter.eventRegistrationsRouter);
+app.use("/api/admin", adminRouter.getPendingPaymentRouter);
+app.use("/api/admin", adminRouter.getApprovedPaymentRouter);
 
 app.use(middleware.errorHandler);
 app.use(middleware.unknownEndpoint);

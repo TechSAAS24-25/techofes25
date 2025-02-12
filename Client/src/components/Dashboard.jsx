@@ -8,6 +8,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [payments, setPayemnts] = useState(false);
   const navigate = useNavigate();
 
   const [registeredEvents, setRegisteredEvents] = useState([]);
@@ -23,12 +24,14 @@ const Dashboard = () => {
         // Fetch user profile
         const profileData = await userServices.getProfile();
         setUserData(profileData);
-        console.log(profileData);
 
         // Fetch registered events
         const registrations = await userServices.getRegistrations();
-        console.log(registrations);
         setRegisteredEvents(registrations);
+
+        const payments = await userServices.getPayments();
+        setPayemnts(payments);
+        console.log(payments);
       } catch (err) {
         console.error("Error fetching dashboard data:", err);
         setError("Failed to load data");
@@ -52,10 +55,21 @@ const Dashboard = () => {
     return <div className="text-center text-red-500">{error}</div>;
   }
 
+  // Categorize payments by status
+  const pendingPayments = payments?.filter(
+    (payment) => payment.status === "pending"
+  );
+  const rejectedPayments = payments?.filter(
+    (payment) => payment.status === "rejected"
+  );
+  const approvedPayments = payments?.filter(
+    (payment) => payment.status === "approved"
+  );
+
   return (
     <div
-      className="flex justify-center items-center py-8 px-4 bg-gradient-to-r from-orange-500 via-pink-400 to-blue-600"
-      style={{ height: "100vh" }}
+      className="flex justify-center items-center py-8 px-4 bg-gradient-to-r from-orange-700 via-pink-400 to-blue-600"
+      style={{ height: "140vh" }}
     >
       <div className=" bg-black bg-opacity-20 backdrop-blur-lg text-black rounded-lg w-full max-w-5xl p-8">
         <div className="text-center mb-6">
@@ -146,6 +160,57 @@ const Dashboard = () => {
               <p className="text-white">No events registered yet.</p>
             )}
           </div>
+          {/* Payments Section */}
+          {[
+            {
+              title: "Pending Payments",
+              payments: pendingPayments,
+              color: "bg-yellow-600",
+            },
+            {
+              title: "Rejected Payments",
+              payments: rejectedPayments,
+              color: "bg-red-600",
+            },
+            {
+              title: "Approved Payments",
+              payments: approvedPayments,
+              color: "bg-green-600",
+            },
+          ].map(({ title, payments, color }) => (
+            <div className="col-span-2 mt-6" key={title}>
+              <h2 className="text-2xl font-bold text-white mb-4">{title}</h2>
+              {payments.length > 0 ? (
+                <div
+                  className="grid grid-cols-1 lg:grid-cols-2 gap-6 overflow-y-scroll overflow-x-clip"
+                  style={{ height: "20vh", scrollbarWidth: "thin" }}
+                >
+                  {payments.map((payment) => (
+                    <div
+                      key={payment.registrationID}
+                      className={`${color} p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300`}
+                    >
+                      <div className="font-semibold text-xl text-black mb-2">
+                        Event: {payment.eventName || "Unknown"}
+                      </div>
+                      <div className="text-black mb-2">
+                        <strong>Registration Fees:</strong> ₹{payment.amount}
+                      </div>
+                      <div className="text-black mb-2">
+                        <strong>Date:</strong>{" "}
+                        {new Date(payment.date).toLocaleDateString()}
+                      </div>
+                      <div className="text-black mb-2">
+                        <strong>Category:</strong> {payment.category}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-white">No {title.toLowerCase()}.</p>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>

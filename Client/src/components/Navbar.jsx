@@ -8,7 +8,7 @@ import accom from "../assets/accommodation.webp";
 import event from "../assets/events1.png";
 import more from "../assets/more.png";
 import saas from "../assets/SAASgold.png";
-import merch from "../assets/merch.png";
+import merch from "../assets/merch1.png";
 import contactIcon from "../assets/contact.png";
 import scheduleIcon from "../assets/schedule1.png";
 import sponsor from "../assets/sponsor.png";
@@ -22,7 +22,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();  // Detect location changes
+  const location = useLocation(); // Detect location changes
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -55,7 +55,7 @@ const Navbar = () => {
   const handleSaasClick = () => {
     window.location.href = "https://saasceg.in";
   };
-  
+
   return (
     <nav className="navbar z-10">
       <div
@@ -174,16 +174,20 @@ const Navbar = () => {
           </NavLink>
         </li>
 
-        { isLoggedIn ? ( <li className="navItem">
-          <NavLink
-            to="/dashboard"
-            className={({ isActive }) => (isActive ? "active-link" : "navLink")}
-          >
-            <div className="top-bar"></div>
-            <img src={more} alt="More Icon" id="icon" />
-            User Profile
-          </NavLink>
-        </li> ) : null }
+        {isLoggedIn ? (
+          <li className="navItem">
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                isActive ? "active-link" : "navLink"
+              }
+            >
+              <div className="top-bar"></div>
+              <img src={more} alt="More Icon" id="icon" />
+              User Profile
+            </NavLink>
+          </li>
+        ) : null}
 
         <li className="navItem">
           {isLoggedIn ? (

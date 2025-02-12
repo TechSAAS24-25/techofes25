@@ -6,12 +6,10 @@ import Merch from "./Pages/Merch.jsx";
 import Events from "./Pages/Events.jsx";
 import EventDetail from "./components/EventDetail.jsx";
 import Accommodation from "./Pages/Accommodation.jsx";
-import More from "./Pages/More.jsx";
 import Hero from "./Pages/Hero.jsx";
 import EventTypes from "./Pages/EventTypes.jsx";
 import EventList from "./Pages/EventList.jsx";
 import Team from "./components/Team.jsx";
-import Merchandise from "./components/Merchandise.jsx";
 import Schedule from "./components/Schedule.jsx";
 import StarAttractions from "./components/StarAttractions.jsx";
 import SponsorPage from "./Pages/Sponsor.jsx";
@@ -20,7 +18,8 @@ import Login from "./Pages/Login.jsx";
 import Admin from "./Pages/Admin.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import { ToastContainer } from "react-toastify";
-
+import { Toaster } from "react-hot-toast";
+import PaymentPage from "./Pages/Payment.jsx";
 import preloader from "./assets/preload.mp4";
 import "./App.css";
 
@@ -42,12 +41,7 @@ function App() {
     <Router>
       {loading ? (
         <div className="fixed inset-0 flex justify-center items-center bg-black z-50">
-          <video
-            autoPlay
-            muted
-            loop
-            className="absolute top-0 left-0 w-full h-full object-cover"
-          >
+          <video autoPlay muted loop className="w-full h-full object-contain">
             <source src={preloader} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -62,10 +56,9 @@ function App() {
             <Route path="/event/:id" element={<EventDetail />} />
             <Route path="/accommodation" element={<Accommodation />} />
             <Route path="/sponsor" element={<SponsorPage />} />
-
+            <Route path="/payment/:eventId" element={<PaymentPage />} />
             {/* <Route path='/more' element={<More />} /> */}
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/merchandise" element={<Merchandise />} />
             <Route path="/schedule" element={<Schedule />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/star-attractions" element={<StarAttractions />} />
@@ -78,11 +71,7 @@ function App() {
             <Route path="/events/:category" element={<EventTypes />} />
             <Route path="/events/:category/:type" element={<EventList />} />
           </Routes>
-          <ToastContainer
-            position="bottom-right"
-            autoClose={3000}
-            hideProgressBar
-          />
+          <Toaster position="bottom-right" />
         </>
       )}
     </Router>

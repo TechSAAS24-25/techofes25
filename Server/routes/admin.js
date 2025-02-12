@@ -2,10 +2,13 @@ const express = require("express");
 require("express-async-errors");
 const User = require("../models/user");
 const Registration = require("../models/registration");
+const Payment = require("../models/payment");
 const userDetailsRouter = express.Router();
 const totalRegistrationsRouter = express.Router();
 const eventRegistrationsRouter = express.Router();
 const totalEventRegistrationsRouter = express.Router();
+const getPendingPaymentRouter = express.Router();
+const getApprovedPaymentRouter = express.Router();
 
 //need to add authentication userExtractor middleware
 //for that username admin has to be generated in the database
@@ -41,9 +44,23 @@ totalEventRegistrationsRouter.get("/totalregistrations", async (req, res) => {
   res.status(200).json({ totalRegistrations: registrations.length });
 });
 
+// Route to get all pending payments
+getPendingPaymentRouter.get("/payments/pending", async(req, res) => {
+  const payments = await Payment.find({status : "pending"});
+  res.status(200).json(payments);
+});
+
+// Route to get all approved payments
+getApprovedPaymentRouter.get("/payments/approved", async(req, res) => {
+  const payments = await Payment.find({status : "approved"});
+  res.status(200).json(payments);
+});
+
 module.exports = {
   userDetailsRouter,
   totalRegistrationsRouter,
   eventRegistrationsRouter,
   totalEventRegistrationsRouter,
+  getPendingPaymentRouter,
+  getApprovedPaymentRouter,
 };

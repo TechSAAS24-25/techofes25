@@ -5,9 +5,9 @@
 4. Testing app - done
 5. Testing database - done
 6. Testing routers - done
-7. Production database testing - 
-8. Production app testing - 
+7. Production database testing - done
+8. Production app testing - done
 9. Authentication updation - done
-10. Payment integration - 
+10. Payment integration - done
 
 

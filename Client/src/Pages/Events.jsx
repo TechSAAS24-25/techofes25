@@ -7,7 +7,7 @@ import "../Styles/Events.css";
 import backgroundImage from "../assets/events/stage1.jpeg";
 import eventServices from "../api/events.js";
 import showToast from "../components/toastNotifications";
-import Footer from "../components/Footer.jsx";
+import image from "../assets/dance.png";
 
 const Events = () => {
   const [eventDetails, setEventDetails] = useState(null);
@@ -56,21 +56,25 @@ const Events = () => {
     >
       <div style={{ flex: 1 }}>
         {/* Main Content */}
-        {/* <h1 className="events-title">Categories</h1>
+        <h1 className="events-title">Categories</h1>
         <div className="events-grid">
           {categories?.map((category, index) => (
             <Link to={`/events/${category}`} key={index} className="event-link">
-              <EventCard
-                key={index}
-                icon={"../src/assets/dance.png"}
-                name={category}
-              />
+              <EventCard key={index} icon={image} name={category} />
             </Link>
           ))}
-        </div> */}
-        <h1 className="align-middle events-title">
-          Registrations Opening Soon
-        </h1>
+        </div>
+        {/* <h1 className="align-middle events-title">
+          <div className="events-container text-center">
+            <h1 className="text-2xl font-bold">Event Registration</h1>
+            <Link
+              to="/payment"
+              className="bg-green-500 text-white px-4 py-2 rounded mt-4 inline-block"
+            >
+              Register Now
+            </Link>
+          </div>
+        </h1> */}
       </div>
 
       {/* Footer */}

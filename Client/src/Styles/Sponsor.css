@@ -1,10 +1,27 @@
 .sponsor-page {
+  position: relative;
   padding: 50px;
-  background-color: #040421;
   color: white;
   text-align: center;
   min-height: 100vh;
   overflow: hidden;
+}
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8; /* Adjust opacity for better visibility */
 }
 
 .sponsor-title {
@@ -24,11 +41,13 @@
   background: linear-gradient(135deg, #ff8c00, #ffc300);
   border-radius: 15px;
   padding: 20px;
-  width: 300px;
-  height: 130px;
+  width: 350px;
+  height: 250px;
   text-align: center;
+  text-shadow: 0 0 10px #fff, 0 0 15px #4bd0cc, 0 0 20px #23d88c;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-in-out;
+  font-weight: 600;
 }
 
 .sponsor-card:hover {
@@ -47,14 +66,10 @@
   }
 }
 
-
-
 .sponsor-logo {
   width: 100%;
-  /* width: 200px; */
   object-fit: contain;
-  height: 200px;
-  /* height: 200px; */
+  max-height: 150px;
   height: auto;
   border-radius: 10px;
   margin-bottom: 15px;
