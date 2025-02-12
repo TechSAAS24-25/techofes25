@@ -134,7 +134,7 @@ export const coordinators = [
   },
   {
     img: download15,
-    name: "Karhick Selvan",
+    name: "Karthick Selvan",
     position: "Logistics",
     instagramLink: "https://instagram.com/dracareys_",
     linkedinLink: "https://www.linkedin.com/in/karthick-selvan-424489201",
@@ -184,7 +184,7 @@ export const coordinators = [
   },
   {
     img: download22,
-    name: "Namitha Sharan A",
+    name: "Namitha Sharon A",
     position: "Contents",
     instagramLink: "https://instagram.com/sharon__0505",
     linkedinLink:

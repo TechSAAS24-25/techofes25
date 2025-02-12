@@ -6,12 +6,10 @@ import Merch from "./Pages/Merch.jsx";
 import Events from "./Pages/Events.jsx";
 import EventDetail from "./components/EventDetail.jsx";
 import Accommodation from "./Pages/Accommodation.jsx";
-import More from "./Pages/More.jsx";
 import Hero from "./Pages/Hero.jsx";
 import EventTypes from "./Pages/EventTypes.jsx";
 import EventList from "./Pages/EventList.jsx";
 import Team from "./components/Team.jsx";
-import Merchandise from "./components/Merchandise.jsx";
 import Schedule from "./components/Schedule.jsx";
 import StarAttractions from "./components/StarAttractions.jsx";
 import SponsorPage from "./Pages/Sponsor.jsx";
@@ -60,7 +58,6 @@ function App() {
             <Route path="/payment/:eventId" element={<PaymentPage />} />
             {/* <Route path='/more' element={<More />} /> */}
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/merchandise" element={<Merchandise />} />
             <Route path="/schedule" element={<Schedule />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/star-attractions" element={<StarAttractions />} />
