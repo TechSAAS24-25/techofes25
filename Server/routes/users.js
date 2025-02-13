@@ -71,11 +71,6 @@ userPaymentsRouter.get("/payment", userExtractor, async (request, response) => {
   });
 
   console.log("payments:", payments);
-
-  if (!payments.length) {
-    return response.status(404).json({ message: "No payments found" });
-  }
-
   // Fetch event details for each payment
   const paymentDetails = await Promise.all(
     payments.map(async (payment) => {
