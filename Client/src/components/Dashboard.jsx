@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import userServices from "../api/users.js";
 import { useNavigate } from "react-router-dom";
 import storage from "../services/storage";
+import foodBackground from "../assets/team.jpeg";
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [payments, setPayemnts] = useState(false);
+  const [payments, setPayemnts] = useState([]);
   const navigate = useNavigate();
 
   const [registeredEvents, setRegisteredEvents] = useState([]);
@@ -29,9 +30,9 @@ const Dashboard = () => {
         const registrations = await userServices.getRegistrations();
         setRegisteredEvents(registrations);
 
-        const payments = await userServices.getPayments();
-        setPayemnts(payments);
-        console.log(payments);
+        const paymentsData = await userServices.getPayments();
+        setPayemnts(paymentsData);
+        console.log(paymentsData);
       } catch (err) {
         console.error("Error fetching dashboard data:", err);
         setError("Failed to load data");
@@ -45,7 +46,7 @@ const Dashboard = () => {
     } else {
       fetchUserData();
     }
-  }, []);
+  }, [navigate]);
 
   if (loading) {
     return <div className="text-center text-6xl text-black">Loading...</div>;
@@ -68,8 +69,13 @@ const Dashboard = () => {
 
   return (
     <div
-      className="flex justify-center items-center py-8 px-4 bg-gradient-to-r from-orange-700 via-pink-400 to-blue-600"
-      style={{ height: "140vh" }}
+      className="flex justify-center items-center py-8 px-4"
+      style={{
+        height: "140vh",
+        backgroundImage: `url(${foodBackground})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
       <div className=" bg-black bg-opacity-20 backdrop-blur-lg text-black rounded-lg w-full max-w-5xl p-8">
         <div className="text-center mb-6">
@@ -107,14 +113,12 @@ const Dashboard = () => {
             <p className="text-white mt-2">{userData?.phoneNumber}</p>
           </div>
 
-          {/* Conditionally render Roll Number if userData is set and user type is Insider */}
-          {userData?.rollNo ? (
+          {/* Conditionally render Roll Number if available */}
+          {userData?.rollNo && (
             <div className="text-base bg-[#371426] text-white p-4 rounded-lg shadow-sm">
               <label className="font-semibold text-white">Roll Number</label>
               <p className="text-white mt-2">{userData?.rollNo}</p>
             </div>
-          ) : (
-            <></>
           )}
 
           <div className="text-base bg-[#371426] text-white p-4 rounded-lg shadow-sm">
@@ -122,7 +126,7 @@ const Dashboard = () => {
             <p className="text-white mt-2">{userData?.userType}</p>
           </div>
 
-          {/* Display Registered Events */}
+          {/* Registered Events */}
           <div className="col-span-2 mt-6">
             <h2 className="text-2xl font-bold text-white mb-4">
               Registered Events
@@ -160,6 +164,7 @@ const Dashboard = () => {
               <p className="text-white">No events registered yet.</p>
             )}
           </div>
+
           {/* Payments Section */}
           {[
             {
