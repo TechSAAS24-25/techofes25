@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import EventCard from "../components/Eventcard.jsx";
 import "../Styles/Events.css";
-// import backgroundImage from "../assets/p0fq9cyz.jpg";
 import backgroundImage from "../assets/events/stage1.jpeg";
 import eventServices from "../api/events.js";
 import showToast from "../components/toastNotifications";
