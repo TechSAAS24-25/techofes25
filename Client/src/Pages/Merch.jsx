@@ -20,7 +20,7 @@ const Merchandise = () => {
             <img src={tshirtImage} alt="Techofes'25 T-shirt" />
           </div>
           <a
-            href="https://forms.gle/4D2iDxLyZyMdPwSd6"
+            href="https://forms.gle/yb9E8Pu7rGWfkTHu6"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -38,12 +38,13 @@ const Merchandise = () => {
           </p>
 
           <h2 className="tagline">
-            Own the Vibe, Wear the Legacy!! WEAR IT. FLAUNT IT. TECHOFES IT!
+            Own the Vibe, Wear the Legacy!! <br></br>
+            WEAR IT. FLAUNT IT. TECHOFES IT!
           </h2>
           <p>
             <strong>Register via:</strong> <br />
             <a
-              href="https://forms.gle/4D2iDxLyZyMdPwSd6"
+              href="https://forms.gle/yb9E8Pu7rGWfkTHu6"
               target="_blank"
               rel="noopener noreferrer"
               className="buy-now-link"

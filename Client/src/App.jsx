@@ -74,6 +74,7 @@ function App() {
           <Toaster position="bottom-right" />
         </>
       )}
+      <Analytics />
     </Router>
   );
 }
