@@ -1,21 +1,446 @@
-.accom-container {
-  padding: 2rem;
+.main__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  color: #000;
+  padding: 20px;
+  background-image: url("../assets/food/bg1.jpeg");
 }
 
-.accom-title {
-  color: white;
+.acctitle {
   font-size: 2rem;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-  margin-bottom: 2rem;
-  color: "#000";
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffffff;
 }
 
-.accom-grid {
+.maincontacc {
+  width: 90%;
+  max-width: 1000px;
+  /* background: #fff; */
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mainaccinside {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.accomodationcharge {
+  /* background: #f9f9f9; */
+  padding: 20px;
+  /* color: #ffffff; */
+  border-radius: 10px;
+}
+
+.charges {
+  font-size: 2rem;
+  color: #f5e343;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
+}
+
+.selectacc {
+  padding: 20px;
+  font-size: 1.3rem;
+  /* color: ; */
+  color: #f5e343;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
+}
+
+.charge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 5px;
+}
+
+.without {
+  font-size: 1.3rem;
+  margin: 5px 0;
+}
+
+.gender {
+  margin-top: 20px;
+}
+
+.gender h2 {
+  font-size: 1.3rem;
+  color: #f5e343;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
+  margin-bottom: 10px;
+}
+
+.radios {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.radios label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+}
+
+.charge h3,
+.food-option h3 {
+  margin-top: 15px;
+  font-size: 1.4rem;
+  color: #ffffff;
+  color: #f5e343;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
+}
+
+.food-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* padding: 5px; */
+  row-gap: 5px;
+}
+
+.charge label,
+.food-option label {
+  display: flex;
+  margin: 5px 0;
+  gap: 10px;
+  font-size: 1.1rem;
+}
+
+.total-amount {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: 15px;
+  color: #ffffff;
+  color: #f5e343;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
+}
+
+.radios input[type="radio"],
+.charge input[type="checkbox"],
+.food-option input[type="checkbox"] {
+  width: 18px;
+  accent-color: #f5e343;
+  /* text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6); */
+  height: 18px;
+  cursor: pointer;
+
+  /* grid-area: 20px; */
+}
+
+.buttontab {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tab__header {
+  display: flex;
+  /* background-color: #000; */
   flex-wrap: wrap;
-  gap: 2rem;
-  color: "#000";
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+}
+
+.tabbuttons {
+  display: flex;
+  /* background-color: antiquewhite; */
+  border-radius: 10px;
+  padding: 5px;
+}
+
+/* Tab Button */
+.tab__button {
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  /* background-color: aquamarine; */
+
+  transition: background 0.3s ease;
+}
+
+/* Active Tab Button */
+.tab__button.active {
+  /* background-color: teal; */
+  background-color: #ff6565;
+  color: white;
+}
+
+/* Content Wrapper */
+.contenttab {
+  /* margin-top: 30px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tab Content */
+.tab__content {
+  background: white;
+  margin-top: 20px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tab__button {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.iconacc {
+  font-size: 25px;
+}
+
+/* Image Styling */
+.tab__content img {
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+/* Fact Text */
+.tab__content p {
+  font-size: 18px;
+  margin-top: 10px;
+  color: #333;
+}
+
+.tab__header {
+  /* flex-direction: column; */
+  align-items: center;
+}
+
+.tab__button {
+  width: 100%;
+  text-align: center;
+}
+
+.tab__content img {
+  max-width: 200px;
+}
+
+/* Responsive Tab Buttons */
+@media (max-width: 768px) {
+  .tab__button {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .tab__content img {
+    max-width: 180px;
+  }
+
+  .tab__content {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab__button {
+    /* display: flex; */
+    /* flex-direction:column ; */
+    padding: 6px;
+    width: 100% !important;
+    font-size: 13px;
+  }
+
+  .tab__header {
+    flex-direction: column;
+  }
+
+  .tab__content img {
+    max-width: 150px;
+  }
+
+  .tab__content {
+    padding: 10px;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .acctitle {
+    font-size: 1.8rem;
+  }
+
+  .maincontacc {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .accomodationcharge {
+    padding: 15px;
+  }
+
+  .charges {
+    font-size: 1.3rem;
+  }
+
+  .gender h2,
+  .charge h3,
+  .food-option h3 {
+    font-size: 1.1rem;
+  }
+
+  .radios {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .radios label {
+    font-size: 1rem;
+  }
+
+  .total-amount {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .acctitle {
+    font-size: 1.5rem;
+  }
+
+  .maincontacc {
+    padding: 10px;
+  }
+
+  .accomodationcharge {
+    padding: 10px;
+  }
+
+  .charges {
+    font-size: 1.2rem;
+  }
+
+  .radios label {
+    font-size: 0.9rem;
+  }
+
+  .total-amount {
+    font-size: 1.1rem;
+  }
+
+  .tab__button {
+    width: 50px;
+  }
+}
+
+/* tab conteent */
+.tab-content {
+  padding: 20px;
+  /* background: #f9f9f9; */
+  backdrop-filter: blur(10px) brightness(1.3);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.tab-content h2 {
+  font-size: 24px;
+
+  margin-bottom: 10px;
+  color: #f54343;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
+}
+
+.tab-content p {
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  line-height: 1.6;
+}
+
+/* FAQ Section */
+.faq-details {
+  margin-top: 15px;
+  padding: 10px;
+  /* background: #e3f2fd; */
+  /* border-left: 5px solid #2196f3; */
+  backdrop-filter: blur(px) brightness(1.3);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.faq-details h3 {
+  font-size: 20px;
+  color: #f54343;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
+
+  /* color: #1976d2; */
+  margin-bottom: 8px;
+}
+
+.faq-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.faq-details li {
+  display: flex;
+  align-items: center; /* Align icon and text */
+  font-size: 14px;
+  justify-content: center;
+  /* color: #444; */
+  color: #ffffff;
+  padding: 5px 0;
+  gap: 8px; /* Adds space between icon and text */
+}
+
+/* Download Button */
+.download-section {
+  margin-top: 15px;
+  text-align: center;
+  /* display: flex; */
+}
+
+.download-button {
+  display: inline-block;
+  background: #ff6565;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.download-button:hover {
+  color: #ff4242;
+  transform: scale(1.05);
+}
+
+.email-link {
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+}
+
+.drop {
+  color: #f54343;
+  font-size: 18px;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
 }
