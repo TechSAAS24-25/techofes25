@@ -69,13 +69,11 @@ const Dashboard = () => {
 
   return (
     <div
-      className="flex justify-center items-center py-8 px-4"
-      style={{
-        height: "140vh",
+      className="flex justify-center items-center py-8 px-4 bg-gradient-to-r from-orange-700 via-pink-400 to-blue-600"
+      style={{ height: "180vh", 
         backgroundImage: `url(${foodBackground})`,
         backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+        backgroundPosition: "center" }}
     >
       <div className=" bg-black bg-opacity-20 backdrop-blur-lg text-black rounded-lg w-full max-w-5xl p-8">
         <div className="text-center mb-6">

@@ -14,7 +14,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://techofes25.onrender.com",
+        target: "http://localhost:4000",
         changeOrigin: true,
       },
     },

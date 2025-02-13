@@ -59,7 +59,7 @@ eventPaymentRouter.post(
 
       // Check if payment with the same T_ID and eventID already exists
       const existingPayment = await Payment.findOne({ T_ID, itemID: eventID });
-      console.log(existingPayment, T_ID, eventID);
+      // console.log(existingPayment, T_ID, eventID);
       if (existingPayment) {
         return response
           .status(400)
@@ -151,16 +151,22 @@ eventRegistrationRouter.post(
         event.seats -= 1;
         await event.save();
 
-        const payment = await Payment.findOne({ T_ID, itemID: eventID });
-        payment.status = "approved";
-        await payment.save();
+        console.log(T_ID, eventID);
+        const existingPayment = await Payment.findOne({
+          T_ID,
+          itemID: eventID,
+        });
+        // const payment = await Payment.findOne({ T_ID: T_ID, itemID: eventID });
+        existingPayment.status = "approved";
+        await existingPayment.save();
 
         response.status(201).json({
           message: "Successfully registered for the event",
           registration: savedReg,
         });
       } else {
-        const payment = await Payment.findOne({ T_ID, itemID: eventID });
+        const payment = await Payment.findOne({ T_ID: T_ID, itemID: eventID });
+
         payment.status = "rejected";
         await payment.save();
 

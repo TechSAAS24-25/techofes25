@@ -1,11 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import eventServices from "../api/events.js";
 import { useNavigate } from "react-router-dom";
 import backgroundVideo from "../assets/food/p2.mp4"; // Background video
 import showToast from "../components/toastNotifications";
-import { ToastContainer, toast } from "react-toastify";
+import gpay100 from "../assets/gpay/100.jpeg";
+import gpay250 from "../assets/gpay/250.jpeg";
+import gpay200 from "../assets/gpay/200.jpeg";
+import gpay300 from "../assets/gpay/300.jpeg";
+import gpay1000 from "../assets/gpay/1000.jpeg";
+import gpay2000 from "../assets/gpay/2000.jpeg";
+
+const gpayImages = {
+  200: gpay200,
+  100: gpay100,
+  1000: gpay1000,
+  250: gpay250,
+  300: gpay300,
+  2000: gpay2000,
+};
 
 const PaymentPage = () => {
   const [file, setFile] = useState(null);
@@ -13,8 +27,22 @@ const PaymentPage = () => {
   const [isUploading, setIsUploading] = useState(false); // Upload button state
   const { eventId } = useParams();
   const navigate = useNavigate();
+  const [regFees, setRegFees] = useState(null);
 
   const handleFileChange = (e) => setFile(e.target.files[0]);
+
+  useEffect(() => {
+    const fetchEventDetails = async () => {
+      try {
+        const eventData = await eventServices.getEvent(eventId);
+        setRegFees(eventData?.regFees);
+        // console.log(eventData);
+      } catch (error) {
+        showToast("error", "Failed to load event details.");
+      }
+    };
+    fetchEventDetails();
+  }, [eventId]);
 
   const handleUpload = async () => {
     if (!transactionId.trim() || !file) return;
@@ -32,11 +60,7 @@ const PaymentPage = () => {
         response?.message ===
         "Successfully registered for the event, waiting for admin approval..."
       ) {
-        toast.success(response.message);
-
-        // setTimeout(() => {
-        //   navigate("/dashboard");
-        // }, 2500);
+        showToast("success", response?.message);
       } else {
         console.log(response);
         showToast(
@@ -57,7 +81,8 @@ const PaymentPage = () => {
   };
 
   const isFormValid = transactionId.trim() !== "" && file !== null;
-
+  const qrImagePath = regFees ? gpayImages[regFees] : null;
+  console.log(qrImagePath);
   return (
     <motion.div
       className="p-6 text-center bg-gray-900 text-white min-h-screen flex flex-col justify-center items-center relative"
@@ -79,11 +104,11 @@ const PaymentPage = () => {
           Scan QR & Upload Payment Screenshot
         </h1>
         <motion.img
-          src="/qr-code.png"
+          src={qrImagePath}
           alt="QR Code"
           className="mx-auto my-4 w-64"
-          animate={{ rotate: [0, 5, -5, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
+          // animate={{ rotate: [0, 5, -5, 0] }}
+          // transition={{ repeat: Infinity, duration: 2 }}
         />
         <input
           type="text"
