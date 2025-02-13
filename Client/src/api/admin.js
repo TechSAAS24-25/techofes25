@@ -1,4 +1,4 @@
-import axios from "../helper/axios"; 
+import axios from "../helper/axios";
 import storage from "../services/storage";
 const adminUrl = "/api/admin";
 
@@ -54,9 +54,31 @@ const getTotalEventRegistrations = async () => {
   return response.data;
 };
 
+const getAllPayments = async () => {
+  try {
+    const [pendingResponse, approvedResponse] = await Promise.all([
+      axios.get(`${adminUrl}/payments/pending`),
+      axios.get(`${adminUrl}/payments/approved`),
+    ]);
+
+    return {
+      pendingPayments: pendingResponse.data?.message
+        ? []
+        : pendingResponse.data,
+      approvedPayments: approvedResponse.data?.message
+        ? []
+        : approvedResponse.data,
+    };
+  } catch (error) {
+    console.error("Error fetching payments:", error);
+    throw error;
+  }
+};
+
 export default {
   getUsers,
   getTotalUsers,
   getEventRegistrations,
   getTotalEventRegistrations,
+  getAllPayments,
 };

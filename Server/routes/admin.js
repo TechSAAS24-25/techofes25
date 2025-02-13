@@ -3,6 +3,7 @@ require("express-async-errors");
 const User = require("../models/user");
 const Registration = require("../models/registration");
 const Payment = require("../models/payment");
+const Event = require("../models/event");
 const userDetailsRouter = express.Router();
 const totalRegistrationsRouter = express.Router();
 const eventRegistrationsRouter = express.Router();
@@ -44,16 +45,110 @@ totalEventRegistrationsRouter.get("/totalregistrations", async (req, res) => {
   res.status(200).json({ totalRegistrations: registrations.length });
 });
 
-// Route to get all pending payments
-getPendingPaymentRouter.get("/payments/pending", async(req, res) => {
-  const payments = await Payment.find({status : "pending"});
-  res.status(200).json(payments);
+// Route to get all pending payments with User and Event details
+getPendingPaymentRouter.get("/payments/pending", async (req, res) => {
+  try {
+    const payments = await Payment.find({ status: "pending" });
+
+    if (!payments.length) {
+      return res.status(200).json({ message: "No pending payments found" });
+    }
+
+    // console.log(payments);
+
+    const paymentDetails = await Promise.all(
+      payments.map(async (payment) => {
+        const user = await User.findOne({ T_ID: payment.T_ID });
+        const event =
+          payment.type === "Event"
+            ? await Event.findById(payment.itemID)
+            : null;
+
+        // console.log(event, user);
+
+        return {
+          _id: payment._id,
+          transactionID: payment.transactionID,
+          T_ID: payment.T_ID,
+          amount: event.regFees,
+          screenshotPath: payment.screenshotPath,
+          status: payment.status,
+          transactionDate: payment.transactionDate,
+          userName: user.firstName + " " + user.lastName,
+          userEmail: user.emailID,
+          userType: user.userType,
+          phone: user.phoneNumber,
+          ...(event && {
+            eventId: event._id,
+            eventName: event.eventName,
+            category: event.category,
+            date: event.date,
+            location: event.location,
+          }),
+        };
+      })
+    );
+
+    res.status(200).json(paymentDetails);
+  } catch (error) {
+    console.error("Error fetching pending payments:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 });
 
 // Route to get all approved payments
-getApprovedPaymentRouter.get("/payments/approved", async(req, res) => {
-  const payments = await Payment.find({status : "approved"});
-  res.status(200).json(payments);
+getApprovedPaymentRouter.get("/payments/approved", async (req, res) => {
+  try {
+    const payments = await Payment.find({
+      status: { $in: ["approved", "rejected"] },
+    });
+
+    if (!payments.length) {
+      return res
+        .status(200)
+        .json({ message: "No approved or rejected payments found" });
+    }
+
+    // console.log(payments);
+
+    const paymentDetails = await Promise.all(
+      payments.map(async (payment) => {
+        const user = await User.findOne({ T_ID: payment.T_ID });
+        const event =
+          payment.type === "Event"
+            ? await Event.findById(payment.itemID)
+            : null;
+
+        // console.log(event, user);
+
+        return {
+          _id: payment._id,
+          transactionID: payment.transactionID,
+          T_ID: payment.T_ID,
+          amount: event.regFees,
+          screenshotPath: payment.screenshotPath,
+          status: payment.status,
+          transactionDate: payment.transactionDate,
+          userName: user.firstName + " " + user.lastName,
+          userEmail: user.emailID,
+          userType: user.userType,
+          phone: user.phoneNumber,
+          ...(event && {
+            eventId: event.eventID,
+            eventName: event.eventName,
+            category: event.category,
+            date: event.date,
+            location: event.location,
+          }),
+        };
+      })
+    );
+
+    res.status(200).json(paymentDetails);
+  } catch (error) {
+    console.error("Error fetching pending payments:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 });
 
 module.exports = {
