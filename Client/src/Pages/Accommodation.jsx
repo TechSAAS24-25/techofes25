@@ -27,32 +27,38 @@ function Accommodation() {
   // Calculate total price
   const totalPrice = selectedDays.length * (includeFood ? foodPrice : basePrice)
 
-  const petData = [
-    {
-      animal: 'INFO',
-      fact: 'Participants need to check in at the reception with a valid ID.',
-      image: '/assets/3.svg',
-      icon: <FaInfoCircle />,
-    },
-    {
-      animal: 'REACHING ANNA UNIVERSITY',
-      fact: 'You can reach via metro, bus, or taxi from the airport or railway station.',
-      image: '/assets/1.svg',
-      icon: <FaLocationDot />,
-    },
-    {
-      animal: 'FAQ',
-      fact: 'For any queries, you can contact the event organizers.',
-      image: '/assets/7.svg',
-      icon: <FaQuestion />,
-    },
-    {
-      animal: 'RULES',
-      fact: ' Participants need to follow the rules and regulations of the event.',
-      image: '/assets/5.svg',
-      icon: <IoNewspaper />,
-    },
-  ]
+ const petData = [
+   {
+     animal: 'INFO',
+     fact: 'Participants need to check in at the reception with a valid ID.',
+     image: '/assets/3.svg',
+     icon: <FaInfoCircle />,
+   },
+   {
+     animal: 'REACHING ANNA UNIVERSITY',
+     fact: 'You can reach via metro, bus, or taxi from the airport or railway station.',
+     image: '/assets/1.svg',
+     icon: <FaLocationDot />,
+   },
+   {
+     animal: 'FAQ',
+     fact: 'For any queries, you can contact the event organizers.',
+     image: '/assets/7.svg',
+     icon: <FaQuestion />,
+     details: [
+       { name: 'John Doe', number: '9876543210' },
+       { name: 'Jane Smith', number: '8765432109' },
+     ],
+   },
+   {
+     animal: 'RULES',
+     fact: 'Participants need to follow the rules and regulations of the event.',
+     image: '/assets/5.svg',
+     icon: <IoNewspaper />,
+     downloadLink: '/assets/rules.pdf', // Add your file path here
+   },
+ ]
+
 
   return (
     <div className='main__container'>
@@ -83,8 +89,8 @@ function Accommodation() {
                 </label>
               </div>
 
+                <h3 className='selectacc' >Select Your Accommodation Dates</h3>
               <div className='charge'>
-                <h3>Select Your Accommodation Dates</h3>
                 <label>
                   <input
                     type='checkbox'
