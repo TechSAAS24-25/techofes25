@@ -3,7 +3,7 @@ import Axios from "axios";
 
 const axios = Axios.create({});
 
-export const baseURL = "http://localhost:4000";
+export const baseURL = "https://techofes25.onrender.com";
 
 axios.defaults.timeout = 120000; // Milliseconds
 axios.interceptors.request.use(
