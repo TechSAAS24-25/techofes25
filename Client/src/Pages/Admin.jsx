@@ -183,6 +183,7 @@ const Admin = () => {
                 <th className="border-b-2 p-4">Name</th>
                 <th className="border-b-2 p-4">Type</th>
                 <th className="border-b-2 p-4">Event Name</th>
+                <th className="border-b-2 p-4">Event Type</th>
                 <th className="border-b-2 p-4">Screenshot</th>
                 <th className="border-b-2 p-4">Phone</th>
                 <th className="border-b-2 p-4">Email</th>
@@ -196,6 +197,7 @@ const Admin = () => {
                   <td className="border-b p-4">{payment.userName}</td>
                   <td className="border-b p-4">{payment.userType}</td>
                   <td className="border-b p-4">{payment.eventName}</td>
+                  <td className="border-b p-4">{payment.category}</td>
                   <td className="border-b p-4">
                     <img
                       src={payment.screenshotPath}
@@ -242,6 +244,7 @@ const Admin = () => {
                 <th className="border-b-2 p-4">Name</th>
                 <th className="border-b-2 p-4">Type</th>
                 <th className="border-b-2 p-4">Event Name</th>
+                <th className="border-b-2 p-4">Event Type</th>
                 <th className="border-b-2 p-4">Screenshot</th>
                 <th className="border-b-2 p-4">Phone</th>
                 <th className="border-b-2 p-4">Email</th>
@@ -255,6 +258,7 @@ const Admin = () => {
                   <td className="border-b p-4">{payment.userName}</td>
                   <td className="border-b p-4">{payment.userType}</td>
                   <td className="border-b p-4">{payment.eventName}</td>
+                  <td className="border-b p-4">{payment.category}</td>
                   <td className="border-b p-4">
                     <img
                       src={payment.screenshotPath}

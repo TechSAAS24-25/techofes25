@@ -45,6 +45,28 @@ const registerEvent = async (eventId, T_ID, answer) => {
   }
 };
 
+// Register a user for all general events (T_ID must end with "CEG")
+const registerForGeneralEvents = async (T_ID) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${storage.loadUser().token}`,
+      },
+    };
+
+    const response = await axios.post(
+      `${eventsUrl}/register/general`,
+      { T_ID },
+      config
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error registering for general events:", error);
+    throw error;
+  }
+};
+
 // Check Registration & Payment Status
 const registerStatus = async (eventId) => {
   try {
@@ -112,4 +134,5 @@ export default {
   registerEvent,
   registerStatus,
   payForEvent,
+  registerForGeneralEvents,
 };

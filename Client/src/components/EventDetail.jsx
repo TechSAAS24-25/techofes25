@@ -36,12 +36,14 @@ const EventDetail = () => {
   const [selectedSubTab, setSelectedSubTab] = useState("Solo");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
+  const [user, setUser] = useState({});
   const [isRegistered, setIsRegistered] = useState(false);
 
   useEffect(() => {
     // Check if the user is logged in
     const user = storage.loadUser();
     setIsLoggedIn(!!user);
+    setUser(user);
 
     const fetchEventDetails = async () => {
       try {
@@ -72,18 +74,23 @@ const EventDetail = () => {
       toast.warning("Please log in to register for events.");
       return;
     }
-    navigate(`/payment/${id}`);
-    // try {
-    //   setIsRegistering(true);
-    //   // await eventServices.registerEvent(id);
-    //   toast.success("Registration successful!");
-    //   setIsRegistered(true);
-    // } catch (error) {
-    //   console.error("Error registering for event:", error);
-    //   toast.error("Error registering for event.");
-    // } finally {
-    //   setIsRegistering(false);
-    // }
+
+    if (user.T_ID.endsWith("CEG") && event.category === "General Events") {
+      try {
+        const response = await eventServices.registerForGeneralEvents(
+          user.T_ID
+        );
+        console.log(response);
+        toast.success(
+          response.message || "Successfully registered for general events!"
+        );
+        window.location.reload();
+      } catch (error) {
+        toast.error("Failed to register for general events.");
+      }
+    } else {
+      navigate(`/payment/${id}`);
+    }
   };
 
   if (!event) {
@@ -123,7 +130,9 @@ const EventDetail = () => {
                 className="register-btn bg-violet-800"
                 onClick={handleRegister}
               >
-                Register
+                {event.category != "General Events"
+                  ? "Register"
+                  : "Register for all General Events"}
               </button>
             ) : (
               <button
@@ -134,7 +143,13 @@ const EventDetail = () => {
               </button>
             )}
             <h1 className="text-xl text-white">
-              Registration Fees: {event.regFees}
+              Registration Fees:{" "}
+              {user?.T_ID?.endsWith("CEG") ? "₹0" : `₹ ${event.regFees}`}{" "}
+              <h6 className="text-base">
+                {event.category !== "General Events"
+                  ? ""
+                  : "(For all General Events)"}
+              </h6>
             </h1>
 
             {/* <button
