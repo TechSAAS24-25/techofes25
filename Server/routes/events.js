@@ -126,7 +126,7 @@ eventPaymentRouter.post(
   }
 );
 
-// Register for an Event
+//admin approval router
 eventRegistrationRouter.post(
   "/:eventId/register",
   userExtractor,
@@ -143,6 +143,19 @@ eventRegistrationRouter.post(
       if (!event) {
         return response.status(404).json({ error: "Event not found" });
       }
+
+      const payment = await Payment.findOne({ T_ID, itemID: eventID });
+      if (!payment) {
+        return response.status(404).json({ error: "Payment not found" });
+      }
+
+      // Extract the Cloudinary public ID from the screenshot URL
+      const screenshotUrl = payment.screenshotPath;
+      const publicId = screenshotUrl
+        .split("/")
+        .slice(-2)
+        .join("/")
+        .replace(".png", ""); // Extracts the `events/{eventID}/{T_ID}` part
 
       if (answer === "Yes") {
         if (event.seats < 1) {
@@ -193,15 +206,20 @@ eventRegistrationRouter.post(
           }
         }
 
+        // Delete the screenshot from Cloudinary
+        await cloudinary.uploader.destroy(publicId);
+
         response.status(201).json({
           message: "Successfully registered for event(s)",
           registrations,
         });
       } else {
-        const payment = await Payment.findOne({ T_ID: T_ID, itemID: eventID });
-
+        // Reject the payment
         payment.status = "rejected";
         await payment.save();
+
+        // Delete the screenshot from Cloudinary
+        await cloudinary.uploader.destroy(publicId);
 
         response.status(200).json({
           message: "Registration denied by admin",
