@@ -3,6 +3,7 @@ const eventsRouter = require("express").Router();
 const eventDetailsRouter = require("express").Router();
 const eventRegistrationRouter = require("express").Router();
 const eventPaymentRouter = require("express").Router();
+const eventGeneralRegistrationRouter = require("express").Router();
 require("express-async-errors");
 const Event = require("../models/event");
 const Registration = require("../models/registration");
@@ -64,6 +65,16 @@ eventPaymentRouter.post(
         return response
           .status(400)
           .json({ error: "Cannot make duplicate payments!" });
+      }
+
+      // Check if the transactionId has already been submitted
+      const existingTransaction = await Payment.findOne({
+        transactionID: transactionId,
+      });
+      if (existingTransaction) {
+        return response
+          .status(400)
+          .json({ error: "This transaction ID has already been used!" });
       }
 
       if (!screenshot) {
@@ -141,28 +152,50 @@ eventRegistrationRouter.post(
           });
         }
 
-        // Register the User
-        const registration = new Registration({
-          T_ID: T_ID,
-          eventID,
-        });
+        let eventsToRegister = [event];
 
-        const savedReg = await registration.save();
-        event.seats -= 1;
-        await event.save();
+        // Check if the event is a general event
+        if (event.category === "General Events") {
+          eventsToRegister = await Event.find({ category: "General Events" });
+        }
 
-        console.log(T_ID, eventID);
-        const existingPayment = await Payment.findOne({
-          T_ID,
-          itemID: eventID,
-        });
-        // const payment = await Payment.findOne({ T_ID: T_ID, itemID: eventID });
-        existingPayment.status = "approved";
-        await existingPayment.save();
+        const registrations = [];
+
+        for (const ev of eventsToRegister) {
+          if (ev.seats < 1) continue; // Skip events with no available seats
+
+          // Check if the user is already registered for this event
+          const existingRegistration = await Registration.findOne({
+            T_ID,
+            eventID: ev._id,
+          });
+          if (existingRegistration) continue;
+
+          // Register the user for each general event
+          const registration = new Registration({
+            T_ID: T_ID,
+            eventID: ev._id,
+          });
+          const savedReg = await registration.save();
+          registrations.push(savedReg);
+
+          ev.seats -= 1;
+          await ev.save();
+
+          // Update payment status
+          const existingPayment = await Payment.findOne({
+            T_ID,
+            itemID: ev._id,
+          });
+          if (existingPayment) {
+            existingPayment.status = "approved";
+            await existingPayment.save();
+          }
+        }
 
         response.status(201).json({
-          message: "Successfully registered for the event",
-          registration: savedReg,
+          message: "Successfully registered for event(s)",
+          registrations,
         });
       } else {
         const payment = await Payment.findOne({ T_ID: T_ID, itemID: eventID });
@@ -177,6 +210,74 @@ eventRegistrationRouter.post(
       }
     } catch (error) {
       console.error("Registration Error:", error);
+      response.status(500).json({ error: "Internal server error" });
+    }
+  }
+);
+
+// Register CEG Users for General Events
+
+eventGeneralRegistrationRouter.post(
+  "/register/general",
+  userExtractor,
+  async (request, response) => {
+    try {
+      const { T_ID } = request.body;
+
+      // Check if the user's T_ID ends with "CEG"
+      if (!T_ID.endsWith("CEG")) {
+        return response
+          .status(403)
+          .json({ error: "Unauthorized - Not a CEG user" });
+      }
+
+      // Fetch all general events
+      const generalEvents = await Event.find({ category: "General Events" });
+      if (generalEvents.length === 0) {
+        return response
+          .status(404)
+          .json({ error: "No general events available" });
+      }
+
+      const registrations = [];
+
+      for (const event of generalEvents) {
+        if (event.seats < 1) continue; // Skip if no available seats
+
+        // Check if the user is already registered for this event
+        const existingRegistration = await Registration.findOne({
+          T_ID,
+          eventID: event._id,
+        });
+        if (existingRegistration) continue;
+
+        // Register the user
+        const registration = new Registration({ T_ID, eventID: event._id });
+        const savedReg = await registration.save();
+        registrations.push(savedReg);
+
+        // Decrease the available seats
+        event.seats -= 1;
+        await event.save();
+
+        // Update payment status if applicable
+        const existingPayment = await Payment.findOne({
+          T_ID,
+          itemID: event._id,
+        });
+
+        if (existingPayment) {
+          existingPayment.status = "approved";
+          await existingPayment.save();
+        }
+      }
+
+      response.status(201).json({
+        message: "Successfully registered for general events",
+        registrations,
+      });
+    } catch (error) {
+      console.error("General Event Registration Error:", error);
       response.status(500).json({ error: "Internal server error" });
     }
   }
@@ -227,4 +328,5 @@ module.exports = {
   eventDetailsRouter,
   eventRegistrationRouter,
   eventPaymentRouter,
+  eventGeneralRegistrationRouter,
 };

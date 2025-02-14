@@ -70,10 +70,12 @@ const Dashboard = () => {
   return (
     <div
       className="flex justify-center items-center py-8 px-4 bg-gradient-to-r from-orange-700 via-pink-400 to-blue-600"
-      style={{ height: "180vh", 
+      style={{
+        height: "180vh",
         backgroundImage: `url(${foodBackground})`,
         backgroundSize: "cover",
-        backgroundPosition: "center" }}
+        backgroundPosition: "center",
+      }}
     >
       <div className=" bg-black bg-opacity-20 backdrop-blur-lg text-black rounded-lg w-full max-w-5xl p-8">
         <div className="text-center mb-6">
@@ -132,7 +134,7 @@ const Dashboard = () => {
             {registeredEvents.length > 0 ? (
               <div
                 className="grid grid-cols-1 lg:grid-cols-2 gap-6 overflow-y-scroll overflow-x-clip"
-                style={{ height: "20vh", scrollbarWidth: "thin" }}
+                style={{ height: "30vh", scrollbarWidth: "thin" }}
               >
                 {registeredEvents.map((event) => (
                   <div
@@ -193,19 +195,34 @@ const Dashboard = () => {
                       key={payment.registrationID}
                       className={`${color} p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300`}
                     >
-                      <div className="font-semibold text-xl text-black mb-2">
-                        Event: {payment.eventName || "Unknown"}
-                      </div>
-                      <div className="text-black mb-2">
-                        <strong>Registration Fees:</strong> ₹{payment.amount}
-                      </div>
-                      <div className="text-black mb-2">
-                        <strong>Date:</strong>{" "}
-                        {new Date(payment.date).toLocaleDateString()}
-                      </div>
-                      <div className="text-black mb-2">
-                        <strong>Category:</strong> {payment.category}
-                      </div>
+                      {payment.category === "General Events" ? (
+                        <>
+                          <div className="font-semibold text-xl text-black mb-2">
+                            Event: General Events
+                          </div>
+                          <div className="text-black mb-2">
+                            <strong>Registration Fees:</strong> ₹
+                            {payment.amount}
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="font-semibold text-xl text-black mb-2">
+                            Event: {payment.eventName || "Unknown"}
+                          </div>
+                          <div className="text-black mb-2">
+                            <strong>Registration Fees:</strong> ₹
+                            {payment.amount}
+                          </div>
+                          <div className="text-black mb-2">
+                            <strong>Date:</strong>{" "}
+                            {new Date(payment.date).toLocaleDateString()}
+                          </div>
+                          <div className="text-black mb-2">
+                            <strong>Category:</strong> {payment.category}
+                          </div>
+                        </>
+                      )}
                     </div>
                   ))}
                 </div>
