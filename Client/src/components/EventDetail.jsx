@@ -144,7 +144,10 @@ const EventDetail = () => {
             )}
             <h1 className="text-xl text-white">
               Registration Fees:{" "}
-              {user?.T_ID?.endsWith("CEG") ? "₹0" : `₹ ${event.regFees}`}{" "}
+              {user?.T_ID?.endsWith("CEG") &&
+              event.category === "General Events"
+                ? "₹0"
+                : `₹ ${event.regFees}`}{" "}
               <h6 className="text-base">
                 {event.category !== "General Events"
                   ? ""
