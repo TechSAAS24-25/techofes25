@@ -8,6 +8,7 @@ const userDetailsRouter = express.Router();
 const totalRegistrationsRouter = express.Router();
 const eventRegistrationsRouter = express.Router();
 const totalEventRegistrationsRouter = express.Router();
+const getRegistrationRouter = express.Router();
 const getPendingPaymentRouter = express.Router();
 const getApprovedPaymentRouter = express.Router();
 
@@ -48,7 +49,7 @@ totalEventRegistrationsRouter.get("/totalregistrations", async (req, res) => {
 // Route to get all pending payments with User and Event details
 getPendingPaymentRouter.get("/payments/pending", async (req, res) => {
   try {
-    const payments = await Payment.find({ status: "pending" });
+    const payments = await Payment.find({ status: "pending" }).limit(1000);
 
     if (!payments.length) {
       return res.status(200).json({ message: "No pending payments found" });
@@ -101,7 +102,9 @@ getApprovedPaymentRouter.get("/payments/approved", async (req, res) => {
   try {
     const payments = await Payment.find({
       status: { $in: ["approved", "rejected"] },
-    });
+    }).limit(1000);
+
+    console.log(payments.length);
 
     if (!payments.length) {
       return res
@@ -151,11 +154,51 @@ getApprovedPaymentRouter.get("/payments/approved", async (req, res) => {
   }
 });
 
+// Route to get all registrations with User and Event details
+getRegistrationRouter.get("/registrations", async (req, res) => {
+  try {
+    const registrations = await Registration.find(); // Fetch all registrations
+
+    if (!registrations.length) {
+      return res.status(200).json({ message: "No registrations found" });
+    }
+
+    const registrationDetails = await Promise.all(
+      registrations.map(async (registration) => {
+        const user = await User.findOne({ T_ID: registration.T_ID });
+        const event = await Event.findById(registration.eventID); // Assuming eventID is the field in registration
+
+        return {
+          _id: registration._id,
+          registrationDate: registration.registrationDate,
+          status: registration.status,
+          amount: registration.amount,
+          userName: user.firstName + " " + user.lastName,
+          userEmail: user.emailID,
+          userType: user.userType,
+          phone: user.phoneNumber,
+          eventId: event._id,
+          eventName: event.eventName,
+          eventCategory: event.category,
+          eventDate: event.date,
+          eventLocation: event.location,
+        };
+      })
+    );
+
+    res.status(200).json(registrationDetails);
+  } catch (error) {
+    console.error("Error fetching registrations:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 module.exports = {
   userDetailsRouter,
   totalRegistrationsRouter,
   eventRegistrationsRouter,
   totalEventRegistrationsRouter,
+  getRegistrationRouter,
   getPendingPaymentRouter,
   getApprovedPaymentRouter,
 };

@@ -63,6 +63,7 @@ app.use("/api/accommodations", accommodationsRouter.bookAccommodationRouter);
 app.use("/api/admin", adminRouter.userDetailsRouter);
 app.use("/api/admin", adminRouter.totalRegistrationsRouter);
 app.use("/api/admin", adminRouter.totalEventRegistrationsRouter);
+app.use("/api/admin", adminRouter.getRegistrationRouter);
 app.use("/api/admin", adminRouter.eventRegistrationsRouter);
 app.use("/api/admin", adminRouter.getPendingPaymentRouter);
 app.use("/api/admin", adminRouter.getApprovedPaymentRouter);
