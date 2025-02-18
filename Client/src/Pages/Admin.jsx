@@ -11,6 +11,7 @@ const Admin = () => {
   const [registeredUsers, setRegisteredUsers] = useState(0);
   const [users, setUsers] = useState([]);
   const [payments, setPayments] = useState({});
+  const [regs, setRegs] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);
 
   const [visitorsCount, setVisitorsCount] = useState(0);
@@ -79,19 +80,26 @@ const Admin = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [fetchedUsers, totalUsers, totalRegistrations, allPayments] =
-          await Promise.all([
-            adminServices.getUsers(),
-            adminServices.getTotalUsers(),
-            adminServices.getTotalEventRegistrations(),
-            adminServices.getAllPayments(),
-          ]);
+        const [
+          fetchedUsers,
+          totalUsers,
+          totalRegistrations,
+          allPayments,
+          allRegs,
+        ] = await Promise.all([
+          adminServices.getUsers(),
+          adminServices.getTotalUsers(),
+          adminServices.getTotalEventRegistrations(),
+          adminServices.getAllPayments(),
+          adminServices.getAllRegistrations(),
+        ]);
 
         setTotalVisitors(totalRegistrations.totalVisitors || 0);
         setTicketsPurchased(totalRegistrations.totalRegistrations || 0);
         setRegisteredUsers(totalUsers.totalUserRegistrations || 0);
         setPayments(allPayments || {});
-        console.log(allPayments);
+        setRegs(allRegs || []);
+        console.log(allRegs);
         setUsers(fetchedUsers);
       } catch (error) {
         console.error("Error fetching admin data:", error);
@@ -286,6 +294,53 @@ const Admin = () => {
           </table>
         ) : (
           <p className="text-gray-500">No pending payments.</p>
+        )}
+      </div>
+
+      {/* Registrations */}
+      <div className="mt-8 bg-white p-6 shadow rounded-lg">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          All Registrations
+        </h2>
+        {regs && regs.length > 0 ? (
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr>
+                {/* <th className="border-b-2 p-4">Transaction ID</th> */}
+                <th className="border-b-2 p-4">Name</th>
+                <th className="border-b-2 p-4">Type</th>
+                <th className="border-b-2 p-4">Event Name</th>
+                <th className="border-b-2 p-4">Event Type</th>
+                {/* <th className="border-b-2 p-4">Screenshot</th> */}
+                <th className="border-b-2 p-4">Phone</th>
+                <th className="border-b-2 p-4">Email</th>
+                {/* <th className="border-b-2 p-4">Status</th> */}
+              </tr>
+            </thead>
+            <tbody>
+              {regs.map((payment) => (
+                <tr key={regs._id}>
+                  {/* <td className="border-b p-4">{payment.transactionID}</td> */}
+                  <td className="border-b p-4">{payment.userName}</td>
+                  <td className="border-b p-4">{payment.userType}</td>
+                  <td className="border-b p-4">{payment.eventName}</td>
+                  <td className="border-b p-4">{payment.category}</td>
+                  {/* <td className="border-b p-4">
+                    <img
+                      src={payment.screenshotPath}
+                      alt="Screenshot"
+                      className="h-16 w-16 object-cover cursor-pointer"
+                      onClick={() => setSelectedImage(payment.screenshotPath)}
+                    />
+                  </td> */}
+                  <td className="border-b p-4">{payment.phone}</td>
+                  <td className="border-b p-4">{payment.userEmail}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p className="text-gray-500">No Registrations.</p>
         )}
       </div>
 

@@ -75,10 +75,24 @@ const getAllPayments = async () => {
   }
 };
 
+const getAllRegistrations = async () => {
+  try {
+    const response = await axios.get(`${adminUrl}/registrations`);
+
+    return response.data?.message
+      ? [] // If there is a message (no registrations found), return an empty array
+      : response.data; // Otherwise, return the list of registrations
+  } catch (error) {
+    console.error("Error fetching registrations:", error);
+    throw error; // Re-throw the error to handle it in the calling code
+  }
+};
+
 export default {
   getUsers,
   getTotalUsers,
   getEventRegistrations,
   getTotalEventRegistrations,
   getAllPayments,
+  getAllRegistrations,
 };
