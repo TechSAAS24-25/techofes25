@@ -36,7 +36,7 @@ const EventTypes = () => {
     <div
       className="events-container"
       style={{
-        height: "100vh",
+        minheight: "300vh",
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
       }}
