@@ -4,7 +4,7 @@
   padding: 2rem;
   margin: 0;
   padding: 0;
-  min-height: 150vh;
+  min-height: 250vh !important;
   background-size: cover;
   background-position: center;
   background-size: cover; /* Ensures the image covers the entire area */
