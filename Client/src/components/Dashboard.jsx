@@ -149,7 +149,6 @@ const Dashboard = () => {
                     </div>
                     <div className="text-gray-300 mb-2">
                       <strong>Event Date:</strong>{" "}
-                      console.log(event.date)
                       {isNaN(new Date(event.date)) ? event.date : new Date(event.date).toLocaleDateString()}
                     </div>
                     <div className="text-gray-300 mb-2">
