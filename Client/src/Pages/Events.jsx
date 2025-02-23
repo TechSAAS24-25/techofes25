@@ -15,6 +15,7 @@ const Events = () => {
     "Signature Events",
     "Pro-shows",
     "Carnivals",
+    "Sports"
   ]);
   const navigate = useNavigate();
 
