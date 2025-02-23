@@ -149,9 +149,7 @@ const Dashboard = () => {
                     </div>
                     <div className="text-gray-300 mb-2">
                       <strong>Event Date:</strong>{" "}
-                      {isNaN(Date.parse(event.date))
-                        ? event.date
-                        : new Date(event.date).toLocaleDateString()}
+                      {isNaN(Date.parse(event.date)) ? event.date : new Date(event.date).toLocaleDateString()}
                     </div>
                     <div className="text-gray-300 mb-2">
                       <strong>Location:</strong> {event.location}
@@ -218,9 +216,7 @@ const Dashboard = () => {
                           </div>
                           <div className="text-black mb-2">
                             <strong>Date:</strong>{" "}
-                            {isNaN(Date.parse(payment.date))
-                        ? payment.date
-                        : new Date(payment.date).toLocaleDateString()}
+                            {isNaN(Date.parse(payment.date)) ? payment.date : new Date(payment.date).toLocaleDateString() }
                           </div>
                           <div className="text-black mb-2">
                             <strong>Category:</strong> {payment.category}
