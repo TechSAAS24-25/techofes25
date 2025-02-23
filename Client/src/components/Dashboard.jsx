@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [payments, setPayemnts] = useState([]);
+  const [payments, setPayments] = useState([]);
   const navigate = useNavigate();
 
   const [registeredEvents, setRegisteredEvents] = useState([]);
@@ -28,10 +28,10 @@ const Dashboard = () => {
 
         // Fetch registered events
         const registrations = await userServices.getRegistrations();
-        setRegisteredEvents(registrations);
+        setRegisteredEvents(sortByDate(registrations));
 
         const paymentsData = await userServices.getPayments();
-        setPayemnts(paymentsData);
+        setPayments(sortByDate(paymentsData));
         console.log(paymentsData);
       } catch (err) {
         console.error("Error fetching dashboard data:", err);
@@ -47,6 +47,17 @@ const Dashboard = () => {
       fetchUserData();
     }
   }, [navigate]);
+
+  const sortByDate = (items) => {
+    return items.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      if (isNaN(dateA) && isNaN(dateB)) return 0;
+      if (isNaN(dateA)) return -1;
+      if (isNaN(dateB)) return 1;
+      return dateA - dateB;
+    });
+  };
 
   if (loading) {
     return <div className="text-center text-6xl text-black">Loading...</div>;
@@ -149,7 +160,6 @@ const Dashboard = () => {
                     </div>
                     <div className="text-gray-300 mb-2">
                       <strong>Event Date:</strong>{" "}
-                      {console.log(event.date)}
                       {isNaN(new Date(event.date)) ? event.date : new Date(event.date).toLocaleDateString()}
                     </div>
                     <div className="text-gray-300 mb-2">
