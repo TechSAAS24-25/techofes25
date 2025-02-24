@@ -48,6 +48,9 @@ userRegistrationsRouter.get(
           _id: new mongoose.Types.ObjectId(eventID),
         });
         console.log(event);
+        if (!event) {
+          return null; // Explicitly return null to filter it out later
+        }
         return {
           registrationID: registration.registrationID,
           eventName: event?.eventName,
@@ -57,8 +60,12 @@ userRegistrationsRouter.get(
         };
       })
     );
-    console.log(eventDetails);
-    response.status(200).json(eventDetails);
+
+    // Filter out null values
+    const filteredEventDetails = eventDetails.filter(Boolean);
+
+    console.log(filteredEventDetails);
+    response.status(200).json(filteredEventDetails);
   }
 );
 
@@ -76,7 +83,9 @@ userPaymentsRouter.get("/payment", userExtractor, async (request, response) => {
     payments.map(async (payment) => {
       const eventID = payment.itemID;
       const event = await Event.findById(eventID);
-
+      if (!event) {
+        return null; // Explicitly return null to filter it out later
+      }
       return {
         registrationID: payment.registrationID,
         amount: event.regFees,
@@ -89,8 +98,11 @@ userPaymentsRouter.get("/payment", userExtractor, async (request, response) => {
       };
     })
   );
+  // Filter out null values
+  const filteredEventDetails = paymentDetails.filter(Boolean);
 
-  response.status(200).json(paymentDetails);
+  console.log(filteredEventDetails);
+  response.status(200).json(filteredEventDetails);
 });
 
 // Get all merchandise purchases by the user, including merchandise details
