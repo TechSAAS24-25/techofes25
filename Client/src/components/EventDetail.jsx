@@ -45,6 +45,17 @@ const EventDetail = () => {
     setIsLoggedIn(!!user);
     setUser(user);
 
+    const eventImagesContext = require.context(
+      "../assets/event/",
+      false,
+      /\.(png|jpe?g|svg)$/
+    );
+
+    const eventImages = eventImagesContext
+      .keys()
+      .map((filename) => filename.replace("./", ""));
+
+    console.log(eventImages);
     const fetchEventDetails = async () => {
       try {
         const response = await eventServices.getEvent(id);
