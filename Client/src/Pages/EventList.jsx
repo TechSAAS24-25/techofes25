@@ -4,14 +4,35 @@ import EventCard from "../components/Eventcard.jsx";
 import "../Styles/Events.css";
 import backgroundImage from "../assets/p0fq9cyz.jpg";
 import eventServices from "../api/events.js";
-import image from "../assets/dance.png";
 import showToast from "../components/toastNotifications";
+import defaultImage from "../assets/dance.png"; // Fallback image
 
 const EventList = () => {
   const { category, type } = useParams();
   const [events, setEvents] = useState([]);
+  const [eventImages, setEventImages] = useState({});
 
   useEffect(() => {
+    // Import both .png and .jpg images dynamically (fixing PNG issue)
+    const imageModules = import.meta.glob("../assets/event/*.{png,jpg,jpeg}", {
+      eager: true,
+    });
+
+    // Normalize image filenames (convert to lowercase, remove extensions)
+    const imagesMap = Object.keys(imageModules).reduce((acc, path) => {
+      const filename = path
+        .split("/")
+        .pop()
+        .toLowerCase()
+        .replace(/\.(png|jpg|jpeg)$/, ""); // Remove extensions
+      acc[filename] = imageModules[path].default; // Store image path
+      return acc;
+    }, {});
+
+    setEventImages(imagesMap);
+    console.log("Event Images:", imagesMap); // Debugging: Check if PNG and JPG are loaded
+
+    // Fetch events from API
     const fetchEvents = async () => {
       try {
         const response = await eventServices.getEvents();
@@ -21,10 +42,10 @@ const EventList = () => {
         setEvents(filteredEvents);
       } catch (error) {
         console.error("Error fetching events:", error);
-        // alert();
         showToast("error", "Failed to load events.");
       }
     };
+
     fetchEvents();
   }, [category, type]);
 
@@ -39,11 +60,24 @@ const EventList = () => {
     >
       <h1 className="events-title">{type}</h1>
       <div className="events-grid">
-        {events.map((event, index) => (
-          <Link key={index} to={`/event/${event._id}`} className="type-link">
-            <EventCard key={event._id} icon={image} name={event.eventName} />
-          </Link>
-        ))}
+        {events.map((event, index) => {
+          const eventNameKey = event.eventName.toLowerCase(); // Convert event name to lowercase
+          const eventImage = eventImages[eventNameKey] || defaultImage; // Use matched image or fallback
+
+          return (
+            <Link
+              key={event._id}
+              to={`/event/${event._id}`}
+              className="type-link"
+            >
+              <EventCard
+                key={event._id}
+                icon={eventImage}
+                name={event.eventName}
+              />
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

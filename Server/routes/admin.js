@@ -122,32 +122,18 @@ getApprovedPaymentRouter.get("/payments/approved", async (req, res) => {
             ? await Event.findById(payment.itemID)
             : null;
 
-        // console.log(event, user);
+        if (!event) {
+          return null; // Explicitly return null to filter it out later
+        }
 
-        return {
-          _id: payment._id,
-          transactionID: payment.transactionID,
-          T_ID: payment.T_ID,
-          amount: event.regFees,
-          screenshotPath: payment.screenshotPath,
-          status: payment.status,
-          transactionDate: payment.transactionDate,
-          userName: user.firstName + " " + user.lastName,
-          userEmail: user.emailID,
-          userType: user.userType,
-          phone: user.phoneNumber,
-          ...(event && {
-            eventId: event.eventID,
-            eventName: event.eventName,
-            category: event.category,
-            date: event.date,
-            location: event.location,
-          }),
-        };
+        return { user, event, payment }; // Return meaningful data
       })
     );
 
-    res.status(200).json(paymentDetails);
+    // Filter out null values
+    const filteredPaymentDetails = paymentDetails.filter(Boolean);
+
+    res.status(200).json(filteredPaymentDetails);
   } catch (error) {
     console.error("Error fetching pending payments:", error);
     res.status(500).json({ message: "Internal server error" });
@@ -167,7 +153,10 @@ getRegistrationRouter.get("/registrations", async (req, res) => {
       registrations.map(async (registration) => {
         const user = await User.findOne({ T_ID: registration.T_ID });
         const event = await Event.findById(registration.eventID); // Assuming eventID is the field in registration
-
+        if (!event) {
+          console.log(user);
+          return null;
+        }
         return {
           _id: registration._id,
           registrationDate: registration.registrationDate,
@@ -185,8 +174,10 @@ getRegistrationRouter.get("/registrations", async (req, res) => {
         };
       })
     );
+    // Filter out null values
+    const filteredregistrationDetails = registrationDetails.filter(Boolean);
 
-    res.status(200).json(registrationDetails);
+    res.status(200).json(filteredregistrationDetails);
   } catch (error) {
     console.error("Error fetching registrations:", error);
     res.status(500).json({ message: "Internal server error" });

@@ -45,6 +45,12 @@ const EventDetail = () => {
     setIsLoggedIn(!!user);
     setUser(user);
 
+    const eventImages = Object.keys(
+      import.meta.glob("../assets/event/*.{png,jpg,jpeg,svg}")
+    ).map((path) => path.replace("../assets/event/", ""));
+
+    console.log(eventImages);
+
     const fetchEventDetails = async () => {
       try {
         const response = await eventServices.getEvent(id);
