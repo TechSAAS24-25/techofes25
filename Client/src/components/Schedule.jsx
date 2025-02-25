@@ -1,86 +1,56 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Schedule.css";
+import eventservices from "../api/events/";
 
-const scheduleData = [
-  {
-    day: "Day 1",
-    events: [
-      {
-        title: "Event 1",
-        location: "Hall A",
-        time: "09:00 AM",
-        image: "https://via.placeholder.com/150",
-      },
-      {
-        title: "Event 2",
-        location: "Hall B",
-        time: "10:30 AM",
-        image: "https://via.placeholder.com/150",
-      },
-      {
-        title: "Event 3",
-        location: "Hall A",
-        time: "11:00 AM",
-        image: "https://via.placeholder.com/150",
-      },
-      {
-        title: "Event 4",
-        location: "Hall B",
-        time: "12:30 PM",
-        image: "https://via.placeholder.com/150",
-      },
-    ],
-  },
-  {
-    day: "Day 2",
-    events: [
-      {
-        title: "ESTAMPIE PRELIMS",
-        location: "Audi",
-        time: "08:00 AM",
-        image: "https://via.placeholder.com/150",
-      },
-      {
-        title: "PAIR ON STAGE PRELIMS",
-        location: "L19",
-        time: "09:00 AM",
-        image: "https://via.placeholder.com/150",
-      },
-    ],
-  },
-  {
-    day: "Day 3",
-    events: [
-      {
-        title: "Event 3",
-        location: "Hall C",
-        time: "11:00 AM",
-        image: "https://via.placeholder.com/150",
-      },
-      {
-        title: "Event 4",
-        location: "Outdoor",
-        time: "02:00 PM",
-        image: "https://via.placeholder.com/150",
-      },
-    ],
-  },
-  {
-    day: "Day 4",
-    events: [
-      {
-        title: "Closing Ceremony",
-        location: "Main Stage",
-        time: "05:00 PM",
-        image: "https://via.placeholder.com/150",
-      },
-    ],
-  },
-];
+const allowedDates = ["March 5", "March 6", "March 7", "March 8"]; 
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", { month: "long", day: "numeric" });
+};
 
 const Schedule = () => {
-  const [selectedDay, setSelectedDay] = useState("Day 1");
+  const [scheduleData, setScheduleData] = useState([]);
+  const [selectedDay, setSelectedDay] = useState("");
   const timelineRef = useRef([]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const events = await eventservices.getEvents();
+        console.log("Fetched Events:", events); // Debugging step
+    
+        // Ensure API dates are formatted correctly
+        const formattedEvents = events.map((event) => ({
+          ...event,
+          date: formatDate(event.date), // Convert to "March 6"
+        }));
+    
+        // Group events by date
+        const groupedEvents = formattedEvents.reduce((acc, event) => {
+          if (!acc[event.date]) {
+            acc[event.date] = { date: event.date, events: [] };
+          }
+          acc[event.date].events.push(event);
+          return acc;
+        }, {});
+    
+        const uniqueDays = Object.values(groupedEvents).filter((day) =>
+          allowedDates.includes(day.date)
+        );
+    
+        console.log("Filtered Events:", uniqueDays);
+        setScheduleData(uniqueDays);
+    
+        if (uniqueDays.length > 0) {
+          setSelectedDay(uniqueDays[0].date);
+        }
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
+    };
+    fetchEvents();    
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -94,12 +64,12 @@ const Schedule = () => {
       { threshold: 0.1 }
     );
 
-    // Clear previous refs to avoid conflicts
     timelineRef.current.forEach((el) => el && observer.unobserve(el));
-    timelineRef.current = []; // Reset the refs array
+    timelineRef.current = [];
 
     const currentEvents =
-      scheduleData.find((day) => day.day === selectedDay)?.events || [];
+      scheduleData.find((day) => formatDate(day.date) === selectedDay)?.events || [];
+    
     currentEvents.forEach((_, index) => {
       const el = document.getElementById(`event-${index}`);
       if (el) {
@@ -109,45 +79,44 @@ const Schedule = () => {
     });
 
     return () => observer.disconnect();
-  }, [selectedDay]);
+  }, [selectedDay, scheduleData]);
 
   const currentEvents =
-    scheduleData.find((day) => day.day === selectedDay)?.events || [];
+    scheduleData.find((day) => formatDate(day.date) === selectedDay)?.events || [];
 
   return (
     <div className="schedule" style={{ height: "100vh" }}>
       <h1 className="schedule-title">Schedule</h1>
-      <h1 className="schedule-title">Coming Soon</h1>
 
-      {/* <div className="tabs">
+      <div className="tabs">
         {scheduleData.map((day, index) => (
           <button
             key={index}
-            className={day.day === selectedDay ? "active" : ""}
-            onClick={() => setSelectedDay(day.day)}
+            className={formatDate(day.date) === selectedDay ? "active" : ""}
+            onClick={() => setSelectedDay(formatDate(day.date))}
           >
-            {day.day}
+            {formatDate(day.date)}
           </button>
         ))}
       </div>
+
       <div className="timeline">
-        {currentEvents.map((event, index) => (
-          <div
-            key={index}
-            className="timeline-item hidden"
-            id={`event-${index}`}
-          >
-            <div className="event-card">
-              <h2>{event.title}</h2>
-              <p>{event.location}</p>
-              <button>Open in Map</button>
-              <p>{event.time}</p>
+        {currentEvents.length > 0 ? (
+          currentEvents.map((event, index) => (
+            <div key={index} className="timeline-item hidden" id={`event-${index}`}>
+              <div className="event-card">
+                <h2>{event.eventName}</h2>
+                <p>{event.location}</p>
+                <button>Open in Map</button>
+                <p>{event.time}</p>
+              </div>
+              <img src={event.image} alt={event.title} className="schedule-img" />
             </div>
-            <img src={event.image} alt={event.title} className="schedule-img" />
-          </div>
-        ))}
-        {currentEvents.length === 0 && <p>No events scheduled for this day.</p>}
-      </div> */}
+          ))
+        ) : (
+          <p>No events scheduled for this day.</p>
+        )}
+      </div>
     </div>
   );
 };
