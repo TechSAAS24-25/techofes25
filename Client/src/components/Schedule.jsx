@@ -87,7 +87,11 @@ const Schedule = () => {
   return (
     <div className="schedule" style={{ height: "100vh" }}>
       <h1 className="schedule-title">Schedule</h1>
-
+      <p className="schedule-instructions">
+        RB - Red Building
+        <br />
+        DH - Drawing Hall    
+     </p>
       <div className="tabs">
         {scheduleData.map((day, index) => (
           <button
@@ -107,14 +111,23 @@ const Schedule = () => {
               <div className="event-card">
                 <h2>{event.eventName}</h2>
                 <p>{event.location}</p>
-                <button>Open in Map</button>
+                <button
+                  onClick={() =>
+                    window.open(
+                      `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`,
+                      "_blank"
+                    )
+                  }
+                >
+                  Open in Map
+                </button>
                 <p>{event.time}</p>
               </div>
               <img src={event.image} alt={event.title} className="schedule-img" />
             </div>
           ))
         ) : (
-          <p>No events scheduled for this day.</p>
+          <div></div>
         )}
       </div>
     </div>

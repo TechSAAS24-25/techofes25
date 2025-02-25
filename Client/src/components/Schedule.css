@@ -4,21 +4,43 @@
   --transition-speed: 0.3s;
 }
 
+body {
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
 .schedule {
   text-align: center;
   background-color: var(--background-color);
   color: white;
   padding: 20px;
   transition: background-color var(--transition-speed);
+  min-height: 100vh;
+  position: relative;
 }
 
 .schedule-title {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   color: white;
   font-size: 2rem;
   text-shadow: 0 0 10px #fff, 0 0 15px #ffd9b3, 0 0 20px #ffd1a6, 0 0 25px var(--peach-color);
   transition: color var(--transition-speed), text-shadow var(--transition-speed);
+}
+
+.schedule-instructions {
+  text-align: left;
+  color: var(--peach-color);
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px; 
+  font-size: 0.8rem;
 }
 
 .tabs {
