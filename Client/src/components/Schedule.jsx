@@ -112,13 +112,17 @@ const Schedule = () => {
                 <h2>{event.eventName}</h2>
                 <p>{event.location}</p>
                 <button
-                  onClick={() =>
-                    window.open(
-                      `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`,
+                    onClick={() => {
+                     const location = event.location;
+                     const regex = /^(RB-\d+|DB-\d+)(,\s*RB-\d+|,\s*DB-\d+)?$/i;
+                     const query = regex.test(location) ? "Reb Building" : location;
+
+                     window.open(
+                     `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`,
                       "_blank"
-                    )
-                  }
-                >
+                     );
+                     }}
+                    >
                   Open in Map
                 </button>
                 <p>{event.time}</p>
