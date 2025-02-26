@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import "../Styles/Sponsor.css";
 import agsLogo from "../assets/sponsor/ags1.png";
 import mkLogo from "../assets/sponsor/mk.png";
+import dmLogo from "../assets/sponsor/dm.png";
+import goLogo from "../assets/sponsor/go.png";
 import p3 from "../assets/food/p3.mp4";
 import hiLogo from "../assets/sponsor/hindu.png";
 
@@ -10,7 +12,9 @@ const SponsorPage = () => {
   const sponsors = [
     { name: "AGS Cinemas", role: "Multiplex Partner", logo: agsLogo },
     { name: "Mittai kadai", role: "Refreshment Sponsor", logo: mkLogo },
-    { name: "The Hindu", logo: hiLogo },
+    { name: "The Hindu", role: "In Association with", logo: hiLogo },
+    { name: "Dhinamalar", role: "Print Media Partner", logo: dmLogo },
+    { name: "Game on Cafe", role: "Carnival Partner", logo: goLogo },
   ];
 
   const containerVariants = {

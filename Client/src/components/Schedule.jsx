@@ -114,8 +114,8 @@ const Schedule = () => {
                 <button
                     onClick={() => {
                      const location = event.location;
-                     const regex = /^(RB-\d+|DB-\d+)(,\s*RB-\d+|,\s*DB-\d+)?$/i;
-                     const query = regex.test(location) ? "Reb Building" : location;
+                     const regex = /^(RB \d+|DH \d+)(,\s*(RB \d+|DH \d+))*$/i;
+                     const query = regex.test(location) ? "College of Engineering Guindy" : location;
 
                      window.open(
                      `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`,
