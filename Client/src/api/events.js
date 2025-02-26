@@ -67,6 +67,29 @@ const registerForGeneralEvents = async (T_ID) => {
   }
 };
 
+
+// Register CEG Users for Sports Events
+const registerForSportsEvents = async (eventId, T_ID) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${storage.loadUser().token}`,
+      },
+    };
+
+    const response = await axios.post(
+      `${eventsUrl}/${eventId}/register/sports`,
+      { T_ID },
+      config
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error registering for sports events:", error);
+    throw error;
+  }
+};
+
 // Check Registration & Payment Status
 const registerStatus = async (eventId) => {
   try {
@@ -135,4 +158,5 @@ export default {
   registerStatus,
   payForEvent,
   registerForGeneralEvents,
+  registerForSportsEvents,
 };

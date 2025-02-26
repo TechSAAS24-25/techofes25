@@ -4,6 +4,7 @@ const eventDetailsRouter = require("express").Router();
 const eventRegistrationRouter = require("express").Router();
 const eventPaymentRouter = require("express").Router();
 const eventGeneralRegistrationRouter = require("express").Router();
+const sportsRegistrationRouter = require("express").Router();
 require("express-async-errors");
 const Event = require("../models/event");
 const Registration = require("../models/registration");
@@ -301,6 +302,55 @@ eventGeneralRegistrationRouter.post(
   }
 );
 
+// Register CEG Users for Sports Events
+
+sportsRegistrationRouter.post(
+  "/register/sports",
+  userExtractor,
+  async (request, response) => {
+    try {
+        const { T_ID } = request.body;
+        const eventID = request.params.eventId;
+
+        const event = await Event.findById(eventID);
+
+        // Check if the user is already registered for this event
+        const existingRegistration = await Registration.findOne({
+          T_ID,
+          eventID: event._id,
+        });
+
+        if (!existingRegistration) {
+          // Register the user
+          const registration = new Registration({ T_ID, eventID: event._id });
+          const savedReg = await registration.save();
+
+          // Decrease the available seats
+          event.seats -= 1;
+          response.status(201).json({
+            message: "Successfully registered for sports events"
+          });
+        } else {
+          response.status(400).json({
+            message: "User is already registered for this event"
+          });
+        }
+
+        // Decrease the available seats
+        event.seats -= 1;
+        await event.save();
+
+        response.status(201).json({
+          message: "Successfully registered for sports events"
+        });
+      } catch (error) {
+        console.error("Sport Registration Error:", error);
+        response.status(500).json({ error: "Internal server error" });
+      }
+    }
+);
+
+
 // Check Payment Status (Pending, Completed, or Rejected)
 eventRegistrationRouter.get(
   "/:eventId/status",
@@ -347,4 +397,5 @@ module.exports = {
   eventRegistrationRouter,
   eventPaymentRouter,
   eventGeneralRegistrationRouter,
+  sportsRegistrationRouter,
 };

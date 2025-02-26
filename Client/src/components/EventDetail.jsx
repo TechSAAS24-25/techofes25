@@ -40,16 +40,9 @@ const EventDetail = () => {
   const [isRegistered, setIsRegistered] = useState(false);
 
   useEffect(() => {
-    // Check if the user is logged in
     const user = storage.loadUser();
     setIsLoggedIn(!!user);
     setUser(user);
-
-    const eventImages = Object.keys(
-      import.meta.glob("../assets/event/*.{png,jpg,jpeg,svg}")
-    ).map((path) => path.replace("../assets/event/", ""));
-
-    console.log(eventImages);
 
     const fetchEventDetails = async () => {
       try {
@@ -59,10 +52,10 @@ const EventDetail = () => {
         console.error("Error fetching event details:", error);
         toast.error("Failed to load event details.");
       }
+
       if (user) {
         try {
           const response = await eventServices.registerStatus(id);
-          console.log(response);
           setIsRegistered(response.isRegistered);
           setIsPaid(response.status === "pending");
         } catch (error) {
@@ -81,18 +74,25 @@ const EventDetail = () => {
       return;
     }
 
-    if (user.T_ID.endsWith("CEG") && event.category === "General Events") {
+    if (user?.T_ID?.endsWith("CEG") && event?.category === "General Events") {
       try {
         const response = await eventServices.registerForGeneralEvents(
           user.T_ID
         );
-        console.log(response);
-        toast.success(
-          response.message || "Successfully registered for general events!"
-        );
+        toast.success(response.message || "Successfully registered!");
         window.location.reload();
       } catch (error) {
         toast.error("Failed to register for general events.");
+      }
+    } else if (event?.category === "sports") {
+      try {
+        const response = await eventServices.registerForSportsEvent(
+          event.eventID
+        );
+        toast.success(response.message || "Successfully registered!");
+        window.location.reload();
+      } catch (error) {
+        toast.error("Failed to register.");
       }
     } else {
       navigate(`/payment/${id}`);
@@ -103,8 +103,7 @@ const EventDetail = () => {
     return <h2>Loading...</h2>;
   }
 
-  // Get the icon and description for the selected sub-tab
-  const selectedSubTabDetails = event.subTabs?.[selectedSubTab];
+  const selectedSubTabDetails = event?.subTabs?.[selectedSubTab] || {};
 
   return (
     <div
@@ -150,8 +149,7 @@ const EventDetail = () => {
             )}
             <h1 className="text-xl text-white">
               Registration Fees:{" "}
-              {user?.T_ID?.endsWith("CEG") &&
-              event.category === "General Events"
+              {user?.T_ID?.endsWith("CEG") && event.category === "General Events"
                 ? "₹0"
                 : `₹ ${event.regFees}`}{" "}
               <h6 className="text-base">

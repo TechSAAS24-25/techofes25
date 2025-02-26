@@ -50,6 +50,7 @@ app.use("/api/events", eventsRouter.eventDetailsRouter);
 app.use("/api/events", eventsRouter.eventRegistrationRouter);
 app.use("/api/events", eventsRouter.eventPaymentRouter);
 app.use("/api/events", eventsRouter.eventGeneralRegistrationRouter);
+app.use("/api/events", eventsRouter.sportsRegistrationRouter);
 
 // Merchandise Routes
 app.use("/api/merchandise", merchandiseRouter.merchandiseRouter);
