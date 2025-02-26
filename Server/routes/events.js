@@ -305,7 +305,7 @@ eventGeneralRegistrationRouter.post(
 // Register CEG Users for Sports Events
 
 sportsRegistrationRouter.post(
-  "/register/sports",
+  "/:eventId/register/sports",
   userExtractor,
   async (request, response) => {
     try {
