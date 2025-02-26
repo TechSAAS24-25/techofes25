@@ -78,8 +78,8 @@ const registerForSportsEvents = async (eventId) => {
     };
 
     const response = await axios.post(
-      `${eventsUrl}/${eventId}/register/sports`,
-      eventId,
+      `${eventsUrl}/${eventId}/register/sports`, 
+      {}, // Fix: Pass empty object instead of eventId
       config
     );
 

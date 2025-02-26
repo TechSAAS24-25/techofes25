@@ -309,48 +309,47 @@ sportsRegistrationRouter.post(
   userExtractor,
   async (request, response) => {
     try {
-        const T_ID = request.T_ID;
-        {console.log(T_ID)}
-        const eventID = request.body.eventId;
-        {console.log(eventID)}
+      const T_ID = request.T_ID;
+      console.log(T_ID);
 
-        const event = await Event.findById(eventID);
+      const eventID = request.params.eventId; // Fix: Use request.params
+      console.log(eventID);
 
-        // Check if the user is already registered for this event
-        const existingRegistration = await Registration.findOne({
-          T_ID,
-          eventID: event._id,
-        });
-
-        if (!existingRegistration) {
-          // Register the user
-          const registration = new Registration({ T_ID, eventID: event._id });
-          const savedReg = await registration.save();
-
-          // Decrease the available seats
-          event.seats -= 1;
-          response.status(201).json({
-            message: "Successfully registered for sports events"
-          });
-        } else {
-          response.status(400).json({
-            message: "User is already registered for this event"
-          });
-        }
-
-        // Decrease the available seats
-        event.seats -= 1;
-        await event.save();
-
-        response.status(201).json({
-          message: "Successfully registered for sports events"
-        });
-      } catch (error) {
-        console.error("Sport Registration Error:", error);
-        response.status(500).json({ error: "Internal server error" });
+      const event = await Event.findById(eventID);
+      if (!event) {
+        return response.status(404).json({ message: "Event not found" });
       }
+
+      // Check if the user is already registered for this event
+      const existingRegistration = await Registration.findOne({
+        T_ID,
+        eventID: event._id,
+      });
+
+      if (existingRegistration) {
+        return response.status(400).json({
+          message: "User is already registered for this event",
+        });
+      }
+
+      // Register the user
+      const registration = new Registration({ T_ID, eventID: event._id });
+      await registration.save();
+
+      // Decrease the available seats
+      event.seats -= 1;
+      await event.save();
+
+      return response.status(201).json({
+        message: "Successfully registered for sports event",
+      });
+    } catch (error) {
+      console.error("Sport Registration Error:", error);
+      response.status(500).json({ error: "Internal server error" });
     }
+  }
 );
+
 
 
 // Check Payment Status (Pending, Completed, or Rejected)

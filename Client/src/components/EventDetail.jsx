@@ -87,7 +87,7 @@ const EventDetail = () => {
     } else if (event.category === "Sports") {
       try {
         const response = await eventServices.registerForSportsEvents(
-          id
+          id,
         );
         toast.success(response.message || "Successfully registered!");
         window.location.reload();
