@@ -310,7 +310,7 @@ sportsRegistrationRouter.post(
   async (request, response) => {
     try {
         const { T_ID } = request.body;
-        const eventID = request.params.id;
+        const eventID = request.params.eventId;
 
         const event = await Event.findById(eventID);
 
