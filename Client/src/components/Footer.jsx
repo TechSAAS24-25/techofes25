@@ -8,6 +8,7 @@ import { FaFacebook } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { FaWhatsapp } from "react-icons/fa";
 import hiLogo from "../assets/sponsor/hindu.png";
+import riverstone from "../assets/sponsor/riverstone.png";
 import "./Footer.css";
 
 function Content() {
@@ -174,6 +175,11 @@ const Sponsors = () => {
         <img
           src={hiLogo}
           alt="Sponsor 3"
+          className="h-20 w-auto transition-transform duration-300 hover:scale-110"
+        />
+        <img
+          src={riverstone}
+          alt="Sponsor 4"
           className="h-20 w-auto transition-transform duration-300 hover:scale-110"
         />
         {/* 
