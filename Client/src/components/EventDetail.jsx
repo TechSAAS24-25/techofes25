@@ -87,7 +87,7 @@ const EventDetail = () => {
     } else if (event.category === "Sports") {
       try {
         const response = await eventServices.registerForSportsEvent(
-          event.eventID
+          id
         );
         toast.success(response.message || "Successfully registered!");
         window.location.reload();
@@ -103,7 +103,7 @@ const EventDetail = () => {
     return <h2>Loading...</h2>;
   }
 
-  const selectedSubTabDetails = event.subTabs.[selectedSubTab] || {};
+  const selectedSubTabDetails = event?.subTabs?.[selectedSubTab] || {};
 
   return (
     <div
