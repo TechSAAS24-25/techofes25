@@ -74,7 +74,7 @@ const EventDetail = () => {
       return;
     }
 
-    if (user?.T_ID?.endsWith("CEG") && event?.category === "General Events") {
+    if (user.T_ID.endsWith("CEG") && event.category === "General Events") {
       try {
         const response = await eventServices.registerForGeneralEvents(
           user.T_ID
@@ -84,7 +84,7 @@ const EventDetail = () => {
       } catch (error) {
         toast.error("Failed to register for general events.");
       }
-    } else if (event?.category === "sports") {
+    } else if (event.category === "Sports") {
       try {
         const response = await eventServices.registerForSportsEvent(
           event.eventID
@@ -103,7 +103,7 @@ const EventDetail = () => {
     return <h2>Loading...</h2>;
   }
 
-  const selectedSubTabDetails = event?.subTabs?.[selectedSubTab] || {};
+  const selectedSubTabDetails = event.subTabs.[selectedSubTab] || {};
 
   return (
     <div
