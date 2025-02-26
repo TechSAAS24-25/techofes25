@@ -69,7 +69,7 @@ const registerForGeneralEvents = async (T_ID) => {
 
 
 // Register CEG Users for Sports Events
-const registerForSportsEvents = async (eventId, T_ID) => {
+const registerForSportsEvents = async (eventId) => {
   try {
     const config = {
       headers: {
@@ -79,7 +79,7 @@ const registerForSportsEvents = async (eventId, T_ID) => {
 
     const response = await axios.post(
       `${eventsUrl}/${eventId}/register/sports`,
-      { T_ID },
+      eventId,
       config
     );
 
