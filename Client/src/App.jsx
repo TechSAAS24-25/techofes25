@@ -21,6 +21,7 @@ import { ToastContainer } from "react-toastify";
 import { Toaster } from "react-hot-toast";
 import PaymentPage from "./Pages/Payment.jsx";
 import preloader from "./assets/preload.mp4";
+import Celebs from "./Pages/Celebs.jsx";
 import "./App.css";
 
 const Register = () => <h1>Register Page</h1>;
@@ -70,6 +71,7 @@ function App() {
             {/* <Route path='/dashboard' element={<Dashboard />} /> */}
             <Route path="/events/:category" element={<EventTypes />} />
             <Route path="/events/:category/:type" element={<EventList />} />
+            <Route path="/celebrities" element={<Celebs />} />
           </Routes>
           <Toaster position="bottom-right" />
         </>
