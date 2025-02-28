@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./Schedule.css";
 import eventservices from "../api/events/";
 
-const allowedDates = ["March 5", "March 6", "March 7", "March 8"]; 
+const allowedDates =["March 1", "March 2", "March 5", "March 6", "March 7", "March 8"]; 
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -28,7 +28,7 @@ const Schedule = () => {
 
         // Add specific events to the specified dates
         const additionalEvents = [
-          { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 5" },
+          { eventName: "INAUGURATION", date: "March 5" },
           { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 6" },
           { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 7" },
           { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 8" },
