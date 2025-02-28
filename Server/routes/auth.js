@@ -9,6 +9,39 @@ const loginRouter = express.Router();
 const logoutRouter = express.Router();
 const registerRouter = express.Router();
 
+const admin = require("../utils/firebase"); // Firebase Admin
+
+registerRouter.post("/verify-otp", async (req, res) => {
+  const { session, otp } = req.body;
+
+  try {
+    const decodedToken = await admin.auth().verifyIdToken(session);
+    if (!decodedToken) {
+      return res.status(400).json({ error: "Invalid OTP or session" });
+    }
+
+    res.json({ message: "OTP verified successfully", verified: true });
+  } catch (error) {
+    console.error("OTP verification error:", error);
+    res.status(500).json({ error: "OTP verification failed" });
+  }
+});
+
+registerRouter.post("/send-otp", async (req, res) => {
+  const { phoneNumber } = req.body;
+
+  try {
+    const session = await admin.auth().createSessionCookie(phoneNumber, {
+      expiresIn: 5 * 60 * 1000, // OTP valid for 5 minutes
+    });
+
+    res.status(200).json({ message: "OTP sent successfully", session });
+  } catch (error) {
+    console.error("Error sending OTP:", error);
+    res.status(500).json({ error: "Failed to send OTP" });
+  }
+});
+
 // Registration Route
 registerRouter.post("/", async (request, response) => {
   const {
@@ -21,37 +54,32 @@ registerRouter.post("/", async (request, response) => {
     type,
     rollno,
     password,
+    session, // 🔥 Firebase session from OTP verification
   } = request.body;
-
-  console.log(college);
 
   try {
     console.log("Received registration data:", request.body);
 
+    // Validate OTP first
+    const decodedToken = await admin.auth().verifyIdToken(session);
+    if (!decodedToken || decodedToken.phone_number !== `+91${phn}`) {
+      return response.status(400).json({ error: "Invalid OTP" });
+    }
+
     // Validate input
     if (type === "Insider" && !rollno) {
-      console.error("Roll number is required for Insider users");
-      return response
-        .status(400)
-        .json({ error: "Roll number is required for Insider users" });
+      return response.status(400).json({ error: "Roll number required for Insider users" });
     }
 
     // Check for existing user
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
-    console.log("Existing user check:", existingUser);
-
     if (existingUser) {
-      console.error("Username or email already in use");
-      return response
-        .status(400)
-        .json({ error: "Username or Email already in use" });
+      return response.status(400).json({ error: "Username or Email already in use" });
     }
 
     // Hash password
     const passwordHash = await bcrypt.hash(password, 10);
-    console.log("Password hashed successfully");
 
-    console.log(college);
     // Create user
     const user = new User({
       username,
@@ -66,23 +94,20 @@ registerRouter.post("/", async (request, response) => {
     });
 
     const savedUser = await user.save();
-    console.log("User saved successfully:", savedUser);
 
-    // Send email
+    // Send confirmation email
     const subject = "Registration Confirmation";
     const text = `Dear ${savedUser.firstName},\n\nThank you for registering! Your unique T-ID is: ${savedUser.T_ID}.\n\nBest regards,\nEvent Team`;
 
     await sendMail(savedUser.emailID, subject, text);
-    console.log("Confirmation email sent");
 
-    response
-      .status(201)
-      .json({ message: "User registered successfully", user: savedUser });
+    response.status(201).json({ message: "User registered successfully", user: savedUser });
   } catch (error) {
     console.error("Error during registration:", error);
     response.status(500).json({ error: "Internal server error" });
   }
 });
+
 
 // Login Route
 loginRouter.post("/", async (request, response) => {

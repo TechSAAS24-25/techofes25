@@ -1,58 +1,70 @@
 import axios from "../helper/axios";
+import storage from "../services/storage";
+
 const loginUrl = "/api/auth/login";
 const registerUrl = "/api/auth/register";
 const logoutUrl = "/api/auth/logout";
-import storage from "../services/storage";
-
-//implement try and catch blocks for error handling in the frontend
+const sendOtpUrl = "/api/auth/register/send-otp";
+const verifyOtpUrl = "/api/auth/register/verify-otp";
 
 // Login user
-// Send username and password to the server
-// If the user is authenticated, the server will return a token
-// along with token the user T_ID, username is also sent
-// If the user is not authenticated, the server will return an error
-// The token is stored in local storage
-// The token is used to authenticate requests to the server
-// The token is sent in the Authorization header
-// The token is prefixed with 'Bearer
-// The response can be stored using
-// const service = require('./service');
-// service.saveUser(response);
-// The user details can be retrieved using
-// const user = service.loadUser();
-// const token = user.token;
-// The token can be removed using
-// service.removeUser();
-// The username can be retrieved using
-// const username = service.me();
-
 const login = async (username, password) => {
-  const response = await axios.post(loginUrl, { username, password });
-  storage.saveUser(response.data);
-  return response.data;
+  try {
+    const response = await axios.post(loginUrl, { username, password });
+    storage.saveUser(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Login error:", error.response?.data || error.message);
+    throw error.response?.data || { error: "Login failed. Please try again." };
+  }
 };
 
 // Register user
-// refer user model for the fields required
-// returns the following fields
-// message: string
-// user: object
-// do not ask for T_ID from the user, it is automatically generated
-
 const register = async (user) => {
-  const response = await axios.post(registerUrl, user);
-  console.log("user:", user);
-  console.log(response);
-  return response.data;
+  try {
+    const response = await axios.post(registerUrl, user);
+    console.log("User registration response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Registration error:", error.response?.data || error.message);
+    throw error.response?.data || { error: "Registration failed. Please try again." };
+  }
+};
+
+// Send OTP
+const sendOtp = async (phoneNumber) => {
+  try {
+    const response = await axios.post(sendOtpUrl, { phoneNumber });
+    console.log("OTP sent successfully:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error sending OTP:", error.response?.data || error.message);
+    throw error.response?.data || { error: "Failed to send OTP. Please try again." };
+  }
+};
+
+// Verify OTP
+const verifyOtp = async (session, otp) => {
+  try {
+    const response = await axios.post(verifyOtpUrl, { session, otp });
+    console.log("OTP verification response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("OTP verification error:", error.response?.data || error.message);
+    throw error.response?.data || { error: "OTP verification failed. Please try again." };
+  }
 };
 
 // Logout user
-// returns the success message
-
 const logout = async () => {
-  const response = await axios.post(logoutUrl);
-  storage.removeUser();
-  return response.data;
+  try {
+    const response = await axios.post(logoutUrl);
+    storage.removeUser();
+    return response.data;
+  } catch (error) {
+    console.error("Logout error:", error.response?.data || error.message);
+    throw error.response?.data || { error: "Logout failed. Please try again." };
+  }
 };
 
-export default { login, register, logout };
+export default { login, register, sendOtp, verifyOtp, logout };

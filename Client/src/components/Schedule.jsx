@@ -123,9 +123,9 @@ const Schedule = () => {
         <br />
         LH - Lecture Hall
         <br />
-        FN - Forenoon
+        FN - 10.00 AM
         <br />
-        AN - Afternoon
+        AN - 1.30 PM
      </p>
       <div className="tabs">
         {scheduleData.map((day, index) => (
