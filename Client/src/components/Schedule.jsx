@@ -25,9 +25,21 @@ const Schedule = () => {
           ...event,
           date: formatDate(event.date), // Convert to "March 6"
         }));
+
+        // Add specific events to the specified dates
+        const additionalEvents = [
+          { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 5" },
+          { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 6" },
+          { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 7" },
+          { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 8" },
+          { eventName: "PHOTOTHON – A PHOTOGRAPHY HACKATHON", date: "March 7" },
+          { eventName: "PHOTOTHON – A PHOTOGRAPHY HACKATHON", date: "March 8" },
+        ];
+
+        const allEvents = [...formattedEvents, ...additionalEvents];
     
         // Group events by date
-        const groupedEvents = formattedEvents.reduce((acc, event) => {
+        const groupedEvents = allEvents.reduce((acc, event) => {
           if (!acc[event.date]) {
             acc[event.date] = { date: event.date, events: [] };
           }
@@ -90,7 +102,13 @@ const Schedule = () => {
       <p className="schedule-instructions">
         RB - Red Building
         <br />
-        DH - Drawing Hall    
+        DH - Drawing Hall  
+        <br />
+        LH - Lecture Hall
+        <br />
+        FN - Forenoon
+        <br />
+        AN - Afternoon
      </p>
       <div className="tabs">
         {scheduleData.map((day, index) => (
