@@ -34,9 +34,26 @@ const Schedule = () => {
           { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 8" },
           { eventName: "PHOTOTHON – A PHOTOGRAPHY HACKATHON", date: "March 7" },
           { eventName: "PHOTOTHON – A PHOTOGRAPHY HACKATHON", date: "March 8" },
+          { eventName: "FOOTBALL", date: "March 1" },
+          { eventName: "KABADDI", date: "March 1" },
+          { eventName: "BALL BADMINTON - WOMEN", date: "March 1" },
+          { eventName: "BALL BADMINTON - MEN", date: "March 1" },
+          { eventName: "CRICKET", date: "March 1" },
+          { eventName: "HOCKEY", date: "March 1" },
+          { eventName: "BASKET BALL", date: "March 1" },
+          { eventName: "HAND BALL", date: "March 1" },
+          { eventName: "FOOTBALL", date: "March 2" },
+          { eventName: "KABADDI", date: "March 2" },
+          { eventName: "BALL BADMINTON - WOMEN", date: "March 2" },
+          { eventName: "BALL BADMINTON - MEN", date: "March 2" },
+          { eventName: "CRICKET", date: "March 2" },
+          { eventName: "HOCKEY", date: "March 2" },
+          { eventName: "BASKET BALL", date: "March 2" },
+          { eventName: "HAND BALL", date: "March 2" },
         ];
+        
 
-        const allEvents = [...formattedEvents, ...additionalEvents];
+        const allEvents = [...additionalEvents, ...formattedEvents];
     
         // Group events by date
         const groupedEvents = allEvents.reduce((acc, event) => {
