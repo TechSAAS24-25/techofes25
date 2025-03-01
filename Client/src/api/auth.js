@@ -1,14 +1,12 @@
 import axios from "../helper/axios";
 import storage from "../services/storage";
-import { auth, RecaptchaVerifier, signInWithPhoneNumber } from "../config/firebase";
+import { auth } from "../config/firebase";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 
 const loginUrl = "/api/auth/login";
 const registerUrl = "/api/auth/register";
 const logoutUrl = "/api/auth/logout";
 // const verifyOtpUrl = "/api/auth/register/verify-otp";
-
-let recaptchaVerifier;
-
 
 // Login user
 const login = async (username, password) => {
@@ -48,14 +46,16 @@ const setupRecaptcha = () => {
           console.error("reCAPTCHA expired. Please refresh the page.");
         },
       },
-      auth
+      auth // ✅ Ensure `auth` is passed correctly
     );
-    window.recaptchaVerifier.render().then((widgetId) => {
-      console.log("reCAPTCHA widget ID:", widgetId);
-    });
+
+    window.recaptchaVerifier.render()
+      .then((widgetId) => {
+        console.log("reCAPTCHA widget ID:", widgetId);
+      })
+      .catch((error) => console.error("reCAPTCHA render error:", error));
   }
 };
-
 
 // Function to send OTP
 const sendOtp = async (phoneNumber) => {

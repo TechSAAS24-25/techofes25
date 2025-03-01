@@ -60,7 +60,7 @@ const Registration = () => {
       return;
     }
     try {
-      const response = await authServices.sendOtp(formData.mobile);
+      const response = await authServices.sendOtp(`+91${formData.mobile}`);
       if (response.success) {
         setOtpSent(true);
         showToast("success", "OTP sent successfully.");
