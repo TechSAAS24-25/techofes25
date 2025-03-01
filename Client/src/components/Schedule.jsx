@@ -29,9 +29,9 @@ const Schedule = () => {
         // Add specific events to the specified dates
         const additionalEvents = [
           { eventName: "INAUGURATION", date: "March 5", location: "Vivekananda Auditorium, Anna University", time: "4.00 PM" },
-          { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 6", location: "Chemistry Department, Anna University", time: "FN and AN" },
-          { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 7", location: "Chemistry Department, Anna University", time: "FN and AN" },
-          { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 8", location: "Chemistry Department, Anna University", time: "FN and AN" },
+          { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 6", location: "College of Engineering, Guindy", time: "FN and AN" },
+          { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 7", location: "College of Engineering, Guindy", time: "FN and AN" },
+          { eventName: "INFORMALS & TALENT OF TECHOFES", date: "March 8", location: "College of Engineering, Guindy", time: "FN and AN" },
           { eventName: "PHOTOTHON – A PHOTOGRAPHY HACKATHON", date: "March 7", location: " Near Vivekananda Auditorium, Anna University", time: "FN and AN" },
           { eventName: "PHOTOTHON – A PHOTOGRAPHY HACKATHON", date: "March 8", location: " Near Vivekananda Auditorium, Anna University", time: "FN and AN" },
           { eventName: "FOOTBALL", date: "March 1", location: " CEG Sports Ground, Anna University", time: "FN and AN"  },
