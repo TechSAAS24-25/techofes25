@@ -133,9 +133,9 @@ const Registration = () => {
       // Handling different types of errors
       let errorMessage = "An unexpected error occurred. Please try again later.";
   
-      if (error.response?.data?.error) {
+      if (error) {
         // Axios error handling
-        errorMessage = error.response.data.error;
+        errorMessage = error;
       } else if (error.message) {
         // Fetch API error handling
         errorMessage = error.message;
