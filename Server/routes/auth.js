@@ -33,7 +33,7 @@ const registerRouter = express.Router();
 
 
 // Registration Route
-registerRouter.post("/", async (request, response) => {
+registerRouter.post("/", async (request, response, next) => {
   const {
     college,
     username,
