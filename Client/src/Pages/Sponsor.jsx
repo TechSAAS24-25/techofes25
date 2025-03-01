@@ -9,16 +9,20 @@ import p3 from "../assets/food/p3.mp4";
 import hiLogo from "../assets/sponsor/hindu.png";
 import riverstone from "../assets/sponsor/riverstone.png";
 import poorvika from "../assets/sponsor/poor.jpeg";
+import aram from "../assets/sponsor/aram.png";
+import guvi from "../assets/sponsor/guvi.png";
 
 const SponsorPage = () => {
   const sponsors = [
+    { name: "ARAM IAS ACADEMY", role: "Associate Sponsor", logo: aram },
+    { name: "The Hindu", role: "In Association with", logo: hiLogo },
     { name: "AGS Cinemas", role: "Multiplex Partner", logo: agsLogo },
     { name: "Mittai kadai", role: "Refreshment Sponsor", logo: mkLogo },
-    { name: "The Hindu", role: "In Association with", logo: hiLogo },
+    { name: "Guvi", role: "Apparel Sponsor", logo: guvi },
     { name: "Dhinamalar", role: "Print Media Partner", logo: dmLogo },
     { name: "Game on Cafe", role: "Carnival Partner", logo: goLogo },
-    { name: "RiverStone", role: "Momento Sponsor", logo: riverstone},
-    { name: "Poorvika", role: "Certificate Sponsor", logo: poorvika},
+    { name: "RiverStone", role: "Memento Sponsor", logo: riverstone },
+    { name: "Poorvika", role: "Certificate Sponsor", logo: poorvika },
   ];
 
   const containerVariants = {
