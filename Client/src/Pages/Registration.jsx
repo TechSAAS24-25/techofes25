@@ -129,18 +129,20 @@ const Registration = () => {
       }
     } catch (error) {
       console.error("Registration Error:", error);
-  
-      // Handling different types of errors
-      let errorMessage = "An unexpected error occurred. Please try again later.";
-  
-      if (error) {
-        // Axios error handling
-        errorMessage = error;
+    
+      let errorMessage = "An unexpected error occurred. Please try again.";
+    
+      if (error.response && error.response.data && error.response.data.error) {
+        // If error comes from the backend (Axios)
+        errorMessage = error.response.data.error;
       } else if (error.message) {
-        // Fetch API error handling
+        // General JavaScript/Firebase error
         errorMessage = error.message;
+      } else if (typeof error === "string") {
+        // If the error is a string (rare case)
+        errorMessage = error;
       }
-  
+    
       showToast("error", `Registration failed: ${errorMessage}`);
     } finally {
       setRegistering(false);
