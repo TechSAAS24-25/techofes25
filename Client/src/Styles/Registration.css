@@ -156,6 +156,7 @@
   padding: 8px 0;
   font-size: 1rem;
   border: none;
+  color: #000000;
   border-bottom: 2px solid #c0a661;
   background: transparent;
   outline: none;
@@ -262,4 +263,23 @@
   .otp-btn, .verify-btn {
     width: 100%;
   }
+}
+
+/* Eye Icon for Password Visibility */
+.password-input {
+  position: relative;
+  width: 100%;
+}
+
+.password-input input {
+  padding-right: 40px; /* Adjust padding to make space for the icon */
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6e5600;
 }

@@ -82,12 +82,16 @@ const Registration = () => {
     }
   };
 
-  const handleRegister = async () => {
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    console.log("Form Data Submitted:", formData);
+
     if (!otpVerified) {
-      showToast("warning", "Please verify OTP first.");
+      showToast("warning", "Please verify OTP.");
       return;
     }
-    if (formData.password !== formData.confirmPassword) {
+
+    if (formData.confirmPassword !== formData.password) {
       showToast("warning", "Passwords don't match.");
       return;
     }
@@ -98,8 +102,7 @@ const Registration = () => {
     }
 
     try {
-      setRegistering(true);
-      const userData = {
+      let userData = {
         username: formData.username,
         firstName: formData.firstName,
         lastName: formData.lastName,
@@ -110,13 +113,31 @@ const Registration = () => {
         rollno: formData.usertype === "Insider" ? formData.rollno : undefined,
         college: formData.college,
       };
-
+      setRegistering(true);
       const response = await authServices.register(userData);
-      showToast("success", `Registration Successful: ${response.message}\nTID: ${response.user.T_ID}`);
 
-      setTimeout(() => navigate("/login"), 2000);
+      if (response) {
+        showToast(
+          "success",
+          `Registration Successful: ${response.message}\nTID: ${response.user.T_ID}`
+        );
+        setRegistering(false);
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      }
     } catch (error) {
-      showToast("error", error.error || "Registration failed.");
+      if (error.response) {
+        console.error("Error:", error.response.data.error);
+        showToast("error", `Registration failed: ${error.response.data.error}`);
+      } else {
+        console.error("Error:", error.message);
+        showToast(
+          "error",
+          "An unexpected error occurred. Please try again later."
+        );
+      }
     } finally {
       setRegistering(false);
     }
@@ -162,6 +183,50 @@ const Registration = () => {
               <div className="input-group">
                 <label>Last Name</label>
                 <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+              </div>
+            </div>
+            <div className="grouped-input">
+              <div className="input-group">
+                <label>College Name</label>
+                <input
+                  type="text"
+                  name="college"
+                  value={formData.college}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+            <div className="grouped-input">
+              <div className="input-group">
+                <label>User Type</label>
+                <select
+                  name="usertype"
+                  value={formData.usertype}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="" disabled>
+                    Select User Type
+                  </option>
+                  <option value="Insider">Insider</option>
+                  <option value="Outsider">Outsider</option>
+                </select>
+              </div>
+              <div
+                className={`input-group ${
+                  formData.usertype !== "Insider" ? "invisible" : ""
+                }`}
+              >
+                <label>Roll Number</label>
+                <input
+                  type="text"
+                  name="rollno"
+                  value={formData.rollno}
+                  onChange={handleChange}
+                  disabled={formData.usertype !== "Insider"}
+                  required={formData.usertype === "Insider"}
+                />
               </div>
             </div>
             <div className="grouped-input">
