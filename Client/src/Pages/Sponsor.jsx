@@ -17,7 +17,7 @@ const SponsorPage = () => {
     { name: "The Hindu", role: "In Association with", logo: hiLogo },
     { name: "Dhinamalar", role: "Print Media Partner", logo: dmLogo },
     { name: "Game on Cafe", role: "Carnival Partner", logo: goLogo },
-    { name: "RiverStone", role: "Momento Sponsor", logo: riverstone},
+    { name: "RiverStone", role: "Memento Sponsor", logo: riverstone},
     { name: "Poorvika", role: "Certificate Sponsor", logo: poorvika},
   ];
 
