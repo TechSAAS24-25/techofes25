@@ -88,7 +88,7 @@ const Login = () => {
         console.error("Error:", error.message);
         showToast(
           "error",
-          `An unexpected error occurred. Please try again later.`
+          `username or password is incorrect.`
         );
         // alert("");
       }
