@@ -12,35 +12,25 @@ const registerRouter = express.Router();
 const admin = require("../utils/firebase"); // Firebase Admin
 
 registerRouter.post("/verify-otp", async (req, res) => {
-  const { session, otp } = req.body;
+  const { idToken } = req.body;
 
   try {
-    const decodedToken = await admin.auth().verifyIdToken(session);
-    if (!decodedToken) {
-      return res.status(400).json({ error: "Invalid OTP or session" });
-    }
+    // Verify Firebase ID token
+    const decodedToken = await admin.auth().verifyIdToken(idToken);
+    console.log("User authenticated:", decodedToken.uid);
 
-    res.json({ message: "OTP verified successfully", verified: true });
-  } catch (error) {
-    console.error("OTP verification error:", error);
-    res.status(500).json({ error: "OTP verification failed" });
-  }
-});
-
-registerRouter.post("/send-otp", async (req, res) => {
-  const { phoneNumber } = req.body;
-
-  try {
-    const session = await admin.auth().createSessionCookie(phoneNumber, {
-      expiresIn: 5 * 60 * 1000, // OTP valid for 5 minutes
+    // (Optional) Create a session cookie
+    const sessionCookie = await admin.auth().createSessionCookie(idToken, {
+      expiresIn: 5 * 24 * 60 * 60 * 1000, // 5 days
     });
 
-    res.status(200).json({ message: "OTP sent successfully", session });
+    res.status(200).json({ message: "User authenticated", sessionCookie });
   } catch (error) {
-    console.error("Error sending OTP:", error);
-    res.status(500).json({ error: "Failed to send OTP" });
+    console.error("Error verifying OTP:", error);
+    res.status(401).json({ error: "Invalid or expired OTP" });
   }
 });
+
 
 // Registration Route
 registerRouter.post("/", async (request, response) => {
@@ -54,17 +44,17 @@ registerRouter.post("/", async (request, response) => {
     type,
     rollno,
     password,
-    session, // 🔥 Firebase session from OTP verification
+    // session, // 🔥 Firebase session from OTP verification
   } = request.body;
 
   try {
     console.log("Received registration data:", request.body);
 
-    // Validate OTP first
-    const decodedToken = await admin.auth().verifyIdToken(session);
-    if (!decodedToken || decodedToken.phone_number !== `+91${phn}`) {
-      return response.status(400).json({ error: "Invalid OTP" });
-    }
+    // // Validate OTP first
+    // const decodedToken = await admin.auth().verifyIdToken(session);
+    // if (!decodedToken || decodedToken.phone_number !== `+91${phn}`) {
+    //   return response.status(400).json({ error: "Invalid OTP" });
+    // }
 
     // Validate input
     if (type === "Insider" && !rollno) {

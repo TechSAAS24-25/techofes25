@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import authServices from "../api/auth";
+import icecream from "../assets/food/icecream.gif";
+import authServices from "../api/auth.js";
+import logo from "../assets/logo.png";
 import showToast from "../components/toastNotifications";
 import { Eye, EyeOff } from "lucide-react";
 import "../Styles/Registration.css";
 
+const foodItems = ["🍕", "🍔", "🍩", "🍣", "🌮", "🥞", "🍪", "🍿"];
+
 const Registration = () => {
+  const [fallingFood, setFallingFood] = useState([]);
   const [formData, setFormData] = useState({
     username: "",
     firstName: "",
@@ -19,13 +24,30 @@ const Registration = () => {
     confirmPassword: "",
     otp: ""
   });
-  
+
   const [otpSent, setOtpSent] = useState(false);
-  const [otpSession, setOtpSession] = useState(null);
   const [registering, setRegistering] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [otpVerified, setOtpVerified] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newFood = {
+        id: Date.now(),
+        type: foodItems[Math.floor(Math.random() * foodItems.length)],
+        left: Math.random() * 100,
+      };
+      setFallingFood((prev) => [...prev, newFood]);
+
+      setTimeout(() => {
+        setFallingFood((prev) => prev.filter((item) => item.id !== newFood.id));
+      }, 5000);
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,7 +57,6 @@ const Registration = () => {
   const handleSendOtp = async () => {
     try {
       const response = await authServices.sendOtp(formData.mobile);
-      setOtpSession(response.session);
       setOtpSent(true);
       showToast("success", "OTP sent successfully.");
     } catch (error) {
@@ -45,25 +66,29 @@ const Registration = () => {
 
   const handleVerifyOtp = async () => {
     try {
-      await authServices.verifyOtp(otpSession, formData.otp);
+      await authServices.verifyOtp(formData.otp);
       showToast("success", "OTP verified successfully.");
-      handleRegister();
+      setOtpVerified(true);
     } catch (error) {
       showToast("error", error.error || "OTP verification failed.");
     }
   };
 
   const handleRegister = async () => {
+    if (!otpVerified) {
+      showToast("warning", "Please verify OTP first.");
+      return;
+    }
     if (formData.password !== formData.confirmPassword) {
       showToast("warning", "Passwords don't match.");
       return;
     }
-    
+
     if (formData.usertype === "Insider" && !formData.rollno) {
       showToast("warning", "Roll Number is required for Insider user type.");
       return;
     }
-    
+
     try {
       setRegistering(true);
       const userData = {
@@ -77,10 +102,10 @@ const Registration = () => {
         rollno: formData.usertype === "Insider" ? formData.rollno : undefined,
         college: formData.college,
       };
-      
+
       const response = await authServices.register(userData);
       showToast("success", `Registration Successful: ${response.message}\nTID: ${response.user.T_ID}`);
-      
+
       setTimeout(() => navigate("/login"), 2000);
     } catch (error) {
       showToast("error", error.error || "Registration failed.");
@@ -91,27 +116,87 @@ const Registration = () => {
 
   return (
     <div className="registration-page">
-      <form onSubmit={(e) => e.preventDefault()}> {/* Prevent default submission */}
-        <input type="text" name="username" value={formData.username} onChange={handleChange} placeholder="Username" required />
-        <input type="text" name="mobile" value={formData.mobile} onChange={handleChange} placeholder="Mobile Number" required />
-        {!otpSent ? (
-          <button type="button" onClick={handleSendOtp}>Send OTP</button>
-        ) : (
-          <>
-            <input type="text" name="otp" value={formData.otp} onChange={handleChange} placeholder="Enter OTP" required />
-            <button type="button" onClick={handleVerifyOtp}>Verify OTP</button>
-          </>
-        )}
-        {otpSent && (
-          <>
-            <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" required />
-            <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} placeholder="Confirm Password" required />
-            <button type="submit" onClick={handleRegister} disabled={registering}>
-              {registering ? "Registering..." : "Sign Up"}
-            </button>
-          </>
-        )}
-      </form>
+      <div className="left-section">
+        <img src={logo} alt="Main Logo" className="h-auto max-h-40 w-auto max-w-xl mb-2" />
+        <div className="background-food">
+          {fallingFood.map((food) => (
+            <div key={food.id} className="food-item" style={{ left: `${food.left}%` }}>
+              {food.type}
+            </div>
+          ))}
+        </div>
+        <div className="video-frame">
+          <img src={icecream} alt="Ice Cream Animation" />
+        </div>
+        <div className="button-group">
+          <button className="nav-btn" onClick={() => navigate("/login")}>Login</button>
+          <button className="nav-btn active">Register</button>
+        </div>
+      </div>
+
+      <div className="right-form">
+        <div className="form-card">
+          <div className="header">
+            <h1>Register</h1>
+          </div>
+          <form onSubmit={(e) => { e.preventDefault(); handleRegister(); }}>
+            <div className="grouped-input">
+              <div className="input-group">
+                <label>User Name</label>
+                <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+              </div>
+            </div>
+            <div className="grouped-input">
+              <div className="input-group">
+                <label>First Name</label>
+                <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+              </div>
+              <div className="input-group">
+                <label>Last Name</label>
+                <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+              </div>
+            </div>
+            <div className="grouped-input">
+              <div className="input-group">
+                <label>Email</label>
+                <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+              </div>
+              <div className="input-group">
+                <label>Mobile</label>
+                <input type="text" name="mobile" value={formData.mobile} onChange={handleChange} required />
+              </div>
+            </div>
+            <button type="button" className="otp-btn" onClick={handleSendOtp} disabled={otpSent}>{otpSent ? "OTP Sent" : "Send OTP"}</button>
+            {otpSent && (
+            <>
+              <input type="text" name="otp" value={formData.otp} onChange={handleChange} placeholder="Enter OTP" required />
+              <button type="button" onClick={handleVerifyOtp} disabled={otpVerified}>{otpVerified ? "OTP Verified" : "Verify OTP"}</button>
+            </>
+          )}
+          <div className="grouped-input">
+              <div className="input-group">
+                <label>Password</label>
+                <div className="password-input">
+                  <input type={showPassword ? "text" : "password"} name="password" value={formData.password} onChange={handleChange} required />
+                  <button type="button" className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+              </div>
+              <div className="input-group">
+                <label>Confirm Password</label>
+                <div className="password-input">
+                  <input type={showConfirmPassword ? "text" : "password"} name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
+                  <button type="button" className="eye-icon" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                    {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button type="submit" className="submit-btn" disabled={registering}>{registering ? "Registering" : "Sign Up"}</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
