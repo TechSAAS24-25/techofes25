@@ -94,7 +94,7 @@ registerRouter.post("/", async (request, response) => {
     response.status(201).json({ message: "User registered successfully", user: savedUser });
   } catch (error) {
     console.error("Error during registration:", error);
-    response.status(500).json({ error: "Internal server error" });
+    next(error);
   }
 });
 

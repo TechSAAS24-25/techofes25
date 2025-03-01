@@ -85,22 +85,22 @@ const Registration = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
-
+  
     if (!otpVerified) {
       showToast("warning", "Please verify OTP.");
       return;
     }
-
+  
     if (formData.confirmPassword !== formData.password) {
       showToast("warning", "Passwords don't match.");
       return;
     }
-
+  
     if (formData.usertype === "Insider" && !formData.rollno) {
       showToast("warning", "Roll Number is required for Insider user type.");
       return;
     }
-
+  
     try {
       let userData = {
         username: formData.username,
@@ -113,36 +113,40 @@ const Registration = () => {
         rollno: formData.usertype === "Insider" ? formData.rollno : undefined,
         college: formData.college,
       };
+  
       setRegistering(true);
       const response = await authServices.register(userData);
-
+  
       if (response) {
         showToast(
           "success",
           `Registration Successful: ${response.message}\nTID: ${response.user.T_ID}`
         );
-        setRegistering(false);
-
+  
         setTimeout(() => {
           navigate("/login");
         }, 2000);
       }
     } catch (error) {
-      if (error.response) {
-        console.error("Error:", error.response.data.error);
-        showToast("error", `Registration failed: ${error.response.data.error}`);
-      } else {
-        console.error("Error:", error.message);
-        showToast(
-          "error",
-          "An unexpected error occurred. Please try again later."
-        );
+      console.error("Registration Error:", error);
+  
+      // Handling different types of errors
+      let errorMessage = "An unexpected error occurred. Please try again later.";
+  
+      if (error.response?.data?.error) {
+        // Axios error handling
+        errorMessage = error.response.data.error;
+      } else if (error.message) {
+        // Fetch API error handling
+        errorMessage = error.message;
       }
+  
+      showToast("error", `Registration failed: ${errorMessage}`);
     } finally {
       setRegistering(false);
     }
   };
-
+  
   return (
     <div className="registration-page">
       <div className="left-section">
