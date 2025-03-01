@@ -8,6 +8,7 @@ import goLogo from "../assets/sponsor/go.png";
 import p3 from "../assets/food/p3.mp4";
 import hiLogo from "../assets/sponsor/hindu.png";
 import riverstone from "../assets/sponsor/riverstone.png";
+import poorvika from "../assets/sponsor/poor.jpeg";
 
 const SponsorPage = () => {
   const sponsors = [
@@ -17,6 +18,7 @@ const SponsorPage = () => {
     { name: "Dhinamalar", role: "Print Media Partner", logo: dmLogo },
     { name: "Game on Cafe", role: "Carnival Partner", logo: goLogo },
     { name: "RiverStone", role: "Momento Sponsor", logo: riverstone},
+    { name: "Poorvika", role: "Certificate Sponsor", logo: poorvika},
   ];
 
   const containerVariants = {
