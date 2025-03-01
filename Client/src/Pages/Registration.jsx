@@ -55,10 +55,18 @@ const Registration = () => {
   };
 
   const handleSendOtp = async () => {
+    if(!formData.mobile) {
+      showToast("warning", "Mobile number is required.");
+      return;
+    }
     try {
       const response = await authServices.sendOtp(formData.mobile);
-      setOtpSent(true);
-      showToast("success", "OTP sent successfully.");
+      if (response.success) {
+        setOtpSent(true);
+        showToast("success", "OTP sent successfully.");
+      } else {
+        showToast("error", response.message || "Failed to send OTP.");
+      }
     } catch (error) {
       showToast("error", error.error || "Failed to send OTP.");
     }
@@ -133,13 +141,13 @@ const Registration = () => {
           <button className="nav-btn active">Register</button>
         </div>
       </div>
-
+      <div id="recaptcha-container"></div>
       <div className="right-form">
         <div className="form-card">
           <div className="header">
             <h1>Register</h1>
           </div>
-          <form onSubmit={(e) => { e.preventDefault(); handleRegister(); }}>
+          <form onSubmit={handleRegister}>
             <div className="grouped-input">
               <div className="input-group">
                 <label>User Name</label>
@@ -161,18 +169,27 @@ const Registration = () => {
                 <label>Email</label>
                 <input type="email" name="email" value={formData.email} onChange={handleChange} required />
               </div>
-              <div className="input-group">
-                <label>Mobile</label>
-                <input type="text" name="mobile" value={formData.mobile} onChange={handleChange} required />
-              </div>
             </div>
+            <div className="grouped-input">
+               <div className="input-group">
+                <label>Mobile</label>
+                <input type="text" name="mobile" value={formData.mobile} style={{ width: "210px" }} onChange={handleChange} required />
+              </div>
+            <div className="input-group">
             <button type="button" className="otp-btn" onClick={handleSendOtp} disabled={otpSent}>{otpSent ? "OTP Sent" : "Send OTP"}</button>
+            </div>
+            </div>
+            <div className="grouped-input">
             {otpSent && (
-            <>
-              <input type="text" name="otp" value={formData.otp} onChange={handleChange} placeholder="Enter OTP" required />
-              <button type="button" onClick={handleVerifyOtp} disabled={otpVerified}>{otpVerified ? "OTP Verified" : "Verify OTP"}</button>
-            </>
+              <>
+            <div className="input-group">
+              <label>OTP</label>
+              <input type="text" name="otp" value={formData.otp} onChange={handleChange} placeholder="" required />
+              </div>
+              <button type="button" className="verify-btn" onClick={handleVerifyOtp} disabled={otpVerified}>{otpVerified ? "OTP Verified" : "Verify OTP"}</button>
+              </>
           )}
+          </div>
           <div className="grouped-input">
               <div className="input-group">
                 <label>Password</label>
@@ -193,7 +210,8 @@ const Registration = () => {
                 </div>
               </div>
             </div>
-            <button type="submit" className="submit-btn" disabled={registering}>{registering ? "Registering" : "Sign Up"}</button>
+            <button type="submit" className="submit-btn" disabled={registering || !otpVerified}> {registering ? "Registering" : "Sign Up"}
+            </button>
           </form>
         </div>
       </div>

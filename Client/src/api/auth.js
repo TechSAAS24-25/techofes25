@@ -1,12 +1,14 @@
 import axios from "../helper/axios";
 import storage from "../services/storage";
-import { initializeApp } from "firebase/app";
-import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { auth, RecaptchaVerifier, signInWithPhoneNumber } from "../config/firebase";
 
 const loginUrl = "/api/auth/login";
 const registerUrl = "/api/auth/register";
 const logoutUrl = "/api/auth/logout";
-const verifyOtpUrl = "/api/auth/register/verify-otp";
+// const verifyOtpUrl = "/api/auth/register/verify-otp";
+
+let recaptchaVerifier;
+
 
 // Login user
 const login = async (username, password) => {
@@ -32,65 +34,67 @@ const register = async (user) => {
   }
 };
 
-// Firebase configuration using environment variables
-const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-auth.useDeviceLanguage();
-
-// Initialize Recaptcha
+// setup Recaptcha
 const setupRecaptcha = () => {
   if (!window.recaptchaVerifier) {
-    window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
-      size: "invisible",
-      callback: () => console.log("Recaptcha Verified"),
+    window.recaptchaVerifier = new RecaptchaVerifier(
+      "recaptcha-container",
+      {
+        size: "invisible",
+        callback: (response) => {
+          console.log("reCAPTCHA Verified:", response);
+        },
+        "expired-callback": () => {
+          console.error("reCAPTCHA expired. Please refresh the page.");
+        },
+      },
+      auth
+    );
+    window.recaptchaVerifier.render().then((widgetId) => {
+      console.log("reCAPTCHA widget ID:", widgetId);
     });
   }
 };
+
 
 // Function to send OTP
 const sendOtp = async (phoneNumber) => {
   try {
     setupRecaptcha();
-    const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, window.recaptchaVerifier);
-    window.confirmationResult = confirmationResult; // Save for verification step
+
+    // Ensure reCAPTCHA is fully loaded
+    const recaptchaId = await recaptchaVerifier.render();
+    console.log("reCAPTCHA rendered:", recaptchaId);
+
+    const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier);
+    window.confirmationResult = confirmationResult;
+
     console.log("OTP sent successfully");
+    return { success: true };
   } catch (error) {
     console.error("Error sending OTP:", error);
+    return { success: false, message: error.message };
   }
 };
 
-
+// Function to verify OTP
 const verifyOtp = async (otp) => {
   try {
     if (!window.confirmationResult) {
       throw new Error("No OTP session found. Please request a new OTP.");
     }
 
-    // Verify the OTP using Firebase
     const userCredential = await window.confirmationResult.confirm(otp);
-    const idToken = await userCredential.user.getIdToken(); // Get ID token
+    const idToken = await userCredential.user.getIdToken();
 
     console.log("OTP verified successfully", userCredential.user);
-    
-    // Send the ID token to the backend for authentication
-    const response = await axios.post(verifyOtpUrl, { idToken });
-    
-    return response.data; // Backend response (session cookie, user info, etc.)
+
+    return { success: true, idToken };
   } catch (error) {
     console.error("OTP verification error:", error.message);
-    throw new Error("Invalid OTP. Please try again.");
+    return { success: false, message: "Invalid OTP. Please try again." };
   }
 };
-
 
 // Logout user
 const logout = async () => {

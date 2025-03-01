@@ -107,6 +107,7 @@
 }
 
 /* Right Form Section */
+/* Right Form Section */
 .right-form {
   flex: 1;
   display: flex;
@@ -131,24 +132,22 @@
   color: #b8860b;
 }
 
-.grouped-input {
-  margin-bottom: 15px;
-  text-align: left;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
+/* Form Inputs */
 .input-group {
-  margin-right: 15px;
-  text-align: left;
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 12px;
 }
 
 .input-group label {
-  margin-bottom: 5px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: #6e5600;
+  margin-bottom: 5px;
+  text-align: left;
+  width: 100%;
 }
 
 .input-group input,
@@ -168,9 +167,60 @@
   border-bottom-color: #d4af37;
 }
 
+/* Grouped Inputs (First & Last Name, Password & Confirm Password) */
+.grouped-input {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.grouped-input .input-group {
+  flex: 1;
+}
+
+/* OTP & Verify Button Alignment */
+.otp-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.otp-container input {
+  flex: 1;
+}
+
+.otp-btn, .verify-btn {
+  width: 120px;
+  height: 42px;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background: #d4af37;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 12px rgba(212, 175, 55, 0.5);
+}
+
+.otp-btn:hover, .verify-btn:hover {
+  background: #cfa832;
+  transform: scale(1.03);
+}
+
+.otp-btn:disabled, .verify-btn:disabled {
+  background: #b5a06d;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Submit Button */
 .submit-btn {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   font-size: 1rem;
   color: #fff;
   background: #d4af37;
@@ -184,86 +234,32 @@
 .submit-btn:hover {
   background: #cfa832;
   transform: scale(1.03);
-  box-shadow: 0px 6px 16px rgba(207, 168, 50, 0.7);
+}
+
+.submit-btn:disabled {
+  background: #b5a06d;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 /* Animations */
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .registration-page {
+  .grouped-input {
     flex-direction: column;
   }
 
-  .left-section {
-    flex-basis: auto;
+  .otp-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .otp-btn, .verify-btn {
     width: 100%;
-    height: auto;
-    padding: 20px 10px;
-    --mask:
-      radial-gradient(34.99px at 50% calc(100% - 48px), #000 99%, #0000 101%) calc(50% - 60px) 0/120px 100%,
-      radial-gradient(34.99px at 50% calc(100% + 18px), #0000 99%, #000 101%) 50% calc(100% - 30px)/120px 100% repeat-x;
-    -webkit-mask: var(--mask);
-    mask: var(--mask);
-  }
-
-  .video-frame {
-    max-width: 280px;
-    margin: 0 auto 15px;
-  }
-
-  .button-group {
-    max-width: 260px;
-    margin: 0 auto;
-    margin-bottom: 50px;
-  }
-
-  .right-form {
-    padding: 10px;
-  }
-
-  .form-card {
-    padding: 20px;
-  }
-
-  .header h1 {
-    font-size: 1.5rem;
-  }
-
-  .submit-btn {
-    font-size: 0.9rem;
   }
 }

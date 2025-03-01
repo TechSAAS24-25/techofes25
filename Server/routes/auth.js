@@ -9,27 +9,27 @@ const loginRouter = express.Router();
 const logoutRouter = express.Router();
 const registerRouter = express.Router();
 
-const admin = require("../utils/firebase"); // Firebase Admin
+// const admin = require("../utils/firebase"); // Firebase Admin
 
-registerRouter.post("/verify-otp", async (req, res) => {
-  const { idToken } = req.body;
+// registerRouter.post("/verify-otp", async (req, res) => {
+//   const { idToken } = req.body;
 
-  try {
-    // Verify Firebase ID token
-    const decodedToken = await admin.auth().verifyIdToken(idToken);
-    console.log("User authenticated:", decodedToken.uid);
+//   try {
+//     // Verify Firebase ID token
+//     const decodedToken = await admin.auth().verifyIdToken(idToken);
+//     console.log("User authenticated:", decodedToken.uid);
 
-    // (Optional) Create a session cookie
-    const sessionCookie = await admin.auth().createSessionCookie(idToken, {
-      expiresIn: 5 * 24 * 60 * 60 * 1000, // 5 days
-    });
+//     // (Optional) Create a session cookie
+//     const sessionCookie = await admin.auth().createSessionCookie(idToken, {
+//       expiresIn: 5 * 24 * 60 * 60 * 1000, // 5 days
+//     });
 
-    res.status(200).json({ message: "User authenticated", sessionCookie });
-  } catch (error) {
-    console.error("Error verifying OTP:", error);
-    res.status(401).json({ error: "Invalid or expired OTP" });
-  }
-});
+//     res.status(200).json({ message: "User authenticated", sessionCookie });
+//   } catch (error) {
+//     console.error("Error verifying OTP:", error);
+//     res.status(401).json({ error: "Invalid or expired OTP" });
+//   }
+// });
 
 
 // Registration Route
