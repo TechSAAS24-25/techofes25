@@ -32,7 +32,7 @@ function TabContent({ activeTab, petData }) {
         petData[activeTab].downloadLink && (
           <div className="download-section">
             <a
-              href="/assets/rule.pdf"
+              href="../assets/rule.pdf"
               download="rule.pdf"
               className="download-button"
             >
