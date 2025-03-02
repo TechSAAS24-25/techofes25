@@ -11,6 +11,7 @@ import riverstone from "../assets/sponsor/riverstone.png";
 import poorvika from "../assets/sponsor/poor.jpeg";
 import aram from "../assets/sponsor/aram.png";
 import guvi from "../assets/sponsor/guvi.png";
+import pm from "../assets/sponsor/pm.png";
 
 const SponsorPage = () => {
   const sponsors = [
@@ -23,6 +24,7 @@ const SponsorPage = () => {
     { name: "Game on Cafe", role: "Carnival Partner", logo: goLogo },
     { name: "RiverStone", role: "Memento Sponsor", logo: riverstone },
     { name: "Poorvika", role: "Certificate Sponsor", logo: poorvika },
+    { name: "Pm", role: "Printing Sponsor", logo: pm },
   ];
 
   const containerVariants = {

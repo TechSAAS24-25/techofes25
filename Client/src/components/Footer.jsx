@@ -11,6 +11,7 @@ import { IoIosMail } from "react-icons/io";
 import { FaWhatsapp } from "react-icons/fa";
 import hiLogo from "../assets/sponsor/hindu.png";
 import riverstone from "../assets/sponsor/riverstone.png";
+import pm from "../assets/sponsor/pm.png";
 import "./Footer.css";
 
 function Content() {
@@ -181,7 +182,7 @@ const Sponsors = () => {
         />
         <img
           src={guvi}
-          alt="Sponsor 4"
+          alt="Sponsor 3"
           className="h-20 w-auto transition-transform duration-300 hover:scale-110"
         />
       </div>
