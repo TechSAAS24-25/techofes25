@@ -2,15 +2,9 @@ import React, { useState } from "react";
 import "../Styles/Accommodation.css";
 import TabContent from "../components/TabContent";
 import TabButtons from "../components/TabButtons";
-import {
-  FaBed,
-  FaInfoCircle,
-  FaLocationDot,
-  FaQuestion,
-  FaDownload,
-} from "react-icons/fa";
+import { FaInfoCircle, FaQuestion, FaDownload } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
 import { IoNewspaper } from "react-icons/io5";
-
 function Accommodation() {
   const [activeTab, setActiveTab] = useState(0);
   const [selectedDays, setSelectedDays] = useState([]); // Track selected days
