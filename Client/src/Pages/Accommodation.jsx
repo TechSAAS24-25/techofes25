@@ -69,7 +69,7 @@ function Accommodation() {
           <div className="accomodationcharge">
             <h3 className="charges">Accommodation Charge</h3>
 
-            <h5 className="without">Without food - Rs. 400 per day</h5>
+            <h5 className="without">With food - Rs. 400 per day</h5>
 
             <div className="gender">
               <h2>Select Gender</h2>
