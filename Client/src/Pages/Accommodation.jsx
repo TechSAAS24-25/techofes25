@@ -13,7 +13,7 @@ function Accommodation() {
   const [selectedDays, setSelectedDays] = useState([]); // Track selected days
   const [includeFood, setIncludeFood] = useState(false); // Track food option
 
-  const basePrice = 300; // Price without food per day
+  const basePrice = 400; // Price without food per day
   const foodPrice = 450; // Price with food per day
 
   // Handle checkbox selection
@@ -47,8 +47,8 @@ function Accommodation() {
       image: "/assets/7.svg",
       icon: <FaQuestion />,
       details: [
-        { name: "Arul Manisha A", number: "8778500130" },
-        { name: "Sathishkumar G ", number: " 8056811903" },
+        { name: "Kathir S", number: "9894939097" },
+        { name: "Shreyaa Vinod", number: "9438190895" },
       ],
     },
     {
@@ -56,7 +56,7 @@ function Accommodation() {
       fact: "Participants need to follow the rules and regulations of the event.",
       image: "/assets/5.svg",
       icon: <IoNewspaper />,
-      downloadLink: "/assets/rules.pdf", // Add your file path here
+      downloadLink: "/assets/rule.pdf", // Add your file path here
     },
   ];
 
@@ -69,8 +69,7 @@ function Accommodation() {
           <div className="accomodationcharge">
             <h3 className="charges">Accommodation Charge</h3>
 
-            <h5 className="without">Without food - Rs. 300 per day</h5>
-            <h5 className="without">With food - Rs. 450 per day</h5>
+            <h5 className="without">Without food - Rs. 400 per day</h5>
 
             <div className="gender">
               <h2>Select Gender</h2>
@@ -97,7 +96,7 @@ function Accommodation() {
                     value="day1"
                     onChange={handleCheckboxChange}
                   />
-                  Day 1
+                  Mar 5
                 </label>
                 <label>
                   <input
@@ -105,7 +104,7 @@ function Accommodation() {
                     value="day2"
                     onChange={handleCheckboxChange}
                   />
-                  Day 2
+                  Mar 6
                 </label>
                 <label>
                   <input
@@ -113,19 +112,7 @@ function Accommodation() {
                     value="day3"
                     onChange={handleCheckboxChange}
                   />
-                  Day 3
-                </label>
-              </div>
-
-              <div className="food-option">
-                <h3>Do you need food?</h3>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={includeFood}
-                    onChange={(e) => setIncludeFood(e.target.checked)}
-                  />
-                  Include Food
+                  Mar 7
                 </label>
               </div>
 
