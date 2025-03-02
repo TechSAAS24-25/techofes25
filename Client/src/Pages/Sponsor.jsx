@@ -24,7 +24,7 @@ const SponsorPage = () => {
     { name: "Game on Cafe", role: "Carnival Partner", logo: goLogo },
     { name: "RiverStone", role: "Memento Sponsor", logo: riverstone },
     { name: "Poorvika", role: "Certificate Sponsor", logo: poorvika },
-    { name: "Pm", role: "Printing Sponsor", logo: pm },
+    { name: "PM Digital", role: "Printing Sponsor", logo: pm },
   ];
 
   const containerVariants = {
