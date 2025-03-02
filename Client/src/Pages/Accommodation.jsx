@@ -56,7 +56,7 @@ function Accommodation() {
       fact: "Participants need to follow the rules and regulations of the event.",
       image: "/assets/5.svg",
       icon: <IoNewspaper />,
-      downloadLink: "../assets/rule.pdf", // Add your file path here
+      downloadLink: "/rule.pdf",
     },
   ];
 

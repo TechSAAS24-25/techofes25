@@ -1,38 +1,17 @@
 import React from "react";
-import { FaDownload } from "react-icons/fa";
-import { FaPhoneAlt } from "react-icons/fa";
+import { FaDownload, FaPhoneAlt } from "react-icons/fa";
 
 function TabContent({ activeTab, petData }) {
   return (
     <div className="tab-content">
       <p>{petData[activeTab].fact}</p>
 
-      {/* Display additional details for FAQ tab */}
-      {petData[activeTab].animal === "FAQ" && petData[activeTab].details && (
-        <div className="faq-details">
-          <h3>Contact Details:</h3>
-          <h4 className="drop">
-            Drop mail at{" "}
-            <a href="mailto:saasceg25@gmail.com" className="email-link">
-              saasceg25@gmail.com
-            </a>
-          </h4>
-          <ul>
-            {petData[activeTab].details.map((detail, index) => (
-              <li key={index}>
-                <FaPhoneAlt /> {detail.name} - {detail.number}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
       {/* Download button for RULES tab */}
       {petData[activeTab].animal === "RULES" &&
         petData[activeTab].downloadLink && (
           <div className="download-section">
             <a
-              href="../assets/rule.pdf"
+              href={petData[activeTab].downloadLink}
               download="rule.pdf"
               className="download-button"
             >
