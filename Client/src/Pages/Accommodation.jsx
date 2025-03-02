@@ -5,6 +5,7 @@ import TabButtons from "../components/TabButtons";
 import { FaInfoCircle, FaQuestion, FaDownload } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoNewspaper } from "react-icons/io5";
+
 function Accommodation() {
   const [activeTab, setActiveTab] = useState(0);
   const [selectedDays, setSelectedDays] = useState([]); // Track selected days
@@ -51,7 +52,7 @@ function Accommodation() {
       fact: "Participants need to follow the rules and regulations of the event.",
       image: "/assets/5.svg",
       icon: <IoNewspaper />,
-      downloadLink: "/assets/rule.pdf",
+      downloadLink: "/assets/rule.pdf", // File path (ensure rule.pdf is inside /public/assets/)
     },
   ];
 
@@ -138,7 +139,7 @@ function Accommodation() {
 
           {/* Download Rules button */}
           <div className="rules-download">
-            <a href="/assets/rule.pdf" download>
+            <a href="../assets/rule.pdf.pdf" download>
               <button className="download-btn">
                 <FaDownload /> Download Rules
               </button>
