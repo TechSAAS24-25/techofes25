@@ -1,6 +1,3 @@
-/* ============================= */
-/* 🌍 Universal Styling for Accommodation Page */
-/* ============================= */
 .main__container {
   display: flex;
   flex-direction: column;
@@ -8,9 +5,6 @@
   text-align: center;
   padding: 20px;
   background-image: url("../assets/food/bg1.jpeg");
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
 }
 
 .acctitle {
@@ -20,45 +14,67 @@
   color: #ffffff;
 }
 
-/* ============================= */
-/* 📦 Main Accommodation Box */
-/* ============================= */
 .maincontacc {
   width: 90%;
   max-width: 1000px;
+  /* background: #fff; */
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
   padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mainaccinside {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.accomodationcharge {
+  /* background: #f9f9f9; */
+  padding: 20px;
+  /* color: #ffffff; */
   border-radius: 10px;
 }
 
-/* ============================= */
-/* 💰 Pricing & Gender Selection */
-/* ============================= */
-.accomodationcharge {
-  padding: 20px;
-}
-
-.charges,
-.selectacc,
-.gender h2,
-.charge h3,
-.food-option h3 {
-  font-size: 1.4rem;
+.charges {
+  font-size: 2rem;
   color: #f5e343;
   text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
+}
+
+.selectacc {
+  padding: 20px;
+  font-size: 1.3rem;
+  /* color: ; */
+  color: #f5e343;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
+}
+
+.charge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 5px;
 }
 
 .without {
   font-size: 1.3rem;
   margin: 5px 0;
-  color: white;
 }
 
-/* Radio & Checkbox Styling */
 .gender {
   margin-top: 20px;
+}
+
+.gender h2 {
+  font-size: 1.3rem;
+  color: #f5e343;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
+  margin-bottom: 10px;
 }
 
 .radios {
@@ -67,98 +83,203 @@
   justify-content: center;
 }
 
-.radios label,
-.charge label {
+.radios label {
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 1.1rem;
-  color: white;
 }
 
-.radios input[type="radio"],
-.charge input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-  accent-color: #f5e343;
+.charge h3,
+.food-option h3 {
+  margin-top: 15px;
+  font-size: 1.4rem;
+  color: #ffffff;
+  color: #f5e343;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
 }
 
-.charge {
+.food-option {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 20px;
-  padding: 10px;
+  flex-direction: column;
+  /* padding: 5px; */
+  row-gap: 5px;
 }
 
-/* ============================= */
-/* 💳 Payment Section */
-/* ============================= */
+.charge label,
+.food-option label {
+  display: flex;
+  margin: 5px 0;
+  gap: 10px;
+  font-size: 1.1rem;
+}
+
 .total-amount {
   font-size: 1.4rem;
   font-weight: bold;
   margin-top: 15px;
+  color: #ffffff;
   color: #f5e343;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
 }
 
-.offline-payment {
-  font-size: 14px;
-  color: #ffcc00;
-  margin-top: 10px;
-  text-align: center;
-  font-weight: bold;
-}
-
-/* ============================= */
-/* 📝 Register Button */
-/* ============================= */
-.register-btn {
-  background-color: #00b1ad;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
+.radios input[type="radio"],
+.charge input[type="checkbox"],
+.food-option input[type="checkbox"] {
+  width: 18px;
+  accent-color: #f5e343;
+  /* text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6); */
+  height: 18px;
   cursor: pointer;
+
+  /* grid-area: 20px; */
+}
+
+.buttontab {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tab__header {
+  display: flex;
+  /* background-color: #000; */
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+}
+
+.tabbuttons {
+  display: flex;
+  /* background-color: antiquewhite; */
+  border-radius: 10px;
+  padding: 5px;
+}
+
+/* Tab Button */
+.tab__button {
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  /* background-color: aquamarine; */
+
+  transition: background 0.3s ease;
+}
+
+/* Active Tab Button */
+.tab__button.active {
+  /* background-color: teal; */
+  background-color: #ff6565;
+  color: white;
+}
+
+/* Content Wrapper */
+.contenttab {
+  /* margin-top: 30px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tab Content */
+.tab__content {
+  background: white;
+  margin-top: 20px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tab__button {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.iconacc {
+  font-size: 25px;
+}
+
+/* Image Styling */
+.tab__content img {
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
   margin-top: 15px;
-  display: block;
+}
+
+/* Fact Text */
+.tab__content p {
+  font-size: 18px;
+  margin-top: 10px;
+  color: #333;
+}
+
+.tab__header {
+  /* flex-direction: column; */
+  align-items: center;
+}
+
+.tab__button {
   width: 100%;
   text-align: center;
 }
 
-.register-btn:hover {
-  background-color: #008f8a;
+.tab__content img {
+  max-width: 200px;
 }
 
-/* ============================= */
-/* 📥 Download Rules Section */
-/* ============================= */
-.rules-download {
-  text-align: center;
-  margin-top: 20px;
+/* Responsive Tab Buttons */
+@media (max-width: 768px) {
+  .tab__button {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .tab__content img {
+    max-width: 180px;
+  }
+
+  .tab__content {
+    padding: 15px;
+  }
 }
 
-.download-btn {
-  background-color: #0073e6;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: center;
+@media (max-width: 480px) {
+  .tab__button {
+    /* display: flex; */
+    /* flex-direction:column ; */
+    padding: 6px;
+    width: 100% !important;
+    font-size: 13px;
+  }
+
+  .tab__header {
+    flex-direction: column;
+  }
+
+  .tab__content img {
+    max-width: 150px;
+  }
+
+  .tab__content {
+    padding: 10px;
+  }
 }
 
-.download-btn:hover {
-  background-color: #005bb5;
-}
-
-/* ============================= */
-/* 📱 Responsive Adjustments */
-/* ============================= */
+/* Responsive Styles */
 @media (max-width: 768px) {
   .acctitle {
     font-size: 1.8rem;
@@ -173,12 +294,14 @@
     padding: 15px;
   }
 
-  .charges,
-  .selectacc,
+  .charges {
+    font-size: 1.3rem;
+  }
+
   .gender h2,
   .charge h3,
   .food-option h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .radios {
@@ -220,13 +343,104 @@
     font-size: 1.1rem;
   }
 
-  .register-btn {
-    font-size: 14px;
-    padding: 8px;
+  .tab__button {
+    width: 50px;
   }
+}
 
-  .download-btn {
-    font-size: 14px;
-    padding: 8px;
-  }
+/* tab conteent */
+.tab-content {
+  padding: 20px;
+  /* background: #f9f9f9; */
+  backdrop-filter: blur(10px) brightness(1.3);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.tab-content h2 {
+  font-size: 24px;
+
+  margin-bottom: 10px;
+  color: #f54343;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
+}
+
+.tab-content p {
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  line-height: 1.6;
+}
+
+/* FAQ Section */
+.faq-details {
+  margin-top: 15px;
+  padding: 10px;
+  /* background: #e3f2fd; */
+  /* border-left: 5px solid #2196f3; */
+  backdrop-filter: blur(px) brightness(1.3);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.faq-details h3 {
+  font-size: 20px;
+  color: #f54343;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
+
+  /* color: #1976d2; */
+  margin-bottom: 8px;
+}
+
+.faq-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.faq-details li {
+  display: flex;
+  align-items: center; /* Align icon and text */
+  font-size: 14px;
+  justify-content: center;
+  /* color: #444; */
+  color: #ffffff;
+  padding: 5px 0;
+  gap: 8px; /* Adds space between icon and text */
+}
+
+/* Download Button */
+.download-section {
+  margin-top: 15px;
+  text-align: center;
+  /* display: flex; */
+}
+
+.download-button {
+  display: inline-block;
+  background: #ff6565;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.download-button:hover {
+  color: #ff4242;
+  transform: scale(1.05);
+}
+
+.email-link {
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+}
+
+.drop {
+  color: #f54343;
+  font-size: 18px;
+  text-shadow: 2px 2px 10px rgba(255, 152, 153, 0.6);
 }
