@@ -2,16 +2,12 @@ import React, { useState } from "react";
 import "../Styles/Accommodation.css";
 import TabContent from "../components/TabContent";
 import TabButtons from "../components/TabButtons";
-import { FaBed } from "react-icons/fa";
-import { FaInfoCircle } from "react-icons/fa";
+import { FaInfoCircle, FaQuestion, FaDownload } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-import { FaQuestion } from "react-icons/fa";
 import { IoNewspaper } from "react-icons/io5";
-
 function Accommodation() {
   const [activeTab, setActiveTab] = useState(0);
   const [selectedDays, setSelectedDays] = useState([]); // Track selected days
-  const [includeFood, setIncludeFood] = useState(false); // Track food option
 
   const basePrice = 400; // Price without food per day
   const foodPrice = 450; // Price with food per day
@@ -25,8 +21,7 @@ function Accommodation() {
   };
 
   // Calculate total price
-  const totalPrice =
-    selectedDays.length * (includeFood ? foodPrice : basePrice);
+  const totalPrice = selectedDays.length * basePrice;
 
   const petData = [
     {
@@ -56,7 +51,7 @@ function Accommodation() {
       fact: "Participants need to follow the rules and regulations of the event.",
       image: "/assets/5.svg",
       icon: <IoNewspaper />,
-      downloadLink: "/assets/rule.pdf", // Add your file path here
+      downloadLink: "/assets/rule.pdf",
     },
   ];
 
@@ -68,12 +63,10 @@ function Accommodation() {
         <div className="mainaccinside">
           <div className="accomodationcharge">
             <h3 className="charges">Accommodation Charge</h3>
-
             <h5 className="without">Without food - Rs. 400 per day</h5>
 
             <div className="gender">
               <h2>Select Gender</h2>
-
               <div className="radios">
                 <label>
                   <input type="radio" name="accommodation" value="male" /> Male
@@ -95,7 +88,7 @@ function Accommodation() {
                     type="checkbox"
                     value="day1"
                     onChange={handleCheckboxChange}
-                  />
+                  />{" "}
                   Mar 5
                 </label>
                 <label>
@@ -103,7 +96,7 @@ function Accommodation() {
                     type="checkbox"
                     value="day2"
                     onChange={handleCheckboxChange}
-                  />
+                  />{" "}
                   Mar 6
                 </label>
                 <label>
@@ -111,12 +104,28 @@ function Accommodation() {
                     type="checkbox"
                     value="day3"
                     onChange={handleCheckboxChange}
-                  />
+                  />{" "}
                   Mar 7
                 </label>
               </div>
 
+              {/* Display total amount */}
               <h3 className="total-amount">Total Amount: Rs. {totalPrice}</h3>
+
+              {/* Offline payment info */}
+              <p className="offline-payment">
+                <strong>Note:</strong> The amount must be paid on the day of
+                check-in in offline mode.
+              </p>
+
+              {/* Register button */}
+              <a
+                href="https://forms.gle/H3VDRvjGADHyAEon7"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="register-btn">Register Now</button>
+              </a>
             </div>
           </div>
 
@@ -126,6 +135,24 @@ function Accommodation() {
             petData={petData}
           />
           <TabContent activeTab={activeTab} petData={petData} />
+
+          {/* Download Rules button */}
+          <div className="rules-download">
+            <a href="/assets/rule.pdf" download>
+              <button className="download-btn">
+                <FaDownload /> Download Rules
+              </button>
+            </a>
+          </div>
+
+          {/* Contact Section */}
+          <div className="contact-section">
+            <h3 className="contact-title">Contact Us</h3>
+            <p className="email-link">
+              <strong>For Queries:</strong>{" "}
+              <a href="mailto:saasceg25@gmail.com">saasceg25@gmail.com</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
