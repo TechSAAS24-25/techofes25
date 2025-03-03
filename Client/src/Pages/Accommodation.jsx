@@ -121,6 +121,14 @@ function Accommodation() {
                 <strong>Note:</strong> The amount must be paid on the day of
                 check-in in offline mode.
               </p>
+
+              <a
+                            href={petData[activeTab].downloadLink}
+                            download="rule.pdf"
+                            className="download-button"
+                          >
+                            {/* <FaDownload /> Download Rules */}
+                          </a>
             </div>
           </div>
 
