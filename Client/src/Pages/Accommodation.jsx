@@ -13,7 +13,7 @@ function Accommodation() {
   const [selectedDays, setSelectedDays] = useState([]); // Track selected days
   const [includeFood, setIncludeFood] = useState(false); // Track food option
 
-  const basePrice = 4u=u000; // Price without food per day
+  const basePrice = 400; // Price without food per day
   const foodPrice = 450; // Price with food per day
 
   // Handle checkbox selection
