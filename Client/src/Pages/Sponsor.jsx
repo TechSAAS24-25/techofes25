@@ -12,9 +12,11 @@ import poorvika from "../assets/sponsor/poor.jpeg";
 import aram from "../assets/sponsor/aram.png";
 import guvi from "../assets/sponsor/guvi.png";
 import pm from "../assets/sponsor/pm.png";
+import sip from "../assets/sponsor/sip.png";
 
 const SponsorPage = () => {
   const sponsors = [
+    { name: "SIPCOT", role: "CO Sponsor", logo: sip},
     { name: "ARAM IAS ACADEMY", role: "Associate Sponsor", logo: aram },
     { name: "The Hindu", role: "In Association with", logo: hiLogo },
     { name: "AGS Cinemas", role: "Multiplex Partner", logo: agsLogo },
