@@ -122,13 +122,12 @@ function Accommodation() {
                 check-in in offline mode.
               </p>
 
-              <a
-                            href={petData[activeTab].downloadLink}
-                            download="rule.pdf"
-                            className="download-button"
-                          >
-                            {/* <FaDownload /> Download Rules */}
-                          </a>
+              <a href="https://forms.gle/H3VDRvjGADHyAEon7"
+              className="download-button">
+                Registration Form
+              </a>
+
+              
             </div>
           </div>
 
