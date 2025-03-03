@@ -429,7 +429,26 @@
   transition: all 0.3s ease-in-out;
 }
 
+.download-button1 {
+  margin-top: 10px;
+  display: inline-block;
+  background: #ff6565;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+
 .download-button:hover {
+  color: #ff4242;
+  transform: scale(1.05);
+}
+
+.download-button1:hover {
   color: #ff4242;
   transform: scale(1.05);
 }
