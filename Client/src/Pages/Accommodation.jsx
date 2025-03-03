@@ -121,6 +121,13 @@ function Accommodation() {
                 <strong>Note:</strong> The amount must be paid on the day of
                 check-in in offline mode.
               </p>
+
+              <a href="https://forms.gle/H3VDRvjGADHyAEon7"
+              className="download-button">
+                Registration Form
+              </a>
+
+              
             </div>
           </div>
 
