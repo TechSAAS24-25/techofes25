@@ -7,6 +7,15 @@ function TabContent({ activeTab, petData }) {
       {/* <h2>{petData[activeTab].animal}</h2> */}
       <p>{petData[activeTab].fact}</p>
 
+
+
+
+
+
+
+
+
+
       {/* Display additional details for FAQ tab */}
       {petData[activeTab].animal === 'FAQ' && petData[activeTab].details && (
         <div className='faq-details'>
