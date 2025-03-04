@@ -130,7 +130,7 @@ const Registration = () => {
     } catch (error) {
       console.error("Registration Error:", error);
     
-      let errorMessage = "An unexpected error occurred. Please try again.";
+      let errorMessage = "Error: duplicate username or email detected";
     
       if (error.response && error.response.data && error.response.data.error) {
         // If error comes from the backend (Axios)
