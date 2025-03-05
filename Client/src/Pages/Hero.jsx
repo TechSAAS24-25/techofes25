@@ -347,9 +347,7 @@ const Hero = () => {
         <AboutSection />
       </div>
 
-      <div>
-        <Celebs/>
-      </div>
+      
 
       
 
