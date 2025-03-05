@@ -124,8 +124,8 @@ function Accommodation() {
 
               <a href="https://forms.gle/H3VDRvjGADHyAEon7"
               target="_blank"
-              className="download-button">
-                Accomodation Registration Form
+              className="download-button1">
+                 Registration Form
               </a>
 
               
