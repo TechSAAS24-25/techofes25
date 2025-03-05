@@ -4,53 +4,53 @@ const celebs = [
     {
         // name: 'AKHILAN ',
         // event: 'Event 1',
-        photo: '../assets/Celebs/akhil.png'
+        photo: '../../public/media/Celebs/akhil.png'
     },
     {
         // name: 'DHILEEP',
         // event: 'Event 2',
-        photo: '../assets/Celebs/dhileep.jpg'
+        photo: '../../public/media/Celebs/dhileep.jpg'
     },
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../assets/Celebs/diwa.png'
+        photo: '../../public/media/Celebs/diwa.png'
     },
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../assets/Celebs/kadhaipoma.jpg'
+        photo: '../../public/media/Celebs/kadhaipoma.jpg'
     },
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../assets/Celebs/pavish.jpg'
+        photo: '../../public/media/Celebs/pavish.jpg'
     },
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../assets/Celebs/pavithra.jpg'
+        photo: '../../public/media/Celebs/pavithra.jpg'
     },
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../assets/Celebs/pooja.jpg'
+        photo: '../../public/media/Celebs/pooja.jpg'
     },
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../assets/Celebs/roshini.jpg'
+        photo: '../../public/media/Celebs/roshini.jpg'
     },
 
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../assets/Celebs/sakshi.png'
+        photo: '../../public/media/Celebs/sakshi.png'
     },
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../assets/Celebs/srini.jpg'
+        photo: '../../public/media/Celebs/srini.jpg'
     },
     // Add more celebrities as needed
 ];
