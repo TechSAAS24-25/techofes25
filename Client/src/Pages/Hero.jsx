@@ -347,6 +347,10 @@ const Hero = () => {
         <AboutSection />
       </div>
 
+      <div>
+        <Celebs/>
+      </div>
+
       
 
       <ZoomParallax />
@@ -360,10 +364,7 @@ const Hero = () => {
           <Carousel cardsList={mainCoordinators || []} />
         </div>
       </div>
-
-      <div>
-        <Celebs/>
-      </div>
+      
       <Footer />
     </main>
   );
