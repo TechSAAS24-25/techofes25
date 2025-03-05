@@ -2,14 +2,55 @@ import React from 'react';
 
 const celebs = [
     {
-        name: 'Celebrity Name 1',
+        name: 'Celebrity Name ',
         event: 'Event 1',
-        photo: 'https://via.placeholder.com/150'
+        photo: '../assets/Celebs/akhil.png'
     },
     {
         name: 'Celebrity Name 2',
         event: 'Event 2',
-        photo: 'https://via.placeholder.com/150'
+        photo: '../assets/Celebs/dhileep.jpg'
+    },
+    {
+        name: 'Celebrity Name 2',
+        event: 'Event 2',
+        photo: '../assets/Celebs/diwa.png'
+    },
+    {
+        name: 'Celebrity Name 2',
+        event: 'Event 2',
+        photo: '../assets/Celebs/kadhaipoma.jpg'
+    },
+    {
+        name: 'Celebrity Name 2',
+        event: 'Event 2',
+        photo: '../assets/Celebs/pavish.jpg'
+    },
+    {
+        name: 'Celebrity Name 2',
+        event: 'Event 2',
+        photo: '../assets/Celebs/pavithra.jpg'
+    },
+    {
+        name: 'Celebrity Name 2',
+        event: 'Event 2',
+        photo: '../assets/Celebs/pooja.jpg'
+    },
+    {
+        name: 'Celebrity Name 2',
+        event: 'Event 2',
+        photo: '../assets/Celebs/roshini.jpg'
+    },
+
+    {
+        name: 'Celebrity Name 2',
+        event: 'Event 2',
+        photo: '../assets/Celebs/sakshi.png'
+    },
+    {
+        name: 'Celebrity Name 2',
+        event: 'Event 2',
+        photo: '../assets/Celebs/srini.jpg'
     },
     // Add more celebrities as needed
 ];
