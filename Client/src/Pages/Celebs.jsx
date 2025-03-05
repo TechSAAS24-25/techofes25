@@ -2,55 +2,55 @@ import React from 'react';
 
 const celebs = [
     {
-        // name: 'AKHILAN ',
-        // event: 'Event 1',
-        photo: '../../public/media/Celebs/akhil.png'
+        name: 'AKHILAN ',
+        event: 'T Awards',
+        photo: '/media/Celebs/akhil.png'
     },
     {
-        // name: 'DHILEEP',
+        name: 'DHILEEP',
         // event: 'Event 2',
-        photo: '../../public/media/Celebs/dhileep.jpg'
-    },
-    {
-        // name: 'Celebrity Name 2',
-        // event: 'Event 2',
-        photo: '../../public/media/Celebs/diwa.png'
+        photo: '/media/Celebs/dhileep.jpg'
     },
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../../public/media/Celebs/kadhaipoma.jpg'
+        photo: '/media/Celebs/diwa.png'
     },
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../../public/media/Celebs/pavish.jpg'
+        photo: '/media/Celebs/kadhaipoma.jpg'
     },
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../../public/media/Celebs/pavithra.jpg'
+        photo: '/media/Celebs/pavish.jpg'
     },
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../../public/media/Celebs/pooja.jpg'
+        photo: '/media/Celebs/pavithra.jpg'
     },
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../../public/media/Celebs/roshini.jpg'
+        photo: '/media/Celebs/pooja.jpg'
+    },
+    {
+        // name: 'Celebrity Name 2',
+        // event: 'Event 2',
+        photo: '/media/Celebs/roshini.jpg'
     },
 
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../../public/media/Celebs/sakshi.png'
+        photo: '/media/Celebs/akhil.png'
     },
     {
         // name: 'Celebrity Name 2',
         // event: 'Event 2',
-        photo: '../../public/media/Celebs/srini.jpg'
+        photo: '/media/Celebs/srini.jpg'
     },
     // Add more celebrities as needed
 ];
