@@ -347,9 +347,7 @@ const Hero = () => {
         <AboutSection />
       </div>
 
-      <div>
-        <Celebs/>
-      </div>
+      
 
       <ZoomParallax />
       <EventScroll />
@@ -361,6 +359,10 @@ const Hero = () => {
           <p className="font-michroma text-5xl">Meet Our Chefs</p>
           <Carousel cardsList={mainCoordinators || []} />
         </div>
+      </div>
+
+      <div>
+        <Celebs/>
       </div>
       <Footer />
     </main>
