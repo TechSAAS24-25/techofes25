@@ -3,53 +3,56 @@ import React from 'react';
 const celebs = [
     {
         name: 'AKHILAN ',
-        event: 'T Awards',
+        event: 'T-Awards',
         photo: '/media/Celebs/akhil.png'
     },
     {
-        name: 'DHILEEP',
-        // event: 'Event 2',
+        name: 'DHILIP SUBBARAYAN',
+        event: 'T-Awards',
         photo: '/media/Celebs/dhileep.jpg'
     },
     {
-        // name: 'Celebrity Name 2',
-        // event: 'Event 2',
+        name: 'DIWAKAR',
+        event: 'T-Awards',
         photo: '/media/Celebs/diwa.png'
     },
     {
-        // name: 'Celebrity Name 2',
-        // event: 'Event 2',
+        name: 'KADHAIPOMA TEAM',
+        event: 'T-Awards',
         photo: '/media/Celebs/kadhaipoma.jpg'
     },
     {
-        // name: 'Celebrity Name 2',
-        // event: 'Event 2',
+        name: 'PAVISH',
+        event: 'T-Awards',
         photo: '/media/Celebs/pavish.jpg'
     },
     {
-        // name: 'Celebrity Name 2',
-        // event: 'Event 2',
+        name: 'PAVITHRA LAKSHMI',
+        event: 'T-Awards',
         photo: '/media/Celebs/pavithra.jpg'
     },
     {
-        // name: 'Celebrity Name 2',
+        name: 'POOJA VENKAT',
         // event: 'Event 2',
+        event: 'T-Awards',
         photo: '/media/Celebs/pooja.jpg'
     },
     {
-        // name: 'Celebrity Name 2',
+        name: 'ROSHNI HARIPRIYAN',
         // event: 'Event 2',
+        event: 'T-Awards',
         photo: '/media/Celebs/roshini.jpg'
     },
 
     {
-        // name: 'Celebrity Name 2',
+        name: 'SAKSHI AGARWAL',
         // event: 'Event 2',
+        event: 'T-Awards',
         photo: '/media/Celebs/akhil.png'
     },
     {
-        // name: 'Celebrity Name 2',
-        // event: 'Event 2',
+        name: 'SRINISHA',
+        event: 'T-Awards',
         photo: '/media/Celebs/srini.jpg'
     },
     // Add more celebrities as needed
