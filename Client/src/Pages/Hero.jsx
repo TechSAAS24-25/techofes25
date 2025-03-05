@@ -17,6 +17,7 @@ import { mainCoordinators } from "../data/data.js";
 import Particles from "@tsparticles/react";
 import plateImage from "../assets/food/plate.png";
 import heroVideo from "../assets/hero-bg.mp4";
+import Celebs from "./Celebs.jsx";
 
 function useEventListener(eventName, handler, element = document) {
   const savedHandler = React.useRef();
@@ -344,6 +345,10 @@ const Hero = () => {
 
       <div className="flex items-center h-screen z-10 bg-gradient-to-b to-yellow-500 from-orange-700 justify-start">
         <AboutSection />
+      </div>
+
+      <div>
+        <Celebs/>
       </div>
 
       <ZoomParallax />
