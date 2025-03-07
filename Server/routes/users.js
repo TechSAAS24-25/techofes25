@@ -90,7 +90,7 @@ userPaymentsRouter.get("/payment", userExtractor, async (request, response) => {
         registrationID: payment.registrationID,
         amount: event.regFees,
         status: payment.status,
-        transactionDate: payment.transactionDate,
+        transactionDate: payment.dateTime,
         eventName: event.eventName,
         category: event.category,
         date: event.date,
