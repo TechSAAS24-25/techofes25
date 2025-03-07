@@ -31,7 +31,7 @@ const Navbar = () => {
     const user = storage.loadUser();
     setIsLoggedIn(!!user);
     const admin = storage.loadUser();
-    if ( admin.username == "admin" ) {
+    if ( isLoggedIn && admin.username == "admin") {
       setIsAdmin(true);
     }
       
