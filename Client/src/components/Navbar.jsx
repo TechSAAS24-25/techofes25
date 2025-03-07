@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import storage from "../services/storage";
 import "./Navbar.css";
 import homeIcon from "../assets/home.png";
+import adminIcon from "../assets/add-user.png";
 import accom from "../assets/accommodation.webp";
 import event from "../assets/events1.png";
 import more from "../assets/more.png";
@@ -204,7 +205,7 @@ const Navbar = () => {
               }
             >
               <div className="top-bar"></div>
-              <img src={more} alt="More Icon" id="icon" />
+              <img src={adminIcon} alt="admin" id="icon" />
               admin
             </NavLink>
           </li>

@@ -86,8 +86,15 @@ userPaymentsRouter.get("/payment", userExtractor, async (request, response) => {
       if (!event) {
         return null; // Explicitly return null to filter it out later
       }
+      const registration = await Registration.findOne({
+        eventID: eventID,
+        T_ID: T_ID,
+      });
+      if (!registration) {
+        return null; // Explicitly return null to filter it out later
+      }
       return {
-        registrationID: payment.registrationID,
+        registrationID: registration.registrationID,
         amount: event.regFees,
         status: payment.status,
         transactionDate: payment.dateTime,
