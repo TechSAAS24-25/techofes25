@@ -55,7 +55,7 @@ const Navbar = () => {
       }
     };
     logout();
-    navigate("/login");
+    navigate("/");
   };
 
   // Saas Logo Click Handler
