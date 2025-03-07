@@ -22,6 +22,7 @@ import { Toaster } from "react-hot-toast";
 import PaymentPage from "./Pages/Payment.jsx";
 import preloader from "./assets/preload.mp4";
 import Celebs from "./Pages/Celebs.jsx";
+import Notification from "./components/Notification.jsx";
 import "./App.css";
 
 const Register = () => <h1>Register Page</h1>;
@@ -49,6 +50,7 @@ function App() {
         </div>
       ) : (
         <>
+          <Notification />
           <Navbar />
           <Routes>
             <Route path="/" element={<Hero />} />
