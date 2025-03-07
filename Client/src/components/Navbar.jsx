@@ -21,6 +21,7 @@ import { ToastContainer, toast } from "react-toastify";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
   const location = useLocation(); // Detect location changes
 
@@ -29,6 +30,11 @@ const Navbar = () => {
   useEffect(() => {
     const user = storage.loadUser();
     setIsLoggedIn(!!user);
+    const admin = storage.loadUser();
+    if ( admin.username == "admin" ) {
+      setIsAdmin(true);
+    }
+      
 
     // Close the menu whenever the route changes
     setIsMenuOpen(false);
@@ -185,6 +191,21 @@ const Navbar = () => {
               <div className="top-bar"></div>
               <img src={more} alt="More Icon" id="icon" />
               User Profile
+            </NavLink>
+          </li>
+        ) : null}
+
+        {isAdmin ? (
+           <li className="navItem">
+            <NavLink
+              to="/admin"
+              className={({ isActive }) =>
+                isActive ? "active-link" : "navLink"
+              }
+            >
+              <div className="top-bar"></div>
+              <img src={more} alt="More Icon" id="icon" />
+              admin
             </NavLink>
           </li>
         ) : null}
