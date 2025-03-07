@@ -31,12 +31,7 @@ const Navbar = () => {
   useEffect(() => {
     const user = storage.loadUser();
     setIsLoggedIn(!!user);
-    const admin = storage.loadUser();
-    if ( isLoggedIn && admin.username == "admin") {
-      setIsAdmin(true);
-    }
-      
-
+    setIsAdmin(user?.username === "admin");
     // Close the menu whenever the route changes
     setIsMenuOpen(false);
   }, [location]); // Runs when the route changes
@@ -47,15 +42,16 @@ const Navbar = () => {
     const logout = async () => {
       try {
         const response = await authServices.logout();
-        setIsLoggedIn(false);
         toast.success("Logout Successful");
+        setIsLoggedIn(false);
+        setIsAdmin(false);
+        navigate("/");
       } catch (error) {
         console.error("Error logging out:", error);
         toast.error("Logout Error!");
       }
     };
     logout();
-    navigate("/");
   };
 
   // Saas Logo Click Handler

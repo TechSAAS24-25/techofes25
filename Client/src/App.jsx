@@ -72,6 +72,8 @@ function App() {
             <Route path="/events/:category" element={<EventTypes />} />
             <Route path="/events/:category/:type" element={<EventList />} />
             <Route path="/celebrities" element={<Celebs />} />
+            <Route path="*" element={<Hero/>} />
+            
           </Routes>
           <Toaster position="bottom-right" />
         </>
