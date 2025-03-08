@@ -137,6 +137,8 @@ loginRouter.post("/", async (request, response) => {
     user.failedAttempts = 0;
     await user.save();
 
+    console.log("User logged in:", user.username);
+
     // Generate JWT token
     const userForToken = {
       T_ID: user.T_ID,
