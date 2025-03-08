@@ -50,6 +50,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    failedAttempts: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

@@ -9,6 +9,8 @@ const loginRouter = express.Router();
 const logoutRouter = express.Router();
 const registerRouter = express.Router();
 
+const MAX_ATTEMPTS = 3; // Set limit for failed login attempts
+
 // const admin = require("../utils/firebase"); // Firebase Admin
 
 // registerRouter.post("/verify-otp", async (req, res) => {
@@ -115,10 +117,25 @@ loginRouter.post("/", async (request, response) => {
     // Verify password
     const passwordCorrect = await bcrypt.compare(password, user.passwordHash);
     if (!passwordCorrect) {
+      user.failedAttempts += 1;
+      // Lock account if limit reached
+      if (user.failedAttempts >= MAX_ATTEMPTS) {
+        await sendMail(
+            user.emailID,
+            "Frequent Login Attempts Detected",
+            `Dear ${username},\n\nWe noticed multiple failed login attempts on your Techofes account.\n\nIf you need help resetting your password, please let us know.\n\nBest regards,\nSAAS TECH TEAM`
+        );
+    }
+
+     await user.save();
       return response
         .status(401)
         .json({ error: "Invalid username or password" });
     }
+
+    // Reset failed attempts
+    user.failedAttempts = 0;
+    await user.save();
 
     // Generate JWT token
     const userForToken = {
@@ -128,6 +145,7 @@ loginRouter.post("/", async (request, response) => {
     const token = jwt.sign(userForToken, process.env.SECRET, {
       expiresIn: "7d", // Token expiration time
     });
+
 
     response.status(200).send({
       token,
