@@ -89,7 +89,7 @@ registerRouter.post("/", async (request, response, next) => {
 
     // Send confirmation email
     const subject = "Registration Confirmation";
-    const text = `Dear ${savedUser.firstName},\n\nThank you for registering! Your unique T-ID is: ${savedUser.T_ID}.\n\nBest regards,\nEvent Team`;
+    const text = `Dear ${savedUser.firstName},\n\nThank you for registering! Your unique T-ID is: ${savedUser.T_ID} and username is: "${savedUser.username}". \n\nBest regards,\nEvent Team`;
 
     await sendMail(savedUser.emailID, subject, text);
 
