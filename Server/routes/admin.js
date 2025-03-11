@@ -154,7 +154,7 @@ getRegistrationRouter.get("/registrations", async (req, res) => {
         const user = await User.findOne({ T_ID: registration.T_ID });
         const event = await Event.findById(registration.eventID); // Assuming eventID is the field in registration
         if (!event) {
-          console.log(user);
+          // console.log(user);
           return null;
         }
         return {
