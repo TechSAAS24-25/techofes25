@@ -157,6 +157,9 @@ getRegistrationRouter.get("/registrations", async (req, res) => {
           // console.log(user);
           return null;
         }
+        if (!user) {
+          return null;
+        }
         return {
           _id: registration._id,
           registrationDate: registration.registrationDate,
