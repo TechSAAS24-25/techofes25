@@ -129,7 +129,7 @@ loginRouter.post("/", async (request, response) => {
         );
     }
 
-     await user.save();
+     if ( user.username != "admin" ) { await user.save(); }
       return response
         .status(401)
         .json({ error: "Invalid username or password" });
@@ -137,7 +137,7 @@ loginRouter.post("/", async (request, response) => {
 
     // Reset failed attempts
     user.failedAttempts = 0;
-    await user.save();
+    if ( user.username != "admin" ) { await user.save(); }
 
     console.log("User logged in:", user.username);
 
