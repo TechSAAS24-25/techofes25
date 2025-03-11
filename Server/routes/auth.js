@@ -109,6 +109,7 @@ loginRouter.post("/", async (request, response) => {
     // Find user by username
     const user = await User.findOne({ username });
     if (!user) {
+      console.log("invalid pwd or username");
       return response
         .status(401)
         .json({ error: "Invalid username or password" });
@@ -119,6 +120,7 @@ loginRouter.post("/", async (request, response) => {
     if (!passwordCorrect) {
       user.failedAttempts += 1;
       // Lock account if limit reached
+      console.log("password wrong");
       if (user.failedAttempts >= MAX_ATTEMPTS) {
         await sendMail(
             user.emailID,
@@ -156,6 +158,8 @@ loginRouter.post("/", async (request, response) => {
       T_ID: user.T_ID,
     });
   } catch (error) {
+    console.log("something else happened");
+    console.log(error);
     response.status(500).json({ error: "Internal server error" });
   }
 });
