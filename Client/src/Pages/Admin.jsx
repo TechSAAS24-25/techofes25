@@ -324,7 +324,7 @@ const Admin = () => {
                   <td className="border-b p-4">{registration.userName}</td>
                   <td className="border-b p-4">{registration.userType}</td>
                   <td className="border-b p-4">{registration.eventName}</td>
-                  <td className="border-b p-4">{registration.category}</td>
+                  <td className="border-b p-4">{registration.eventCategory}</td>
                   <td className="border-b p-4">{registration.phone}</td>
                   <td className="border-b p-4">{registration.userEmail}</td>
                 </tr>
